@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FXMLController">
+   <children>
+      <Button fx:id="Add_Id" layoutX="774.0" layoutY="80.0" mnemonicParsing="false" onAction="#AjouterBonPlan" text="Ajouter BonPLan" />
+      <TextField fx:id="NomBonPlan_id" layoutX="209.0" layoutY="67.0" />
+      <Label fx:id="label_id" layoutX="31.0" layoutY="66.0" prefHeight="26.0" prefWidth="92.0" text="Nom Bon Plan :" />
+      <TextField fx:id="user_Id" layoutX="537.0" layoutY="110.0" />
+      <TextField fx:id="Adresse_Id" layoutX="537.0" layoutY="66.0" />
+      <TextField fx:id="Type_Id" layoutX="209.0" layoutY="110.0" />
+      <Label fx:id="label_id1" layoutX="31.0" layoutY="23.0" prefHeight="18.0" prefWidth="122.0" text="    Ajouter BonPlan">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.44318177483298565">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="label_id2" layoutX="31.0" layoutY="110.0" prefHeight="26.0" prefWidth="92.0" text="Adresse         :" />
+      <Label fx:id="label_id4" layoutX="421.0" layoutY="110.0" prefHeight="26.0" prefWidth="92.0" text="Id User           :" />
+      <Label fx:id="label_id21" layoutX="421.0" layoutY="65.0" prefHeight="26.0" prefWidth="92.0" text="Type              :" />
+      <Button fx:id="ReadAll_Id" layoutX="740.0" layoutY="404.0" mnemonicParsing="false" onAction="#AfficherBonPlans" text="Afficher BonPLan" />
+      <ListView fx:id="list_bonplan" layoutX="53.0" layoutY="282.0" prefHeight="362.0" prefWidth="666.0" />
+      <Label layoutX="67.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" text="Nom Bon Plan :" />
+      <Label fx:id="label_id22" layoutX="218.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" text="Adresse         :" />
+      <Label fx:id="label_id211" layoutX="359.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" text="Type              :" />
+      <Label fx:id="label_id41" layoutX="491.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" text="Etat           :" />
+      <Label fx:id="label_id42" layoutX="627.0" layoutY="255.0" prefHeight="26.0" prefWidth="92.0" text="Id User           :" />
+      <Button fx:id="delete_btn" layoutX="740.0" layoutY="475.0" mnemonicParsing="false" onAction="#deleteBonPlan" prefHeight="26.0" prefWidth="114.0" text="Delete BonPlan" />
+      <Button fx:id="update_bonplan" layoutX="739.0" layoutY="345.0" mnemonicParsing="false" onAction="#ModifierBonPlan" text="modifier BonPlan" />
+   </children>
+</AnchorPane>
