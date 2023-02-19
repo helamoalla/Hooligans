@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,24 +36,27 @@ public class UpdatebonplanController implements Initializable {
     @FXML
     private TextField updateadresse;
     @FXML
-    private TextField updatetype;
-    @FXML
     private Button update_Btn;
     
     BonPlan b;
     BonPlanService bonPlanService=new BonPlanService();
+    @FXML
+    private Button retour_btn;
+    @FXML
+    private ChoiceBox<String> typeBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        typeBtn.getItems().add("Garage");
+        typeBtn.getItems().add("Circuit");
     }
 void getBonPlan(BonPlan b){
     updatenom.setText(b.getNom_bonplan());
         updateadresse.setText(b.getAdresse());
-        updatetype.setText(b.getType());
+        typeBtn.setValue(b.getType());
 }    
     
 
@@ -65,8 +69,7 @@ void getBonPlan(BonPlan b){
         try {
             b.setNom_bonplan(updatenom.getText());
             b.setAdresse(updateadresse.getText());
-            b.setType(updatetype.getText());
-            
+            b.setType(typeBtn.getValue());            
             
             bonPlanService.update(b);
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
@@ -77,6 +80,20 @@ void getBonPlan(BonPlan b){
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(UpdatebonplanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+                try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
+            Parent view_2=loader.load();
+            Scene scene = new Scene(view_2);
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

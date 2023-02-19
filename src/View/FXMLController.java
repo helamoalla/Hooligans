@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -46,25 +47,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button Add_Id;
-    @FXML
-    private TextField NomBonPlan_id;
-    @FXML
-    private TextField user_Id;
-    @FXML
-    private TextField Adresse_Id;
-    @FXML
-    private TextField Type_Id;
     private Text afficher_Id;
-    @FXML
-    private Label label_id;
-    @FXML
-    private Label label_id1;
-    @FXML
-    private Label label_id2;
-    @FXML
-    private Label label_id4;
-    @FXML
-    private Label label_id21;
     @FXML
     private Button ReadAll_Id;
     @FXML
@@ -81,6 +64,8 @@ public class FXMLController implements Initializable {
     private Button delete_btn;
     @FXML
     private Button update_bonplan;
+    @FXML
+    private Button feedback_btn;
 
 
     /**
@@ -88,47 +73,89 @@ public class FXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        getAllBonPlans();
     }    
     @FXML
     private void AjouterBonPlan(ActionEvent event) {
-         if (NomBonPlan_id.getText().length() == 0||Adresse_Id.getText().length() == 0||Type_Id.getText().length() == 0||user_Id.getText().length() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("Please remplir tous les champs"+ "");
-            alert.show();
-
-        } else {
-            BonPlan b=new BonPlan();
-            b.setNom_bonplan(NomBonPlan_id.getText());
-            b.setAdresse(Adresse_Id.getText());
-            b.setType(Type_Id.getText());
-            b.setId_user(Integer.parseInt(user_Id.getText()));
-            bonPlanService.insert(b);
-            //afficher_Id.setText(bonPlanService.readAll().toString());
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./AjouterBonPlan.fxml"));
+            Parent view_2=loader.load();
+            Scene scene = new Scene(view_2);
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void getAllBonPlans(){
+        ObservableList<BonPlan> bonplans =FXCollections.observableArrayList(bonPlanService.readAll());
+       list_bonplan.setItems(bonplans);
+       list_bonplan.setCellFactory(param -> new ListCell<BonPlan>() {
+    @Override
+    protected void updateItem(BonPlan item, boolean empty) {
+        super.updateItem(item, empty);
+
+        if (empty || item == null) {
+            setText(null);
+        } else {
+            //setId(item.getId_bonplan().toString());
+            setText(" "+item.getNom_bonplan()+ "                   "+item.getAdresse()+
+                    "                      "+item.getType() +
+                    "                     "+item.getEtat() + 
+                    "                      "+item.getId_user());
+            
+        }
+    }
+});
+    }
+  
 
     @FXML
     private void AfficherBonPlans(ActionEvent event) {
-       ObservableList<BonPlan> bonplans =FXCollections.observableArrayList(bonPlanService.readAll());
-       list_bonplan.setItems(bonplans);
+       
+    getAllBonPlans();
                     
     }
 
     @FXML
     private void deleteBonPlan(ActionEvent event) {
-        int selectedId= list_bonplan.getSelectionModel().getSelectedItem().getId_bonplan();
-        bonPlanService.delete(selectedId);
-        //list_bonplan.getItems().remove(selectedId);
+        
+        BonPlan selectedBonPlan= list_bonplan.getSelectionModel().getSelectedItem();
+        
+        
+        try {
+            if(selectedBonPlan== null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("champs non selectionné !");
+            alert.setContentText("Please Selectionner le champs à Supprimer"+ "");
+            alert.show();
+        }
+        else{
+           bonPlanService.delete(selectedBonPlan.getId_bonplan());
+                AfficherBonPlans(event);
+        }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
     }
 
     @FXML
     private void ModifierBonPlan(ActionEvent event) {
         BonPlan selectedBonPlan= list_bonplan.getSelectionModel().getSelectedItem();
+        
         try {
+            if(selectedBonPlan== null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("champs non selectionné !");
+            alert.setContentText("Please Selectionner le champs à modifier"+ "");
+            alert.show();
+        }
             //bonPlanService.update(bonPlanService.readById(selectedId));
+            else{
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./updatebonplan.fxml"));
             Parent view_2=loader.load();
             UpdatebonplanController updatebonplanController=loader.getController();
@@ -138,10 +165,42 @@ public class FXMLController implements Initializable {
             Scene scene = new Scene(view_2);
             stage.setScene(scene);
             stage.show();
+            }
         } catch (IOException ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
+
+    @FXML
+    private void ajouterFeedBack(ActionEvent event) {
+         BonPlan selectedBonPlan= list_bonplan.getSelectionModel().getSelectedItem();
+        
+        try {
+            if(selectedBonPlan== null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("champs non selectionné !");
+            alert.setContentText("Please Selectionner le bon plan au quel tu veux ajouter un feedback"+ "");
+            alert.show();
+        }
+            //bonPlanService.update(bonPlanService.readById(selectedId));
+            else{
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./AjouterFeedBack.fxml"));
+            Parent view_2=loader.load();
+            AjouterFeedBackController ajouterFeedBackController=loader.getController();
+            //AjouterFeedBackController.getBonPlan(selectedBonPlan);
+            ajouterFeedBackController.b=selectedBonPlan;
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(view_2);
+            stage.setScene(scene);
+            stage.show();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     
 }

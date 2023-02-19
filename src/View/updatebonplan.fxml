@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,8 +12,9 @@
       <Label layoutX="174.0" layoutY="34.0" prefHeight="18.0" prefWidth="50.0" text="nom" />
       <TextField fx:id="updateadresse" layoutX="241.0" layoutY="71.0" />
       <Label layoutX="174.0" layoutY="74.0" prefHeight="18.0" prefWidth="50.0" text="adresse" />
-      <TextField fx:id="updatetype" layoutX="241.0" layoutY="108.0" />
       <Label layoutX="174.0" layoutY="111.0" prefHeight="18.0" prefWidth="50.0" text="type" />
-      <Button fx:id="update_Btn" layoutX="266.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateBonPlan" text="confirmer" />
+      <Button fx:id="update_Btn" layoutX="244.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateBonPlan" text="Update" />
+      <Button fx:id="retour_btn" layoutX="333.0" layoutY="162.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="55.0" text="Retour" />
+      <ChoiceBox fx:id="typeBtn" layoutX="240.0" layoutY="108.0" prefHeight="18.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

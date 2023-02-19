@@ -110,8 +110,10 @@ public class BonPlan {
 
     @Override
     public String toString() {
-        return  ", nom_bonplan=" + nom_bonplan + ", adresse=" + adresse + ", type=" + type + ", etat=" + etat + ", id_user=" + id_user + '}';
+        return "BonPlan{" + "id_bonplan=" + id_bonplan + ", nom_bonplan=" + nom_bonplan + ", adresse=" + adresse + ", type=" + type + ", etat=" + etat + ", id_user=" + id_user + '}';
     }
+
+    
     
     
 }
