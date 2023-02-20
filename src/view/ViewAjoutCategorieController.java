@@ -1,0 +1,104 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package view;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import models.Categorie;
+import services.CategorieService;
+
+/**
+ * FXML Controller class
+ *
+ * @author Nadia
+ */
+public class ViewAjoutCategorieController implements Initializable {
+
+    CategorieService categorieservice =new CategorieService() ;
+    @FXML
+    private TextField NomCat;
+    @FXML
+    private TextField DescCat;
+    private TextArea listeCat;
+
+    /**
+     * Initializes the controller class.
+     * 
+     */
+     private String[] choix ={"Pieces de rechange","mode"} ;
+    @FXML
+    private ChoiceBox<String> choicefx;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        choicefx.getItems().addAll(choix);
+    }    
+
+    @FXML
+    private void AjouterCat(ActionEvent event) {
+        
+         if (NomCat.getText().length() == 0||DescCat.getText().length() == 0||choicefx.getValue().length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Veuillez remplir tous les champs"+ "");
+            alert.show();
+
+        } else{
+        Categorie c =new Categorie();
+            c.setNom_categorie(NomCat.getText());
+            c.setDescription_categorie(DescCat.getText());
+            c.setType_categorie(choicefx.getValue());
+            categorieservice.insert(c);}
+            
+           
+    }
+
+    private void afficherCat(ActionEvent event) {
+        List <Categorie> listecategorie = FXCollections.observableArrayList(categorieservice.readAll());
+      //  aa.setItems((ObservableList<listecategorie>));
+       listeCat.setText(categorieservice.readAll().toString());
+
+       
+    }
+
+    @FXML
+    private void consulterliste(ActionEvent event) {
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppCategorie.fxml"));
+         try {
+             Parent view_2=loader.load();
+             ViewSuppCategorieController suppcategorie=loader.getController();
+             
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(view_2);
+            stage.setScene(scene);
+            stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    
+}
