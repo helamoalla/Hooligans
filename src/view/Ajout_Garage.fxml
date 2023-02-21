@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Ajout_GarageController">
+   <children>
+      <Label layoutX="45.0" layoutY="25.0" text="Nom Garage" />
+      <Label layoutX="44.0" layoutY="69.0" text="Adresse" />
+      <Label layoutX="43.0" layoutY="109.0" text="Numero" />
+      <Label layoutX="41.0" layoutY="146.0" text="panne moteur" />
+      <Label layoutX="43.0" layoutY="191.0" text="pompe a eau" />
+      <Label layoutX="41.0" layoutY="232.0" text="patin " />
+      <Label layoutX="39.0" layoutY="270.0" text="essuie glace" />
+      <Label layoutX="47.0" layoutY="313.0" text="radiateur" />
+      <Label layoutX="37.0" layoutY="353.0" text="ventilateur" />
+      <Label layoutX="309.0" layoutY="24.0" text="duride" />
+      <Label layoutX="311.0" layoutY="69.0" text="fuite d'huile" />
+      <Label layoutX="313.0" layoutY="109.0" text="vidange" />
+      <Label layoutX="308.0" layoutY="146.0" text="filtre" />
+      <Label layoutX="312.0" layoutY="192.0" text="batterie" />
+      <Label layoutX="303.0" layoutY="232.0" text="amortisseur" />
+      <Label layoutX="307.0" layoutY="270.0" text="frain main" />
+      <Label layoutX="304.0" layoutY="313.0" text="feu d'eclairage" />
+      <Label layoutX="296.0" layoutY="353.0" text="taux de reduction" />
+      <Button fx:id="id_ajout" layoutX="545.0" layoutY="373.0" mnemonicParsing="false" onAction="#ajouter_garage" prefHeight="26.0" prefWidth="57.0" text="ajouter" />
+      <TextField fx:id="id_nom" layoutX="132.0" layoutY="21.0" />
+      <TextField fx:id="id_adresse" layoutX="132.0" layoutY="65.0" />
+      <TextField fx:id="id_num" layoutX="133.0" layoutY="105.0" />
+      <TextField fx:id="id_panne_moteur" layoutX="132.0" layoutY="142.0" />
+      <TextField fx:id="id_pompe_a_eau" layoutX="133.0" layoutY="188.0" />
+      <TextField fx:id="id_patin" layoutX="132.0" layoutY="228.0" />
+      <TextField fx:id="id_essuie_glace" layoutX="133.0" layoutY="266.0" />
+      <TextField fx:id="id_radiateur" layoutX="134.0" layoutY="309.0" />
+      <TextField fx:id="id_ventilateur" layoutX="133.0" layoutY="349.0" />
+      <TextField fx:id="id_duride" layoutX="374.0" layoutY="20.0" prefHeight="26.0" prefWidth="122.0" />
+      <TextField fx:id="id_fuite_d_huile" layoutX="376.0" layoutY="65.0" />
+      <TextField fx:id="id_vidange" layoutX="376.0" layoutY="105.0" />
+      <TextField fx:id="id_filtre" layoutX="376.0" layoutY="142.0" />
+      <TextField fx:id="id_batterie" layoutX="367.0" layoutY="187.0" />
+      <TextField fx:id="id_amortisseur" layoutX="376.0" layoutY="228.0" />
+      <TextField fx:id="id_frain_main" layoutX="377.0" layoutY="266.0" />
+      <TextField fx:id="id_feu_eclairage" layoutX="388.0" layoutY="309.0" />
+      <TextField fx:id="id_reduction" layoutX="390.0" layoutY="349.0" />
+      <TextField fx:id="id_autre" layoutX="527.0" layoutY="33.0" prefHeight="26.0" prefWidth="57.0" />
+      <TextField fx:id="id_image" layoutX="534.0" layoutY="77.0" prefHeight="26.0" prefWidth="44.0" />
+   </children>
+</AnchorPane>
