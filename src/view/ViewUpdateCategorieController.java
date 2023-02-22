@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -56,6 +57,15 @@ public class ViewUpdateCategorieController implements Initializable {
    
     @FXML
     private void Modifiercat(ActionEvent event) {
+        
+        if (updatenom.getText().length() == 0||updatedesc.getText().length() == 0||updatechoix.getValue().length() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Veuillez remplir tous les champs"+ "");
+            alert.show();
+
+        }else {
          try {
             c.setNom_categorie(updatenom.getText());
             c.setDescription_categorie(updatedesc.getText());
@@ -67,13 +77,12 @@ public class ViewUpdateCategorieController implements Initializable {
         } catch (Exception ex) {
              System.out.println(ex);        }
         
-    }
+    }}
 
     @FXML
     private void consulterlist(ActionEvent event) {
-        
             try {
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppCategorie.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -83,5 +92,7 @@ public class ViewUpdateCategorieController implements Initializable {
                 Logger.getLogger(ViewUpdateCategorieController.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+
+    
     
 }

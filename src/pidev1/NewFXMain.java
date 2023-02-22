@@ -29,7 +29,8 @@ public class NewFXMain extends Application {
         Parent root;
         try {
            // root = FXMLLoader.load(getClass().getResource("../view/ViewAjoutCategorie.fxml"));
-                root = FXMLLoader.load(getClass().getResource("../view/ViewSuppCategorie.fxml"));
+           //root = FXMLLoader.load(getClass().getResource("../view/ViewSuppCategorie.fxml"));
+           root = FXMLLoader.load(getClass().getResource("../view/HomePage.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Workshop FX");
             primaryStage.setScene(scene);

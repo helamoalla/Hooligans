@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewAjoutProduitController">
+   <children>
+      <TextField fx:id="nomprod" layoutX="149.0" layoutY="34.0" opacity="0.65" />
+      <TextField fx:id="prixprod" layoutX="151.0" layoutY="91.0" opacity="0.65" />
+      <TextArea fx:id="descprod" layoutX="150.0" layoutY="145.0" opacity="0.65" prefHeight="62.0" prefWidth="150.0" />
+      <TextField fx:id="quantiteprod" layoutX="152.0" layoutY="235.0" opacity="0.65" />
+      <Label layoutX="35.0" layoutY="38.0" text="Nom Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="92.0" text="Prix Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="9.0" layoutY="164.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="236.0" text="Quantité Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="305.0" text="Categorie" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choixCP" layoutX="151.0" layoutY="302.0" prefWidth="150.0" />
+      <Button layoutX="103.0" layoutY="365.0" mnemonicParsing="false" onAction="#ajoutproduit" prefHeight="26.0" prefWidth="122.0" text="Ajouter Produit" />
+      <Button layoutX="253.0" layoutY="364.0" mnemonicParsing="false" onAction="#afficherproduits" text="Afficher liste produits" />
+   </children>
+</AnchorPane>

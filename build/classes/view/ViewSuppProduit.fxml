@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewSuppProduitController">
+   <children>
+      <ListView fx:id="listeprod" layoutX="38.0" layoutY="204.0" opacity="0.66" prefHeight="168.0" prefWidth="523.0" />
+      <Button layoutX="413.0" layoutY="160.0" mnemonicParsing="false" onAction="#modifprod" prefHeight="26.0" prefWidth="148.0" text="Modifier Produit" />
+      <Button layoutX="236.0" layoutY="160.0" mnemonicParsing="false" onAction="#suppprod" opacity="0.8" prefHeight="26.0" prefWidth="148.0" text="Supprimer Produit" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" opacity="0.8" text="Home" textFill="#696161" />
+      <Button layoutX="63.0" layoutY="160.0" mnemonicParsing="false" onAction="#ajoutprod" opacity="0.8" prefHeight="26.0" prefWidth="148.0" text="Ajouter Produit" />
+      <Button layoutX="227.0" layoutY="399.0" mnemonicParsing="false" onAction="#afficheprod" opacity="0.8" prefHeight="26.0" prefWidth="166.0" text="Afficher produits" />
+   </children>
+</AnchorPane>

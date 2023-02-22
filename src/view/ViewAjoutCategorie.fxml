@@ -30,6 +30,7 @@
          </font>
       </Label>
       <Button layoutX="315.0" layoutY="200.0" mnemonicParsing="false" onAction="#consulterliste" prefHeight="28.0" prefWidth="150.0" text="Consulter liste Categorie" />
+      <ChoiceBox fx:id="essaye1" layoutX="79.0" layoutY="279.0" prefWidth="150.0" />
    </children>
    <opaqueInsets>
       <Insets />

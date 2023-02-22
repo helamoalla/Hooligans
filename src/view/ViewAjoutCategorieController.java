@@ -51,6 +51,8 @@ public class ViewAjoutCategorieController implements Initializable {
      private String[] choix ={"Pieces de rechange","mode"} ;
     @FXML
     private ChoiceBox<String> choicefx;
+    @FXML
+    private ChoiceBox<Categorie> essaye1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,11 +70,15 @@ public class ViewAjoutCategorieController implements Initializable {
             alert.show();
 
         } else{
-        Categorie c =new Categorie();
+       
+             Categorie c =new Categorie();
             c.setNom_categorie(NomCat.getText());
             c.setDescription_categorie(DescCat.getText());
             c.setType_categorie(choicefx.getValue());
-            categorieservice.insert(c);}
+            categorieservice.insert(c);
+           essaye1.getItems().add(c);
+           
+         }
             
            
     }

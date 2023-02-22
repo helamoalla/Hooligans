@@ -53,7 +53,7 @@ public class ViewSuppCategorieController implements Initializable {
     private void deleteCat(ActionEvent event) {
          int selectedId= listecategories.getSelectionModel().getSelectedItem().getId_categorie();
         categorieservice.delete(selectedId);
-        listecategories.getItems().remove(selectedId);
+        
     
     }
 
@@ -92,6 +92,20 @@ public class ViewSuppCategorieController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex);        } 
        
+    }
+
+    @FXML
+    private void Home(ActionEvent event) {
+         try {
+             FXMLLoader loader= new FXMLLoader(getClass().getResource("./HomePage.fxml"));
+             Parent view_2=loader.load();
+             Scene scene = new Scene(view_2);
+             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
     
 }
