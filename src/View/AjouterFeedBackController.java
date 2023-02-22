@@ -123,7 +123,23 @@ public class AjouterFeedBackController implements Initializable {
             alert.setContentText("Please remplir tous les champs"+ "");
             alert.show();
 
-        } else {
+        }else if(!rate.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("The Rate must be a number !!"+ "");
+            alert.show();
+            
+        } 
+         else if(!idUser.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("The id of user must be a number !!"+ "");
+            alert.show();
+            
+        }  
+         else {
             try {
                 Feedback f=new Feedback();
                 f.setCommentaire(commentaire.getText());

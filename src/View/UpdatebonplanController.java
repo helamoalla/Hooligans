@@ -109,7 +109,7 @@ void getBonPlan(BonPlan b){
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
          if (selectedFile != null) {
-                image_label.setText(selectedFile.getName());
+                image_label.setText(selectedFile.getName().replaceAll("\\s", ""));
                  try {
                 Image images = new Image("file:"+selectedFile.getPath().toString());
                 image_view.setImage(images);
@@ -131,10 +131,12 @@ void getBonPlan(BonPlan b){
                 
          // Copy the selected file to the htdocs directory
                  String htdocsPath = "C:/xampp/htdocs/images/";
-                 File destinationFile = new File(htdocsPath + image_label.getText());
+                 File destinationFile = new File(htdocsPath + image_label.getText().replaceAll("\\s", ""));
             if(selectedFile!=null){
                 try (InputStream in = new FileInputStream(selectedFile);
                  OutputStream out = new FileOutputStream(destinationFile)) {
+                    System.out.println(in);
+                    System.out.println(out);
                 byte[] buf = new byte[8192];
                 int length;
                 while ((length = in.read(buf)) > 0) {
@@ -154,6 +156,7 @@ void getBonPlan(BonPlan b){
                 ex.printStackTrace();
             }
             }else{
+                bonPlanService.update(b);
                 System.out.println("selected file is null "+selectedFile);
             }
             

@@ -28,6 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -61,6 +62,8 @@ public class AjouterBonPlanController implements Initializable {
     private ImageView image_view;
     
     private File selectedFile;
+    
+    //Tooltip tooltip = new Tooltip("Please enter a valid input.");
 
     /**
      * Initializes the controller class.
@@ -69,7 +72,10 @@ public class AjouterBonPlanController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         typeBonPlan.getItems().add("Garage");
         typeBonPlan.getItems().add("Circuit");
-    }    
+        //nomBonPlan.setTooltip(tooltip);
+
+    } 
+    
 
     @FXML
     private void ajouterBonPlan(ActionEvent event) {
@@ -80,7 +86,23 @@ public class AjouterBonPlanController implements Initializable {
             alert.setContentText("Please remplir tous les champs"+ "");
             alert.show();
 
-        } else {
+        }else if(!idUser.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("The id of user must be a number !!"+ "");
+            alert.show();
+            
+        } 
+        else if(nomBonPlan.getText().matches("\\d*")||adresseBonPlan.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("The Name or the Adress must be a String!!"+ "");
+            alert.show();
+            
+        } 
+        else {
             
                 BonPlan b=new BonPlan();
                 b.setNom_bonplan(nomBonPlan.getText());
@@ -90,7 +112,7 @@ public class AjouterBonPlanController implements Initializable {
                 b.setId_user(Integer.parseInt(idUser.getText()));
          // Copy the selected file to the htdocs directory
                  String htdocsPath = "C:/xampp/htdocs/images/";
-                 File destinationFile = new File(htdocsPath + image_label.getText());
+                 File destinationFile = new File(htdocsPath + image_label.getText().replaceAll("\\s", ""));
             if(selectedFile!=null){
                 try (InputStream in = new FileInputStream(selectedFile);
                  OutputStream out = new FileOutputStream(destinationFile)) {
@@ -143,7 +165,8 @@ public class AjouterBonPlanController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
          if (selectedFile != null) {
-                image_label.setText(selectedFile.getName());
+             //maj
+                image_label.setText(selectedFile.getName().replaceAll("\\s", ""));
                  try {
                 Image images = new Image("file:"+selectedFile.getPath().toString());
                 image_view.setImage(images);

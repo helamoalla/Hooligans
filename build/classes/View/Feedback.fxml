@@ -4,16 +4,15 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="View.FeedbackController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Views/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FeedbackController">
    <children>
-      <AnchorPane id="AnchorPane" layoutY="7.0" prefHeight="584.0" prefWidth="841.0">
+      <AnchorPane id="AnchorPane" layoutY="7.0" prefHeight="584.0" prefWidth="841.0" stylesheets="@../Views/css1.css">
          <children>
-            <Button layoutX="111.0" layoutY="503.0" mnemonicParsing="false" onAction="#AjouterFeedback" text="Ajouter Feedback" />
-            <Button layoutX="437.0" layoutY="503.0" mnemonicParsing="false" onAction="#AfficherFeedback" prefHeight="26.0" prefWidth="114.0" text="Afficher Feedback" />
-            <ListView fx:id="list_feedback" layoutX="121.0" layoutY="89.0" prefHeight="362.0" prefWidth="666.0" />
-            <Button layoutX="644.0" layoutY="503.0" mnemonicParsing="false" onAction="#deleteFeedback" prefHeight="26.0" prefWidth="114.0" text="Delete Feedback" />
-            <Button layoutX="268.0" layoutY="503.0" mnemonicParsing="false" onAction="#ModifierFeedback" text="Modifier Feedback" />
+            <Button layoutX="57.0" layoutY="490.0" mnemonicParsing="false" onAction="#AjouterFeedback" text="Ajouter Feedback" />
+            <Button layoutX="356.0" layoutY="489.0" mnemonicParsing="false" onAction="#AfficherFeedback" prefHeight="26.0" prefWidth="114.0" text="Afficher Feedback" />
+            <ListView fx:id="list_feedback" layoutX="14.0" layoutY="65.0" prefHeight="362.0" prefWidth="666.0" />
+            <Button layoutX="502.0" layoutY="489.0" mnemonicParsing="false" onAction="#deleteFeedback" prefHeight="26.0" prefWidth="114.0" text="Delete Feedback" />
+            <Button layoutX="206.0" layoutY="490.0" mnemonicParsing="false" onAction="#ModifierFeedback" text="Modifier Feedback" />
          </children>
       </AnchorPane>
    </children>
