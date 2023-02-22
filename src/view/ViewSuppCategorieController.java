@@ -73,7 +73,7 @@ public class ViewSuppCategorieController implements Initializable {
              Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
-
+//Aziz
     @FXML
     private void modifcat(ActionEvent event) {
         Categorie selectedCategorie= listecategories.getSelectionModel().getSelectedItem();
