@@ -30,14 +30,15 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
         
         try {
             
-            String req = "INSERT INTO `bonplan`(`nom_bonplan`,`adresse`,`type`,`etat`,`id_user`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `bonplan`(`nom_bonplan`,`adresse`,`type`,`etat`, `image`,`id_user`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
            
             ps.setString(1, b.getNom_bonplan());
             ps.setString(2, b.getAdresse());
             ps.setString(3, b.getType());
             ps.setString(4, b.getEtat());
-            ps.setInt(5, b.getId_user());
+            ps.setString(5, b.getImage());
+            ps.setInt(6, b.getId_user());
             
             ps.executeUpdate();
             System.out.println("Bon Plan Added Successfully!");
@@ -66,7 +67,8 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
                 b.setAdresse(rs.getString(3));
                 b.setType(rs.getString(4));
                 b.setEtat(rs.getString("etat"));
-                b.setId_user(rs.getInt(6));
+                b.setImage(rs.getString(6));
+                b.setId_user(rs.getInt(7));
                 
                 bonPlans.add(b);
             }
@@ -110,7 +112,8 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
                  b.setAdresse(rs.getString(3));
                  b.setType(rs.getString(4));
                  b.setEtat(rs.getString("etat"));
-                 b.setId_user(rs.getInt(6));
+                b.setImage(rs.getString(6));
+                b.setId_user(rs.getInt(7));
                 bonPlans.add(b);
             }
             
@@ -125,13 +128,14 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
     @Override
     public void update(BonPlan b) {
           try {
-            String req ="UPDATE `bonplan` SET `nom_bonplan`= ? , `adresse`= ? , `type`= ? , `id_user`= ? WHERE id_bonplan = ?";
+            String req ="UPDATE `bonplan` SET `nom_bonplan`= ? , `adresse`= ? , `type`= ? , `image`= ? , `id_user`= ? WHERE id_bonplan = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
              ps.setString(1, b.getNom_bonplan());
             ps.setString(2, b.getAdresse());
             ps.setString(3, b.getType());
-            ps.setInt(4, b.getId_user());
-            ps.setInt(5, b.getId_bonplan());
+            ps.setString(4, b.getImage());
+            ps.setInt(5, b.getId_user());
+            ps.setInt(6, b.getId_bonplan());
             ps.executeUpdate();
             System.out.println("Bon Plan updated successfully!");
         } catch (SQLException ex) {
@@ -157,7 +161,8 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
             b.setAdresse(rs.getString(3));
             b.setType(rs.getString(4));
             b.setEtat(rs.getString("etat"));
-            b.setId_user(rs.getInt(6));
+            b.setImage(rs.getString(6));
+            b.setId_user(rs.getInt(7));
 
            
             

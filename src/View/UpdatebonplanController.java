@@ -7,7 +7,13 @@ package View;
 
 import Model.BonPlan;
 import Service.BonPlanService;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +28,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -32,60 +42,52 @@ import javafx.stage.Stage;
 public class UpdatebonplanController implements Initializable {
 
     @FXML
-    private TextField updatenom;
+    private TextField adresseBonPlan;
     @FXML
-    private TextField updateadresse;
+    private TextField nomBonPlan;
     @FXML
-    private Button update_Btn;
+    private ChoiceBox<String> typeBonPlan;
+    @FXML
+    private Text image_label;
+    @FXML
+    private ImageView image_view;
+    
+        BonPlanService bonPlanService=new BonPlanService();
+
+    
+    private File selectedFile;
     
     BonPlan b;
-    BonPlanService bonPlanService=new BonPlanService();
-    @FXML
-    private Button retour_btn;
-    @FXML
-    private ChoiceBox<String> typeBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        typeBtn.getItems().add("Garage");
-        typeBtn.getItems().add("Circuit");
+        typeBonPlan.getItems().add("Garage");
+        typeBonPlan.getItems().add("Circuit");
     }
 void getBonPlan(BonPlan b){
-    updatenom.setText(b.getNom_bonplan());
-        updateadresse.setText(b.getAdresse());
-        typeBtn.setValue(b.getType());
-}    
-    
+    URL imageUrl;
+        
+    try {
+        nomBonPlan.setText(b.getNom_bonplan());
+        adresseBonPlan.setText(b.getAdresse());
+        typeBonPlan.setValue(b.getType());
+        image_label.setText(b.getImage());
+        imageUrl = new URL("http://localhost/images/"+b.getImage());
+        Image images = new Image(imageUrl.toString());
+        image_view.setImage(images);
+} catch (MalformedURLException ex) {
+         System.out.println(ex);
+                    }
+        
+}       
 
-    
 
     @FXML
-    private void updateBonPlan(ActionEvent event) {
-        
-        
+    private void backToMain(ActionEvent event) {
         try {
-            b.setNom_bonplan(updatenom.getText());
-            b.setAdresse(updateadresse.getText());
-            b.setType(typeBtn.getValue());            
-            
-            bonPlanService.update(b);
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(UpdatebonplanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void retour(ActionEvent event) {
-                try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
@@ -96,5 +98,66 @@ void getBonPlan(BonPlan b){
             Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void chooseImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.JPG", "*.gif"));
+          fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+         if (selectedFile != null) {
+                image_label.setText(selectedFile.getName());
+                 try {
+                Image images = new Image("file:"+selectedFile.getPath().toString());
+                image_view.setImage(images);
+                System.out.println(selectedFile.getPath().toString());
+        } catch (Exception ex) {
+                     System.out.println(ex);
+        }
+                
+            }
+    }
+
+    @FXML
+    private void updateBonPlan(ActionEvent event) {
+     
+                b.setNom_bonplan(nomBonPlan.getText());
+                b.setAdresse(adresseBonPlan.getText());
+                b.setType(typeBonPlan.getValue());
+                b.setImage(image_label.getText());
+                
+         // Copy the selected file to the htdocs directory
+                 String htdocsPath = "C:/xampp/htdocs/images/";
+                 File destinationFile = new File(htdocsPath + image_label.getText());
+            if(selectedFile!=null){
+                try (InputStream in = new FileInputStream(selectedFile);
+                 OutputStream out = new FileOutputStream(destinationFile)) {
+                byte[] buf = new byte[8192];
+                int length;
+                while ((length = in.read(buf)) > 0) {
+                    out.write(buf, 0, length);
+                }
+            
+            bonPlanService.update(b);
+            // return to the main 
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
+                Parent view_2=loader.load();
+                Scene scene = new Scene(view_2);
+                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            }else{
+                System.out.println("selected file is null "+selectedFile);
+            }
+            
+        }
+    
     
 }

@@ -7,7 +7,12 @@ package View;
 
 import Model.BonPlan;
 import Service.BonPlanService;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,6 +28,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -46,6 +55,12 @@ public class AjouterBonPlanController implements Initializable {
     private Button Add_btn;
     @FXML
     private Button retour_btn;
+    @FXML
+    private Text image_label;
+    @FXML
+    private ImageView image_view;
+    
+    private File selectedFile;
 
     /**
      * Initializes the controller class.
@@ -58,7 +73,7 @@ public class AjouterBonPlanController implements Initializable {
 
     @FXML
     private void ajouterBonPlan(ActionEvent event) {
-        if (nomBonPlan.getText().length() == 0||adresseBonPlan.getText().length() == 0||typeBonPlan.getValue() == null||idUser.getText().length() == 0) {
+        if (nomBonPlan.getText().length() == 0||adresseBonPlan.getText().length() == 0||typeBonPlan.getValue() == null||idUser.getText().length() == 0||image_view.getImage()==null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
@@ -66,22 +81,41 @@ public class AjouterBonPlanController implements Initializable {
             alert.show();
 
         } else {
-            try {
+            
                 BonPlan b=new BonPlan();
                 b.setNom_bonplan(nomBonPlan.getText());
                 b.setAdresse(adresseBonPlan.getText());
                 b.setType(typeBonPlan.getValue());
+                b.setImage(image_label.getText());
                 b.setId_user(Integer.parseInt(idUser.getText()));
-                bonPlanService.insert(b);
+         // Copy the selected file to the htdocs directory
+                 String htdocsPath = "C:/xampp/htdocs/images/";
+                 File destinationFile = new File(htdocsPath + image_label.getText());
+            if(selectedFile!=null){
+                try (InputStream in = new FileInputStream(selectedFile);
+                 OutputStream out = new FileOutputStream(destinationFile)) {
+                byte[] buf = new byte[8192];
+                int length;
+                while ((length = in.read(buf)) > 0) {
+                    out.write(buf, 0, length);
+                }
+            
+            bonPlanService.insert(b);
+            // return to the main 
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+            
             } catch (IOException ex) {
-                Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
+            }else{
+                System.out.println("selected file is null "+selectedFile);
+            }
+            
         }
     }
 
@@ -97,6 +131,28 @@ public class AjouterBonPlanController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void chooseImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.JPG", "*.gif"));
+          fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+         if (selectedFile != null) {
+                image_label.setText(selectedFile.getName());
+                 try {
+                Image images = new Image("file:"+selectedFile.getPath().toString());
+                image_view.setImage(images);
+                System.out.println(selectedFile.getPath().toString());
+        } catch (Exception ex) {
+                     System.out.println(ex);
+        }
+                
+            }
     }
     
 }

@@ -20,10 +20,10 @@ public class Holigans {
         FeedbackService feedbackService= new FeedbackService();
         
         // créer Bon Plan 
-        BonPlan b1= new BonPlan("Chez lasaad", "Mnihla", "Garage", 12);
-        BonPlan b2= new BonPlan("Chez Azouz", "Ariana", "Circuit", 15);
-        BonPlan b3= new BonPlan("Amigo", "Borj louzir", "Garage", 6);
-        BonPlan b4= new BonPlan("Mecanique", "Nikhlat", "Garage", 6);
+        //BonPlan b1= new BonPlan("Chez lasaad", "Mnihla", "Garage", 12);
+        //BonPlan b2= new BonPlan("Chez Azouz", "Ariana", "Circuit", 15);
+        //BonPlan b3= new BonPlan("Amigo", "Borj louzir", "Garage", 6);
+        //BonPlan b4= new BonPlan("Mecanique", "Nikhlat", "Garage", 6);
         
         // Ajouter un bonPlan
         //b2.setEtat("accepté");
@@ -38,8 +38,8 @@ public class Holigans {
         //System.out.println(bonPlanService.readById(2));
         
         // Update bonPlan
-        b4.setId_bonplan(9);
-        b4.setAdresse("Aouina");
+        //b4.setId_bonplan(9);
+        //b4.setAdresse("Aouina");
         //bonPlanService.update(b4);
         
         

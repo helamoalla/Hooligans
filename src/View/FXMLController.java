@@ -8,6 +8,7 @@ package View;
 import Model.BonPlan;
 import Service.BonPlanService;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -32,7 +33,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -51,21 +55,11 @@ public class FXMLController implements Initializable {
     @FXML
     private Button ReadAll_Id;
     @FXML
-    private Label label_id22;
-    @FXML
-    private Label label_id211;
-    @FXML
-    private Label label_id41;
-    @FXML
-    private Label label_id42;
-    @FXML
     private ListView<BonPlan> list_bonplan;
     @FXML
     private Button delete_btn;
     @FXML
     private Button update_bonplan;
-    @FXML
-    private Button feedback_btn;
 
 
     /**
@@ -73,7 +67,7 @@ public class FXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        getAllBonPlans();
+      getAllBonPlans();
     }    
     @FXML
     private void AjouterBonPlan(ActionEvent event) {
@@ -89,25 +83,49 @@ public class FXMLController implements Initializable {
         }
     }
     public void getAllBonPlans(){
-        ObservableList<BonPlan> bonplans =FXCollections.observableArrayList(bonPlanService.readAll());
-       list_bonplan.setItems(bonplans);
-       list_bonplan.setCellFactory(param -> new ListCell<BonPlan>() {
-    @Override
-    protected void updateItem(BonPlan item, boolean empty) {
-        super.updateItem(item, empty);
-
-        if (empty || item == null) {
-            setText(null);
-        } else {
-            //setId(item.getId_bonplan().toString());
-            setText(" "+item.getNom_bonplan()+ "                   "+item.getAdresse()+
-                    "                      "+item.getType() +
-                    "                     "+item.getEtat() + 
-                    "                      "+item.getId_user());
+        ObservableList<BonPlan> bonplans = FXCollections.observableArrayList(bonPlanService.readAll());
+        list_bonplan.setItems(bonplans);
+         
+         
+          list_bonplan.setCellFactory(param -> new ListCell<BonPlan>() {
+            private final ImageView imageView = new ImageView();
+            private final Text nom = new Text();
+            private final Text adresse = new Text();
+            private final Text type = new Text();
+            private final Text etat = new Text();
             
-        }
-    }
-});
+            private final HBox hbox = new HBox(100,imageView,nom,adresse,type,etat);
+            //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
+            
+            {
+                imageView.setFitWidth(75);
+                imageView.setFitHeight(75);
+            }
+
+            @Override
+            protected void updateItem(BonPlan item, boolean empty) {
+                URL imageUrl;
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    try {
+                        nom.setText(item.getNom_bonplan());
+                        adresse.setText(item.getAdresse());
+                        type.setText(item.getType());
+                        etat.setText(item.getEtat());
+                        imageUrl = new URL("http://localhost/images/"+item.getImage());
+                        Image images = new Image(imageUrl.toString());
+                        imageView.setImage(images);
+                        setText(null);
+                        setGraphic(hbox);
+                    } catch (MalformedURLException ex) {
+                        System.out.println(ex);
+                    }
+                }
+            }
+        });
     }
   
 
@@ -172,7 +190,6 @@ public class FXMLController implements Initializable {
         
     }
 
-    @FXML
     private void ajouterFeedBack(ActionEvent event) {
          BonPlan selectedBonPlan= list_bonplan.getSelectionModel().getSelectedItem();
         

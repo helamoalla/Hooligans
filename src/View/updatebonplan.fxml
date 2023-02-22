@@ -4,17 +4,56 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdatebonplanController">
    <children>
-      <TextField fx:id="updatenom" layoutX="241.0" layoutY="31.0" />
-      <Label layoutX="174.0" layoutY="34.0" prefHeight="18.0" prefWidth="50.0" text="nom" />
-      <TextField fx:id="updateadresse" layoutX="241.0" layoutY="71.0" />
-      <Label layoutX="174.0" layoutY="74.0" prefHeight="18.0" prefWidth="50.0" text="adresse" />
-      <Label layoutX="174.0" layoutY="111.0" prefHeight="18.0" prefWidth="50.0" text="type" />
-      <Button fx:id="update_Btn" layoutX="244.0" layoutY="162.0" mnemonicParsing="false" onAction="#updateBonPlan" text="Update" />
-      <Button fx:id="retour_btn" layoutX="333.0" layoutY="162.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="55.0" text="Retour" />
-      <ChoiceBox fx:id="typeBtn" layoutX="240.0" layoutY="108.0" prefHeight="18.0" prefWidth="150.0" />
+      <AnchorPane id="AnchorPane" prefHeight="602.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="38.0" layoutY="14.0" prefHeight="67.0" prefWidth="348.0" text="Update Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="adresseBonPlan" layoutX="225.0" layoutY="152.0" prefHeight="35.0" prefWidth="187.0" />
+            <TextField fx:id="nomBonPlan" layoutX="225.0" layoutY="99.0" prefHeight="35.0" prefWidth="187.0" />
+            <ChoiceBox fx:id="typeBonPlan" layoutX="225.0" layoutY="201.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="187.0" />
+            <Label layoutX="94.0" layoutY="99.0" prefHeight="35.0" prefWidth="114.0" text="Nom Bon Plan ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="152.0" prefHeight="35.0" prefWidth="114.0" text="Adresse Bon Plan ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="201.0" prefHeight="35.0" prefWidth="114.0" text="Type Bon Plan ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="185.0" layoutY="552.0" mnemonicParsing="false" onAction="#updateBonPlan" prefHeight="26.0" prefWidth="90.0" text="Update">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="353.0" layoutY="552.0" mnemonicParsing="false" onAction="#backToMain" prefHeight="26.0" prefWidth="90.0" text="Retour">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Text fx:id="image_label" layoutX="230.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
+            <Button layoutX="65.0" layoutY="313.0" mnemonicParsing="false" onAction="#chooseImage" prefHeight="35.0" prefWidth="139.0" text="Choose Image">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="image_view" fitHeight="150.0" fitWidth="200.0" layoutX="219.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FXMLController">
    <children>
-      <Button fx:id="Add_Id" layoutX="735.0" layoutY="200.0" mnemonicParsing="false" onAction="#AjouterBonPlan" text="Ajouter BonPLan" />
-      <Button fx:id="ReadAll_Id" layoutX="734.0" layoutY="301.0" mnemonicParsing="false" onAction="#AfficherBonPlans" text="Afficher BonPLan" />
-      <ListView fx:id="list_bonplan" layoutX="52.0" layoutY="183.0" prefHeight="362.0" prefWidth="666.0" />
-      <Label layoutX="52.0" layoutY="156.0" prefHeight="26.0" prefWidth="114.0" text="Nom Bon Plan " />
-      <Label fx:id="label_id22" layoutX="223.0" layoutY="156.0" prefHeight="26.0" prefWidth="92.0" text="Adresse  " />
-      <Label fx:id="label_id211" layoutX="362.0" layoutY="156.0" prefHeight="26.0" prefWidth="92.0" text="Type           " />
-      <Label fx:id="label_id41" layoutX="495.0" layoutY="156.0" prefHeight="26.0" prefWidth="61.0" text="Etat           " />
-      <Label fx:id="label_id42" layoutX="626.0" layoutY="156.0" prefHeight="26.0" prefWidth="92.0" text="Id User        " />
-      <Button fx:id="delete_btn" layoutX="730.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteBonPlan" prefHeight="26.0" prefWidth="114.0" text="Delete BonPlan" />
-      <Button fx:id="update_bonplan" layoutX="733.0" layoutY="252.0" mnemonicParsing="false" onAction="#ModifierBonPlan" text="modifier BonPlan" />
-      <Button fx:id="feedback_btn" layoutX="730.0" layoutY="407.0" mnemonicParsing="false" onAction="#ajouterFeedBack" prefHeight="26.0" prefWidth="114.0" text="Ajouter Feedback" />
+      <Button fx:id="Add_Id" layoutX="111.0" layoutY="503.0" mnemonicParsing="false" onAction="#AjouterBonPlan" text="Ajouter BonPLan" />
+      <Button fx:id="ReadAll_Id" layoutX="437.0" layoutY="503.0" mnemonicParsing="false" onAction="#AfficherBonPlans" prefHeight="26.0" prefWidth="114.0" text="Afficher BonPLan" />
+      <ListView fx:id="list_bonplan" layoutX="121.0" layoutY="89.0" prefHeight="362.0" prefWidth="666.0" />
+      <Button fx:id="delete_btn" layoutX="644.0" layoutY="503.0" mnemonicParsing="false" onAction="#deleteBonPlan" prefHeight="26.0" prefWidth="114.0" text="Delete BonPlan" />
+      <Button fx:id="update_bonplan" layoutX="268.0" layoutY="503.0" mnemonicParsing="false" onAction="#ModifierBonPlan" text="modifier BonPlan" />
    </children>
 </AnchorPane>

@@ -14,42 +14,47 @@ public class BonPlan {
    private String adresse;
    private String type;
    private String etat="en attente";
+   private String image;
    private int id_user;
 
    
    // constructeur qui contient tous les params
-    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type, String etat, int id_user) {
+    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type, String etat,String image, int id_user) {
         this.id_bonplan = id_bonplan;
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.etat = etat;
+        this.image=image;
         this.id_user = id_user;
     }
     // constructeur qui contient tous les params sans etat
-    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type, int id_user) {
+    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type,String image, int id_user) {
         this.id_bonplan = id_bonplan;
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
+        this.image=image;
         this.id_user = id_user;
     }
 
     
     // constructeur qui contient tous les params sauf l id_bonplan
-    public BonPlan(String nom_bonplan, String adresse, String type, String etat, int id_user) {
+    public BonPlan(String nom_bonplan, String adresse, String type, String etat,String image, int id_user) {
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.etat = etat;
+        this.image=image;
         this.id_user = id_user;
     }
     
     // constructeur qui contient tous les params sauf l id_bonplan et l'etat
-    public BonPlan(String nom_bonplan, String adresse, String type, int id_user) {
+    public BonPlan(String nom_bonplan, String adresse, String type,String image, int id_user) {
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
+        this.image=image;
         this.id_user = id_user;
     }
     
@@ -81,6 +86,15 @@ public class BonPlan {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
 
     public String getType() {
         return type;
