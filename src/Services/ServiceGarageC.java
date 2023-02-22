@@ -60,7 +60,7 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
     @Override
     public void insert(GarageC g) {
   try {
-              String req = "INSERT INTO `garagec`(`nom_garage`, `adresse`, `numero`, `panne_moteur` , `pompe_a_eau` , `patin`, `essuie_glace`, `radiateur`, `ventilateur`, `duride`, `fuite_d_huile`, `vidange`, `filtre`, `batterie`, `amortisseur`, `frein_main`, `feu_d_eclairage`, `Autre`, `taux_de_reduction`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+              String req = "INSERT INTO `garagec`(`nom_garage`, `adresse`, `numero`, `panne_moteur` , `pompe_a_eau` , `patin`, `essuie_glace`, `radiateur`, `ventilateur`, `duride`, `fuite_d_huile`, `vidange`, `filtre`, `batterie`, `amortisseur`, `frein_main`, `feu_d_eclairage`, `taux_de_reduction`, `image`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
               PreparedStatement ps = cnx.prepareStatement(req);
               ps.setString(1, g.getNom_garage());
               ps.setString(2, g.getAdresse());
@@ -79,9 +79,8 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
               ps.setInt(15, g.getAmortisseur());
               ps.setInt(16, g.getFrein_main());
               ps.setInt(17, g.getFeu_d_eclairage());
-              ps.setString(18, g.getAutre());
-              ps.setInt(19, g.getTaux_de_reduction());
-              ps.setString(20, g.getImage());           
+              ps.setInt(18, g.getTaux_de_reduction());
+              ps.setString(19, g.getImage());           
               ps.executeUpdate();
               System.out.println("garage conventinné ajouter avec succes!");
           } catch (SQLException ex) {
@@ -141,9 +140,8 @@ List<GarageC> lg=new ArrayList<>();
                   g.setAmortisseur(res.getInt(16));
                   g.setFrein_main(res.getInt(17));
                   g.setFeu_d_eclairage(res.getInt(18));
-                  g.setAutre(res.getString(19));
-                  g.setTaux_de_reduction(res.getInt(20));
-                  g.setImage(res.getString(21));
+                  g.setTaux_de_reduction(res.getInt(19));
+                  g.setImage(res.getString(20));
                 
                   lg.add(g);
               }
@@ -181,9 +179,8 @@ List<GarageC> lg=new ArrayList<>();
                   g.setAmortisseur(res.getInt(16));
                   g.setFrein_main(res.getInt(17));
                   g.setFeu_d_eclairage(res.getInt(18));
-                  g.setAutre(res.getString(19));
-                  g.setTaux_de_reduction(res.getInt(20));
-                  g.setImage(res.getString(21));
+                  g.setTaux_de_reduction(res.getInt(19));
+                  g.setImage(res.getString(20));
                    }
           } catch (SQLException ex) {
               Logger.getLogger(ServiceGarageC.class.getName()).log(Level.SEVERE, null, ex);
@@ -219,9 +216,8 @@ List<GarageC> lg=new ArrayList<>();
                   g.setAmortisseur(res.getInt(16));
                   g.setFrein_main(res.getInt(17));
                   g.setFeu_d_eclairage(res.getInt(18));
-                  g.setAutre(res.getString(19));
-                  g.setTaux_de_reduction(res.getInt(20));
-                  g.setImage(res.getString(21));
+                  g.setTaux_de_reduction(res.getInt(19));
+                  g.setImage(res.getString(20));
                   lg.add(g);
               }
               

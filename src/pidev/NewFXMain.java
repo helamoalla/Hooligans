@@ -28,7 +28,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/Garage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/GESTION.fxml"));
           // Parent root = FXMLLoader.load(getClass().getResource("../view/Maintenance.fxml"));
            // Parent root = FXMLLoader.load(getClass().getResource("../view/afficher_Maintenance.fxml"));
             Scene scene = new Scene(root);

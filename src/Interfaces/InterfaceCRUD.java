@@ -15,7 +15,7 @@ public interface InterfaceCRUD<T> {
     void insert(T t);
     void delete(int id);
     void update(T t);
-    ArrayList<T> readAll(); //affichage
+    ArrayList<T> readAll(); 
     T readById(int id); 
     ArrayList<T> sortBy(String nom_column,String Asc_Dsc);
     ArrayList<T> chercher(int id);

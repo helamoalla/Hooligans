@@ -17,7 +17,7 @@ public class GarageC {
     private String adresse;
     private int numero;
     private int panne_moteur,pompe_a_eau,patin,essuie_glace,radiateur,ventilateur,duride,fuite_d_huile,vidange,filtre,batterie,amortisseur,frein_main,feu_d_eclairage;
-    private String image,Autre;
+    private String image;
     int taux_de_reduction;
     
     //contructeur
@@ -25,7 +25,7 @@ public class GarageC {
     public GarageC() {
     }
 
-    public GarageC(int id_garage, String nom_garage, String adresse, int numero, int panne_moteur, int pompe_a_eau, int patin, int essuie_glace, int radiateur, int ventilateur, int duride, int fuite_d_huile, int vidange, int filtre, int batterie, int amortisseur, int frein_main, int feu_d_eclairage,String Autre, int taux_de_reduction, String image) {
+    public GarageC(int id_garage, String nom_garage, String adresse, int numero, int panne_moteur, int pompe_a_eau, int patin, int essuie_glace, int radiateur, int ventilateur, int duride, int fuite_d_huile, int vidange, int filtre, int batterie, int amortisseur, int frein_main, int feu_d_eclairage, int taux_de_reduction, String image) {
         this.id_garage = id_garage;
         this.nom_garage = nom_garage;
         this.adresse = adresse;
@@ -46,10 +46,9 @@ public class GarageC {
         this.feu_d_eclairage = feu_d_eclairage;
         this.image = image;
         this.taux_de_reduction = taux_de_reduction;
-        this.Autre = Autre;
     }
 
-    public GarageC(String nom_garage, String adresse, int numero, int panne_moteur, int pompe_a_eau, int patin, int essuie_glace, int radiateur, int ventilateur, int duride, int fuite_d_huile, int vidange, int filtre, int batterie, int amortisseur, int frein_main, int feu_d_eclairage,String Autre, int taux_de_reduction,String image) {
+    public GarageC(String nom_garage, String adresse, int numero, int panne_moteur, int pompe_a_eau, int patin, int essuie_glace, int radiateur, int ventilateur, int duride, int fuite_d_huile, int vidange, int filtre, int batterie, int amortisseur, int frein_main, int feu_d_eclairage, int taux_de_reduction,String image) {
         this.nom_garage = nom_garage;
         this.adresse = adresse;
         this.numero = numero;
@@ -69,7 +68,6 @@ public class GarageC {
         this.feu_d_eclairage = feu_d_eclairage;
         this.image = image;
         this.taux_de_reduction = taux_de_reduction;
-         this.Autre = Autre;
     }
 
    
@@ -236,20 +234,13 @@ public class GarageC {
         this.taux_de_reduction = taux_de_reduction;
     }
 
-    public String getAutre() {
-        return Autre;
-    }
-
-    public void setAutre(String Autre) {
-        this.Autre = Autre;
-    }
      
     
     ///toString 
 
     @Override
     public String toString() {
-        return "GarageC{" + "id_garage=" + id_garage + ", nom_garage=" + nom_garage + ", adresse=" + adresse + ", numero=" + numero + ", panne_moteur=" + panne_moteur + ", pompe_a_eau=" + pompe_a_eau + ", patin=" + patin + ", essuie_glace=" + essuie_glace + ", radiateur=" + radiateur + ", ventilateur=" + ventilateur + ", duride=" + duride + ", fuite_d_huile=" + fuite_d_huile + ", vidange=" + vidange + ", filtre=" + filtre + ", batterie=" + batterie + ", amortisseur=" + amortisseur + ", frein_main=" + frein_main + ", feu_d_eclairage=" + feu_d_eclairage + ", Autre=" + Autre +", image=" + image + ", taux_de_reduction=" + taux_de_reduction + '}';
+        return "GarageC{" + "id_garage=" + id_garage + ", nom_garage=" + nom_garage + ", adresse=" + adresse + ", numero=" + numero + ", panne_moteur=" + panne_moteur + ", pompe_a_eau=" + pompe_a_eau + ", patin=" + patin + ", essuie_glace=" + essuie_glace + ", radiateur=" + radiateur + ", ventilateur=" + ventilateur + ", duride=" + duride + ", fuite_d_huile=" + fuite_d_huile + ", vidange=" + vidange + ", filtre=" + filtre + ", batterie=" + batterie + ", amortisseur=" + amortisseur + ", frein_main=" + frein_main + ", feu_d_eclairage=" + feu_d_eclairage + ", image=" + image + ", taux_de_reduction=" + taux_de_reduction + '}';
     }
 
    

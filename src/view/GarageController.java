@@ -9,6 +9,7 @@ import Interfaces.InterfaceCRUD;
 import Models.GarageC;
 import Services.ServiceGarageC;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,7 +24,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +49,8 @@ InterfaceCRUD sg=new ServiceGarageC();
     private Button id_ajout;
     @FXML
     private Button id_modifier;
+    @FXML
+    private Button id_retour;
 
     /**
      * Initializes the controller class.
@@ -50,12 +58,60 @@ InterfaceCRUD sg=new ServiceGarageC();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        getAllGarage();
     }    
+public void getAllGarage(){
+        ObservableList<GarageC> garage = FXCollections.observableArrayList(sg.readAll());
+        id_list.setItems(garage);
+         
+         
+          id_list.setCellFactory(param -> new ListCell<GarageC>() {
+            private final ImageView imageView = new ImageView();
+            private final Text nom_garage = new Text();
+            private final Text adresse = new Text();
+            private final Text numero = new Text();
+      
+          
+            
+            
+            private final HBox hbox = new HBox(100,imageView,nom_garage,adresse,numero);
+            //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
+            
+            {
+                imageView.setFitWidth(75);
+                imageView.setFitHeight(75);
+            }
 
+            @Override
+            protected void updateItem(GarageC item, boolean empty) {
+                URL imageUrl;
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    try {
+                         nom_garage.setText(item.getNom_garage());
+                         adresse.setText(item.getAdresse());
+    numero.setText(String.valueOf(item.getNumero()));
+   
+                      //  System.out.println(item.getImage());
+                        imageUrl = new URL("http://localhost/images/"+item.getImage());
+                        //System.out.println(imagehttp://localhost/images/Url);
+                        Image images = new Image(imageUrl.toString());
+                        imageView.setImage(images);
+                        setText(null);
+                        setGraphic(hbox);
+                    } catch (MalformedURLException ex) {
+                        System.out.println(ex);
+                    }
+                }
+            }
+        });
+    }
     @FXML
     private void afficher_garage(ActionEvent event) {
-        ObservableList<GarageC> g=FXCollections.observableArrayList(sg.readAll());
-       id_list.setItems(g);
+getAllGarage();
     }
 
     @FXML
@@ -100,6 +156,21 @@ InterfaceCRUD sg=new ServiceGarageC();
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
    
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try{
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("./GESTION.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     
 }

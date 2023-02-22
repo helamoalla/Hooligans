@@ -5,8 +5,10 @@
  */
 package pidev;
 import Interfaces.InterfaceCRUD;
+import Models.Devis;
 import Models.GarageC;
 import Models.Maintenance;
+import Services.ServiceDevis;
 import Services.ServiceGarageC;
 import Services.ServiceMaintenance;
 /**
@@ -60,7 +62,7 @@ public class PIDEV {
       /////////////////Maintenance///////////////////
       InterfaceCRUD sm = new ServiceMaintenance();
        
-        System.out.println(sm.chercher(2)); 
+     //   System.out.println(sm.chercher(2)); 
       ////demander maintenance
        //Maintenance m1=new Maintenance(2,false,false,false,false,false,true,false,false,true,false,false,false,false,false,"");
       // sm.insert(m1);
@@ -83,6 +85,25 @@ public class PIDEV {
      
      //trier 
       //System.out.println(sm.sortBy("id_user","DESC"));
+     
+      
+      
+      
+      //////////////////////DEVIS //////////
+      InterfaceCRUD sd = new ServiceDevis();
+      Devis d=new Devis();
+      sd.insert(d);
       
     }
 }
+
+
+
+
+
+
+
+
+
+
+

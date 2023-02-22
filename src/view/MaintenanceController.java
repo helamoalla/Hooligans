@@ -51,6 +51,8 @@ Maintenance m=new Maintenance();
    // private List<Maintenance> id_list_M=new ArrayList<>();
     @FXML
     private TextField id_user;
+    @FXML
+    private Button id_retour;
     
     /**
      * Initializes the controller class.
@@ -109,6 +111,21 @@ Maintenance m=new Maintenance();
 
     private int setId_user(int parseInt) {
        return parseInt;
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try{
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("./GESTION.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     
     

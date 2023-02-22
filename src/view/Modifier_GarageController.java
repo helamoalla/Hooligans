@@ -71,8 +71,6 @@ InterfaceCRUD sg=new ServiceGarageC();
     @FXML
     private TextField id_reduction;
     @FXML
-    private TextField id_autre;
-    @FXML
     private TextField id_image;
     /**
      * Initializes the controller class.
@@ -102,7 +100,6 @@ InterfaceCRUD sg=new ServiceGarageC();
            id_frain_main.setText(String.valueOf(g.getFrein_main()));
            id_feu_eclairage.setText(String.valueOf( g.getFeu_d_eclairage()));
            id_reduction.setText(String.valueOf(g.getTaux_de_reduction()));
-            id_autre.setText(g.getAutre());
             id_image.setText(g.getImage());
 }
 
@@ -127,7 +124,6 @@ InterfaceCRUD sg=new ServiceGarageC();
             g.setFrein_main(Integer.parseInt(id_frain_main.getText()));
             g.setFeu_d_eclairage(Integer.parseInt(id_feu_eclairage.getText()));
             g.setTaux_de_reduction(Integer.parseInt(id_reduction.getText()));
-            g.setAutre(id_autre.getText());
             g.setImage(id_image.getText());
 
             sg.update(g);
