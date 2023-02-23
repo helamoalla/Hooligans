@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="686.0" stylesheets="@../Views/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterBonPlanController">
    <children>
-      <Label layoutX="185.0" layoutY="24.0" prefHeight="67.0" prefWidth="348.0" text="Ajouter Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
+      <Label layoutX="214.0" layoutY="14.0" prefHeight="67.0" prefWidth="348.0" text="Ajouter Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="Book Antiqua" size="31.0" />
          </font>
@@ -40,22 +40,22 @@
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="Add_btn" layoutX="172.0" layoutY="531.0" mnemonicParsing="false" onAction="#ajouterBonPlan" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Ajouter">
+      <Button fx:id="Add_btn" layoutX="169.0" layoutY="518.0" mnemonicParsing="false" onAction="#ajouterBonPlan" opacity="0.6" prefHeight="26.0" prefWidth="90.0" style="-fx-region-border: 1px solid #266DB6;" text="Ajouter">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="retour_btn" layoutX="343.0" layoutY="531.0" mnemonicParsing="false" onAction="#backToMain" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Retour">
+      <Button fx:id="retour_btn" layoutX="343.0" layoutY="518.0" mnemonicParsing="false" onAction="#backToMain" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Retour">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Text fx:id="image_label" layoutX="265.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
-      <Button layoutX="33.0" layoutY="427.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="35.0" prefWidth="139.0" text="Choose Image">
+      <Text fx:id="image_label" layoutX="200.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
+      <Button layoutX="33.0" layoutY="409.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="35.0" prefWidth="139.0" text="Choisir Image">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <ImageView fx:id="image_view" fitHeight="150.0" fitWidth="200.0" layoutX="243.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_view" fitHeight="120.0" fitWidth="187.0" layoutX="196.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

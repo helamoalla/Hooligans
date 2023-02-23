@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -124,7 +125,18 @@ void getBonPlan(BonPlan b){
     @FXML
     private void updateBonPlan(ActionEvent event) {
      
-                b.setNom_bonplan(nomBonPlan.getText());
+               if(nomBonPlan.getText().matches("\\d*")||adresseBonPlan.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("The Name or the Adress must be a String!!"+ "");
+            alert.show();
+            
+        
+                   
+               }
+               else{
+                    b.setNom_bonplan(nomBonPlan.getText());
                 b.setAdresse(adresseBonPlan.getText());
                 b.setType(typeBonPlan.getValue());
                 b.setImage(image_label.getText());
@@ -145,12 +157,7 @@ void getBonPlan(BonPlan b){
             
             bonPlanService.update(b);
             // return to the main 
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-                Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                    backToMain(event);
             
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -158,7 +165,9 @@ void getBonPlan(BonPlan b){
             }else{
                 bonPlanService.update(b);
                 System.out.println("selected file is null "+selectedFile);
+                backToMain(event);
             }
+               }
             
         }
     

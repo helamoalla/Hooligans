@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -75,12 +76,19 @@ public class AjouterFeedBackController implements Initializable {
             private final Text type = new Text();
             private final Text etat = new Text();
             
-            private final HBox hbox = new HBox(100,imageView,nom,adresse,type,etat);
-            //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
+            private final HBox hbox = new HBox(68,imageView,nom,adresse,type,etat);
+            
             
             {
                 imageView.setFitWidth(75);
                 imageView.setFitHeight(75);
+                hbox.setAlignment(Pos.CENTER_LEFT);
+                hbox.setPrefWidth(500);
+                nom.setWrappingWidth(100);
+                adresse.setWrappingWidth(90);
+                type.setWrappingWidth(70);
+                etat.setWrappingWidth(80);
+                hbox.setStyle("-fx-background-color: transparent;");
             }
 
             @Override

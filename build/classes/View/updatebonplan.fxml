@@ -13,7 +13,7 @@
    <children>
       <AnchorPane id="AnchorPane" layoutX="-120.0" layoutY="-3.0" prefHeight="580.0" prefWidth="790.0" style="-fx-background-position: centre;" stylesheets="@../Views/css2.css">
          <children>
-            <Label layoutX="362.0" prefHeight="67.0" prefWidth="348.0" text="Update Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
+            <Label layoutX="362.0" prefHeight="67.0" prefWidth="348.0" text="Modifier Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font size="24.0" />
                </font>
@@ -21,7 +21,7 @@
             <TextField fx:id="adresseBonPlan" layoutX="332.0" layoutY="171.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
             <TextField fx:id="nomBonPlan" layoutX="332.0" layoutY="92.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
             <ChoiceBox fx:id="typeBonPlan" layoutX="332.0" layoutY="245.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
-            <Button layoutX="271.0" layoutY="501.0" mnemonicParsing="false" onAction="#updateBonPlan" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Update">
+            <Button layoutX="271.0" layoutY="501.0" mnemonicParsing="false" onAction="#updateBonPlan" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Modifier">
                <font>
                   <Font size="15.0" />
                </font>
@@ -32,7 +32,7 @@
                </font>
             </Button>
             <Text fx:id="image_label" layoutX="338.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
-            <Button layoutX="149.0" layoutY="349.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="35.0" prefWidth="139.0" text="Choose Image">
+            <Button layoutX="149.0" layoutY="349.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="35.0" prefWidth="139.0" text="Choisir Image">
                <font>
                   <Font size="15.0" />
                </font>

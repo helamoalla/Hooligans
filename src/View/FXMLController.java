@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,6 +40,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.awt.event.MouseEvent;
+import javafx.event.EventHandler;
+
+
 
 /**
  * FXML Controller class
@@ -62,13 +67,16 @@ public class FXMLController implements Initializable {
     private Button update_bonplan;
 
 
+
     /**
      * Initializes the controller class.
      */
-    @Override
+
     public void initialize(URL url, ResourceBundle rb) {
       getAllBonPlans();
-    }    
+      
+    } 
+    
     @FXML
     private void AjouterBonPlan(ActionEvent event) {
         try {
@@ -86,7 +94,7 @@ public class FXMLController implements Initializable {
         ObservableList<BonPlan> bonplans = FXCollections.observableArrayList(bonPlanService.readAll());
         list_bonplan.setItems(bonplans);
          
-         
+            list_bonplan.setStyle("-fx-background-color: transparent;");
           list_bonplan.setCellFactory(param -> new ListCell<BonPlan>() {
             private final ImageView imageView = new ImageView();
             private final Text nom = new Text();
@@ -94,12 +102,19 @@ public class FXMLController implements Initializable {
             private final Text type = new Text();
             private final Text etat = new Text();
             
-            private final HBox hbox = new HBox(100,imageView,nom,adresse,type,etat);
-            //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
+            private final HBox hbox = new HBox(68,imageView,nom,adresse,type,etat);
+            
             
             {
                 imageView.setFitWidth(75);
                 imageView.setFitHeight(75);
+                hbox.setAlignment(Pos.CENTER_LEFT);
+                hbox.setPrefWidth(500);
+                nom.setWrappingWidth(100);
+                adresse.setWrappingWidth(90);
+                type.setWrappingWidth(70);
+                etat.setWrappingWidth(80);
+                hbox.setStyle("-fx-background-color: transparent;");
             }
 
             @Override
@@ -119,6 +134,7 @@ public class FXMLController implements Initializable {
                         Image images = new Image(imageUrl.toString());
                         imageView.setImage(images);
                         setText(null);
+                        //hbox.setStyle("-fx-background-color: transparent;");
                         setGraphic(hbox);
                     } catch (MalformedURLException ex) {
                         System.out.println(ex);
@@ -217,6 +233,20 @@ public class FXMLController implements Initializable {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @FXML
+    private void home(ActionEvent event) {
+         try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./Home.fxml"));
+            Parent view_2=loader.load();
+            Scene scene = new Scene(view_2);
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -60,12 +61,18 @@ public class FeedbackController implements Initializable {
             private final Text commentaire = new Text();
             private final Text rate = new Text();
             
-            private final HBox hbox = new HBox(100,imageView,nom,adresse,commentaire,rate);
+            private final HBox hbox = new HBox(68,imageView,nom,adresse,commentaire,rate);
             //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
             
             {
                 imageView.setFitWidth(75);
                 imageView.setFitHeight(75);
+                hbox.setAlignment(Pos.CENTER_LEFT);
+                hbox.setPrefWidth(500);
+                nom.setWrappingWidth(100);
+                adresse.setWrappingWidth(90);
+                commentaire.setWrappingWidth(195);
+                rate.setWrappingWidth(30);
             }
 
             @Override
@@ -170,6 +177,21 @@ public class FeedbackController implements Initializable {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+   
+    @FXML
+    private void home(ActionEvent event) {
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./Home.fxml"));
+            Parent view_2=loader.load();
+            Scene scene = new Scene(view_2);
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

@@ -3,14 +3,21 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="363.0" prefWidth="561.0" stylesheets="@../Views/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="702.0" stylesheets="@../Views/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HomeController">
    <children>
-      <Button layoutX="314.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToFeedback" opacity="0.77" prefHeight="34.0" prefWidth="139.0" text="Gestion Feedback" textAlignment="CENTER">
+      <Button layoutX="431.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToFeedback" opacity="0.77" prefHeight="50.0" prefWidth="190.0" text="Gestion Feedback" textAlignment="CENTER" textFill="#c72121">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
       </Button>
-      <Button layoutX="95.0" layoutY="248.0" mnemonicParsing="false" onAction="#goToBonPlan" opacity="0.77" prefHeight="34.0" prefWidth="139.0" text="Gestion Bon Plan" />
+      <Button layoutX="113.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToBonPlan" opacity="0.77" prefHeight="50.0" prefWidth="190.0" text="Gestion Bon Plan" textFill="#c72121">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>
