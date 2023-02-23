@@ -5,29 +5,53 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" opacity="0.85" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewUpdateCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewUpdateCategorieController">
    <children>
-      <Button layoutX="173.0" layoutY="201.0" mnemonicParsing="false" onAction="#Modifiercat" prefHeight="28.0" prefWidth="98.0" text="Modifier" />
-      <TextField fx:id="updatenom" layoutX="335.0" layoutY="23.0" />
-      <TextField fx:id="updatedesc" layoutX="335.0" layoutY="73.0" />
-      <ChoiceBox fx:id="updatechoix" layoutX="335.0" layoutY="130.0" prefHeight="26.0" prefWidth="163.0" />
-      <Label contentDisplay="TOP" layoutX="43.0" layoutY="20.0" text="Nom de la catégorie" textFill="#ece3e3">
+      <Button layoutX="126.0" layoutY="341.0" mnemonicParsing="false" onAction="#Modifiercat" opacity="0.6" prefHeight="28.0" prefWidth="98.0" text="Modifier" />
+      <TextField fx:id="updatenom" layoutX="265.0" layoutY="118.0" opacity="0.6" />
+      <TextField fx:id="updatedesc" layoutX="265.0" layoutY="194.0" opacity="0.6" />
+      <ChoiceBox fx:id="updatechoix" layoutX="265.0" layoutY="256.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
+      <Label contentDisplay="TOP" layoutX="21.0" layoutY="118.0" text="Nom de la catégorie" textFill="#ece3e3" textOverrun="CLIP">
          <font>
-            <Font name="Book Antiqua" size="22.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="43.0" layoutY="72.0" text="Description de la catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="14.0" layoutY="188.0" text="Description de la catégorie" textFill="#c9c8c8">
          <font>
-            <Font name="Book Antiqua" size="22.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="43.0" layoutY="129.0" text="Type de Catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="21.0" layoutY="256.0" text="Type de Catégorie" textFill="#c9c8c8">
          <font>
-            <Font name="Book Antiqua" size="22.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="321.0" layoutY="202.0" mnemonicParsing="false" onAction="#consulterlist" text="Consulter la liste des categories" />
+      <Button layoutX="248.0" layoutY="342.0" mnemonicParsing="false" onAction="#consulterlist" opacity="0.6" text="Consulter la liste des categories" />
+      <Label layoutX="135.0" layoutY="43.0" text="Modification d'une catégorie">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.9242424242424242" startY="0.22727272727272727">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4736842215061188" green="0.42456141114234924" blue="0.42456141114234924" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.821052610874176" green="0.057777777314186096" blue="0.057777777314186096" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>

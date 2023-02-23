@@ -6,6 +6,7 @@
 package view;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,7 +20,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import models.Categorie;
 import models.Produit;
@@ -101,8 +107,58 @@ public class ViewSuppProduitController implements Initializable {
 
     @FXML
     private void afficheprod(ActionEvent event) {
-        ObservableList <Produit> produits =FXCollections.observableArrayList(produitservice.readAll());
-       listeprod.setItems(produits);
+       // ObservableList <Produit> produits =FXCollections.observableArrayList(produitservice.readAll());
+       //listeprod.setItems(produits);
+       getAllProduits();
+    }
+    public void getAllProduits(){
+        ObservableList<Produit> produits = FXCollections.observableArrayList(produitservice.readAll());
+        listeprod.setItems(produits);
+         
+         
+          listeprod.setCellFactory(param -> new ListCell<Produit>() {
+            private final ImageView imageView = new ImageView();
+            private final Text nom = new Text();
+            private final Text description = new Text();
+            private final Text prix=new Text();
+            private final Text quantite=new Text();
+            private final Text nomcat=new Text();
+            
+             
+            
+            private final HBox hbox = new HBox(100,imageView,nom,description,prix,quantite,nomcat);
+            //private final HBox hbox2 = new HBox(200,imageView,nom,adresse,type,etat);
+            
+            {
+                imageView.setFitWidth(75);
+                imageView.setFitHeight(75);
+            }
+
+            @Override
+            protected void updateItem(Produit item, boolean empty) {
+                URL imageUrl;
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    try {
+                        nom.setText(item.getNom_prod());
+                        description.setText(item.getDescription_prod());
+                        prix.setText(Double.toString(item.getPrix_prod()));
+                        quantite.setText(Integer.toString(item.getQuantite()));  
+                        nomcat.setText(item.getCategorie().getNom_categorie());
+                        imageUrl = new URL("http://localhost/images/"+item.getImage());
+                        Image images = new Image(imageUrl.toString());
+                        imageView.setImage(images);
+                        setText(null);
+                        setGraphic(hbox);
+                    } catch (MalformedURLException ex) {
+                        System.out.println(ex);
+                    }
+                }
+            }
+        });
     }
     
 }

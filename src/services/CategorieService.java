@@ -156,6 +156,27 @@ try {
            return (ArrayList<Categorie>) ListeCategTriee ;
 
     }
+
+    @Override
+    public Categorie RetournerT(String s) {
+        Categorie c = new Categorie();
+        try {
+            
+       String req="SELECT * FROM categorie WHERE `nom_categorie`='"+s+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            rs.beforeFirst();
+            rs.next();
+                c.setId_categorie(rs.getInt(1));
+                c.setNom_categorie(rs.getString(2));
+                c.setDescription_categorie(rs.getString(3));           
+                c.setType_categorie(rs.getString(4)); 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return  c;
+        
+    }
     
     
 }

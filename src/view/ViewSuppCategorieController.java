@@ -48,6 +48,7 @@ public class ViewSuppCategorieController implements Initializable {
         ObservableList<Categorie> categories =FXCollections.observableArrayList(categorieservice.readAll());
        listecategories.setItems(categories);
     }
+    
 
     @FXML
     private void deleteCat(ActionEvent event) {

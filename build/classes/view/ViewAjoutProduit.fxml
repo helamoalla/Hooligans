@@ -5,42 +5,77 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewAjoutProduitController">
+<AnchorPane id="AnchorPane" prefHeight="609.0" prefWidth="731.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewAjoutProduitController">
    <children>
-      <TextField fx:id="nomprod" layoutX="149.0" layoutY="34.0" opacity="0.65" />
-      <TextField fx:id="prixprod" layoutX="151.0" layoutY="91.0" opacity="0.65" />
-      <TextArea fx:id="descprod" layoutX="150.0" layoutY="145.0" opacity="0.65" prefHeight="62.0" prefWidth="150.0" />
-      <TextField fx:id="quantiteprod" layoutX="152.0" layoutY="235.0" opacity="0.65" />
-      <Label layoutX="35.0" layoutY="38.0" text="Nom Produit" textFill="#ece3e3">
+      <TextField fx:id="nomprod" layoutX="276.0" layoutY="96.0" opacity="0.65" />
+      <TextField fx:id="prixprod" layoutX="276.0" layoutY="150.0" opacity="0.65" />
+      <TextArea fx:id="descprod" layoutX="275.0" layoutY="200.0" opacity="0.65" prefHeight="62.0" prefWidth="150.0" />
+      <TextField fx:id="quantiteprod" layoutX="276.0" layoutY="294.0" opacity="0.65" />
+      <Label layoutX="71.0" layoutY="99.0" text="Nom Produit" textFill="#ece3e3">
          <font>
-            <Font name="Book Antiqua" size="15.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="92.0" text="Prix Produit" textFill="#ece3e3">
+      <Label layoutX="71.0" layoutY="153.0" text="Prix Produit" textFill="#ece3e3">
          <font>
-            <Font name="Book Antiqua" size="15.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="9.0" layoutY="164.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
+      <Label layoutX="45.0" layoutY="220.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
          <font>
-            <Font name="Book Antiqua" size="15.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="8.0" layoutY="236.0" text="Quantité Produit" textFill="#ece3e3">
+      <Label layoutX="44.0" layoutY="297.0" text="Quantité Produit" textFill="#ece3e3">
          <font>
-            <Font name="Book Antiqua" size="15.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="305.0" text="Categorie" textFill="#ece3e3">
+      <Label layoutX="71.0" layoutY="366.0" text="Categorie" textFill="#ece3e3">
          <font>
-            <Font name="Book Antiqua" size="15.0" />
+            <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="choixCP" layoutX="151.0" layoutY="302.0" prefWidth="150.0" />
-      <Button layoutX="103.0" layoutY="365.0" mnemonicParsing="false" onAction="#ajoutproduit" prefHeight="26.0" prefWidth="122.0" text="Ajouter Produit" />
-      <Button layoutX="253.0" layoutY="364.0" mnemonicParsing="false" onAction="#afficherproduits" text="Afficher liste produits" />
+      <ChoiceBox fx:id="choixCP" layoutX="275.0" layoutY="363.0" opacity="0.6" prefWidth="150.0" />
+      <Button layoutX="125.0" layoutY="549.0" mnemonicParsing="false" onAction="#ajoutproduit" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Ajouter Produit" />
+      <Button layoutX="290.0" layoutY="549.0" mnemonicParsing="false" onAction="#afficherproduits" opacity="0.6" text="Afficher liste produits" />
+      <Button layoutX="54.0" layoutY="453.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Choose Image" />
+      <ImageView fx:id="image_view" fitHeight="107.0" fitWidth="161.0" layoutX="227.0" layoutY="413.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="image_label" layoutX="220.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
+      <ImageView fitHeight="119.0" fitWidth="150.0" layoutX="476.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/331749673_1632276697205268_461595588999882234_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="261.0" layoutY="36.0" text="Ajout d'un produit">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.5047348484848485" endY="0.7462120923128994" startX="0.49337124102043384">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4736842215061188" green="0.42456141114234924" blue="0.42456141114234924" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.821052610874176" green="0.057777777314186096" blue="0.057777777314186096" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>

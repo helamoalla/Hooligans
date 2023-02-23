@@ -28,13 +28,14 @@ public class ProduitService implements InterfaceCRUD <Produit> {
     public void insert(Produit p) {
 try {
             
-            String req = "INSERT INTO `produit`(`nom_prod`, `prix_prod`,`description_prod`,`quantite_prod`,`id_categorie`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `produit`(`nom_prod`, `prix_prod`,`description_prod`,`quantite_prod`,`image`,`id_categorie`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom_prod());
             ps.setDouble(2, p.getPrix_prod());
             ps.setString(3, p.getDescription_prod());
             ps.setInt(4, p.getQuantite());
-            ps.setInt(5, p.getCategorie().getId_categorie());
+            ps.setString(5, p.getImage());
+            ps.setInt(6, p.getCategorie().getId_categorie());
             ps.executeUpdate();
             System.out.println("Produit Added Successfully!");
             
@@ -59,7 +60,8 @@ try {
                 p.setPrix_prod(rs.getDouble(3));
                 p.setDescription_prod(rs.getString(4));
                 p.setQuantite(rs.getInt(5));
-                p.setCategorie(cs.readById(rs.getInt(6)));
+                p.setImage(rs.getString(6));
+                p.setCategorie(cs.readById(rs.getInt(7)));
                 
                 produits.add(p);
             }
@@ -79,14 +81,15 @@ try {
            
      
          try {
-            String req ="UPDATE produit SET `nom_prod`= ? ,`prix_prod`= ? ,`description_prod`= ? ,`quantite_prod`= ? ,`id_categorie`= ? WHERE id_prod = ?";
+            String req ="UPDATE produit SET `nom_prod`= ? ,`prix_prod`= ? ,`description_prod`= ? ,`quantite_prod`= ? ,`image`= ?,`id_categorie`= ? WHERE id_prod = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1,p.getNom_prod());
             ps.setDouble(2, p.getPrix_prod());
             ps.setString(3, p.getDescription_prod());
             ps.setInt(4, p.getQuantite());
-            ps.setInt(5, p.getCategorie().getId_categorie());
-            ps.setInt(6, p.getId_prod());
+            ps.setString(5, p.getImage());
+            ps.setInt(6, p.getCategorie().getId_categorie());
+            ps.setInt(7, p.getId_prod());
             ps.executeUpdate();
             System.out.println("produit updated successfully !");
         } catch (SQLException ex) {
@@ -127,7 +130,8 @@ try {
                 p.setPrix_prod(rs.getDouble(3));
                 p.setDescription_prod(rs.getString(4));
                 p.setQuantite(rs.getInt(5));
-                p.setCategorie(cs.readById(rs.getInt(6)));
+                p.setImage(rs.getString(6));
+                p.setCategorie(cs.readById(rs.getInt(7)));
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -156,7 +160,8 @@ try {
                   p.setPrix_prod(res.getDouble(3));
                   p.setDescription_prod(res.getString(4));
                   p.setQuantite(res.getInt(5));
-                  p.setCategorie(cs.readById(res.getInt(6)));
+                  p.setImage(res.getString(6));
+                  p.setCategorie(cs.readById(res.getInt(7)));
 
                   ListeProdTriee.add(p);
               }  
@@ -184,7 +189,8 @@ try {
                   p.setPrix_prod(res.getDouble(3));
                   p.setDescription_prod(res.getString(4));
                   p.setQuantite(res.getInt(5));
-                 p.setCategorie(cs.readById(res.getInt(6)));
+                  p.setImage(res.getString(6));
+                  p.setCategorie(cs.readById(res.getInt(7)));
 
                   ListeProdCherchee.add(p);
               }  
@@ -192,6 +198,35 @@ try {
          ex.printStackTrace();         
           }
            return (ArrayList<Produit>) ListeProdCherchee ;
+
+    }
+
+    @Override
+    public Produit RetournerT(String s) {
+        Produit p = new Produit();
+         CategorieService cs = new CategorieService() ;
+
+        try {
+            
+       String req="SELECT * FROM produit WHERE `nom_prod`='"+s+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            rs.beforeFirst();
+            rs.next();
+                p.setId_prod(rs.getInt(1));
+                p.setNom_prod(rs.getString(2));
+                p.setPrix_prod(rs.getDouble(3));
+                p.setDescription_prod(rs.getString(4));
+                p.setQuantite(rs.getInt(5));
+                p.setImage(rs.getString(6));
+                p.setCategorie(cs.readById(rs.getInt(7)));
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return  p ;
 
     }
     

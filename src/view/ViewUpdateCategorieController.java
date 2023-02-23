@@ -65,7 +65,15 @@ public class ViewUpdateCategorieController implements Initializable {
             alert.setContentText("Veuillez remplir tous les champs"+ "");
             alert.show();
 
-        }else {
+        
+              } else if(updatenom.getText().matches("\\d*")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Le nom de catégorie doit etre une chaine"+ "");
+            alert.show(); 
+    }
+        else {
          try {
             c.setNom_categorie(updatenom.getText());
             c.setDescription_categorie(updatedesc.getText());

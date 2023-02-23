@@ -4,13 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewAjoutProduitController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewAjoutCategorieController.java</file>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewUpdateProduitController.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewUpdateProduit.fxml</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewSuppProduitController.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/HomePageController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/CategorieService.java</file>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewUpdateCategorieController.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewSuppProduit.fxml</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/CssStyle/css1.css</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/pidev1/pidev1.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/ProduitService.java</file>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ViewSuppCategorieController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/interfaces/InterfaceCRUD.java</file>
         </group>
     </open-files>
 </project-private>

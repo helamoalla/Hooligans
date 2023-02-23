@@ -20,6 +20,6 @@ public interface InterfaceCRUD <T>{
     ArrayList<T> chercher(String nom_column, String valeur);
     T readById(int id); 
     ArrayList<T> sortBy(String nom_column,String Asc_Dsc);
-
+     T RetournerT(String s);
     
 }

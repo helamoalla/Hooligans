@@ -1,6 +1,12 @@
 .root {
-    -fx-background-image:url('../images/image2.jpg');
-    -fx-background-size:cover ;
+    background-image:url('../images/image2.jpg');
+    background-size:cover ;
+}
+body {
+	font-family: "DM Sans", sans-serif;
+	line-height: 1.5;
+	background-color: #f1f3fb;
+	padding: 0 2rem;
 }
 
 

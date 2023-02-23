@@ -22,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -51,8 +52,9 @@ public class ViewAjoutCategorieController implements Initializable {
      private String[] choix ={"Pieces de rechange","mode"} ;
     @FXML
     private ChoiceBox<String> choicefx;
-    @FXML
     private ChoiceBox<Categorie> essaye1;
+    @FXML
+    private Button AddBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,14 +71,26 @@ public class ViewAjoutCategorieController implements Initializable {
             alert.setContentText("Veuillez remplir tous les champs"+ "");
             alert.show();
 
-        } else{
+        } else if(NomCat.getText().matches("\\d*")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Le nom de catégorie doit etre une chaine"+ "");
+            alert.show(); 
+    }
+         else{
        
              Categorie c =new Categorie();
             c.setNom_categorie(NomCat.getText());
             c.setDescription_categorie(DescCat.getText());
             c.setType_categorie(choicefx.getValue());
             categorieservice.insert(c);
-           essaye1.getItems().add(c);
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succes");
+            alert.setHeaderText("Categorie Ajoutée avec succes");
+            alert.setContentText("Une nouvelle categorie a été ajouté"+ "");
+            alert.show();
+          
            
          }
             

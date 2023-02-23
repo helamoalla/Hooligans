@@ -14,6 +14,7 @@ public class Produit {
     private Double prix_prod;
     private String description_prod ;
     private int quantite;
+    private String image;
     private Categorie categorie ;
     
     
@@ -23,20 +24,22 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(int id_prod, String nom_prod, Double prix_prod, String description_prod, int quantite, Categorie categorie) {
+    public Produit(int id_prod, String nom_prod, Double prix_prod, String description_prod, int quantite,String image, Categorie categorie) {
         this.id_prod = id_prod;
         this.nom_prod = nom_prod;
         this.prix_prod = prix_prod;
         this.description_prod = description_prod;
         this.quantite = quantite;
+        this.image=image;
         this.categorie = categorie;
     }
 
-    public Produit(String nom_prod, Double prix_prod, String description_prod, int quantite, Categorie categorie) {
+    public Produit(String nom_prod, Double prix_prod, String description_prod, int quantite,String image, Categorie categorie) {
         this.nom_prod = nom_prod;
         this.prix_prod = prix_prod;
         this.description_prod = description_prod;
         this.quantite = quantite;
+        this.image=image;
         this.categorie = categorie;
     }
 
@@ -84,6 +87,15 @@ public class Produit {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
 
     public Categorie getCategorie() {
         return categorie;
