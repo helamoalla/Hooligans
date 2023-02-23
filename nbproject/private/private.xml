@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/MainInterfaceController.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/InterfaceajoutPanier.fxml</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/InterfaceSuppPanier.fxml</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/InterfaceSuppPanierController.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/services/PanierService.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/image/image1.png</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/InterfaceCommandeController.java</file>
             <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/InterfaceajoutPanierController.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/CssStyle/css1.css</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/mainInterface.fxml</file>
         </group>
     </open-files>
 </project-private>

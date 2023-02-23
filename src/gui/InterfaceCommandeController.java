@@ -69,7 +69,8 @@ public class InterfaceCommandeController implements Initializable {
     }
     
     //Ajouter Commande
-    private void ajoutCommande(ActionEvent event) {
+    @FXML
+    public void PasserCommande(ActionEvent event) {
     if (tfmontant.getText().length() == 0||tfnbarticles.getText().length() == 0||tfetat.getText().length() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
