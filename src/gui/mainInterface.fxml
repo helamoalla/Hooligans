@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPanemain" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainInterfaceController">
+   <children>
+      <Button id="btn_ajoutPanier" fx:id="btn_ajoutPanier" layoutX="99.0" layoutY="258.0" mnemonicParsing="false" onAction="#fenetre_ajout" onMouseClicked="#fenetre_ajout" prefHeight="25.0" prefWidth="115.0" text="Créer Panier " />
+      <Button id="btn_suppPanier" fx:id="btn_suppPanier" layoutX="243.0" layoutY="258.0" mnemonicParsing="false" onAction="#fenetre_supp" prefHeight="25.0" prefWidth="115.0" text="Supprimer Panier" />
+      <Button id="btn_ConsulterPanier" fx:id="btn_ConsulterPanier" layoutX="383.0" layoutY="258.0" mnemonicParsing="false" onAction="#fenetre_consulter" prefHeight="25.0" prefWidth="115.0" text="Consulter Panier" />
+      <Button fx:id="btncommande" layoutX="243.0" layoutY="302.0" mnemonicParsing="false" onAction="#fenetre_PasserCommande" text="Passer Commande" />
+   </children>
+</AnchorPane>

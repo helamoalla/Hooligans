@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css1.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.InterfaceCommandeController">
+   <children>
+      <Label layoutX="29.0" layoutY="38.0" text="Passer Commande " textFill="#f20404">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnretour" layoutX="30.0" layoutY="272.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="69.0" text="Retour " />
+      <Button fx:id="btnconfirmer" layoutX="125.0" layoutY="272.0" mnemonicParsing="false" text="Confirmer" />
+      <Label layoutX="30.0" layoutY="210.0" text="Panier" textFill="#fffdfd" />
+      <Label layoutX="29.0" layoutY="104.0" text="Montant " textFill="#f7f7f7" />
+      <Label layoutX="29.0" layoutY="137.0" text="Nombre d'articles" textFill="#fcfafa" />
+      <Label layoutX="29.0" layoutY="173.0" text="Etat Commande" textFill="#fffdfd" />
+      <TextField fx:id="tfmontant" layoutX="134.0" layoutY="100.0" />
+      <TextField fx:id="tfnbarticles" layoutX="134.0" layoutY="133.0" />
+      <TextField fx:id="tfetat" layoutX="134.0" layoutY="169.0" />
+      <ChoiceBox fx:id="listPanier" layoutX="134.0" layoutY="206.0" onDragDetected="#ImportPanier" prefWidth="150.0" />
+   </children>
+</AnchorPane>
