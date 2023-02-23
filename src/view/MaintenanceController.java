@@ -53,6 +53,10 @@ Maintenance m=new Maintenance();
     private TextField id_user;
     @FXML
     private Button id_retour;
+    @FXML
+    private ListView<GarageC> id_list_G;
+    @FXML
+    private Button id_afficher_G;
     
     /**
      * Initializes the controller class.
@@ -126,6 +130,12 @@ Maintenance m=new Maintenance();
     } catch (IOException ex) {
         Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
     }
+    }
+
+    @FXML
+    private void afficher_garage(ActionEvent event) {
+         ObservableList<GarageC> d=FXCollections.observableArrayList(sg.readAll());
+     id_list_G.setItems(d);
     }
     
     

@@ -5,8 +5,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GESTIONController">
    <children>
-      <Button fx:id="id_GA" layoutX="14.0" layoutY="218.0" mnemonicParsing="false" onAction="#GarageAdmin" text="gestion garage Admin" />
-      <Button fx:id="id_MA" layoutX="216.0" layoutY="218.0" mnemonicParsing="false" onAction="#MaintenanceAdmin" text="gestion maintenance  Admin" />
-      <Button fx:id="id_MU" layoutX="439.0" layoutY="218.0" mnemonicParsing="false" onAction="#MaintenanceUser" text="gestion maintenance User" />
+      <Button fx:id="id_GA" layoutX="20.0" layoutY="218.0" mnemonicParsing="false" onAction="#GarageAdmin" prefHeight="46.0" prefWidth="143.0" text="gestion garage Admin" textFill="RED" />
+      <Button fx:id="id_MA" layoutX="195.0" layoutY="294.0" mnemonicParsing="false" onAction="#MaintenanceAdmin" prefHeight="46.0" prefWidth="179.0" text="gestion maintenance  Admin" textFill="RED" />
+      <Button fx:id="id_MU" layoutX="398.0" layoutY="218.0" mnemonicParsing="false" onAction="#MaintenanceUser" prefHeight="46.0" prefWidth="161.0" text="gestion maintenance User" textFill="RED" />
    </children>
 </AnchorPane>

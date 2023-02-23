@@ -6,27 +6,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Ajout_GarageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Ajout_GarageController">
    <children>
-      <Label layoutX="20.0" layoutY="17.0" text="Nom Garage" />
-      <Label layoutX="19.0" layoutY="61.0" text="Adresse" />
-      <Label layoutX="18.0" layoutY="101.0" text="Numero" />
-      <Label layoutX="16.0" layoutY="138.0" text="panne moteur" />
-      <Label layoutX="19.0" layoutY="184.0" text="pompe a eau" />
-      <Label layoutX="16.0" layoutY="224.0" text="patin " />
-      <Label layoutX="14.0" layoutY="262.0" text="essuie glace" />
-      <Label layoutX="16.0" layoutY="302.0" text="radiateur" />
-      <Label layoutX="12.0" layoutY="345.0" text="ventilateur" />
-      <Label layoutX="189.0" layoutY="139.0" text="duride" />
-      <Label layoutX="189.0" layoutY="183.0" text="fuite d'huile" />
-      <Label layoutX="197.0" layoutY="224.0" text="vidange" />
-      <Label layoutX="194.0" layoutY="261.0" text="filtre" />
-      <Label layoutX="200.0" layoutY="305.0" text="batterie" />
-      <Label layoutX="191.0" layoutY="345.0" text="amortisseur" />
-      <Label layoutX="330.0" layoutY="139.0" text="frain main" />
-      <Label layoutX="333.0" layoutY="183.0" text="feu d'eclairage" />
-      <Label layoutX="325.0" layoutY="224.0" text="taux de reduction" />
-      <Button fx:id="id_ajout" layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#ajouter_garage" prefHeight="26.0" prefWidth="57.0" text="ajouter" />
+      <Label layoutX="21.0" layoutY="18.0" text="Nom Garage" textFill="WHITE" />
+      <Label layoutX="20.0" layoutY="62.0" text="Adresse" textFill="WHITE" />
+      <Label layoutX="19.0" layoutY="102.0" text="Numero" textFill="WHITE" />
+      <Label layoutX="17.0" layoutY="139.0" text="panne moteur" textFill="WHITE" />
+      <Label layoutX="20.0" layoutY="185.0" text="pompe a eau" textFill="WHITE" />
+      <Label layoutX="17.0" layoutY="225.0" text="patin " textFill="WHITE" />
+      <Label layoutX="15.0" layoutY="263.0" text="essuie glace" textFill="WHITE" />
+      <Label layoutX="17.0" layoutY="303.0" text="radiateur" textFill="WHITE" />
+      <Label layoutX="13.0" layoutY="346.0" text="ventilateur" textFill="WHITE" />
+      <Label layoutX="189.0" layoutY="139.0" text="duride" textFill="WHITE" />
+      <Label layoutX="189.0" layoutY="183.0" text="fuite d'huile" textFill="WHITE" />
+      <Label layoutX="197.0" layoutY="224.0" text="vidange" textFill="WHITE" />
+      <Label layoutX="194.0" layoutY="261.0" text="filtre" textFill="WHITE" />
+      <Label layoutX="200.0" layoutY="305.0" text="batterie" textFill="WHITE" />
+      <Label layoutX="192.0" layoutY="346.0" text="amortisseur" textFill="WHITE" />
+      <Label layoutX="330.0" layoutY="139.0" text="frain main" textFill="WHITE" />
+      <Label layoutX="333.0" layoutY="183.0" text="feu d'eclairage" textFill="WHITE" />
+      <Label layoutX="325.0" layoutY="224.0" text="taux de reduction" textFill="WHITE" />
+      <Button fx:id="id_ajout" layoutX="514.0" layoutY="354.0" mnemonicParsing="false" onAction="#ajouter_garage" prefHeight="26.0" prefWidth="57.0" text="ajouter" textFill="RED" />
       <TextField fx:id="id_nom" layoutX="107.0" layoutY="13.0" />
       <TextField fx:id="id_adresse" layoutX="107.0" layoutY="57.0" />
       <TextField fx:id="id_num" layoutX="108.0" layoutY="97.0" />
@@ -46,7 +46,7 @@
       <TextField fx:id="id_feu_eclairage" layoutX="422.0" layoutY="178.0" prefHeight="26.0" prefWidth="48.0" />
       <TextField fx:id="id_reduction" layoutX="429.0" layoutY="220.0" prefHeight="26.0" prefWidth="48.0" />
       <ImageView fx:id="image_view" fitHeight="95.0" fitWidth="123.0" layoutX="462.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="id_import_image" layoutX="287.0" layoutY="22.0" mnemonicParsing="false" onAction="#importer_image" text="importer image" />
-      <Label fx:id="id_image" layoutX="396.0" layoutY="26.0" text="image" />
+      <Button fx:id="id_import_image" layoutX="287.0" layoutY="22.0" mnemonicParsing="false" onAction="#importer_image" text="importer image" textFill="RED" />
+      <Label fx:id="id_image" layoutX="396.0" layoutY="26.0" text="image" textFill="WHITE" />
    </children>
 </AnchorPane>

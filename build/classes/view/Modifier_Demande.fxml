@@ -6,27 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Modifier_DemandeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Modifier_DemandeController">
    <children>
-      <Label layoutX="68.0" layoutY="55.0" text="id_user" />
-      <TextField fx:id="id_user" layoutX="117.0" layoutY="51.0" prefHeight="26.0" prefWidth="38.0" />
-      <CheckBox fx:id="id_panne_moteur" layoutX="215.0" layoutY="95.0" mnemonicParsing="false" text="panne_moteur" />
-      <Label layoutX="59.0" layoutY="95.0" text="Precisez votre panne :" />
-      <CheckBox fx:id="id_pompe_a_eau" layoutX="215.0" layoutY="136.0" mnemonicParsing="false" text="pompe a eau" />
-      <CheckBox fx:id="id_patin" layoutX="215.0" layoutY="184.0" mnemonicParsing="false" text="patin" />
-      <CheckBox fx:id="id_essuie_glace" layoutX="215.0" layoutY="230.0" mnemonicParsing="false" text="essuie glace" />
-      <CheckBox fx:id="id_radiateur" layoutX="215.0" layoutY="276.0" mnemonicParsing="false" text="radiateur" />
-      <CheckBox fx:id="id_ventilateur" layoutX="215.0" layoutY="327.0" mnemonicParsing="false" text="ventilateur" />
-      <CheckBox fx:id="id_duride" layoutX="216.0" layoutY="369.0" mnemonicParsing="false" text="duride" />
-      <CheckBox fx:id="id_fuite_d_huile" layoutX="375.0" layoutY="95.0" mnemonicParsing="false" text="fuite d'huile" />
-      <CheckBox fx:id="id_vidange" layoutX="375.0" layoutY="136.0" mnemonicParsing="false" text="vidange" />
-      <CheckBox fx:id="id_filtre" layoutX="375.0" layoutY="184.0" mnemonicParsing="false" text="filtre" />
-      <CheckBox fx:id="id_batterie" layoutX="375.0" layoutY="230.0" mnemonicParsing="false" text="batterie" />
-      <CheckBox fx:id="id_amortisseur" layoutX="376.0" layoutY="276.0" mnemonicParsing="false" text="amortisseur" />
-      <CheckBox fx:id="id_frein_main" layoutX="377.0" layoutY="327.0" mnemonicParsing="false" text="frein main" />
-      <CheckBox fx:id="id_feu_d_eclairage" layoutX="376.0" layoutY="369.0" mnemonicParsing="false" text="feu d'eclairage" />
-      <Label layoutX="349.0" layoutY="55.0" text="Autre" />
-      <TextField fx:id="id_autre" layoutX="393.0" layoutY="51.0" />
-      <Button fx:id="id_modifier" layoutX="536.0" layoutY="356.0" mnemonicParsing="false" onAction="#modifier_demande" text="modifier" />
+      <Label layoutX="68.0" layoutY="55.0" text="id_user" textFill="WHITE" />
+      <TextField fx:id="id_user" layoutX="117.0" layoutY="51.0" opacity="0.91" prefHeight="26.0" prefWidth="38.0" />
+      <CheckBox fx:id="id_panne_moteur" layoutX="215.0" layoutY="95.0" mnemonicParsing="false" text="panne_moteur" textFill="WHITE" />
+      <Label layoutX="59.0" layoutY="95.0" text="Precisez votre panne :" textFill="WHITE" />
+      <CheckBox fx:id="id_pompe_a_eau" layoutX="215.0" layoutY="136.0" mnemonicParsing="false" text="pompe a eau" textFill="WHITE" />
+      <CheckBox fx:id="id_patin" layoutX="215.0" layoutY="184.0" mnemonicParsing="false" text="patin" textFill="WHITE" />
+      <CheckBox fx:id="id_essuie_glace" layoutX="215.0" layoutY="230.0" mnemonicParsing="false" text="essuie glace" textFill="WHITE" />
+      <CheckBox fx:id="id_radiateur" layoutX="215.0" layoutY="276.0" mnemonicParsing="false" text="radiateur" textFill="WHITE" />
+      <CheckBox fx:id="id_ventilateur" layoutX="215.0" layoutY="327.0" mnemonicParsing="false" text="ventilateur" textFill="WHITE" />
+      <CheckBox fx:id="id_duride" layoutX="216.0" layoutY="369.0" mnemonicParsing="false" text="duride" textFill="WHITE" />
+      <CheckBox fx:id="id_fuite_d_huile" layoutX="375.0" layoutY="95.0" mnemonicParsing="false" text="fuite d'huile" textFill="WHITE" />
+      <CheckBox fx:id="id_vidange" layoutX="375.0" layoutY="136.0" mnemonicParsing="false" text="vidange" textFill="WHITE" />
+      <CheckBox fx:id="id_filtre" layoutX="375.0" layoutY="184.0" mnemonicParsing="false" text="filtre" textFill="WHITE" />
+      <CheckBox fx:id="id_batterie" layoutX="375.0" layoutY="230.0" mnemonicParsing="false" text="batterie" textFill="WHITE" />
+      <CheckBox fx:id="id_amortisseur" layoutX="376.0" layoutY="276.0" mnemonicParsing="false" text="amortisseur" textFill="WHITE" />
+      <CheckBox fx:id="id_frein_main" layoutX="377.0" layoutY="327.0" mnemonicParsing="false" text="frein main" textFill="WHITE" />
+      <CheckBox fx:id="id_feu_d_eclairage" layoutX="376.0" layoutY="369.0" mnemonicParsing="false" text="feu d'eclairage" textFill="WHITE" />
+      <Label layoutX="349.0" layoutY="55.0" text="Autre" textFill="WHITE" />
+      <TextField fx:id="id_autre" layoutX="393.0" layoutY="51.0" opacity="0.85" />
+      <Button fx:id="id_modifier" layoutX="536.0" layoutY="356.0" mnemonicParsing="false" onAction="#modifier_demande" text="modifier" textFill="RED" />
    </children>
 </AnchorPane>

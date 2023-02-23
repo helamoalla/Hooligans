@@ -11,6 +11,8 @@ import Models.Maintenance;
 import Services.ServiceDevis;
 import Services.ServiceGarageC;
 import Services.ServiceMaintenance;
+import java.sql.Date;
+import java.time.LocalDate;
 /**
  *
  * @author helam
@@ -35,7 +37,7 @@ public class PIDEV {
         //ajout garage methode 1
         //sg.insert(g);
         
-       // GarageC g1=new GarageC("Garage hela","tunis ",98214541,1000,500,600,200,500,300,500,400,1000,2000,500,600,400,100," ",10,"image");
+     GarageC g1=new GarageC(5,"Garage hela","tunis ",98214541,1000,500,600,200,500,300,500,400,1000,2000,500,600,400,100,10,"image");
       //sg.insert(g1);
         
        //supprimer garage
@@ -64,7 +66,7 @@ public class PIDEV {
        
      //   System.out.println(sm.chercher(2)); 
       ////demander maintenance
-       //Maintenance m1=new Maintenance(2,false,false,false,false,false,true,false,false,true,false,false,false,false,false,"");
+       Maintenance m1=new Maintenance(3,3,Date.valueOf(LocalDate.MAX),false,false,false,false,false,true,false,false,true,false,false,true,false,false,"");
       // sm.insert(m1);
        
      //supprimer maintenance
@@ -91,8 +93,13 @@ public class PIDEV {
       
       //////////////////////DEVIS //////////
       InterfaceCRUD sd = new ServiceDevis();
+       //GarageC g=new GarageC();
+      // Maintenance m=new Maintenance();
       Devis d=new Devis();
-      sd.insert(d);
+      d.setId_user(3);
+      d.setGarage(g1);
+      d.setMaintenance(m1);
+      sd.update(d);
       
     }
 }

@@ -4,11 +4,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Afficher_MaintenanceController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Afficher_MaintenanceController">
    <children>
-      <ListView fx:id="id_list" layoutX="14.0" layoutY="12.0" prefHeight="372.0" prefWidth="425.0" />
-      <Button fx:id="id_afficher" layoutX="483.0" layoutY="43.0" mnemonicParsing="false" onAction="#afficher_maintenance" text="afficher" />
-      <Button fx:id="id_supprimer" layoutX="483.0" layoutY="121.0" mnemonicParsing="false" onAction="#supprimer_maintenance" text="supprimer" />
-      <Button fx:id="id_retour" layoutX="513.0" layoutY="336.0" mnemonicParsing="false" onAction="#retour" text="retour" />
+      <ListView fx:id="id_list" layoutX="14.0" layoutY="65.0" opacity="0.67" prefHeight="319.0" prefWidth="551.0" />
+      <Button fx:id="id_afficher" layoutX="41.0" layoutY="26.0" mnemonicParsing="false" onAction="#afficher_maintenance" text="afficher" textFill="RED" />
+      <Button fx:id="id_supprimer" layoutX="129.0" layoutY="26.0" mnemonicParsing="false" onAction="#supprimer_maintenance" text="supprimer" textFill="RED" />
+      <Button fx:id="id_retour" layoutX="524.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" text="retour" textFill="RED" />
    </children>
 </AnchorPane>
