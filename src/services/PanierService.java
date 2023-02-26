@@ -4,6 +4,7 @@
  */
 package services;
 
+import interfaces.InterfaceCRUD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.Panier;
+import util.Conditions;
 import util.MyConnection;
 
 /**
@@ -22,16 +24,24 @@ public class PanierService implements InterfaceCRUD <Panier> {
 
   Connection cnx = MyConnection.getInstance().getCnx();
      
-  //insert
+  
+  //CRUD
+  //Insert
     @Override
     public void insert(Panier p) {
                 try {
-            String req = "INSERT INTO `panier`(`montant`, `nb_articles`) VALUES(?,?)";
+            Conditions c =new Conditions();
+            String req = "INSERT INTO `panier`(`id_user`) VALUES(?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setFloat(1, p.getMontant());
-            ps.setInt(2, p.getNb_articles());
+            
+            if(c.VerifUserIdExistDansPanier(p.getUtilisateur().getId_user())==false){
+            ps.setInt(1, p.getUtilisateur().getId_user());
             ps.executeUpdate();
             System.out.println("Panier ajouté avec succés");
+            }
+            else {
+                 System.out.println("Cet utilisateur a deja un panier");
+            }
             
         } catch (SQLException ex) {
              ex.printStackTrace();  
@@ -58,12 +68,9 @@ public class PanierService implements InterfaceCRUD <Panier> {
     @Override
     public void update(Panier p) {
          try {
-            String req ="UPDATE `panier` SET  `montant`= ? ,`nb_articles`= ?  WHERE id_panier = ?";
+            String req ="UPDATE `panier` SET  `id_user`= ?  WHERE id_panier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setFloat(1, p.getMontant());
-            ps.setInt(2, p.getNb_articles());
-            ps.setInt(3, p.getId_panier());
-           
+            ps.setInt(1, p.getUtilisateur().getId_user());   
             System.out.println("Panier mis à jour avec succés");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -74,6 +81,8 @@ public class PanierService implements InterfaceCRUD <Panier> {
     @Override
     public ArrayList readAll() {
          ArrayList<Panier> listPaniers = new ArrayList<>();
+         UserService us = new UserService();
+
         try {
             
             String req = "SELECT * FROM panier";
@@ -82,9 +91,7 @@ public class PanierService implements InterfaceCRUD <Panier> {
             while (rs.next()) {                
                 Panier p = new Panier();
                 p.setId_panier(rs.getInt(1));
-                p.setMontant(rs.getFloat(2));
-                p.setNb_articles(rs.getInt(3));
-                
+                p.setUtilisateur(us.readById(rs.getInt(2)));
                 listPaniers.add(p);
             }
             
@@ -97,6 +104,7 @@ public class PanierService implements InterfaceCRUD <Panier> {
     @Override
     public Panier readById(int id) {
         Panier p = new Panier();
+        UserService us = new UserService();
         try {
             
        String req="SELECT * FROM panier WHERE `id_panier`='"+id+"'";
@@ -105,8 +113,7 @@ public class PanierService implements InterfaceCRUD <Panier> {
             rs.beforeFirst();
             rs.next();
                 p.setId_panier(rs.getInt(1));
-                p.setMontant(rs.getFloat(2));
-                p.setNb_articles(rs.getInt(3));    
+                p.setUtilisateur(us.readById(rs.getInt(2)));            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -118,6 +125,7 @@ public class PanierService implements InterfaceCRUD <Panier> {
     @Override
     public ArrayList sortBy(String nom_column, String Asc_Dsc) {
          List<Panier> ListePanierTriee=new ArrayList<>();
+         UserService us = new UserService();
         try {
               String req="SELECT * FROM panier ORDER BY "+nom_column+" "+Asc_Dsc ;
               Statement ste = cnx.createStatement();
@@ -125,13 +133,46 @@ public class PanierService implements InterfaceCRUD <Panier> {
               while(rs.next()){
                Panier p =new Panier();
                 p.setId_panier(rs.getInt(1));
-                p.setMontant(rs.getFloat(2));
-                p.setNb_articles(rs.getInt(3));
+                p.setUtilisateur(us.readById(rs.getInt(2))); 
               }  
           } catch (SQLException ex) {
          ex.printStackTrace();         
           }
            return (ArrayList<Panier>) ListePanierTriee ;
+    }
+    
+    //Métier 
+    //Fonction qui calcule le montant total d'un panier 
+    public double totalmontantPanier(int id_user){
+        Double totalPrixPanier=0.0 ;
+        try {
+            String sql = "SELECT SUM( prix_u * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = ligne_panier.id_panier WHERE panier.id_user = "+ id_user;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                totalPrixPanier = rs.getDouble("total");//total est une colonne virtuell, elle n'existe pas dans la table panier
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalPrixPanier;
+    }
+    
+    
+    //Fonction qui retourne le panier d'un user passé en paramétre 
+        public int getPanierIdForUser(int id_user) {
+        int panierId = 0;
+        String query = "SELECT id_panier FROM panier WHERE id_user = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setInt(1, id_user);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                panierId = rs.getInt("id_panier");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return panierId;
     }
     
 }

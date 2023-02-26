@@ -12,10 +12,7 @@ public class Panier {
    
    //Var 
    private int id_panier; 
-   private float montant; 
-   private int nb_articles; 
- 
-  // private Commande commande ; 
+   private user utilisateur; 
    
    //Constructeurs
    //Constructeur par défaut, nom paramétrés 
@@ -24,45 +21,34 @@ public class Panier {
     
    //Constructeurs paramétrés
    //sans id
-    public Panier(float montant, float guantite_produit, int nb_articles, int date_ajout) {
-        this.montant = montant;
-        this.nb_articles = nb_articles;
+    public Panier(user utilisateur) {
+        this.utilisateur = utilisateur;
     }
+  
     
     //avec id
-    public Panier(int id_panier, float montant, float guantite_produit, int nb_articles, int date_ajout) {
+    public Panier(int id_panier, user utilisateur) {
         this.id_panier = id_panier;
-        this.montant = montant;
-        this.nb_articles = nb_articles;
+        this.utilisateur = utilisateur;
     }
-    
-    //Getters 
 
+    //Getters
     public int getId_panier() {
         return id_panier;
     }
 
-    public float getMontant() {
-        return montant;
+    public user getUtilisateur() {
+        return utilisateur;
     }
 
-    public int getNb_articles() {
-        return nb_articles;
-    }
 
     //Setters 
     public void setId_panier(int id_panier) {
         this.id_panier = id_panier;
     }
 
-    public void setMontant(float montant) {
-        this.montant = montant;
-    }
-
- 
-
-    public void setNb_articles(int nb_articles) {
-        this.nb_articles = nb_articles;
+    public void setUtilisateur(user utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     
@@ -70,11 +56,8 @@ public class Panier {
 
     @Override
     public String toString() {
-        return "Panier{" + "id_panier=" + id_panier + ", montant=" + montant + ", nb_articles=" + nb_articles + '}';
+        return "Panier{" + "id_panier=" + id_panier + ", utilisateur=" + utilisateur + '}';
     }
-   
-    
-    
     
     
 }

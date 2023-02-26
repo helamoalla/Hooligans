@@ -36,59 +36,59 @@ public class MainInterfaceController implements Initializable {
     @FXML
     private Button btncommande;
    
-    @FXML
-    public void fenetre_ajout(ActionEvent event) {
-         try {
-             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceajoutPanier.fxml"));
-             Parent view_2=loader.load();
-             InterfaceajoutPanierController icp = loader.getController();
-             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-         } catch (IOException ex) {
-             Logger.getLogger(InterfaceajoutPanierController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-
-    }
+//    @FXML
+//    public void fenetre_ajout(ActionEvent event) {
+//         try {
+//             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceajoutPanier.fxml"));
+//             Parent view_2=loader.load();
+//             InterfaceajoutPanierController icp = loader.getController();
+//             
+//            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(view_2);
+//            stage.setScene(scene);
+//            stage.show();
+//         } catch (IOException ex) {
+//             Logger.getLogger(InterfaceajoutPanierController.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//
+//    }
     
-    @FXML
-    public void fenetre_supp(ActionEvent event){           
-try {
-             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceSuppPanier.fxml"));
-             Parent view_2=loader.load();
-             InterfaceSuppPanierController i =loader.getController();
-             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-         } catch (IOException ex) {
-             Logger.getLogger(InterfaceSuppPanierController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+//    @FXML
+//    public void fenetre_supp(ActionEvent event){           
+//try {
+//             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceSuppPanier.fxml"));
+//             Parent view_2=loader.load();
+//             InterfaceSuppPanierController i =loader.getController();
+//             
+//            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(view_2);
+//            stage.setScene(scene);
+//            stage.show();
+//         } catch (IOException ex) {
+//             Logger.getLogger(InterfaceSuppPanierController.class.getName()).log(Level.SEVERE, null, ex);
+//         }
        
 
 
-    }
+   // }
     
-    @FXML
-    public void fenetre_consulter(ActionEvent event){
-try {
-             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceConsulter.fxml"));
-             Parent view_2=loader.load();
-             InterfaceConsulterController i =loader.getController();
-             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-         } catch (IOException ex) {
-             Logger.getLogger(InterfaceConsulterController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-
-
-    }
+//    @FXML
+//    public void fenetre_consulter(ActionEvent event){
+//try {
+//             FXMLLoader loader= new FXMLLoader(getClass().getResource("./InterfaceConsulter.fxml"));
+//             Parent view_2=loader.load();
+//             InterfaceConsulterController i =loader.getController();
+//             
+//            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(view_2);
+//            stage.setScene(scene);
+//            stage.show();
+//         } catch (IOException ex) {
+//             Logger.getLogger(InterfaceConsulterController.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//
+//
+//    }
 
                
     @FXML

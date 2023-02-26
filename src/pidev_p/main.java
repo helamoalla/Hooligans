@@ -10,7 +10,7 @@ import java.util.Date;
 import models.Commande;
 import models.Panier;
 import services.CommandeService;
-import services.InterfaceCRUD;
+import interfaces.InterfaceCRUD;
 import services.PanierService;
 
 
@@ -25,8 +25,8 @@ public class main {
        
        Panier p = new Panier();
 //       p.setId_panier(2);
-       p.setMontant(54f);
-       p.setNb_articles(600);
+       //p.setMontant(54f);
+       //p.setNb_articles(600);
       
        //InterfaceCRUD sc = new CommandeService();
        InterfaceCRUD pc = new PanierService();
