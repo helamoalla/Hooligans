@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="426.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="driftrace.AdminController">
+   <children>
+      <TableView fx:id="afficher" layoutX="53.0" layoutY="96.0" prefHeight="199.0" prefWidth="602.0">
+        <columns>
+          <TableColumn fx:id="nom2" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prenom2" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="pswd2" prefWidth="75.0" text="Pswd" />
+            <TableColumn fx:id="email2" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="num_tel2" prefWidth="75.0" text="Num_tel" />
+            <TableColumn fx:id="cin2" prefWidth="75.0" text="Cin" />
+            <TableColumn fx:id="id_role2" prefWidth="75.0" text="ID-role" />
+            <TableColumn fx:id="quota2" prefWidth="75.0" text="Quota" />
+        </columns>
+      </TableView>
+      <TextField fx:id="rechercher" layoutX="53.0" layoutY="49.0" onKeyPressed="#rech" promptText="rechercher" />
+      <Button fx:id="modifier" layoutX="53.0" layoutY="389.0" mnemonicParsing="false" onAction="#modif" text="modifier" />
+      <Button fx:id="supprimer" layoutX="601.0" layoutY="303.0" mnemonicParsing="false" onAction="#supp" text="Banner" />
+      <Label layoutX="53.0" layoutY="14.0" text="Admin" />
+      <ComboBox fx:id="changer_id" layoutX="53.0" layoutY="353.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
