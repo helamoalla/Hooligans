@@ -14,7 +14,7 @@ public class Devis {
     private int id_devis;
     GarageC garage=new GarageC();
     private int TVA=19;
-    private int total;
+    private float total;
     private int id_user;
     Maintenance maintenance=new Maintenance();
     
@@ -24,13 +24,13 @@ public class Devis {
     public Devis() {
     }
 
-    public Devis(int id_devis, int total, int id_user) {
+    public Devis(int id_devis, float total, int id_user) {
         this.id_devis = id_devis;
         this.total = total;
         this.id_user = id_user;
     }
 
-    public Devis(int total, int id_user) {
+    public Devis(float total, int id_user) {
         this.total = total;
         this.id_user = id_user;
     }
@@ -41,7 +41,7 @@ public class Devis {
     ///toString
     @Override
     public String toString() {
-        return "Devis{" + "id_devis=" + id_devis + ", garage=" + garage + ", TVA=" + TVA + ", total=" + total + ", id_user=" + id_user + ", maintenance=" + maintenance + '}';
+        return "Devis{" + ", garage=" + garage + ", TVA=" + TVA + ", total=" + total + ", id_user=" + id_user + ", maintenance=" + maintenance + '}';
     }
 
     /////getters & setters
@@ -85,11 +85,11 @@ public class Devis {
         this.maintenance = maintenance;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 

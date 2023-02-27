@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,7 +38,7 @@ Devis d=new Devis();
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, t.getId_user());
              ps.setInt(2, t.getTVA());
-               ps.setInt(3, t.getTotal());
+               ps.setFloat(3, t.getTotal());
             ps.setInt(4, t.getGarage().getId_garage());
              ps.setInt(5, t.getMaintenance().getId_maintenance());
             ps.executeUpdate();
@@ -142,9 +143,14 @@ Devis d=new Devis();
       t.setMaintenance(m);
       t.setId_user(m.getId_user());
       t.setTVA(19);
-           t.setTotal(somme);
-           insert(t);
            System.out.println(somme);
+        float   T=(somme*t.getTVA())/100f;
+        float TTC=(T+somme);
+             System.out.println("Taux taxe compris (TVA=19%) :" +TTC);
+             float Red=(TTC*g.getTaux_de_reduction())/100;
+             System.out.println("Reduction de "+g.getTaux_de_reduction()+" : somme :"+Red);
+               t.setTotal(Red);
+                insert(t);
            somme=0;
        
          }
@@ -154,14 +160,34 @@ Devis d=new Devis();
 
     @Override
     public ArrayList<Devis> readAll() {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+List<Devis> lm=new ArrayList<>();
+        try {
+              String req="SELECT * FROM `devis` ";
+              Statement ste = cnx.createStatement();
+              ResultSet res=ste.executeQuery(req);
+              while(res.next()){
+                  
+                 Devis m=new Devis();
+                  m.setId_devis(res.getInt(1));
+                  m.setId_user(res.getInt(2));
+                  m.setTVA(res.getInt(3));
+                  m.setTotal(res.getFloat(4));
+                  GarageC c=(GarageC) sg.readById(res.getInt(5));
+                  m.setGarage(c);
+                  Maintenance l=(Maintenance) sm.readById(res.getInt(6));
+                 m.setMaintenance(l);
+                  
+                  lm.add(m);
+              }
+              
+          } catch (SQLException ex) {
+              Logger.getLogger(ServiceGarageC.class.getName()).log(Level.SEVERE, null, ex);
+          }
+           return (ArrayList<Devis>) lm;
 
     }
 
-    @Override
-    public Devis readById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public ArrayList<Devis> sortBy(String nom_column, String Asc_Dsc) {
@@ -170,10 +196,36 @@ Devis d=new Devis();
 
     @Override
     public ArrayList<Devis> chercher(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+List<Devis> lm=new ArrayList<>();
+        try {
+              String req="SELECT * FROM `devis` WHERE (`id_user`='"+id+"') ";
+              Statement ste = cnx.createStatement();
+              ResultSet res=ste.executeQuery(req);
+            
+                   while(res.next()){
+                    Devis m=new Devis();
+                  m.setId_devis(res.getInt(1));
+                  m.setId_user(res.getInt(2));
+                  m.setTVA(res.getInt(3));
+                  m.setTotal(res.getFloat(4));
+                  GarageC c=(GarageC) sg.readById(res.getInt(5));
+                  m.setGarage(c);
+                  Maintenance l=(Maintenance) sm.readById(res.getInt(6));
+                 m.setMaintenance(l);
+               lm.add(m);
+                   }
+          } catch (SQLException ex) {
+              Logger.getLogger(ServiceGarageC.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        return  (ArrayList<Devis>) lm;  
     }
 
     private int size(List<Maintenance> lm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Devis readById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
