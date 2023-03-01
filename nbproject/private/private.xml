@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/updateFeedback.fxml</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/FeedbackController.java</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/Feedback.fxml</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/FXMLController.java</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/UpdatebonplanController.java</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/UpdateFeedbackController.java</file>
-            <file>file:/C:/Users/azizh/OneDrive/Documents/NetBeansProjects/holigans/src/View/AjouterBonPlanController.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/holigans/NewFXMain.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/View/FXMLController.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/View/DetailController.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/View/Feedbacks.fxml</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/View/FeedbacksController.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/View/SideBarController.java</file>
+            <file>file:/C:/Users/azizh/OneDrive/Bureau/holigans/src/Service/FeedbackService.java</file>
         </group>
     </open-files>
 </project-private>

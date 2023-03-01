@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1014.0" style="-fx-background-color: #dcdcdc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="219.0" fitWidth="223.0" layoutX="404.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/no-content.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="309.0" layoutY="278.0" opacity="0.64" strokeType="OUTSIDE" strokeWidth="0.0" text="No Content" wrappingWidth="504.5366325378418">
+         <font>
+            <Font name="Berlin Sans FB" size="85.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

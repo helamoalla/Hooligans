@@ -31,6 +31,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -53,10 +54,11 @@ public class UpdatebonplanController implements Initializable {
     @FXML
     private ImageView image_view;
     
-        BonPlanService bonPlanService=new BonPlanService();
+    BonPlanService bonPlanService=new BonPlanService();
 
     
     private File selectedFile;
+    private BorderPane borderPane;
     
     BonPlan b;
 
@@ -67,6 +69,10 @@ public class UpdatebonplanController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         typeBonPlan.getItems().add("Garage");
         typeBonPlan.getItems().add("Circuit");
+    }
+    
+    public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }
 void getBonPlan(BonPlan b){
     URL imageUrl;
@@ -89,15 +95,16 @@ void getBonPlan(BonPlan b){
     @FXML
     private void backToMain(ActionEvent event) {
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("BonPlan.fxml"));
+            Parent AllBonPlans = loader.load();            
+            FXMLController fxmlController = loader.getController();
+            fxmlController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(AllBonPlans);
         } catch (IOException ex) {
-            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
 
     @FXML

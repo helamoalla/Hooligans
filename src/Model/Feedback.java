@@ -15,6 +15,7 @@ public class Feedback {
     private String commentaire;
     private int id_user;
     private BonPlan bonPlan;
+    private boolean report=false;
     
     // constucteur non parametré
      public Feedback(){};
@@ -79,6 +80,18 @@ public class Feedback {
     public void setBonPlan(BonPlan bonPlan) {
         this.bonPlan = bonPlan;
     }
+
+    public boolean isReport() {
+        return report;
+    }
+
+    public void setReport(boolean report) {
+        this.report = report;
+    }
+
+
+    
+    
     
     // Afficher feedback
 

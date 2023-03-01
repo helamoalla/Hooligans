@@ -36,6 +36,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
+import org.controlsfx.control.ToggleSwitch;
 
 /**
  * FXML Controller class
@@ -51,8 +53,6 @@ public class AjouterFeedBackController implements Initializable {
     @FXML
     private TextArea commentaire;
     @FXML
-    private TextField idUser;
-    @FXML
     private Button Add_btn;
     @FXML
     private Button retour_btn;
@@ -60,6 +60,12 @@ public class AjouterFeedBackController implements Initializable {
     private ListView<BonPlan> liste_bonplan;
     
     BonPlanService bonPlanService = new BonPlanService();
+    @FXML
+    private Rating rating;
+    @FXML
+    private ToggleSwitch report;
+    
+    private boolean isreported=false;
 
     /**
      * Initializes the controller class.
@@ -119,12 +125,24 @@ public class AjouterFeedBackController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         getAllBonPlans();
+        rating.ratingProperty().addListener((observable, oldValue, newValue) -> {
+            rate.setText( Integer.toString(newValue.intValue()));
+        });
+            report.selectedProperty().addListener((obs, oldState, newState) -> {
+            if (newState) {
+                System.out.println("Toggle switch is on");
+                isreported=true;
+            } else {
+                System.out.println("Toggle switch is off");
+                isreported=false;
+            }
+        });
     }    
 
     @FXML
     private void ajouterFeedback(ActionEvent event) {
         BonPlan selectedBonPlan= liste_bonplan.getSelectionModel().getSelectedItem();
-         if (commentaire.getText().length() == 0||rate.getText().length() == 0||idUser.getText().length() == 0||selectedBonPlan ==null) {
+         if (commentaire.getText().length() == 0||rate.getText().length() == 0||selectedBonPlan ==null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
@@ -139,22 +157,17 @@ public class AjouterFeedBackController implements Initializable {
             alert.show();
             
         } 
-         else if(!idUser.getText().matches("\\d*")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("The id of user must be a number !!"+ "");
-            alert.show();
-            
-        }  
          else {
             try {
                 Feedback f=new Feedback();
                 f.setCommentaire(commentaire.getText());
                 f.setRate(Integer.parseInt(rate.getText()));
-                f.setId_user(Integer.parseInt(idUser.getText()));
+                //f.setId_user(Integer.parseInt(idUser.getText()));
+                
                 f.setBonPlan(selectedBonPlan);
+                f.setReport(isreported);
                 feedbackService.insert(f);
+                feedbackService.countReports();
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./Feedback.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);

@@ -43,7 +43,7 @@ public class UpdateFeedbackController implements Initializable {
     FeedbackService fs=new FeedbackService();
     
     public void getFeedback(Feedback f){
-        rate.setText(Integer.toString(f.getRate()));
+        rate.setText(Double.toString(f.getRate()));
         commentaire.setText(f.getCommentaire());
     }
 

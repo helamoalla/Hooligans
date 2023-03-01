@@ -16,6 +16,7 @@ public class BonPlan {
    private String etat="en attente";
    private String image;
    private int id_user;
+   
 
    
    // constructeur qui contient tous les params

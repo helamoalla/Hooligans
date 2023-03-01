@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -49,8 +50,6 @@ public class AjouterBonPlanController implements Initializable {
     @FXML
     private TextField nomBonPlan;
     @FXML
-    private TextField idUser;
-    @FXML
     private ChoiceBox<String> typeBonPlan;
     @FXML
     private Button Add_btn;
@@ -62,6 +61,7 @@ public class AjouterBonPlanController implements Initializable {
     private ImageView image_view;
     
     private File selectedFile;
+    private BorderPane borderPane;
     
     //Tooltip tooltip = new Tooltip("Please enter a valid input.");
 
@@ -75,25 +75,21 @@ public class AjouterBonPlanController implements Initializable {
         //nomBonPlan.setTooltip(tooltip);
 
     } 
+      public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
     
 
     @FXML
     private void ajouterBonPlan(ActionEvent event) {
-        if (nomBonPlan.getText().length() == 0||adresseBonPlan.getText().length() == 0||typeBonPlan.getValue() == null||idUser.getText().length() == 0||image_view.getImage()==null) {
+        if (nomBonPlan.getText().length() == 0||adresseBonPlan.getText().length() == 0||typeBonPlan.getValue() == null||image_view.getImage()==null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
             alert.setContentText("Please remplir tous les champs"+ "");
             alert.show();
 
-        }else if(!idUser.getText().matches("\\d*")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("The id of user must be a number !!"+ "");
-            alert.show();
-            
-        } 
+        }
         else if(nomBonPlan.getText().matches("\\d*")||adresseBonPlan.getText().matches("\\d*")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -109,7 +105,7 @@ public class AjouterBonPlanController implements Initializable {
                 b.setAdresse(adresseBonPlan.getText());
                 b.setType(typeBonPlan.getValue());
                 b.setImage(image_label.getText());
-                b.setId_user(Integer.parseInt(idUser.getText()));
+                //b.setId_user(Integer.parseInt(idUser.getText()));
          // Copy the selected file to the htdocs directory
                  String htdocsPath = "C:/xampp/htdocs/images/";
                  File destinationFile = new File(htdocsPath + image_label.getText().replaceAll("\\s", ""));
@@ -124,12 +120,7 @@ public class AjouterBonPlanController implements Initializable {
             
             bonPlanService.insert(b);
             // return to the main 
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-                Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                    backToMain(event);
             
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -144,15 +135,16 @@ public class AjouterBonPlanController implements Initializable {
     @FXML
     private void backToMain(ActionEvent event) {
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("BonPlan.fxml"));
+            Parent AllBonPlans = loader.load();            
+            FXMLController fxmlController = loader.getController();
+            fxmlController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(AllBonPlans);
         } catch (IOException ex) {
-            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
 
     @FXML

@@ -113,6 +113,8 @@ public class FeedbackController implements Initializable {
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Ajouter Feedback");
+
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -170,6 +172,7 @@ public class FeedbackController implements Initializable {
             updatefeedbackController.f=selectedFeedback;
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(view_2);
+            stage.setTitle("Modifier Feedback");
             stage.setScene(scene);
             stage.show();
             }

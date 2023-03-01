@@ -5,7 +5,10 @@
  */
 package holigans;
 
+import com.jfoenix.controls.JFXPopup;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -17,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import static jdk.vm.ci.common.InitTimer.timer;
 
 /**
  *
@@ -27,12 +31,18 @@ public class NewFXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/Home.fxml"));
+            
+            Parent root = FXMLLoader.load(getClass().getResource("../View/SideBar.fxml"));
+            
+            
             
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Home");
+            primaryStage.setHeight(832);
+            primaryStage.setWidth(1113);
             primaryStage.setScene(scene);
+            
             primaryStage.show();
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);

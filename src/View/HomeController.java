@@ -34,34 +34,6 @@ public class HomeController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void goToFeedback(ActionEvent event) {
-        try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./Feedback.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
 
-    @FXML
-    private void goToBonPlan(ActionEvent event) {
-         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./BonPlan.fxml"));
-            Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjouterBonPlanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
     
 }
