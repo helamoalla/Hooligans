@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Modifier_GarageController">
@@ -48,5 +49,8 @@
       <TextField fx:id="id_frain_main" layoutX="432.0" layoutY="144.0" prefHeight="26.0" prefWidth="48.0" />
       <TextField fx:id="id_feu_eclairage" layoutX="432.0" layoutY="188.0" prefHeight="26.0" prefWidth="48.0" />
       <TextField fx:id="id_reduction" layoutX="439.0" layoutY="230.0" prefHeight="26.0" prefWidth="48.0" />
+      <ImageView fx:id="image_view" fitHeight="95.0" fitWidth="123.0" layoutX="472.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="id_import_image" layoutX="297.0" layoutY="32.0" mnemonicParsing="false" onAction="#importer_image" text="importer image" textFill="RED" />
+      <Label fx:id="id_image" layoutX="406.0" layoutY="36.0" text="image" textFill="WHITE" />
    </children>
 </AnchorPane>

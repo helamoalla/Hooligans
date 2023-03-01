@@ -8,10 +8,13 @@ package view;
 import Interfaces.InterfaceCRUD;
 import Models.GarageC;
 import Services.ServiceGarageC;
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -25,7 +28,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -74,7 +81,13 @@ InterfaceCRUD sg=new ServiceGarageC();
     private TextField id_feu_eclairage;
     @FXML
     private TextField id_reduction;
-
+    @FXML
+    private ImageView image_view;
+    @FXML
+    private Button id_import_image;
+    @FXML
+    private Label id_image;
+private File selectedFile;
     /**
      * Initializes the controller class.
      */
@@ -84,31 +97,38 @@ InterfaceCRUD sg=new ServiceGarageC();
         // TODO
     }   
      void getGarage(GarageC g){
-    
-          id_nom.setText(g.getNom_garage());
-            id_adresse.setText(g.getAdresse());
-           id_num.setText(String.valueOf(g.getNumero()));
-            id_panne_moteur.setText(String.valueOf(g.getPanne_moteur()));
-           id_pompe_a_eau.setText(String.valueOf(g.getPompe_a_eau()));
-            id_patin.setText(String.valueOf(g.getPatin()));
-           id_essuie_glace.setText(String.valueOf(g.getEssuie_glace()));
-            id_radiateur.setText(String.valueOf(g.getRadiateur()));
-           id_ventilateur.setText(String.valueOf(g.getVentilateur()));
-            id_duride.setText(String.valueOf(g.getDuride()));
-          id_fuite_d_huile.setText(String.valueOf(g.getFuite_d_huile()));
-            id_vidange.setText(String.valueOf(g.getVidange()));
-           id_filtre.setText(String.valueOf(g.getFiltre()));
+    try {
+        URL imageUrl;
+        id_nom.setText(g.getNom_garage());
+        id_adresse.setText(g.getAdresse());
+        id_num.setText(String.valueOf(g.getNumero()));
+        id_panne_moteur.setText(String.valueOf(g.getPanne_moteur()));
+        id_pompe_a_eau.setText(String.valueOf(g.getPompe_a_eau()));
+        id_patin.setText(String.valueOf(g.getPatin()));
+        id_essuie_glace.setText(String.valueOf(g.getEssuie_glace()));
+        id_radiateur.setText(String.valueOf(g.getRadiateur()));
+        id_ventilateur.setText(String.valueOf(g.getVentilateur()));
+        id_duride.setText(String.valueOf(g.getDuride()));
+        id_fuite_d_huile.setText(String.valueOf(g.getFuite_d_huile()));
+        id_vidange.setText(String.valueOf(g.getVidange()));
+        id_filtre.setText(String.valueOf(g.getFiltre()));
         id_batterie.setText(String.valueOf(g.getBatterie()));
-           id_amortisseur.setText(String.valueOf( g.getAmortisseur()));
-           id_frain_main.setText(String.valueOf(g.getFrein_main()));
-           id_feu_eclairage.setText(String.valueOf( g.getFeu_d_eclairage()));
-           id_reduction.setText(String.valueOf(g.getTaux_de_reduction()));
+        id_amortisseur.setText(String.valueOf( g.getAmortisseur()));
+        id_frain_main.setText(String.valueOf(g.getFrein_main()));
+        id_feu_eclairage.setText(String.valueOf( g.getFeu_d_eclairage()));
+        id_reduction.setText(String.valueOf(g.getTaux_de_reduction()));
+        id_image.setText(g.getImage());
+        imageUrl = new URL("http://localhost/images/"+g.getImage());
+        Image images = new Image(imageUrl.toString());
+        image_view.setImage(images);
+    } catch (MalformedURLException ex) {
+        Logger.getLogger(Modifier_GarageController.class.getName()).log(Level.SEVERE, null, ex);
+    }
   
 }
 
     @FXML
     private void modifier_garage(ActionEvent event) {
-    try {
         if (id_nom.getText().length() == 0||id_adresse.getText().length() == 0||id_num.getText().length() ==0||id_panne_moteur.getText().length() == 0||id_pompe_a_eau.getText().length() ==0||id_patin.getText().length() ==0||id_essuie_glace.getText().length() ==0||id_radiateur.getText().length() ==0|| id_ventilateur.getText().length() == 0||id_duride.getText().length() == 0||id_fuite_d_huile.getText().length() == 0||id_vidange.getText().length() == 0||id_filtre.getText().length() == 0||id_batterie.getText().length() == 0||id_amortisseur.getText().length() == 0||id_frain_main.getText().length() == 0||id_feu_eclairage.getText().length() == 0||id_reduction.getText().length() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -126,7 +146,6 @@ InterfaceCRUD sg=new ServiceGarageC();
             alert.show();
             return;
         }
-        
         try {
             int panne_moteur =Integer.parseInt(id_panne_moteur.getText());
             int pompe_a_eau =Integer.parseInt(id_pompe_a_eau.getText());
@@ -177,60 +196,74 @@ InterfaceCRUD sg=new ServiceGarageC();
         g.setFrein_main(Integer.parseInt(id_frain_main.getText()));
         g.setFeu_d_eclairage(Integer.parseInt(id_feu_eclairage.getText()));
         g.setTaux_de_reduction(Integer.parseInt(id_reduction.getText()));
-        
-        
-        sg.update(g);
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
-        Parent view_2=loader.load();
-        Scene scene = new Scene(view_2);
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-        
-        
-        ///////////////////////////////////////////////////////////////
-        
-        try {
-            // Construct data
-            String apiKey = "apikey=" + "MzQ0NTc3NTMzOTU2NjM2ZTQ1NjgzODZmNjQ0ZDZiN2E";
-            String message = "&message=" + "Greetings from Simplifying Tech! Have a nice day!";
-            //String sender = "&sender=" + "TXTLCL";
-            String numbers = "&numbers=" + "+21654023788";
- 
-            // Send data
-            HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?").openConnection();
-            String data = apiKey + numbers + message ;
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
-            conn.getOutputStream().write(data.getBytes("UTF-8"));
-             
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            StringBuffer stringBuffer = new StringBuffer();
-            String line;
-            while ((line = rd.readLine()) != null) {
-                stringBuffer.append(line).append("\n");
+        g.setImage(id_image.getText());
+        String htdocsPath = "C:/xampp/htdocs/images/";
+        File destinationFile = new File(htdocsPath + id_image.getText().replaceAll("\\s+", ""));
+        if(selectedFile!=null){
+          
+                try (InputStream in = new FileInputStream(selectedFile);
+                        OutputStream out = new FileOutputStream(destinationFile)) {
+                    byte[] buf = new byte[8192];
+                    int length;
+                    while ((length = in.read(buf)) > 0) {
+                        out.write(buf, 0, length);
+                    }
+                    
+                    sg.update(g);
+                     FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
+                Parent view_2=loader.load();
+                Scene scene = new Scene(view_2);
+                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+               
+               
+            }   catch (IOException ex) {
+                Logger.getLogger(Modifier_GarageController.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+                
+       }
+        else{
+            try {
+                sg.update(g);
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
+                Parent view_2=loader.load();
+                Scene scene = new Scene(view_2);
+                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("selected file is null "+selectedFile);
+            } catch (IOException ex) {
+                Logger.getLogger(Modifier_GarageController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println(stringBuffer.toString());
-            rd.close();
- 
- 
-        } catch (Exception e) {
-           e.printStackTrace();
         }
         
+         
         
+        ////////
         
-        
-        
-        
-        
-        //////////////////////////////////////////////////////////////////
-        
-    } catch (IOException ex) {
-        Logger.getLogger(Modifier_GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
-        
+
+    @FXML
+    private void importer_image(ActionEvent event) {
+          FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.JPG", "*.gif"));
+          fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+         if(selectedFile!=null){
+                id_image.setText(selectedFile.getName().replaceAll("\\s+", ""));
+                 try {
+                Image images = new Image("file:"+selectedFile.getPath().toString());
+                image_view.setImage(images);
+                System.out.println(selectedFile.getPath().toString());
+        } catch (Exception ex) {
+                     System.out.println(ex);
+        }
+                
+         }   
     }
     
     

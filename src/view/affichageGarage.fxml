@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="dark-background" stylesheets="@../css/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AffichageGarageController">
+   <children>
+      <HBox layoutX="21.0" layoutY="8.0" prefHeight="71.0" prefWidth="874.0" />
+      <ScrollPane hbarPolicy="ALWAYS" layoutX="6.0" layoutY="101.0" opacity="0.64" prefHeight="492.0" prefWidth="887.0" styleClass="transparent" stylesheets="@../css/css3.css" vbarPolicy="ALWAYS">
+         <content>
+            <VBox fx:id="Vboxe" prefHeight="463.0" prefWidth="847.0" spacing="20.0">
+               <children>
+                  <GridPane fx:id="grid" prefHeight="452.0" prefWidth="828.0" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

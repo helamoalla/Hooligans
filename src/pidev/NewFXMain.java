@@ -5,25 +5,16 @@
  */
 package pidev;
 
-import com.twilio.rest.api.v2010.account.Notification;
+//import com.twilio.rest.api.v2010.account.Notification;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.*;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.geometry.*;
-import javafx.scene.control.*;
+
 /**
  *
  * @author helam
@@ -34,7 +25,8 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
        
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../view/GESTION.fxml"));
+          // Parent root = FXMLLoader.load(getClass().getResource("../view/GESTION.fxml"));
+  Parent root = FXMLLoader.load(getClass().getResource("../view/affichageGarage.fxml"));
              //Parent root = FXMLLoader.load(getClass().getResource("../view/devis.fxml"));
           // Parent root = FXMLLoader.load(getClass().getResource("../view/Maintenance.fxml"));
            // Parent root = FXMLLoader.load(getClass().getResource("../view/afficher_Maintenance.fxml"));

@@ -3,33 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/css/css2.css</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Ajout_Garage.fxml</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/GarageController.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Services/ServiceMaintenance.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/modifier_Garage.fxml</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Ajout_GarageController.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Modifier_DemandeController.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Models/Devis.java</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Afficher_MaintenanceController.java</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/util/Maconnexion.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Models/GarageC.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Modifier_GarageController.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Models/Maintenance.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Interfaces/InterfaceCRUD.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Services/ServiceDevis.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Services/ServiceGarageC.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/css/css1.css</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pidev/PIDEV.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/demander_maintenance.fxml</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Ajout_Garage.fxml</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/css/css2.css</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/GESTION.fxml</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Ajout_GarageController.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Afficher_MaintenanceController.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/util/Maconnexion.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/MaintenanceController.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Demander_maintenanceController.java</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Services/ServiceDevis.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/GESTIONController.java</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/DevisController.java</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/Services/ServiceGarageC.java</file>
             <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pidev/NewFXMain.java</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Garage.fxml</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/Maintenance.fxml</file>
-            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/view/afficher_Maintenance.fxml</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/css/css1.css</file>
+            <file>file:/C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pidev/PIDEV.java</file>
         </group>
     </open-files>
 </project-private>

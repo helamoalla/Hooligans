@@ -60,7 +60,7 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
           }
     }*/
    public static final String ACCOUNT_SID = "AC897724b24d27bff3bfd176fce2cee841";     /// 
-    public static final String AUTH_TOKEN = "c0272b0c6fc959570ff762891d2df113"; ///   
+    public static final String AUTH_TOKEN = "89cdc1d81bcd9637339ac45b39c8f9ed"; ///   
     public static final String TWILIO_NUMBER = "+12765660986";
 
     @Override
@@ -90,12 +90,13 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
               ps.executeUpdate();
               System.out.println("garage conventinné ajouter avec succes!");
             
-     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         // Remplacez le numéro de téléphone ci-dessous par le numéro de téléphone tunisien que vous voulez envoyer le SMS
        String phoneNumber = "+21654023788";
       
-        Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"garage ajouter").create();
+      //  Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"garage ajouter").create();
+         Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER), "Garage Ajoutee avec succes").create();
         
         System.out.println(message.getSid());
           } catch (SQLException ex) {
@@ -118,7 +119,7 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
     @Override
     public void update(GarageC g) {
  try {
-              String req="UPDATE `garagec` SET `nom_garage`='"+g.getNom_garage()+"', `adresse`='"+g.getAdresse()+"', `numero`="+g.getNumero()+", `panne_moteur`="+g.getPanne_moteur()+" ,`pompe_a_eau`="+g.getPompe_a_eau()+" ,`patin`="+g.getPatin()+" ,`essuie_glace`="+g.getEssuie_glace()+" ,`radiateur`="+g.getRadiateur()+" ,`ventilateur`="+g.getVentilateur()+" ,`duride`="+g.getDuride()+" ,`fuite_d_huile`="+g.getFuite_d_huile()+" ,`vidange`="+g.getVidange()+" ,`filtre`="+g.getFiltre()+" ,`batterie`="+g.getBatterie()+", `amortisseur`="+g.getAmortisseur()+" ,`frein_main`="+g.getFrein_main()+" ,`feu_d_eclairage`="+g.getFeu_d_eclairage()+" ,`taux_de_reduction`="+g.getTaux_de_reduction()+"  WHERE `id_garage`='"+g.getId_garage()+"' ";
+              String req="UPDATE `garagec` SET `nom_garage`='"+g.getNom_garage()+"', `adresse`='"+g.getAdresse()+"', `numero`="+g.getNumero()+", `panne_moteur`="+g.getPanne_moteur()+" ,`pompe_a_eau`="+g.getPompe_a_eau()+" ,`patin`="+g.getPatin()+" ,`essuie_glace`="+g.getEssuie_glace()+" ,`radiateur`="+g.getRadiateur()+" ,`ventilateur`="+g.getVentilateur()+" ,`duride`="+g.getDuride()+" ,`fuite_d_huile`="+g.getFuite_d_huile()+" ,`vidange`="+g.getVidange()+" ,`filtre`="+g.getFiltre()+" ,`batterie`="+g.getBatterie()+", `amortisseur`="+g.getAmortisseur()+" ,`frein_main`="+g.getFrein_main()+" ,`feu_d_eclairage`="+g.getFeu_d_eclairage()+" ,`taux_de_reduction`="+g.getTaux_de_reduction()+" ,`image`='"+g.getImage()+"'  WHERE `id_garage`='"+g.getId_garage()+"' ";
               Statement st = cnx.createStatement();
               st.executeUpdate(req);
               System.out.println("Garage conventinné modifie avec succes");

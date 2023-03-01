@@ -1,0 +1,157 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package view;
+
+import Interfaces.InterfaceCRUD;
+import Models.GarageC;
+import Services.ServiceGarageC;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+
+/**
+ * FXML Controller class
+ *
+ * @author helam
+ */
+public class AffichageGarageController implements Initializable {
+
+    private GridPane garage_grid;
+private List<GarageC> id_list = new ArrayList<>();
+
+    InterfaceCRUD sg=new ServiceGarageC();
+    @FXML
+    private VBox Vboxe;
+    @FXML
+    private GridPane grid;
+    /**
+     * Initializes the controller class.
+     */
+      private GarageC data(){
+       // List<GarageC> lg=sg.readAll();
+   // List<GarageC> lg=new ArrayList<>();
+    GarageC g =new GarageC();
+    g.setNom_garage(g.getNom_garage());
+    g.setAdresse(g.getAdresse());
+    g.setNumero(g.getNumero());
+   // lg.add(g);
+    return g;
+    
+  
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+//        id_list = new ArrayList<>(data());
+//          ArrayList<GarageC> lg=sg.readAll();
+//        int columns =0;
+//        int rows =1;
+//         
+//        for(int i=0;i<lg.size();i++)
+//        {
+//           
+//                FXMLLoader fxmlLoader =new FXMLLoader();
+//               fxmlLoader.setLocation(getClass().getResource("./lesGrarages.fxml"));//
+//              // FXMLLoader loader= new FXMLLoader(getClass().getResource("/lesGrarages.fxml"));
+////               VBox  garageBoxe= fxmlLoader.load();
+//                LesGaragesController gControl = fxmlLoader.getController();
+//                gControl.setData(lg.get(i));
+//                if(columns == 3)
+//                {
+//                    columns=0;
+//                    ++rows;
+//                }
+//                garage_grid.add(garage_grid, columns++, rows);
+//                GridPane.setMargin(garage_grid, new Insets(10));
+//           
+//
+//        }
+ refreshNodes();
+
+//id_list.addAll(data());
+ int column = 0;
+        int row = 1;
+        id_list.addAll(sg.readAll());
+        System.out.println(id_list);
+        try { 
+            for (int i = 0; i < id_list.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+               fxmlLoader.setLocation(getClass().getResource("../view/lesGarages.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                LesGaragesController itemController = fxmlLoader.getController();
+                itemController.setData(id_list.get(i));
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }   
+  
+    
+     private void refreshNodes()
+    {
+        Vboxe.getChildren().clear();
+         List<GarageC> lg=sg.readAll();
+     //  id_list = new ArrayList<>(data());      
+        Node [] nodes = new  Node[15];
+        
+        for(int i = 0; i<lg.size(); i++)
+        {
+            try { FXMLLoader fxmlLoader = new FXMLLoader();
+                 fxmlLoader.setLocation(getClass().getResource("../view/lesGarages.fxml"));
+                 AnchorPane abc = fxmlLoader.load();
+                 LesGaragesController itemcontroller = fxmlLoader.getController();
+                 itemcontroller.setData(lg.get(i));
+                 
+                 
+                 
+                 
+                 
+                 Vboxe.getChildren().add(abc);
+                
+//                nodes[i] = (Node)FXMLLoader.load(getClass().getResource("../view/lesGarages.fxml"));
+//               Vboxe.getChildren().add(nodes[i]);
+//                
+           
+           
+        }   catch (IOException ex) {  
+                Logger.getLogger(AffichageGarageController.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+    }
+    }
+}

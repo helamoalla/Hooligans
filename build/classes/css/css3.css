@@ -1,0 +1,7 @@
+.dark-background{
+    -fx-background-color: #222222;
+}
+.transparent
+{
+    -fx-background-color: rgba(0,0,0,0,0);
+}
