@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="driftrace.ConnecterController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="driftrace.ConnecterController">
    <children>
       <Label layoutX="35.0" layoutY="109.0" text="Nom" />
       <Label layoutX="28.0" layoutY="138.0" text="Prenom" />
@@ -20,5 +20,15 @@
       <TextField fx:id="rescin" layoutX="81.0" layoutY="230.0" />
       <Button fx:id="modif" layoutX="116.0" layoutY="285.0" mnemonicParsing="false" onAction="#modifff" text="Modifier" />
       <ImageView fx:id="cheminimg1" fitHeight="85.0" fitWidth="104.0" layoutX="97.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="tfpassword" layoutX="377.0" layoutY="126.0" />
+      <TextField fx:id="tfpassword1" layoutX="379.0" layoutY="164.0" />
+      <Label layoutX="300.0" layoutY="138.0" text="Ancien mdp" />
+      <Label layoutX="295.0" layoutY="168.0" text="nouveau mdp" />
+      <Button fx:id="res" layoutX="419.0" layoutY="218.0" mnemonicParsing="false" onAction="#reset" text="Reset" />
+      <Label layoutX="398.0" layoutY="100.0" text="Reset password" />
+      <Button fx:id="deco" layoutX="503.0" layoutY="14.0" mnemonicParsing="false" onAction="#dec" text="deconexion" />
+      <TextField fx:id="textfield" layoutX="379.0" layoutY="261.0" />
+      <Label layoutX="283.0" layoutY="265.0" text="Verfier num tel" />
+      <Button layoutX="409.0" layoutY="300.0" mnemonicParsing="false" onAction="#sendSMS" text="send SMS" />
    </children>
 </AnchorPane>

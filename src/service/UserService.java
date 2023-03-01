@@ -225,7 +225,18 @@ ps.setInt(2,t.getId_user());
 
     return result;
 }
-
+public void setMotDePasse(int id_user, String nouveauMotDePasse) {
+     String query = "UPDATE user SET mdp = ? WHERE id_user = ?";
+        try (
+            Connection conn = DataSource.getInstance().getCnx();
+        PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, nouveauMotDePasse);
+        ps.setInt(2, id_user);
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 
     
     
