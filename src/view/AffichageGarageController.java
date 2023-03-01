@@ -15,17 +15,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -39,9 +42,12 @@ private List<GarageC> id_list = new ArrayList<>();
 
     InterfaceCRUD sg=new ServiceGarageC();
     @FXML
-    private VBox Vboxe;
+    private HBox Vboxe;
     @FXML
     private GridPane grid;
+    @FXML
+    private Button id_ajout;
+
     /**
      * Initializes the controller class.
      */
@@ -83,11 +89,11 @@ private List<GarageC> id_list = new ArrayList<>();
 //           
 //
 //        }
- refreshNodes();
+// refreshNodes();
 
 //id_list.addAll(data());
  int column = 0;
-        int row = 1;
+        int row = 0;
         id_list.addAll(sg.readAll());
         System.out.println(id_list);
         try { 
@@ -104,8 +110,11 @@ private List<GarageC> id_list = new ArrayList<>();
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
+             
+               grid.add(anchorPane, column++, row); //(child,column,row)
+            //set grid width
+             //  column++;
+            
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
@@ -115,11 +124,15 @@ private List<GarageC> id_list = new ArrayList<>();
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+               GridPane.setMargin(anchorPane,new Insets(5));
+             GridPane.setColumnIndex(anchorPane, column);
+              
+                   
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+     
     }   
   
     
@@ -138,11 +151,11 @@ private List<GarageC> id_list = new ArrayList<>();
                  LesGaragesController itemcontroller = fxmlLoader.getController();
                  itemcontroller.setData(lg.get(i));
                  
-                 
-                 
-                 
-                 
-                 Vboxe.getChildren().add(abc);
+            
+                Vboxe.getChildren().add(abc);
+              
+              //////////
+            
                 
 //                nodes[i] = (Node)FXMLLoader.load(getClass().getResource("../view/lesGarages.fxml"));
 //               Vboxe.getChildren().add(nodes[i]);
@@ -152,6 +165,21 @@ private List<GarageC> id_list = new ArrayList<>();
         }   catch (IOException ex) {  
                 Logger.getLogger(AffichageGarageController.class.getName()).log(Level.SEVERE, null, ex);
             }  
+    }
+    }
+
+    @FXML
+    private void ajouter_garage(ActionEvent event) {
+         try {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Ajout_Garage.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 }

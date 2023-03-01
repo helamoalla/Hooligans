@@ -23,12 +23,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -38,6 +43,7 @@ import javafx.stage.Stage;
 public class MaintenanceController implements Initializable {
 InterfaceCRUD sg=new ServiceGarageC();
 InterfaceCRUD sm=new ServiceMaintenance();
+private List<GarageC> id_list_g = new ArrayList<>();
 
 Maintenance m=new Maintenance();
     @FXML
@@ -53,19 +59,75 @@ Maintenance m=new Maintenance();
     private TextField id_user;
     @FXML
     private Button id_retour;
+
+  
     @FXML
-    private ListView<GarageC> id_list_G;
+    private GridPane grid;
     @FXML
-    private Button id_afficher_G;
-    
-    /**
+    private HBox Vboxe;
+
+        /**
      * Initializes the controller class.
      */
+       private GarageC data(){
+       // List<GarageC> lg=sg.readAll();
+   // List<GarageC> lg=new ArrayList<>();
+    GarageC g =new GarageC();
+    g.setNom_garage(g.getNom_garage());
+    g.setAdresse(g.getAdresse());
+    g.setNumero(g.getNumero());
+   // lg.add(g);
+    return g;
+    
+  
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        int column = 0;
+        int row = 0;
+        id_list_g.addAll(sg.readAll());
+        System.out.println(id_list);
+        try { 
+            for (int i = 0; i < id_list_g.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+               fxmlLoader.setLocation(getClass().getResource("../view/lesGaragesUser.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                LesGaragesUserController itemController = fxmlLoader.getController();
+                itemController.setData(id_list_g.get(i));
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+             
+               grid.add(anchorPane, column++, row); //(child,column,row)
+            //set grid width
+             //  column++;
+            
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+               GridPane.setMargin(anchorPane,new Insets(5));
+             GridPane.setColumnIndex(anchorPane, column);
+              
+                   
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+     
 //         ObservableList<GarageC> g=FXCollections.observableArrayList(sg.readAll());
 //      id_list.setItems(g);
+
     }    
 
     @FXML
@@ -132,10 +194,9 @@ Maintenance m=new Maintenance();
     }
     }
 
-    @FXML
     private void afficher_garage(ActionEvent event) {
          ObservableList<GarageC> d=FXCollections.observableArrayList(sg.readAll());
-     id_list_G.setItems(d);
+    // id_list_G.setItems(d);
     }
     
     

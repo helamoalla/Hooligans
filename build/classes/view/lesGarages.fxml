@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,6 +26,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="183.0" prefWidth="304.0" spacing="10.0" styleClass="dark-background" stylesheets="@../css/css3.css">
                            <children>
+                              <Label fx:id="id_garage" text="id" textFill="#201c1c" />
                               <Label fx:id="nom_garage" text="nom du garage" textAlignment="RIGHT" textFill="#bfbcbc">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -40,6 +42,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="id_modifier" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#modifier_garage" text="modifier" />
+                              <Button fx:id="id_suppr" mnemonicParsing="false" onAction="#supprimer_garage" text="supprimer" />
                            </children>
                         </VBox>
                      </children>

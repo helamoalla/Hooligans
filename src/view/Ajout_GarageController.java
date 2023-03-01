@@ -190,7 +190,7 @@ return;
                 }
              
             sg.insert(g);
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
             Parent view_2=loader.load();
     
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

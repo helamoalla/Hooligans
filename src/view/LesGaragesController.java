@@ -5,17 +5,27 @@
  */
 package view;
 
+import Interfaces.InterfaceCRUD;
 import Models.GarageC;
+import Services.ServiceGarageC;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,7 +33,7 @@ import javafx.scene.image.ImageView;
  * @author helam
  */
 public class LesGaragesController implements Initializable {
-
+InterfaceCRUD sg =new ServiceGarageC();
     @FXML
     private Label nom_garage;
     @FXML
@@ -34,6 +44,12 @@ public class LesGaragesController implements Initializable {
     private ImageView id_image;
 GarageC g;
 URL imageUrl;
+    @FXML
+    private Label id_garage;
+    @FXML
+    private Button id_modifier;
+    @FXML
+    private Button id_suppr;
     /**
      * Initializes the controller class.
      */
@@ -48,6 +64,7 @@ URL imageUrl;
         imageUrl = new URL("http://localhost/images/"+g.getImage());
         Image images = new Image(imageUrl.toString());
         id_image.setImage(images);
+        id_garage.setText(String.valueOf(g.getId_garage()));
         //id_image.setImage(images);
         nom_garage.setText(g.getNom_garage());
         adresse.setText(g.getAdresse());
@@ -56,6 +73,44 @@ URL imageUrl;
             Logger.getLogger(LesGaragesController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+    }
+
+    @FXML
+    private void modifier_garage(ActionEvent event) {
+         try {
+        
+        
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./modifier_Garage.fxml"));
+        Parent view_2=loader.load();
+        Modifier_GarageController Modifier_GarageController=loader.getController();
+        Modifier_GarageController.getGarage((GarageC) sg.readById(Integer.valueOf(id_garage.getText())));
+        Modifier_GarageController.g=(GarageC) sg.readById(Integer.valueOf(id_garage.getText()));
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+   
+    }
+
+    @FXML
+    private void supprimer_garage(ActionEvent event) {
+  
+    try {
+        sg.delete(Integer.valueOf(id_garage.getText()));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+        // afficher_garage(event);
+    } catch (IOException ex) {
+        Logger.getLogger(LesGaragesController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
    }

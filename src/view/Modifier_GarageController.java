@@ -210,7 +210,7 @@ private File selectedFile;
                     }
                     
                     sg.update(g);
-                     FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
+                     FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -226,7 +226,7 @@ private File selectedFile;
         else{
             try {
                 sg.update(g);
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./Garage.fxml"));
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

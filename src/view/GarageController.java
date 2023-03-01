@@ -116,9 +116,11 @@ getAllGarage();
 
     @FXML
     private void supprimer_Garage(ActionEvent event) {
+
         int selectedId= id_list.getSelectionModel().getSelectedItem().getId_garage();
         sg.delete(selectedId);
-       afficher_garage(event);
+         afficher_garage(event);
+      
         
     }
 
