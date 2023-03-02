@@ -121,16 +121,14 @@ public class LignePanier {
     
     
 //ToString 
-
     @Override
     public String toString() {
-        return  "" + produit.getImage()+System.lineSeparator()+
-                "Nom Article : " + produit.getNom_prod()+System.lineSeparator()+
-                "Catégorie : " + produit.getCategorie().getDescription_categorie()+System.lineSeparator()+
+//        return  "" + produit.getImage()+System.lineSeparator()+
+             return   "Nom Article : " + produit.getNom_prod()+System.lineSeparator()+
+//                "Catégorie : " + produit.getCategorie().getDescription_categorie()+System.lineSeparator()+
                 "Description : " + produit.getDescription_prod() +System.lineSeparator()+
                 "Prix : " + produit.getPrix_prod() +System.lineSeparator()+
-                "Quantity : " + quantite +System.lineSeparator();
+                "Quantite : " + quantite +System.lineSeparator();
     }
-    
     
 }

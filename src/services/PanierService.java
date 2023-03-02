@@ -146,7 +146,7 @@ public class PanierService implements InterfaceCRUD <Panier> {
     public double totalmontantPanier(int id_user){
         Double totalPrixPanier=0.0 ;
         try {
-            String sql = "SELECT SUM( prix_u * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = ligne_panier.id_panier WHERE panier.id_user = "+ id_user;
+            String sql = "SELECT SUM( prix_u * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ id_user;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {

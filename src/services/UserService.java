@@ -29,14 +29,14 @@ public class UserService implements InterfaceCRUD<user>{
 
   @Override
     public void insert(user t){
-        String requete="insert into user  (nom,prenom,mdp,email,datenaissance,cin,quota) values (?,?,?,?,?,?,?) ";
+        String requete="insert into user  (nom,prenom,mdp,email,num_tel,cin,quota) values (?,?,?,?,?,?,?) ";
         try {
             PreparedStatement usr=conn.prepareStatement(requete);
             usr.setString(1, t.getNom());
             usr.setString(2, t.getPrenom());
             usr.setString(3, t.getMdp());
             usr.setString(4, t.getEmail());
-            usr.setString(5, t.getDatenaissance());
+            usr.setInt(5, t.getNum_tel());
             usr.setString(6, t.getCin());
             usr.setInt(7, t.getQuota());
             //usr.setInt(8, t.getId_role().getId_role());
@@ -79,12 +79,12 @@ public class UserService implements InterfaceCRUD<user>{
     public void update(user t) {
         
           try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE user SET nom = ?, prenom = ? ,mdp = ?,email = ? ,datenaissance = ?,cin = ?, quota = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE user SET nom = ?, prenom = ? ,mdp = ?,email = ? ,num_tel = ?,cin = ?, quota = ?");
             ps.setString(1, t.getNom());
             ps.setString(2, t.getPrenom());
             ps.setString(3, t.getMdp());
             ps.setString(4, t.getEmail());
-            ps.setString(5, t.getDatenaissance());
+            ps.setInt(5,t.getNum_tel() );
             ps.setString(6, t.getCin());
             ps.setInt(7, t.getQuota());
             //ps.setInt(8, t.getId_role().getId_role());
@@ -132,7 +132,7 @@ public class UserService implements InterfaceCRUD<user>{
                 u.setPrenom(rs.getString(3));
                 u.setMdp(rs.getString(4));
                 u.setEmail(rs.getString(5));
-                u.setDatenaissance(rs.getString(6));
+                u.setNum_tel(rs.getInt(6));
                 u.setCin(rs.getString(7));
                 u.setQuota(rs.getInt(8));
                 
@@ -187,7 +187,7 @@ public class UserService implements InterfaceCRUD<user>{
                 u.setPrenom(rs.getString(3));
                 u.setMdp(rs.getString(4));
                 u.setEmail(rs.getString(5));
-                u.setDatenaissance(rs.getString(6));
+                u.setNum_tel(rs.getInt(6));
                 u.setCin(rs.getString(7));
                 u.setQuota(rs.getInt(8));
                 
@@ -212,7 +212,7 @@ List<user> ListeUserTriee=new ArrayList<>();
                 u.setPrenom(rs.getString(3));
                 u.setMdp(rs.getString(4));
                 u.setEmail(rs.getString(5));
-                u.setDatenaissance(rs.getString(6));
+                u.setNum_tel(rs.getInt(6));
                 u.setCin(rs.getString(7));
                 u.setQuota(rs.getInt(8));
 

@@ -29,10 +29,10 @@ public class NewFXMain extends Application {
    public void start(Stage primaryStage) throws MalformedURLException, IOException {
 
 try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/mainInterface.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/AccueilInterface.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Votre panier");
+            primaryStage.setTitle("Drift & Race");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
