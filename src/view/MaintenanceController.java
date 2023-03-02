@@ -169,10 +169,31 @@ Maintenance m=new Maintenance();
 
     @FXML
     private void afficher_demande(ActionEvent event) {
+
+    try {
         ObservableList<Maintenance> d=FXCollections.observableArrayList(sm.chercher(setId_user(Integer.parseInt(id_user.getText()))));
-      // ArrayList<Maintenance> g=sm.chercher(2);
-     id_list.setItems(d);
+        System.out.println(d);
+        System.out.println(id_user.getText());
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./MesDemandes.fxml"));
+        Parent view_2=loader.load();
         
+        MesDemandesController itemcontroller = loader.getController();
+        itemcontroller.d=d;
+     ArrayList<Maintenance> id_list= (ArrayList<Maintenance>) itemcontroller.data(d);
+        itemcontroller.id_list=id_list;
+        
+        //  itemcontroller.id=Integer.valueOf(id_user.getText());
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+        ///ArrayList<Maintenance> g=sm.chercher(2);
+        // id_list.setItems(d);
+    } catch (IOException ex) {
+        Logger.getLogger(MaintenanceController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
        }
 
     private int setId_user(int parseInt) {

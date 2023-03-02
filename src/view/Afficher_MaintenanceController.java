@@ -11,6 +11,8 @@ import Models.Maintenance;
 import Services.ServiceMaintenance;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,11 +22,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 /**
@@ -34,14 +41,13 @@ import javafx.stage.Stage;
  */
 public class Afficher_MaintenanceController implements Initializable {
 InterfaceCRUD sm=new ServiceMaintenance();
-    @FXML
-    private ListView<Maintenance> id_list;
-    @FXML
-    private Button id_afficher;
-    @FXML
-    private Button id_supprimer;
+    private List<Maintenance> id_list= new ArrayList<>();
     @FXML
     private Button id_retour;
+    @FXML
+    private GridPane grid;
+    @FXML
+    private HBox Vboxe;
 
     /**
      * Initializes the controller class.
@@ -49,20 +55,52 @@ InterfaceCRUD sm=new ServiceMaintenance();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        int column = 0;
+        int row = 0;
+        id_list.addAll(sm.readAll());
+        System.out.println(id_list);
+        try { 
+            for (int i = 0; i < id_list.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+               fxmlLoader.setLocation(getClass().getResource("../view/itemMaintenance.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+               ItemMaintenanceController itemController = fxmlLoader.getController();
+                itemController.setData(id_list.get(i));
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+
+             
+               grid.add(anchorPane, column++, row); //(child,column,row)
+            //set grid width
+             //  column++;
+            
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+               GridPane.setMargin(anchorPane,new Insets(5));
+             GridPane.setColumnIndex(anchorPane, column);
+              
+                   
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }    
 
-    @FXML
-    private void afficher_maintenance(ActionEvent event) {
-          ObservableList<Maintenance> g=FXCollections.observableArrayList(sm.readAll());
-       id_list.setItems(g);
-    }
+  
 
-    @FXML
-    private void supprimer_maintenance(ActionEvent event) {
-         int selectedId= id_list.getSelectionModel().getSelectedItem().getId_maintenance();
-        sm.delete(selectedId);
-       afficher_maintenance(event);
-    }
+   
 
     @FXML
     private void retour(ActionEvent event) {

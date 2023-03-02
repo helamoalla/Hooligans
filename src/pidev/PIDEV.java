@@ -38,7 +38,7 @@ public class PIDEV {
         //sg.insert(g);
         
      GarageC g1=new GarageC(5,"Garage hela","tunis ",98214541,1000,500,600,200,500,300,500,400,1000,2000,500,600,400,100,10,"image");
-      sg.insert(g1);
+     // sg.insert(g1);
         
        //supprimer garage
        // sg.delete(9);
@@ -92,16 +92,16 @@ public class PIDEV {
       
       
       //////////////////////DEVIS //////////
-//      InterfaceCRUD sd = new ServiceDevis();
-//       //GarageC g=new GarageC();
-//      // Maintenance m=new Maintenance();
-//             Maintenance m=new Maintenance(17,4,Date.valueOf(LocalDate.MAX),true,false,true,false,false,true,false,false,true,false,false,true,false,false,"");
-//
-//      Devis d1=new Devis();
-//      d1.setId_user(4);
-//      d1.setGarage(g1);
-//      d1.setMaintenance(m);
-//      sd.update(d1);
+      InterfaceCRUD sd = new ServiceDevis();
+       //GarageC g=new GarageC();
+      // Maintenance m=new Maintenance();
+             Maintenance m=new Maintenance(17,4,Date.valueOf(LocalDate.MAX),true,false,true,false,false,true,false,false,true,false,false,true,false,false,"");
+
+      Devis d1=new Devis();
+      d1.setId_user(4);
+      d1.setGarage(g1);
+      d1.setMaintenance(m);
+      sd.update(d1);
         
       
     }

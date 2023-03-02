@@ -11,6 +11,7 @@
    <children>
       <HBox alignment="BOTTOM_RIGHT" layoutX="21.0" layoutY="8.0" prefHeight="71.0" prefWidth="952.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#retour" text="retour" />
             <Button fx:id="id_ajout" mnemonicParsing="false" onAction="#ajouter_garage" text="ajouter" />
          </children></HBox>
       <ScrollPane hbarPolicy="ALWAYS" layoutX="6.0" layoutY="94.0" opacity="0.76" prefHeight="492.0" prefWidth="974.0" styleClass="transparent" stylesheets="@../css/css3.css" vbarPolicy="ALWAYS">

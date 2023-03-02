@@ -52,46 +52,21 @@ private List<GarageC> id_list = new ArrayList<>();
      * Initializes the controller class.
      */
       private GarageC data(){
-       // List<GarageC> lg=sg.readAll();
-   // List<GarageC> lg=new ArrayList<>();
+
     GarageC g =new GarageC();
     g.setNom_garage(g.getNom_garage());
     g.setAdresse(g.getAdresse());
     g.setNumero(g.getNumero());
-   // lg.add(g);
+  
     return g;
     
-  
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        id_list = new ArrayList<>(data());
-//          ArrayList<GarageC> lg=sg.readAll();
-//        int columns =0;
-//        int rows =1;
-//         
-//        for(int i=0;i<lg.size();i++)
-//        {
-//           
-//                FXMLLoader fxmlLoader =new FXMLLoader();
-//               fxmlLoader.setLocation(getClass().getResource("./lesGrarages.fxml"));//
-//              // FXMLLoader loader= new FXMLLoader(getClass().getResource("/lesGrarages.fxml"));
-////               VBox  garageBoxe= fxmlLoader.load();
-//                LesGaragesController gControl = fxmlLoader.getController();
-//                gControl.setData(lg.get(i));
-//                if(columns == 3)
-//                {
-//                    columns=0;
-//                    ++rows;
-//                }
-//                garage_grid.add(garage_grid, columns++, rows);
-//                GridPane.setMargin(garage_grid, new Insets(10));
-//           
-//
-//        }
+
 // refreshNodes();
 
-//id_list.addAll(data());
+
  int column = 0;
         int row = 0;
         id_list.addAll(sg.readAll());
@@ -180,6 +155,21 @@ private List<GarageC> id_list = new ArrayList<>();
         stage.show();
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try{
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("./GESTION.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 }
