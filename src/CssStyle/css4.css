@@ -1,0 +1,73 @@
+#mainPane {
+    background-color: #FFFFFF;
+}
+
+#inputPane {
+    padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+#idLabel {
+    -fx-padding: 5px;
+}
+
+#idField {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+}
+
+#nameLabel {
+    -fx-padding: 5px;
+}
+
+#nameField {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 30px;
+}
+
+#priceLabel {
+    -fx-padding: 5px;
+}
+
+#priceField {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+}
+
+#addButton {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+}
+
+#productList {
+    -fx-pref-width: 400px;
+    -fx-pref-height: 200px;
+    -fx-cell-size: 30px;
+}
+
+#editButton {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+}
+
+#deleteButton {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #FF0000;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+}
+
+#bottomPane {
+    padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center-right;
+}
+

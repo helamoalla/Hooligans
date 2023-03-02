@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
  * @author Nadia
  */
 public class HomePageController implements Initializable {
+
 
     /**
      * Initializes the controller class.
@@ -55,6 +57,20 @@ public class HomePageController implements Initializable {
         
         try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppProduit.fxml"));
+            Parent view_2=loader.load();
+            Scene scene = new Scene(view_2);
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void Marketplace(ActionEvent event) {
+         try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./market.fxml"));
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

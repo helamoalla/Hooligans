@@ -27,7 +27,7 @@ public class Maconnexion {
  
 
  
- public Maconnexion(){
+ private Maconnexion(){
       try {
 
           cnx=DriverManager.getConnection(URL, USER , PASSWORD);

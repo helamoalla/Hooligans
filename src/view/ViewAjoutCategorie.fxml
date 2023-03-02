@@ -11,35 +11,35 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewAjoutCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewAjoutCategorieController">
    <children>
-      <TextField fx:id="NomCat" layoutX="255.0" layoutY="96.0" opacity="0.6" />
-      <TextField fx:id="DescCat" layoutX="255.0" layoutY="173.0" opacity="0.6" />
-      <ChoiceBox fx:id="choicefx" layoutX="255.0" layoutY="248.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
-      <Label contentDisplay="TOP" layoutX="14.0" layoutY="95.0" prefHeight="28.0" prefWidth="210.0" text="Nom de la catégorie" textFill="#ece3e3">
+      <TextField fx:id="NomCat" layoutX="301.0" layoutY="286.0" opacity="0.6" />
+      <TextField fx:id="DescCat" layoutX="301.0" layoutY="363.0" opacity="0.6" />
+      <ChoiceBox fx:id="choicefx" layoutX="301.0" layoutY="438.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
+      <Label contentDisplay="TOP" layoutX="60.0" layoutY="285.0" prefHeight="28.0" prefWidth="210.0" text="Nom de la catégorie" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="13.0" layoutY="172.0" prefHeight="28.0" prefWidth="286.0" text="Description de la catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="59.0" layoutY="362.0" prefHeight="28.0" prefWidth="286.0" text="Description de la catégorie" textFill="#c9c8c8">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="14.0" layoutY="247.0" prefHeight="28.0" prefWidth="210.0" text="Type de catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="60.0" layoutY="437.0" prefHeight="28.0" prefWidth="210.0" text="Type de catégorie" textFill="#c9c8c8">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="265.0" layoutY="338.0" mnemonicParsing="false" onAction="#consulterliste" opacity="0.6" prefHeight="28.0" prefWidth="150.0" text="Consulter liste Categorie" textOverrun="CLIP">
+      <Button layoutX="301.0" layoutY="568.0" mnemonicParsing="false" onAction="#consulterliste" opacity="0.6" prefHeight="43.0" prefWidth="184.0" text="Consulter liste Categorie" textOverrun="CLIP">
          <font>
-            <Font name="Calisto MT" size="12.0" />
+            <Font name="Calisto MT" size="15.0" />
          </font></Button>
-      <Button fx:id="AddBtn" layoutX="129.0" layoutY="338.0" mnemonicParsing="false" onAction="#AjouterCat" opacity="0.6" prefHeight="28.0" prefWidth="98.0" text="Ajouter">
+      <Button fx:id="AddBtn" layoutX="86.0" layoutY="568.0" mnemonicParsing="false" onAction="#AjouterCat" opacity="0.6" prefHeight="43.0" prefWidth="184.0" text="Ajouter">
          <font>
-            <Font name="Calisto MT" size="12.0" />
+            <Font name="Calisto MT" size="16.0" />
          </font></Button>
-      <Label layoutX="194.0" layoutY="36.0" text="Ajout d'une catégorie">
+      <Label layoutX="159.0" layoutY="123.0" text="Ajout d'une catégorie">
          <font>
             <Font size="22.0" />
          </font>

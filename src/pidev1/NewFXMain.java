@@ -23,7 +23,8 @@ import javafx.stage.Stage;
  * @author Nadia
  */
 public class NewFXMain extends Application {
-    
+         public static final String CURRENCY = "$";
+
     @Override
     public void start(Stage primaryStage) {
         Parent root;
@@ -45,6 +46,7 @@ public class NewFXMain extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         launch(args);
     }
     

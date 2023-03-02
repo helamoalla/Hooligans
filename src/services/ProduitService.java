@@ -5,6 +5,7 @@
 package services;
 
 import Util.Maconnexion;
+import Util.conditions;
 import interfaces.InterfaceCRUD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Produit;
 
 
@@ -24,26 +27,8 @@ public class ProduitService implements InterfaceCRUD <Produit> {
     
     Connection cnx = Maconnexion.getInstance().getCnx();
 
-    @Override
-    public void insert(Produit p) {
-try {
-            
-            String req = "INSERT INTO `produit`(`nom_prod`, `prix_prod`,`description_prod`,`quantite_prod`,`image`,`id_categorie`) VALUES (?,?,?,?,?,?)";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, p.getNom_prod());
-            ps.setDouble(2, p.getPrix_prod());
-            ps.setString(3, p.getDescription_prod());
-            ps.setInt(4, p.getQuantite());
-            ps.setString(5, p.getImage());
-            ps.setInt(6, p.getCategorie().getId_categorie());
-            ps.executeUpdate();
-            System.out.println("Produit Added Successfully!");
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }    }
-
-    @Override
+    
+        @Override
     public ArrayList <Produit> readAll() {
 
     ArrayList<Produit> produits = new ArrayList<>();
@@ -72,8 +57,49 @@ try {
         
         return  produits;
 
-
     }
+    
+    @Override
+    public void insert(Produit p) {
+        conditions c =new conditions ();
+     
+        try {
+            if(c.ExisteProduit(p.getNom_prod())==true){
+                try {
+                    String req ="UPDATE produit SET quantite_prod = quantite_prod + ?  WHERE nom_prod = ? ";
+                    PreparedStatement ps = cnx.prepareStatement(req);
+                    ps.setInt(1, p.getQuantite());
+                    ps.setString(2, p.getNom_prod());
+                    ps.executeUpdate();
+                    System.out.println("Quantity updated successfully !");
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }else
+                
+                try {
+                    
+                    String req = "INSERT INTO `produit`(`nom_prod`, `prix_prod`,`description_prod`,`quantite_prod`,`image`,`id_categorie`) VALUES (?,?,?,?,?,?)";
+                    PreparedStatement ps = cnx.prepareStatement(req);
+                    ps.setString(1, p.getNom_prod());
+                    ps.setDouble(2, p.getPrix_prod());
+                    ps.setString(3, p.getDescription_prod());
+                    ps.setInt(4, p.getQuantite());
+                    ps.setString(5, p.getImage());
+                    ps.setInt(6, p.getCategorie().getId_categorie());
+                    ps.executeUpdate();
+                    System.out.println("Produit Added Successfully!");
+                    
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ }
+
+
 
    @Override
    public void update(Produit p) {

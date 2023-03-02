@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,10 +36,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import models.Categorie;
 import models.Produit;
 import services.CategorieService;
 import services.ProduitService;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -132,6 +135,7 @@ public class ViewAjoutProduitController implements Initializable {
                     out.write(buf, 0, length);
                 }
             prodser.insert(p);
+         
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

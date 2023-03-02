@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
@@ -14,46 +13,46 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="650.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewUpdateProduitController">
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewUpdateProduitController">
    <children>
-      <TextField fx:id="modifnomprod" layoutX="264.0" layoutY="99.0" opacity="0.65" />
-      <TextField fx:id="modifprixprod" layoutX="264.0" layoutY="156.0" opacity="0.65" />
-      <TextArea fx:id="modifdescprod" layoutX="264.0" layoutY="220.0" opacity="0.65" prefHeight="62.0" prefWidth="150.0" />
-      <TextField fx:id="modifquantiteprod" layoutX="264.0" layoutY="320.0" opacity="0.65" />
-      <Label layoutX="51.0" layoutY="99.0" text="Nom Produit" textFill="#ece3e3">
+      <TextField fx:id="modifnomprod" layoutX="350.0" layoutY="195.0" opacity="0.65" />
+      <TextField fx:id="modifprixprod" layoutX="350.0" layoutY="252.0" opacity="0.65" />
+      <TextArea fx:id="modifdescprod" layoutX="350.0" layoutY="316.0" opacity="0.65" prefHeight="62.0" prefWidth="194.0" />
+      <TextField fx:id="modifquantiteprod" layoutX="350.0" layoutY="416.0" opacity="0.65" />
+      <Label layoutX="137.0" layoutY="195.0" text="Nom Produit" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="156.0" text="Prix Produit" textFill="#ece3e3">
+      <Label layoutX="141.0" layoutY="252.0" text="Prix Produit" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="238.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
+      <Label layoutX="121.0" layoutY="334.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="307.0" text="Quantité Produit" textFill="#ece3e3">
+      <Label layoutX="121.0" layoutY="403.0" text="Quantité Produit" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="369.0" text="Categorie" textFill="#ece3e3">
+      <Label layoutX="150.0" layoutY="465.0" text="Categorie" textFill="#ece3e3">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="choixP" layoutX="264.0" layoutY="369.0" prefWidth="150.0" />
-      <Button layoutX="146.0" layoutY="558.0" mnemonicParsing="false" onAction="#modifproduit" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Modifier Produit" />
-      <Button layoutX="282.0" layoutY="558.0" mnemonicParsing="false" onAction="#afficherproduits" opacity="0.6" text="Afficher liste produits" />
-      <Button layoutX="24.0" layoutY="456.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Choose Image" />
-      <ImageView fx:id="image_view" fitHeight="107.0" fitWidth="161.0" layoutX="220.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="image_label" layoutX="195.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
-      <Label layoutX="222.0" layoutY="33.0" text="Modification d'un produit">
+      <ChoiceBox fx:id="choixP" layoutX="350.0" layoutY="465.0" prefWidth="150.0" />
+      <Button layoutX="214.0" layoutY="699.0" mnemonicParsing="false" onAction="#modifproduit" opacity="0.6" prefHeight="38.0" prefWidth="143.0" text="Modifier Produit" />
+      <Button layoutX="382.0" layoutY="699.0" mnemonicParsing="false" onAction="#afficherproduits" opacity="0.6" prefHeight="38.0" prefWidth="150.0" text="Afficher liste produits" />
+      <Button layoutX="132.0" layoutY="565.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Choose Image" />
+      <ImageView fx:id="image_view" fitHeight="107.0" fitWidth="161.0" layoutX="344.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="image_label" layoutX="358.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="167.20001220703125" />
+      <Label layoutX="264.0" layoutY="83.0" text="Modification d'un produit">
          <font>
-            <Font size="22.0" />
+            <Font size="26.0" />
          </font>
          <textFill>
             <LinearGradient endX="0.5047348484848485" endY="0.7462120923128994" startX="0.49337124102043384">
@@ -72,10 +71,5 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <ImageView fitHeight="124.0" fitWidth="161.0" layoutX="447.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../Downloads/331749673_1632276697205268_461595588999882234_n.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

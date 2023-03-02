@@ -1,10 +1,23 @@
 
 package pidev1 ;
+import Util.Maconnexion;
+import com.pusher.client.Pusher;
+import com.pusher.client.PusherOptions;
+import com.pusher.client.channel.Channel;
+import com.pusher.client.connection.ConnectionState;
 import interfaces.InterfaceCRUD;
+import java.util.Collections;
 import models.Categorie;
 import models.Produit;
 import services.CategorieService;
 import services.ProduitService;
+import com.pusher.client.Pusher;
+import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.SubscriptionEventListener;
+import com.pusher.client.connection.ConnectionEventListener;
+import com.pusher.client.connection.ConnectionState;
+import com.pusher.client.util.HttpAuthorizer;
+
 
 
 /**
@@ -13,7 +26,9 @@ import services.ProduitService;
  */
 public class pidev1 {
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
+
+        
         // service init
        InterfaceCRUD ps = new ProduitService();
        InterfaceCRUD pc = new CategorieService();
@@ -44,7 +59,7 @@ public class pidev1 {
 //ps.update(p2);
 
  //readAll action
- System.out.println(ps.readAll());
+ //System.out.println(ps.readAll());
   
 //Sort action
  // System.out.println(ps.sortBy("nom_prod", "DESC"));
@@ -83,5 +98,4 @@ public class pidev1 {
 //System.out.println(pc.chercher("nom_categorie", "aaa")); 
 
 
-    }
-}
+    }}
