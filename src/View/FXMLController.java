@@ -53,6 +53,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.controlsfx.control.PrefixSelectionChoiceBox;
 
 
 
@@ -70,6 +71,7 @@ public class FXMLController implements Initializable {
     @FXML
     private FlowPane container;
     private BorderPane borderPane;
+   
 
 
 
@@ -78,6 +80,9 @@ public class FXMLController implements Initializable {
      */
 
     public void initialize(URL url, ResourceBundle rb) {
+        
+       
+                
       getAllBonPlans();
       
     } 
@@ -99,13 +104,15 @@ public class FXMLController implements Initializable {
         }
     }
        public void getAllBonPlans(){
-           container.getChildren().clear();
-           if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+         container.getChildren().clear();
+            
+         if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
                list=bs.readAll();
            }
            else{
                list=bs.readAllAccepted();
            }
+           
            
             for (BonPlan data :list ) {
                 try {
@@ -252,6 +259,8 @@ public class FXMLController implements Initializable {
         // add all to the vbox
                     vBox.getChildren().addAll(hBox,mainImageView,mainText,buttonBox,feedBackBox);
                     container.getChildren().addAll(vBox);
+                               
+
                     
                     
                 } catch (Exception ex) {

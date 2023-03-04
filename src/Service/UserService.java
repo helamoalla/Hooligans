@@ -6,6 +6,7 @@ package Service;
 
 import Model.Role;
 import Model.User;
+import Util.Data;
 import Util.MyConnection;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -87,17 +88,18 @@ public class UserService implements Interface.InterfaceCRUD<User>{
 
     @Override
     public ArrayList<User> readAll() {
+       String request="SELECT * FROM user where id_user <> "+Data.getId_user();
         String requete = "SELECT user.*, role.id_role, role.type FROM user INNER JOIN role ON user.id_role = role.id_role";
     ArrayList<User> list = new ArrayList<>();
     try {
         Statement st = conn.createStatement();
-        ResultSet rs = st.executeQuery(requete);
+        ResultSet rs = st.executeQuery(request);
         while (rs.next()) {
-            Role r = new Role();
+            /*Role r = new Role();
             r.setId_role(rs.getInt("id_role"));
-            r.setType(rs.getString("type"));
-            User t;
-            t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),roleService.readById(rs.getInt("id_role")));
+            r.setType(rs.getString("type"));*/
+            
+            User t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),roleService.readById(rs.getInt("id_role")));
             list.add(t);
         }
     } catch (SQLException ex) {
@@ -150,21 +152,12 @@ public class UserService implements Interface.InterfaceCRUD<User>{
     return result;
 }
     
-    public void update1(User t,Role role) {
+    public void updateRole(User t,Role role) {
         try {
           PreparedStatement ps = conn.prepareStatement("UPDATE user SET id_role= ? WHERE id_user = ?");
-ps.setInt(2,t.getId_user());
-//            ps.setString(2, t.getPrenom());
-//            ps.setInt(3, t.getNum_tel());
-//            ps.setString(4, t.getAdresse());
-//            ps.setString(5, t.getCentre_intere());
-//            ps.setString(6, t.getAdresse_entreprise());
-//            ps.setString(7, t.getNom_entreprise()); 
+            
             ps.setInt(1, role.getId_role());
-//            ps.setString(9, t.getEmail());
-//            ps.setString(10,t.getMdp()); 
-//            ps.setInt(11, t.getAge()); 
-//            ps.setInt(12, t.getNote());
+            ps.setInt(2,t.getId_user());
             
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -176,9 +169,10 @@ ps.setInt(2,t.getId_user());
      public void updateban(User t,int etat_user) {
         try {
           PreparedStatement ps = conn.prepareStatement("UPDATE user SET etat= ? WHERE id_user = ?");
-ps.setInt(2,t.getId_user());
-
             ps.setInt(1, etat_user);
+            ps.setInt(2,t.getId_user());
+
+            
 
             
             ps.executeUpdate();

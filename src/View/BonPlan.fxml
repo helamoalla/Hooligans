@@ -6,7 +6,7 @@
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="787.0" prefWidth="1014.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FXMLController">
    <content>
-      <FlowPane fx:id="container" hgap="4.0" prefHeight="787.0" prefWidth="1014.0" style="-fx-background-color: #dcdcdc;" vgap="50.0">
+      <FlowPane fx:id="container" hgap="4.0" prefHeight="774.0" prefWidth="1015.0" style="-fx-background-color: #dcdcdc;" vgap="50.0">
          <padding>
             <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
          </padding>

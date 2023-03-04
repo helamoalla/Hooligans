@@ -125,7 +125,7 @@ public class AdminController implements Initializable {
     selectedUser.setRole(roleService.readById(newRoleIdInt));
     
     // 6. Mettre à jour l'utilisateur dans la base de données
-    userService.update1(selectedUser,roleService.readById(newRoleIdInt));
+    userService.updateRole(selectedUser,roleService.readById(newRoleIdInt));
     
     // 7. Actualiser la liste des utilisateurs affichée dans le tableau
     List<User> userList = userService.readAll();

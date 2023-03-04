@@ -52,7 +52,7 @@ public class Holigans {
         //b.setAdresse("Aouina");
         //bonPlanService.update(b);
         //System.out.println(b);
-        System.out.println(bonPlanService.readAll());
+        System.out.println(bonPlanService.sortByAvg("desc"));
         
         
         // read by id
@@ -134,8 +134,8 @@ public class Holigans {
          //us.insert(u3);
          //us.insert(u4);
          //us.insert(u5);
-         
-         //System.out.println(us.readAll());
+         //Data.setId_user(1);
+         System.out.println(us.readAll());
          
 
            

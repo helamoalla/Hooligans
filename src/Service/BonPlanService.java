@@ -6,6 +6,7 @@ package Service;
 
 import Interface.InterfaceCRUD;
 import Model.BonPlan;
+import Model.Feedback;
 import Util.Data;
 import Util.MyConnection;
 import java.sql.Connection;
@@ -237,6 +238,36 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
             ex.printStackTrace();
         }
         
+    }
+    
+    public ArrayList<BonPlan> sortByAvg(String Asc_Dsc) {
+        ArrayList<BonPlan> bonplans = new ArrayList<>();
+        BonPlanService bs = new BonPlanService();
+         
+        try {
+            
+            String req = "SELECT b.* FROM bonPlan b  LEFT JOIN ( SELECT id_bonPlan, AVG(CASE WHEN rate > 0 THEN rate ELSE NULL END) AS avg_rate FROM feedback  GROUP BY id_bonPlan ) f ON f.id_bonPlan = b.id_bonPlan  WHERE b.etat='accepté'  ORDER BY f.avg_rate "+Asc_Dsc;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {                
+                BonPlan b = new BonPlan();
+                 b.setId_bonplan(rs.getInt(1));
+                 b.setNom_bonplan(rs.getString(2));
+                 b.setAdresse(rs.getString(3));
+                 b.setType(rs.getString(4));
+                 b.setEtat(rs.getString("etat"));
+                b.setImage(rs.getString(6));
+                b.setUser(us.readById(rs.getInt(7)));
+                
+                
+                bonplans.add(b);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return bonplans;
     }
      
     
