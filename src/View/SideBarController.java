@@ -6,6 +6,7 @@ package View;
 
 import Model.BonPlan;
 import Service.BonPlanService;
+import Util.Data;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -66,6 +67,7 @@ public class SideBarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(Data.getId_user());
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuItem.fxml"));
             VBox menu = loader.load();            

@@ -7,6 +7,8 @@ package View;
 
 import Model.BonPlan;
 import Service.BonPlanService;
+import Service.UserService;
+import Util.Data;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -42,6 +44,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -61,6 +64,8 @@ import javafx.scene.text.Font;
 public class FXMLController implements Initializable {
     
     BonPlanService bs=new BonPlanService();
+    UserService userService =new UserService();
+    ArrayList<BonPlan> list ;
 
     @FXML
     private FlowPane container;
@@ -95,7 +100,14 @@ public class FXMLController implements Initializable {
     }
        public void getAllBonPlans(){
            container.getChildren().clear();
-            for (BonPlan data :bs.readAll() ) {
+           if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           }
+           
+            for (BonPlan data :list ) {
                 try {
                     
                     VBox vBox = new VBox();
@@ -121,8 +133,8 @@ public class FXMLController implements Initializable {
                     checkImageView.setPickOnBounds(true);
                     checkImageView.setPreserveRatio(true);
                     
-                    
-                    JFXButton updateBtn = new JFXButton("");
+                   if (Data.getId_user()==data.getUser().getId_user() ){
+                   JFXButton updateBtn = new JFXButton("");
                     updateBtn.setPrefSize(116.0, 38.0);
                     ImageView penImageView = new ImageView(new Image(getClass().getResourceAsStream("../images/pen.png")));
                     penImageView.setFitHeight(26.0);
@@ -135,6 +147,12 @@ public class FXMLController implements Initializable {
                     penImageView.setPreserveRatio(true);
 
                     hBox.getChildren().addAll(checkImageView, updateBtn);
+                   }
+                   else
+                       hBox.getChildren().addAll(checkImageView);
+
+
+                    
                     
                     // set the image of the bonPlan
                     URL imageUrl = new URL("http://localhost/images/"+data.getImage());
@@ -174,10 +192,12 @@ public class FXMLController implements Initializable {
 
                     detailButton.setGraphic(detailImageView);
         
+                    
+
+                    if (userService.readById(Data.getId_user()).getRole().getId_role()==1|| Data.getId_user()==data.getUser().getId_user() ){
                     JFXButton deleteButton = new JFXButton("  Delete");
                     deleteButton.setPrefSize(111.0, 38.0);
-                    deleteButton.setTextFill(Color.BLACK);
-
+                    deleteButton.setTextFill(Color.BLACK);    
                     ImageView deleteImageView = new ImageView(new Image(getClass().getResourceAsStream("../images/delete.png")));
                     deleteImageView.setFitHeight(24.0);
                     deleteImageView.setFitWidth(22.0);
@@ -188,6 +208,10 @@ public class FXMLController implements Initializable {
 
         
                     buttonBox.getChildren().addAll(detailButton,deleteButton);
+                    }
+                    else 
+                        buttonBox.getChildren().addAll(detailButton);
+                    
                     
                     HBox feedBackBox = new HBox();
                     feedBackBox.setPrefSize(227.0, 43.0);
@@ -202,8 +226,11 @@ public class FXMLController implements Initializable {
                     feedbackView.setPickOnBounds(true);
                     feedbackView.setPreserveRatio(true);
                     feedbackButton.setGraphic(feedbackView);
+                    feedbackButton.setOnAction(e->feedbackBonPlan(e, data));
                     
-                    JFXButton validateButton = new JFXButton("Validate");
+                    
+                  if (userService.readById(Data.getId_user()).getRole().getId_role()==1){
+                      JFXButton validateButton = new JFXButton("Validate");
                     validateButton.setPadding(new Insets(10.0));
                     validateButton.setPrefSize(111.0, 38.0);
                     validateButton.setTextFill(Color.BLACK);
@@ -213,10 +240,14 @@ public class FXMLController implements Initializable {
                     validateView.setPickOnBounds(true);
                     validateView.setPreserveRatio(true);
                     validateButton.setGraphic(validateView);
-                    
-                    feedbackButton.setOnAction(e->feedbackBonPlan(e, data));
                     validateButton.setOnAction(e->validateBonPlan(e, data));
                     feedBackBox.getChildren().addAll(feedbackButton,validateButton);
+                  }
+                  else 
+                    feedBackBox.getChildren().addAll(feedbackButton);
+
+                    
+                    
         
         // add all to the vbox
                     vBox.getChildren().addAll(hBox,mainImageView,mainText,buttonBox,feedBackBox);

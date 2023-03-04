@@ -17,11 +17,11 @@ public class User {
     private int num_tel ;
     private int cin ;
     private int quota ;
-    public int id_role ;
+    public Role role ;
     public String img ;
     public int etat ;
 
-    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, int id_role, String img, int etat) {
+    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img, int etat) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -29,7 +29,7 @@ public class User {
         this.num_tel = num_tel;
         this.cin = cin;
         this.quota = quota;
-        this.id_role = id_role;
+        this.role = role;
         this.img = img;
         this.etat = etat;
     }
@@ -38,7 +38,7 @@ public class User {
 
     
 
-    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, int id_role, String img) {
+    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
@@ -47,11 +47,11 @@ public class User {
         this.num_tel = num_tel;
         this.cin = cin;
         this.quota = quota;
-        this.id_role = id_role;
+        this.role = role;
         this.img = img;
     }
 
-    public User(int id_user, String nom, String mdp, String email, int num_tel, int cin, int quota, int id_role, String img, int etat) {
+    public User(int id_user, String nom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img, int etat) {
         this.id_user = id_user;
         this.nom = nom;
         this.mdp = mdp;
@@ -59,19 +59,19 @@ public class User {
         this.num_tel = num_tel;
         this.cin = cin;
         this.quota = quota;
-        this.id_role = id_role;
+        this.role = role;
         this.img = img;
         this.etat = etat;
     }
     
-    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int id_role) {
+    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
         this.email = email;
         this.num_tel = num_tel;
         this.cin = cin;
-        this.id_role = id_role;
+        this.role = role;
     }
 
    
@@ -94,7 +94,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "user{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", mdp=" + mdp + ", email=" + email + ", num_tel=" + num_tel + ", cin=" + cin + ", quota=" + quota + ", id_role=" + id_role + '}';
+        return "user{" + "id_user=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", mdp=" + mdp + ", email=" + email + ", num_tel=" + num_tel + ", cin=" + cin + ", quota=" + quota + ", role=" + role + '}';
     }
 
     public User() {
@@ -103,7 +103,7 @@ public User(int id_user) {
         this.id_user = id_user;
     }
 
-    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, int id_role) {
+    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -111,10 +111,10 @@ public User(int id_user) {
         this.num_tel = num_tel;
         this.cin = cin;
         this.quota = quota;
-        this.id_role = id_role;
+        this.role = role;
     }
 
-    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, int id_role) {
+    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
@@ -123,7 +123,7 @@ public User(int id_user) {
         this.num_tel = num_tel;
         this.cin = cin;
         this.quota = quota;
-        this.id_role = id_role;
+        this.role = role;
     }
 
     public int getId_user() {
@@ -195,12 +195,14 @@ public User(int id_user) {
         this.quota = quota;
     }
 
-    public int getId_role() {
-        return id_role;
+    public Role getRole() {
+        return role;
     }
 
-    public void setId_role(int id_role) {
-        this.id_role = id_role;
+    public void setRole(Role role) {
+        this.role = role;
     }
+
+   
 
 }

@@ -4,9 +4,13 @@
  */
 package View;
 
+import View.AjouterBonPlanController;
 import Model.BonPlan;
 import Model.Feedback;
+import Service.BonPlanService;
 import Service.FeedbackService;
+import View.FXMLController;
+import View.MenuItemController;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
@@ -53,6 +57,7 @@ public class DetailController implements Initializable {
     private JFXTextArea commentaire;
     
     FeedbackService feedbackService=new FeedbackService();
+    BonPlanService bs=new BonPlanService();
     
     BonPlan bonplan;
     BorderPane borderPane;
@@ -60,15 +65,14 @@ public class DetailController implements Initializable {
     private JFXToggleButton report;
     
     private boolean isreported=false;
+    @FXML
+    private Rating ratingAvg;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        rating.ratingProperty().addListener((observable, oldValue, newValue) -> {
-            rate.setText( Integer.toString(newValue.intValue()));
-        });
         report.selectedProperty().addListener((obs, oldState, newState) -> {
             if (newState) {
                 System.out.println("Toggle switch is on");
@@ -111,6 +115,18 @@ public class DetailController implements Initializable {
         Image images = new Image(imageUrl.toString());
         imageView.setImage(images);
         bonplan=b;
+        ratingAvg.setRating(feedbackService.RatingAvg(b));
+         if(feedbackService.checkIfRated(bonplan)==0){
+            rating.ratingProperty().addListener((observable, oldValue, newValue) -> {
+            rate.setText( Integer.toString(newValue.intValue()));
+        });
+        }
+        else{
+            rating.setRating(feedbackService.checkIfRated(bonplan));
+            //rating.setPartialRating(true);
+            //rating.setRating(3.3);
+            rating.setDisable(true);
+        }
         System.out.println(b);
 } catch (MalformedURLException ex) {
          System.out.println(ex);
@@ -120,7 +136,7 @@ public class DetailController implements Initializable {
 
     @FXML
     private void ajouterFeedback(ActionEvent event) {
-        if (commentaire.getText().length() == 0||rate.getText().length() == 0) {
+        if (commentaire.getText().length() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
@@ -139,7 +155,11 @@ public class DetailController implements Initializable {
             try {
                 Feedback f=new Feedback();
                 f.setCommentaire(commentaire.getText());
-                f.setRate(Integer.parseInt(rate.getText()));
+                if(feedbackService.checkIfRated(bonplan)==0){
+                   rate.setText("1");
+                f.setRate(Integer.parseInt(rate.getText()));}
+                else 
+                    f.setRate(0);
                 //f.setId_user(Integer.parseInt(idUser.getText()));
                 
                 f.setBonPlan(bonplan);

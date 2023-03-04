@@ -7,6 +7,8 @@ package View;
 import Model.BonPlan;
 import Model.Feedback;
 import Service.FeedbackService;
+import Service.UserService;
+import Util.Data;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +54,7 @@ public class FeedbacksController implements Initializable {
     
     FeedbackService fs =new FeedbackService();
     BorderPane borderPane;
+    UserService userService = new UserService();
     BonPlan b;
 
     /**
@@ -100,7 +103,12 @@ public class FeedbacksController implements Initializable {
         vBox.getChildren().add(userHBox);
 
         // Create the user's profile picture
-        ImageView profilePic = new ImageView(new Image(getClass().getResourceAsStream("../images/zizou.jpg")));
+        
+        
+        Image imgPic= new Image("http://localhost/images/"+userService.readById(data.getUser().getId_user()).getImg());
+        ImageView profilePic = new ImageView(imgPic);
+            
+        System.out.println(imgPic.getUrl());
         profilePic.setFitHeight(55);
         profilePic.setFitWidth(55);
         Circle clip = new Circle(profilePic.getFitWidth()/2, profilePic.getFitHeight()/2, profilePic.getFitWidth()/2);
@@ -109,7 +117,7 @@ public class FeedbacksController implements Initializable {
         userHBox.getChildren().add(profilePic);
 
         // Create the user's name
-        Text userName = new Text("Foulen Ben Foulen");
+        Text userName = new Text(userService.readById(data.getUser().getId_user()).getNom());
         userName.setFont(new Font("Baskerville Old Face", 19));
         
         userName.setStrokeWidth(0);
@@ -118,7 +126,7 @@ public class FeedbacksController implements Initializable {
         userHBox.getChildren().add(userName);
 
         // Create the delete button
-        
+        if (userService.readById(Data.getId_user()).getRole().getId_role()==1|| Data.getId_user()==data.getUser().getId_user() ){
         JFXButton deleteBtn = new JFXButton("");
         deleteBtn.setPrefSize(116.0, 38.0);
         ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("../images/delete.png")));
@@ -128,6 +136,9 @@ public class FeedbacksController implements Initializable {
         deleteBtn.setGraphic(deleteButton);
         userHBox.getChildren().add(deleteBtn);
         deleteBtn.setOnAction(e->deleteFeedback(e, data));
+        }
+        
+        
 
         // Create the Rating control
         Rating rating = new Rating();

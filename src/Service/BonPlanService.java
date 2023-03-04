@@ -14,6 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -24,13 +34,15 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
     //var
     Connection cnx = MyConnection.getInstance().getCnx();
     
+    UserService us=new UserService();
+    
     
     
     @Override
     public void insert(BonPlan b) {
         
         try {
-            b.setId_user(Data.id_user);
+            b.setUser(us.readById(Data.id_user));
             String req = "INSERT INTO `bonplan`(`nom_bonplan`,`adresse`,`type`,`etat`, `image`, `id_user`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
            
@@ -40,14 +52,14 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
             ps.setString(4, b.getEtat());
             ps.setString(5, b.getImage());
             //ps.setInt(6, b.getId_user());
-            ps.setInt(6, b.getId_user());
+            ps.setInt(6,Data.id_user);
             
             ps.executeUpdate();
             System.out.println("Bon Plan Added Successfully!");
             
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
+        } 
         
         
     }
@@ -71,7 +83,37 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
                 b.setType(rs.getString(4));
                 b.setEtat(rs.getString("etat"));
                 b.setImage(rs.getString(6));
-                b.setId_user(rs.getInt(7));
+                b.setUser(us.readById(rs.getInt(7)));
+                
+                bonPlans.add(b);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return bonPlans;
+    
+    }
+    public ArrayList<BonPlan> readAllAccepted() {
+        ArrayList<BonPlan> bonPlans = new ArrayList<>();
+
+    
+        try {
+            
+            String req = "SELECT * FROM bonplan where etat = 'accepté'";
+            //Statement st = cnx.createStatement();
+            Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {                
+                BonPlan b = new BonPlan();
+                b.setId_bonplan(rs.getInt(1));
+                b.setNom_bonplan(rs.getString(2));
+                b.setAdresse(rs.getString(3));
+                b.setType(rs.getString(4));
+                b.setEtat(rs.getString("etat"));
+                b.setImage(rs.getString(6));
+                b.setUser(us.readById(rs.getInt(7)));
                 
                 bonPlans.add(b);
             }
@@ -116,7 +158,7 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
                  b.setType(rs.getString(4));
                  b.setEtat(rs.getString("etat"));
                 b.setImage(rs.getString(6));
-                b.setId_user(rs.getInt(7));
+                b.setUser(us.readById(rs.getInt(7)));
                 bonPlans.add(b);
             }
             
@@ -130,7 +172,7 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
 
     @Override
     public void update(BonPlan b) {
-           b.setId_user(Data.id_user);
+           b.setUser(us.readById(Data.id_user));
 
           try {
             String req ="UPDATE `bonplan` SET `nom_bonplan`= ? , `adresse`= ? , `type`= ? , `image`= ?  WHERE id_bonplan = ?";
@@ -168,7 +210,7 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
             b.setType(rs.getString(4));
             b.setEtat(rs.getString("etat"));
             b.setImage(rs.getString(6));
-            b.setId_user(rs.getInt(7));
+            b.setUser(us.readById(rs.getInt(7)));
 
            
             
@@ -196,6 +238,7 @@ public class BonPlanService implements InterfaceCRUD<BonPlan> {
         }
         
     }
+     
     
 
 

@@ -29,7 +29,7 @@ public class Holigans {
         //BonPlan b2= new BonPlan("Chez Azouz", "Ariana", "Circuit", 15);
         //BonPlan b3= new BonPlan("Amigo", "Borj louzir", "Garage", 6);
         //BonPlan b4= new BonPlan("Mecanique", "Nikhlat", "Garage", 6);
-        BonPlan b=new BonPlan("Nadia","azi", "garage", "img.jpg",Data.id_user);
+        //BonPlan b=new BonPlan("Nadia","azi", "garage", "img.jpg",Data.id_user);
         
         // Ajouter un bonPlan
         //b2.setEtat("accepté");
@@ -38,7 +38,7 @@ public class Holigans {
 
         
         
-        
+        System.out.println(feedbackService.RatingAvg(bonPlanService.readById(70)));
         // afficher tous les bonplans
         
        // System.out.println(bonPlanService.readAll());
@@ -48,10 +48,10 @@ public class Holigans {
         //System.out.println(bonPlanService.readById(2));
         
         // Update bonPlan
-        b.setId_bonplan(48);
-        b.setAdresse("Aouina");
+        //b.setId_bonplan(48);
+        //b.setAdresse("Aouina");
         //bonPlanService.update(b);
-        System.out.println(b);
+        //System.out.println(b);
         System.out.println(bonPlanService.readAll());
         
         
@@ -68,7 +68,7 @@ public class Holigans {
         
         
         // Créer un feedback 
-        Feedback f1= new Feedback(10, "mal endroit", 12, bonPlanService.readById(50));
+        //Feedback f1= new Feedback(10, "mal endroit", 12, bonPlanService.readById(50));
         //Feedback f3= new Feedback(11,10, "Trés bon  endroit", 13, bonPlanService.readById(34));
         
         //f1.setReport(true);
@@ -85,15 +85,15 @@ public class Holigans {
         
         // update feedback 
         
-        f1.setId_feedback(70);
-        f1.setCommentaire("Good oneee");
+        //f1.setId_feedback(70);
+        //f1.setCommentaire("Good oneee");
         //f1.setBonPlan(bonPlanService.readAll().get(2));
-        feedbackService.update(f1);
+        //feedbackService.update(f1);
         
         //Afficher tous les feedbacks
         
         
-        System.out.println(feedbackService.readAll());
+        //System.out.println(feedbackService.readAll());
         //System.out.println(feedbackService.checkIfReported(f3));
         //feedbackService.countReports();
         //feedbackService.reportBonPlan(f1);
@@ -122,11 +122,11 @@ public class Holigans {
          //rs.insert(r3);
          //System.out.println(rs.readAll());
          
-         User u1=new User("Aziz", "Hajjem", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
+         /*User u1=new User("Aziz", "Hajjem", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
          User u2=new User("Ayoub", "Barnat", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
          User u3=new User("Aziz", "Haj", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
          User u4=new User("Nadia", "karboul", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
-         User u5=new User("Hela", "Moala", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);
+         User u5=new User("Hela", "Moala", "aziz", "aziz@gmail.com", 20223666, 111222333, 0, 2);*/
          
          UserService us=new UserService();
          //us.insert(u1);

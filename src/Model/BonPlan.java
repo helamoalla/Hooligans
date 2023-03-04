@@ -15,48 +15,48 @@ public class BonPlan {
    private String type;
    private String etat="en attente";
    private String image;
-   private int id_user;
+   private User user;
    
 
    
    // constructeur qui contient tous les params
-    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type, String etat,String image, int id_user) {
+    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type, String etat,String image, User user) {
         this.id_bonplan = id_bonplan;
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.etat = etat;
         this.image=image;
-        this.id_user = id_user;
+        this.user = user;
     }
     // constructeur qui contient tous les params sans etat
-    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type,String image, int id_user) {
+    public BonPlan(int id_bonplan, String nom_bonplan, String adresse, String type,String image, User user) {
         this.id_bonplan = id_bonplan;
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.image=image;
-        this.id_user = id_user;
+        this.user = user;
     }
 
     
     // constructeur qui contient tous les params sauf l id_bonplan
-    public BonPlan(String nom_bonplan, String adresse, String type, String etat,String image, int id_user) {
+    public BonPlan(String nom_bonplan, String adresse, String type, String etat,String image, User user) {
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.etat = etat;
         this.image=image;
-        this.id_user = id_user;
+        this.user = user;
     }
     
     // constructeur qui contient tous les params sauf l id_bonplan et l'etat
-    public BonPlan(String nom_bonplan, String adresse, String type,String image, int id_user) {
+    public BonPlan(String nom_bonplan, String adresse, String type,String image, User user) {
         this.nom_bonplan = nom_bonplan;
         this.adresse = adresse;
         this.type = type;
         this.image=image;
-        this.id_user = id_user;
+        this.user = user;
     }
     
     // constructeur non parameteré
@@ -113,19 +113,21 @@ public class BonPlan {
         this.etat = etat;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+
     
     // Affichage 
 
     @Override
     public String toString() {
-        return "BonPlan{" + "id_bonplan=" + id_bonplan + ", nom_bonplan=" + nom_bonplan + ", adresse=" + adresse + ", type=" + type + ", etat=" + etat + ", id_user=" + id_user + '}';
+        return "BonPlan{" + "id_bonplan=" + id_bonplan + ", nom_bonplan=" + nom_bonplan + ", adresse=" + adresse + ", type=" + type + ", etat=" + etat + ", user=" + user + '}';
     }
 
     

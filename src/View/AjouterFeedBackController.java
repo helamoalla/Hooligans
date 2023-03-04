@@ -5,6 +5,7 @@
  */
 package View;
 
+import View.AjouterBonPlanController;
 import Model.BonPlan;
 import Model.Feedback;
 import Service.BonPlanService;

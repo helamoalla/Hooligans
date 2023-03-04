@@ -14,9 +14,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -26,17 +35,18 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
     
     //var
     Connection cnx = MyConnection.getInstance().getCnx();
+    UserService us = new UserService();
 
     @Override
     public void insert(Feedback f) {
         try {
-            f.setId_user(Data.id_user);
+            f.setUser(us.readById(Data.id_user));
             String req = "INSERT INTO `feedback`(`rate`,`commentaire`,`id_user`,`id_bonplan`,`report`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
            
             ps.setInt(1, f.getRate());
             ps.setString(2, f.getCommentaire());
-            ps.setInt(3, f.getId_user());
+            ps.setInt(3, f.getUser().getId_user());
             ps.setInt(4, f.getBonPlan().getId_bonplan());
             
             
@@ -105,10 +115,8 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
                 f.setId_feedback(rs.getInt(1));
                 f.setRate(rs.getInt(2));
                 f.setCommentaire(rs.getString(3));
-                f.setId_user(rs.getInt(4));
+                f.setUser(us.readById(rs.getInt(4)));
                 f.setBonPlan(bs.readById(rs.getInt(5)));
-                
-                
                 feedbacks.add(f);
             }
             
@@ -137,7 +145,7 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
             f.setId_feedback(rs.getInt(1));
             f.setRate(rs.getInt(2));
             f.setCommentaire(rs.getString(3));
-            f.setId_user(rs.getInt(4));
+            f.setUser(us.readById(rs.getInt(4)));
             f.setBonPlan(bs.readById(rs.getInt(5)));
 
            
@@ -166,7 +174,7 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
                 f.setId_feedback(rs.getInt(1));
                 f.setRate(rs.getInt(2));
                 f.setCommentaire(rs.getString(3));
-                f.setId_user(rs.getInt(4));
+                f.setUser(us.readById(rs.getInt(4)));
                 f.setBonPlan(bs.readById(rs.getInt(5)));
                 
                 
@@ -183,7 +191,7 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
         boolean reported=false;
         try {
             // check if user already reported this bonPlan
-            String req = "SELECT report FROM feedback WHERE id_bonplan= "+f.getBonPlan().getId_bonplan()+" AND id_user = "+f.getId_user();
+            String req = "SELECT report FROM feedback WHERE id_bonplan= "+f.getBonPlan().getId_bonplan()+" AND id_user = "+f.getUser().getId_user();
             //Statement st = cnx.createStatement();
             Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -205,6 +213,35 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
                 return reported;
 
     }
+    
+    public int checkIfRated(BonPlan b ){
+        int rated=0;
+        try {
+            // check if user already reported this bonPlan
+            String req = "SELECT rate FROM feedback WHERE id_bonplan= "+b.getId_bonplan()+" AND id_user = "+Data.getId_user();
+            //Statement st = cnx.createStatement();
+            Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = st.executeQuery(req);
+            //rs.beforeFirst();
+            //rs.next();
+            
+            while(rs.next()){
+               System.out.println(rs.getInt("rate"));
+               if(rs.getInt("rate")!=0)
+                   return rs.getInt("rate");
+            }
+         
+          
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                return rated;
+
+    }
+    
+    
 public void reportBonPlan(Feedback f) {
     if (!checkIfReported(f)) {
         try {
@@ -233,12 +270,16 @@ public void countReports() {
                 System.out.println("bon plan deleted "+bonplanId);
                 BonPlanService bs=new BonPlanService();
                 bs.delete(bonplanId);
+                sendEmail(bs.readById(bonplanId).getUser().getEmail(), "Alert", "Votre bonplan a été supprimé à cause de mutliple report ");
+
             }
     // Print or store the bonplan ID and report count as needed
 }
     } catch (SQLException ex) {
         Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    }   catch (MessagingException ex) {
+            Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
 }
 
@@ -258,7 +299,7 @@ public ArrayList<Feedback> readAllByBonPlan(BonPlan b) {
                 f.setId_feedback(rs.getInt(1));
                 f.setRate(rs.getInt(2));
                 f.setCommentaire(rs.getString(3));
-                f.setId_user(rs.getInt(4));
+                f.setUser(us.readById(rs.getInt(4)));
                 f.setBonPlan(bs.readById(rs.getInt(5)));
                 
                 
@@ -270,6 +311,59 @@ public ArrayList<Feedback> readAllByBonPlan(BonPlan b) {
         }
         
         return feedbacks;
+    }
+
+public void sendEmail(String to, String subject, String body) throws MessagingException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("hajjem1920@gmail.com", "jacpovguhdrgdbut");
+            }
+          });
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("hajjem1920@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(to));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+    }
+
+public double RatingAvg(BonPlan b ){
+        double ratingAvg=0;
+        try {
+            // check if user already reported this bonPlan
+            String req = "SELECT AVG(CASE WHEN rate > 0 THEN rate ELSE NULL END) AS avg_rating FROM feedback where id_bonplan = "+b.getId_bonplan()
+                    ;
+            //Statement st = cnx.createStatement();
+            Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = st.executeQuery(req);
+            rs.beforeFirst();
+            rs.next();
+            
+            ratingAvg=rs.getDouble("avg_rating");
+            DecimalFormat df = new DecimalFormat("#.#");
+            ratingAvg = Double.parseDouble(df.format(ratingAvg).replace(",", "."));
+               System.out.println(ratingAvg);
+               
+            
+         
+          
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                return ratingAvg;
+
     }
     
 }

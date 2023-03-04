@@ -4,6 +4,8 @@
  */
 package View;
 
+import Service.UserService;
+import Util.Data;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -25,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -50,7 +53,12 @@ public class MenuItemController implements Initializable {
     
     private boolean isVboxVisible = false;
     @FXML
-    private ImageView arrow;
+    private JFXButton user;
+    @FXML
+    private ImageView userImg;
+    UserService userService=new UserService();
+    @FXML
+    private JFXButton users;
     
     
 
@@ -60,8 +68,20 @@ public class MenuItemController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        if(userService.readById(Data.getId_user()).getRole().getId_role()!=1){
+            users.setVisible(false);
+            users.setManaged(false);
+        }
         
+        Image imgPic= new Image("http://localhost/images/"+userService.readById(Data.getId_user()).getImg());
+        userImg.setImage(imgPic);
+        userImg.setFitHeight(45);
+        userImg.setFitWidth(45);
+        Circle clip = new Circle(userImg.getFitWidth()/2, userImg.getFitHeight()/2, userImg.getFitWidth()/2);
+        userImg.setClip(clip);
+        user.setText("  "+userService.readById(Data.getId_user()).getNom());
         btns.setVisible(isVboxVisible);
+        
     }    
         public void setBorderPane(BorderPane borderPane) {
         try {
@@ -144,6 +164,44 @@ public class MenuItemController implements Initializable {
                     
 
                 }
+    }
+
+    @FXML
+    private void GoUser(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../driftrace/connecter.fxml"));
+            Parent profile = loader.load();            
+            borderPane.setCenter(null);
+            borderPane.setCenter(profile);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ManageUsers(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../driftrace/admin.fxml"));
+            Parent profile = loader.load();            
+            borderPane.setCenter(null);
+            borderPane.setCenter(profile);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void logOut(ActionEvent event) {
+        try {
+            Data.setId_user(0);
+            Parent root = FXMLLoader.load(getClass().getResource("../driftrace/conx.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

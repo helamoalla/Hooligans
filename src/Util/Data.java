@@ -9,5 +9,13 @@ package Util;
  * @author azizh
  */
 public class Data {
-    public static int id_user=99; 
+    public static int id_user; 
+
+    public static int getId_user() {
+        return id_user;
+    }
+
+    public static void setId_user(int id_user) {
+        Data.id_user = id_user;
+    }
 }

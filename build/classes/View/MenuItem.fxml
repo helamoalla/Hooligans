@@ -8,6 +8,33 @@
 
 <VBox prefHeight="832.0" prefWidth="102.0" spacing="3.0" style="-fx-background-color: #303240;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuItemController">
    <children>
+      <VBox prefHeight="66.0" prefWidth="85.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <children>
+            <ImageView fitHeight="84.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <JFXButton fx:id="user" alignment="CENTER" onAction="#GoUser" prefHeight="39.0" prefWidth="128.0" text="   User" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fx:id="userImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets bottom="50.0" top="30.0" />
+         </VBox.margin>
+      </JFXButton>
       <JFXButton fx:id="goback" alignment="CENTER" onAction="#GoBack" prefHeight="39.0" prefWidth="128.0" text="  Home" textFill="#b4abab">
          <opaqueInsets>
             <Insets />
@@ -16,6 +43,18 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="users" alignment="CENTER" onAction="#ManageUsers" prefHeight="39.0" prefWidth="128.0" text="  User" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user.png" />
                </image>
             </ImageView>
          </graphic>
@@ -55,20 +94,26 @@
             </VBox>
          </children>
       </VBox>
-      <VBox prefHeight="66.0" prefWidth="85.0">
-         <VBox.margin>
-            <Insets top="350.0" />
-         </VBox.margin>
-         <children>
-            <ImageView fitHeight="84.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+      <JFXButton alignment="CENTER" onAction="#logOut" prefHeight="39.0" prefWidth="128.0" text=" " textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/logo.png" />
+                  <Image url="@../images/exit.png" />
                </image>
             </ImageView>
-         </children>
-      </VBox>
+         </graphic>
+         <VBox.margin>
+            <Insets top="200.0" />
+         </VBox.margin>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </JFXButton>
    </children>
    <padding>
-      <Insets top="100.0" />
+      <Insets top="30.0" />
    </padding>
 </VBox>
