@@ -28,7 +28,7 @@ public class conditions {
     }
     
       public boolean VerifProduitIdExistDansLignePanier(int id_prod,int id_panier) throws SQLException {
-        String query = "SELECT lp.id_prod FROM lignepanier lp JOIN panier p ON p.id_panier = lp.id_panier  WHERE lp.id_prod = ? AND lp.id_panier =? ";
+        String query = "SELECT lp.id_produit FROM lignepanier lp JOIN panier p ON p.id_panier = lp.id_panier  WHERE lp.id_produit = ? AND lp.id_panier =? ";
         try (PreparedStatement ps = cnx.prepareStatement(query)) {
             ps.setInt(1, id_prod);
             ps.setInt(2, id_panier);

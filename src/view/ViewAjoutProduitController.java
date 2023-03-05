@@ -112,7 +112,7 @@ public class ViewAjoutProduitController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("Le prix de produit ou la quantite doit etre un nombre"+ "");
+            alert.setContentText("Le prix de produit ou la quantite doit etre un nombre positive"+ "");
             alert.show(); 
     }
            else{

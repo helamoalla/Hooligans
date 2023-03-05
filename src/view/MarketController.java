@@ -30,11 +30,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -42,9 +48,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.mail.MessagingException;
+import models.Categorie;
 import models.Produit;
 import org.controlsfx.control.Notifications;
 import pidev1.MyListener;
+import services.CategorieService;
+import services.LignePanierService;
+import services.PanierService;
 import services.ProduitService;
 
 /**
@@ -54,10 +65,13 @@ import services.ProduitService;
  */
 public class MarketController implements Initializable , MyListener {
      ProduitService ps=new ProduitService() ;
+     LignePanierService lp=new LignePanierService();
        Connection cnx = Maconnexion.getInstance().getCnx();
      
      ObservableList<Produit> list = FXCollections.observableArrayList();
      List<Produit> listprod =new ArrayList();
+     List<Produit> prod =new ArrayList();
+      List<Produit> prodcat =new ArrayList();
     @FXML
     private Label nomproduit;
     @FXML
@@ -77,10 +91,17 @@ public class MarketController implements Initializable , MyListener {
     private TextField quanti;
     
     Produit p;
+    private TextField nom_prod;
+    @FXML
+    private TextField nompro;
+    @FXML
+    private ChoiceBox<String> choiceCP;
 
     /**
      * Initializes the controller class.
      */
+     CategorieService catser = new CategorieService();
+      
     
      private void setChosenFruit(Produit p) {
          try {
@@ -91,10 +112,7 @@ public class MarketController implements Initializable , MyListener {
              imageUrl = new URL("http://localhost/images/"+p.getImage());
              Image images = new Image(imageUrl.toString());
              imageproduit.setImage(images);
-             desc.setText(p.getDescription_prod());
-             
-             
-            
+             desc.setText(p.getDescription_prod());  
          } catch (MalformedURLException ex) {
              Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -102,7 +120,22 @@ public class MarketController implements Initializable , MyListener {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //   
+       CategorieService catser = new CategorieService();
+      ArrayList <Categorie> liste = catser.readAll();
+     
+     ObservableList<Categorie> categories =FXCollections.observableArrayList(catser.readAll());
+    
+           for (Categorie c :categories){
+           choiceCP.getItems().add(c.getNom_categorie());
+           
+           }
+        
+        afficherall();
+      
+      //   
+    }
+    public void afficherall(){
+        
        listprod.addAll(ps.readAll());
          if (listprod.size() > 0) {
             setChosenFruit(listprod.get(1));
@@ -128,8 +161,6 @@ public class MarketController implements Initializable , MyListener {
                     column = 0;
                     row++;
                 }
-
-
                 grid.add(anchorPane, column++, row); //(child,column,row)
                 //set grid width
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -155,68 +186,62 @@ public class MarketController implements Initializable , MyListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    private void ajoutaupanier(ActionEvent event,Produit p) {
-       
-        
-    }
-
+  
+    PanierService panierser=new PanierService();
     @FXML
     private void ajouteraupanier(ActionEvent event) {
-         try {
-            /*int selectedId= listeprod.getSelectionModel().getSelectedItem().getId_prod();
-            String selectednom= listeprod.getSelectionModel().getSelectedItem().getNom_prod();
-            Double selectedprix=listeprod.getSelectionModel().getSelectedItem().getPrix_prod();
-            String selecteddesc=listeprod.getSelectionModel().getSelectedItem().getDescription_prod();
-            String selectedimage=listeprod.getSelectionModel().getSelectedItem().getImage();*/
+        // try {
+            
+            
             int quantiteprod=Integer.parseInt(quanti.getText());
-            
-            
-            String req = "INSERT INTO `lignepanier`(`id_produit`, `id_panier`, `quantite`, `prix`, `nom_produit`, `description_prod`, `image`) VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1,p.getId_prod());
-            ps.setInt(2,3);
-            ps.setInt(3,quantiteprod);
-            ps.setDouble(4, p.getPrix_prod());
-            ps.setString(5, p.getNom_prod());
-            ps.setString(6,p.getDescription_prod());
-            ps.setString(7, p.getImage());
-            ps.executeUpdate();
-            String req1 ="UPDATE produit SET quantite_prod = quantite_prod - ?  WHERE id_prod = ? ";
-                    PreparedStatement ps1 = cnx.prepareStatement(req1);
-                    ps1.setInt(1, quantiteprod);
-                    ps1.setInt(2,p.getId_prod());
-                    ps1.executeUpdate();
-            System.out.println("ligne panier remplie Successfully!");
-            
-               ///////////////
-            String req2 = "SELECT quantite_prod FROM produit WHERE id_prod = "+p.getId_prod();
-            
-            Statement st = cnx.createStatement();
-              ResultSet rs=st.executeQuery(req2);
-              rs.beforeFirst();
-              rs.next();
-              int nb =rs.getInt("quantite_prod");
-        
-             //PreparedStatement ps2 = cnx.prepareStatement(req2);
-                 //ps2.setInt(1,selectedId );
-                 //ResultSet rs = ps2.executeQuery(req2);
-                 System.out.println(nb);
-                 
-          
-            if(nb<5){
+// 
+                       lp.Create_LignePanier(p, quantiteprod);
+                         String productName = p.getNom_prod();
+                      Double a=panierser.totalmontantPanier(3);
+                      System.out.println(a);
               Notifications NotificationBuilder = Notifications.create()
-            .title("Attention !! ")
-            .text("Le stock de sécurite risque d'être achevé").hideAfter(Duration.seconds(5))
+            .title("Reminder !! ")
+            .text("Votre panier costs now " + a).hideAfter(Duration.seconds(5))
                       .position(Pos.BOTTOM_RIGHT);
               NotificationBuilder.show();
-            }
+                       
+            
+               ///////////////
+//            String req2 = "SELECT quantite_prod FROM produit WHERE id_prod = "+p.getId_prod();
+//            
+//            Statement st = cnx.createStatement();
+//              ResultSet rs=st.executeQuery(req2);
+//              rs.beforeFirst();
+//              rs.next();
+//              int nb =rs.getInt("quantite_prod");
+//        
+//             //PreparedStatement ps2 = cnx.prepareStatement(req2);
+//                 //ps2.setInt(1,selectedId );
+//                 //ResultSet rs = ps2.executeQuery(req2);
+//                 System.out.println(nb);
+//                 
+//          
+//            if(nb<5){
+//                String productName = p.getNom_prod();
+//              Notifications NotificationBuilder = Notifications.create()
+//            .title("Attention !! ")
+//            .text("Le stock de sécurite du produit  " + productName+"  risque d'être achevé").hideAfter(Duration.seconds(5))
+//                      .position(Pos.BOTTOM_RIGHT);
+//              NotificationBuilder.show();
+//              
+//                try {
+//                    ps.sendEmail("sabrinebenaziza01@gmail.com", "Attention!!!!", "Rod belek el quantité ");
+//                } catch (MessagingException ex) {
+//                    Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+         //   }
     
             
             
             /////////////////
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewAfficherProduitUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //} catch (SQLException ex) {
+           // Logger.getLogger(ViewAfficherProduitUserController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
 
     @FXML
@@ -232,5 +257,122 @@ public class MarketController implements Initializable , MyListener {
              Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
+
+    @FXML
+    private void chercher(ActionEvent event) {
+        prod.addAll(ps.chercher("nom_prod", nompro.getText()));
+        setChosenFruit(prod.get(0));
+       
+        grid.getChildren().clear();
+         int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < prod.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/view/Produit.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ProduitController prodController = fxmlLoader.getController();
+                prodController.setData(prod.get(i),myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setColumnIndex(anchorPane, column);
+            }   
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         
+            
+            }
+
+    @FXML
+    private void showall(ActionEvent event) {
+       listprod.clear();
+       afficherall();    
+    }
+
+
+    @FXML
+    private void chercherparcat(MouseEvent event) {    
+    }
+
+    @FXML
+    private void searchparcateg(ActionEvent event) {
+        prodcat.clear();
+        grid.getChildren().clear();
+        Categorie c1 =catser.RetournerT(choiceCP.getSelectionModel().getSelectedItem());
+      String a=Integer.toString(c1.getId_categorie());
+         prodcat.addAll(ps.chercher("id_categorie", a));
+        System.out.println(prodcat);
+        
+        
+         int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < prodcat.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/view/Produit.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ProduitController prodController = fxmlLoader.getController();
+                prodController.setData(prodcat.get(i),myListener);
+
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setColumnIndex(anchorPane, column);
+            }   
+        } catch (IOException e) {
+            e.printStackTrace();
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+         
+    }
+
+
+  
+   
+      
+        
+       
+        
+      
+      
+      
+    
+    
+   
+       
+        
+        
+        
+    
     
 }
