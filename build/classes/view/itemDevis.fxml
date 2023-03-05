@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ItemDevisController">
+<AnchorPane id="AnchorPane" prefHeight="243.0" prefWidth="297.0" styleClass="color-background" stylesheets="@../css/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ItemDevisController">
    <children>
-      <Label layoutX="175.0" layoutY="26.0" prefHeight="18.0" prefWidth="29.0" text="Devis" />
-      <Label fx:id="TTC" layoutX="273.0" layoutY="294.0" text="TTC" />
-      <Label layoutX="40.0" layoutY="294.0" text="Taux Taxe Compris (TVA:19%):" />
-      <Label layoutY="319.0" text="Somme apres Reduction de  " />
-      <Label fx:id="reduction" layoutX="216.0" layoutY="319.0" text="red" />
-      <Label fx:id="total" layoutX="325.0" layoutY="319.0" text="total" />
-      <HBox prefHeight="100.0" prefWidth="200.0" />
-      <HBox layoutX="22.0" layoutY="60.0" prefHeight="205.0" prefWidth="341.0" spacing="50.0">
+      <Label fx:id="TTC" layoutX="227.0" layoutY="139.0" text="TTC" />
+      <Label layoutX="14.0" layoutY="139.0" text="Taux Taxe Compris (TVA:19%):" />
+      <Label layoutX="16.0" layoutY="164.0" text="Somme apres Reduction de  " />
+      <Label fx:id="reduction" layoutX="206.0" layoutY="164.0" text="red" />
+      <Label fx:id="total" layoutX="248.0" layoutY="164.0" text="total" textFill="RED" />
+      <HBox layoutX="22.0" layoutY="60.0" prefHeight="67.0" prefWidth="142.0" spacing="50.0">
          <children>
-            <Label fx:id="prix" text="prix" />
-            <Label fx:id="panne" text="panne" />
+            <Label fx:id="panne" text="panne">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prix" text="prix">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
+      <Label layoutX="111.0" layoutY="12.0" prefHeight="28.0" prefWidth="80.0" text="Devis">
+         <font>
+            <Font name="Eras Demi ITC" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmer" layoutX="123.0" layoutY="204.0" mnemonicParsing="false" onAction="#confirmer" text="confirmer" />
+      <Label fx:id="id_devis" layoutX="39.0" layoutY="18.0" text="id devis" textFill="#bfbfbf" />
    </children>
 </AnchorPane>
