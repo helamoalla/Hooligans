@@ -67,6 +67,8 @@ public class DetailController implements Initializable {
     private boolean isreported=false;
     @FXML
     private Rating ratingAvg;
+    @FXML
+    private Text rateAvg;
 
     /**
      * Initializes the controller class.
@@ -116,6 +118,7 @@ public class DetailController implements Initializable {
         imageView.setImage(images);
         bonplan=b;
         ratingAvg.setRating(feedbackService.RatingAvg(b));
+        rateAvg.setText(Double.toString(feedbackService.RatingAvg(b)));
          if(feedbackService.checkIfRated(bonplan)==0){
             rating.ratingProperty().addListener((observable, oldValue, newValue) -> {
             rate.setText( Integer.toString(newValue.intValue()));

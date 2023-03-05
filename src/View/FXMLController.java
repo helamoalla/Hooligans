@@ -10,6 +10,7 @@ import Service.BonPlanService;
 import Service.UserService;
 import Util.Data;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,9 +46,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -71,6 +75,11 @@ public class FXMLController implements Initializable {
     @FXML
     private FlowPane container;
     private BorderPane borderPane;
+    @FXML
+    private PrefixSelectionChoiceBox<String> sorting;
+    @FXML
+    private JFXTextArea searchField;
+   
    
 
 
@@ -80,14 +89,79 @@ public class FXMLController implements Initializable {
      */
 
     public void initialize(URL url, ResourceBundle rb) {
-        
-       
                 
+        sorting.getItems().addAll("Averge Desc","Averge Asc","No filter");
+       if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           } 
+       
+       sorting.setOnAction(e -> {
+           searchField.setText("");
+            String selectedOption = sorting.getValue();
+            if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+                if(selectedOption=="Averge Desc"){
+                    list=bs.sortByAvgAdmin("desc");
+                    getAllBonPlans();
+                }else if(selectedOption=="Averge Asc"){
+                    list=bs.sortByAvgAdmin("asc");
+                    getAllBonPlans();
+                }else{
+                    list=bs.readAll();
+                    getAllBonPlans();
+                }
+            }else if(userService.readById(Data.getId_user()).getRole().getId_role()!=1){
+                if(selectedOption=="Averge Desc"){
+                    list=bs.sortByAvg("desc");
+                    getAllBonPlans();
+                }else if(selectedOption=="Averge Asc"){
+                    list=bs.sortByAvg("asc");
+                    getAllBonPlans();
+                }else{
+                    list=bs.readAllAccepted();
+                    getAllBonPlans();
+                }
+            }
+        });
+       searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+    // Handle the search when the text changes
+    handleSearch(newValue.toLowerCase());
+           //System.out.println(newValue);
+});
       getAllBonPlans();
       
     } 
     public void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
+    }
+    public void  handleSearch(String searchText){
+         if (searchText.isEmpty()) {
+        // Show all persons if search text is empty
+        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           } 
+        getAllBonPlans();
+        }
+     else {
+        // Filter the persons by name
+            if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           } 
+          ArrayList<BonPlan> filteredPersons = list.stream()
+                .filter(bonplan -> bonplan.getNom_bonplan().toLowerCase().contains(searchText))
+                .collect(Collectors.toCollection(ArrayList::new));
+                list=filteredPersons;
+                //System.out.println(list);
+                getAllBonPlans();
+    }
     }
     
     private void AjouterBonPlan(ActionEvent event) {
@@ -106,12 +180,12 @@ public class FXMLController implements Initializable {
        public void getAllBonPlans(){
          container.getChildren().clear();
             
-         if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
-               list=bs.readAll();
-           }
-           else{
-               list=bs.readAllAccepted();
-           }
+//         if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+//               list=bs.readAll();
+//           }
+//           else{
+//               list=bs.readAllAccepted();
+//           }
            
            
             for (BonPlan data :list ) {
@@ -137,21 +211,21 @@ public class FXMLController implements Initializable {
                     ImageView checkImageView = new ImageView(new Image(getClass().getResourceAsStream(checked)));
                     checkImageView.setFitHeight(26.0);
                     checkImageView.setFitWidth(26.0);
-                    checkImageView.setPickOnBounds(true);
-                    checkImageView.setPreserveRatio(true);
+                    //checkImageView.setPickOnBounds(true);
+                    //checkImageView.setPreserveRatio(true);
                     
                    if (Data.getId_user()==data.getUser().getId_user() ){
                    JFXButton updateBtn = new JFXButton("");
                     updateBtn.setPrefSize(116.0, 38.0);
                     ImageView penImageView = new ImageView(new Image(getClass().getResourceAsStream("../images/pen.png")));
-                    penImageView.setFitHeight(26.0);
-                    penImageView.setFitWidth(26.0);
+                    penImageView.setFitHeight(24.0);
+                    penImageView.setFitWidth(24.0);
                     updateBtn.setGraphic(penImageView);
                     //penImageView.setOnMouseClicked(e->modifierBonPlan(e, data));
                     updateBtn.setOnAction(e->modifierBonPlan(e, data));
                   
-                    penImageView.setPickOnBounds(true);
-                    penImageView.setPreserveRatio(true);
+                    //penImageView.setPickOnBounds(true);
+                    //penImageView.setPreserveRatio(true);
 
                     hBox.getChildren().addAll(checkImageView, updateBtn);
                    }
@@ -267,10 +341,55 @@ public class FXMLController implements Initializable {
                     Logger.getLogger(SideBarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            if(list.size()==0){
+                noContent();
+            }
     }
     
+       
+        void noContent(){
+        AnchorPane root = new AnchorPane();
+        root.setPrefSize(1014.0, 787.0);
+        root.setMaxSize(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+        root.setMinSize(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+        root.setStyle("-fx-background-color: #dcdcdc;");
+        container.getChildren().add(root);
+
+
+        
+        
+         ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("../images/no-content.png")));
+         
+        imageView.setLayoutX(404.0);
+        imageView.setLayoutY(328.0);
+        imageView.setFitWidth(223.0);
+        imageView.setFitHeight(219.0);
+        imageView.setPickOnBounds(true);
+        imageView.setPreserveRatio(true);
+
+
+        Text text = new Text();
+        text.setLayoutX(309.0);
+        text.setLayoutY(278.0);
+        text.setOpacity(0.64);
+        text.setStrokeType(javafx.scene.shape.StrokeType.OUTSIDE);
+        text.setStrokeWidth(0.0);
+        text.setText("No Content");
+        text.setWrappingWidth(504.5366325378418);
+
+        Font font = Font.font("Berlin Sans FB", 85.0);
+        text.setFont(font);
+
+        root.getChildren().addAll(imageView, text);
+    }
     void supprimerBonPlan(BonPlan b){
         bs.delete(b.getId_bonplan());
+        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           } 
         getAllBonPlans();
         
     }
@@ -332,6 +451,12 @@ public class FXMLController implements Initializable {
         }
         public void validateBonPlan(ActionEvent e,BonPlan b){
         bs.validateBonPlan(b);
+        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               list=bs.readAll();
+           }
+           else{
+               list=bs.readAllAccepted();
+           } 
         getAllBonPlans();
     }
       
