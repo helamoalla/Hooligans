@@ -18,15 +18,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -47,12 +51,12 @@ ObservableList<Maintenance> d ;
     /**
      * Initializes the controller class.
      */
-      public List<Maintenance> data(ObservableList<Maintenance> om){
-          System.out.println(om);
-        this.d=om;
-        d.addAll(om);
-       id_list.addAll(om);
-       return id_list;
+//      public List<Maintenance> data(ObservableList<Maintenance> om){
+//          System.out.println(om);
+//        this.d=om;
+//        d.addAll(om);
+     //  id_list.addAll(om);
+    //   return id_list;
 //   // Maintenance m =new Maintenance();
 //    m.setId_user(m.getId_user());
 //    m.setDate_maintenance(m.getDate_maintenance());
@@ -88,22 +92,22 @@ ObservableList<Maintenance> d ;
 //  
 //    return m;
     
-    }
+   // }
       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          int column = 0;
         int row = 0;
-      //  id_list.addAll(sm.chercher(id));
+        id_list.addAll(sm.chercher(4));
         System.out.println(id_list);
         try { 
             for (int i = 0; i < id_list.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-               fxmlLoader.setLocation(getClass().getResource("../view/itemMaintenance.fxml"));
+               fxmlLoader.setLocation(getClass().getResource("../view/itemMaintenanceU.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemMaintenanceController itemController = fxmlLoader.getController();
+                ItemMaintenanceUController itemController = fxmlLoader.getController();
                 itemController.setData(id_list.get(i));
 
                 if (column == 3) {
@@ -146,7 +150,7 @@ ObservableList<Maintenance> d ;
         {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("../view/itemMaintenance.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("../view/itemMaintenanceU.fxml"));
                 AnchorPane abc = fxmlLoader.load();
                 ItemMaintenanceController itemcontroller = fxmlLoader.getController();
                 itemcontroller.setData(lg.get(i));
@@ -168,5 +172,22 @@ ObservableList<Maintenance> d ;
        
     }
     }    
+
+    @FXML
+    private void retour(ActionEvent event) {
+     
+         try{
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
+        Parent view_2=loader.load();
+        
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(view_2);
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+    }
     
-}
+

@@ -6,10 +6,19 @@
 package view;
 
 import Interfaces.InterfaceCRUD;
+import Models.GarageC;
 import Models.Maintenance;
 import Services.ServiceMaintenance;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +34,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
+
+       
 /**
  * FXML Controller class
  *
@@ -33,6 +51,7 @@ import javafx.stage.Stage;
  */
 public class Demander_maintenanceController implements Initializable {
 InterfaceCRUD sm=new ServiceMaintenance();
+ServiceMaintenance sm1=new ServiceMaintenance();
     @FXML
     private TextField id_user;
     @FXML
@@ -77,9 +96,10 @@ InterfaceCRUD sm=new ServiceMaintenance();
     }    
 
     @FXML
-    private void demander_maintenance(ActionEvent event) {
-    try {
+    private void demander_maintenance(ActionEvent event) throws MessagingException {
+   
       
+    try {
         Maintenance m=new Maintenance();
         m.setId_user(Integer.parseInt(id_user.getText()));
         m.setAutre(id_autre.getText());
@@ -99,8 +119,35 @@ InterfaceCRUD sm=new ServiceMaintenance();
         m.setFeu_d_eclairage(id_feu_d_eclairage.isSelected());
         
         sm.insert(m);
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
+        System.out.println(m);
+        
+        
+        //////////////////////MAIL////////////
+         
+        
+    sm1.sendEmail("nadiakarboul24@gmail.com", "Attention!!!!", "Le produit risque d'être achevé","C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pdf/pdf.pdf");
+
+      
+       
+           
+        // Envoi du message
+    
+        
+        
+        
+        
+        ///////////////////////////////////
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./devis.fxml"));
         Parent view_2=loader.load();
+       DevisController ItemDevisController =loader.getController();
+        
+     //  GarageC g=new GarageC();
+        ItemDevisController.getMaintenance(m);
+        System.out.println(m);
+        ItemDevisController.m=m;
+      
+        
+        
         
         Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(view_2);
@@ -109,8 +156,28 @@ InterfaceCRUD sm=new ServiceMaintenance();
     } catch (IOException ex) {
         Logger.getLogger(Demander_maintenanceController.class.getName()).log(Level.SEVERE, null, ex);
     }
+   
        
         
+    }
+
+    @FXML
+    private void pdf(ActionEvent event) throws FileNotFoundException, DocumentException {
+
+        String file_name = ("C:\\Users\\helam\\Documents\\NetBeansProjects\\PIDEV\\src\\pdf\\pdf.pdf");
+        
+        Document doc = new Document();
+        PdfWriter.getInstance(doc, new FileOutputStream(file_name));
+        doc.open();
+        System.out.println("PDF created successfully.");
+        doc.add(new Paragraph("Votre DEVIS :"));
+        doc.add(new Paragraph("PANNE : "));
+        doc.add(new Paragraph("PRIX : "));
+        doc.add(new Paragraph("Taux taxe comprix : "));
+        doc.add(new Paragraph("somme apres reduction : "));
+        doc.close();
+    
+
     }
     
 }

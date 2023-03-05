@@ -178,9 +178,9 @@ Maintenance m=new Maintenance();
         Parent view_2=loader.load();
         
         MesDemandesController itemcontroller = loader.getController();
-        itemcontroller.d=d;
-     ArrayList<Maintenance> id_list= (ArrayList<Maintenance>) itemcontroller.data(d);
-        itemcontroller.id_list=id_list;
+       // itemcontroller.d=d;
+    // ArrayList<Maintenance> id_list= (ArrayList<Maintenance>) itemcontroller.data(d);
+       // itemcontroller.id_list=id_list;
         
         //  itemcontroller.id=Integer.valueOf(id_user.getText());
         

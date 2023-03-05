@@ -93,10 +93,10 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
          Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         // Remplacez le numéro de téléphone ci-dessous par le numéro de téléphone tunisien que vous voulez envoyer le SMS
-       String phoneNumber = "+21654023788";
+       String phoneNumber = "+216"+String.valueOf(g.getNumero());
       
       //  Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"garage ajouter").create();
-         Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER), "Garage Ajoutee avec succes").create();
+         Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER),"Felicitation! la conventient avec votre garage "+g.getNom_garage()+" a été accepté.").create();
         
         System.out.println(message.getSid());
           } catch (SQLException ex) {

@@ -31,6 +31,11 @@ public class ServiceDevis implements InterfaceCRUD<Devis>{
 InterfaceCRUD sm=new ServiceMaintenance();
 InterfaceCRUD sg=new ServiceGarageC();
 Devis d=new Devis();
+public float TTC;
+public float getTTC() {
+        return TTC;
+    }
+
     @Override
     public void insert(Devis t) {
         try {
@@ -145,7 +150,7 @@ Devis d=new Devis();
       t.setTVA(19);
            System.out.println(somme);
         float   T=(somme*t.getTVA())/100f;
-        float TTC=(T+somme);
+         TTC=(T+somme);
              System.out.println("Taux taxe compris (TVA=19%) :" +TTC);
              float Red=(TTC*g.getTaux_de_reduction())/100;
              System.out.println("Reduction de "+g.getTaux_de_reduction()+" : somme :"+Red);

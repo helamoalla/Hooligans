@@ -8,11 +8,12 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/css4.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MaintenanceController">
    <children>
       <Button fx:id="id_demande" layoutX="33.0" layoutY="23.0" mnemonicParsing="false" onAction="#demander_maintenance" text="demande Maintenance" textFill="RED" />
-      <ListView fx:id="id_list" layoutX="14.0" layoutY="60.0" opacity="0.72" prefHeight="58.0" prefWidth="812.0" />
+      <ListView fx:id="id_list" layoutX="14.0" layoutY="60.0" opacity="0.72" prefHeight="58.0" prefWidth="812.0" visible="false" />
       <Button fx:id="id_modifier" layoutX="200.0" layoutY="23.0" mnemonicParsing="false" onAction="#modifier_demande" text="modifier Demande" textFill="RED" />
       <Button fx:id="id_afficher" layoutX="382.0" layoutY="23.0" mnemonicParsing="false" onAction="#afficher_demande" text="afficher demande" textFill="RED" />
       <TextField fx:id="id_user" layoutX="491.0" layoutY="23.0" prefHeight="26.0" prefWidth="29.0" />
@@ -26,6 +27,9 @@
                <children>
                   <HBox fx:id="Vboxe" prefHeight="100.0" prefWidth="200.0" />
                </children>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
