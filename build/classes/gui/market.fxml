@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MarketController">
+    <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../CssStyle/search.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="74.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="50.0" prefWidth="127.0" text="D&amp;R" textFill="#ae3131">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Market" textFill="#515050">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="360.0" stylesheets="@../CssStyle/search.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField prefHeight="40.0" prefWidth="245.0" promptText="Type here to search" stylesheets="@../CssStyle/search.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="84.0" styleClass="search-button" stylesheets="@../CssStyle/search.css" text="Search" textFill="WHITE" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Pane prefHeight="62.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Pane>
+                  <VBox alignment="CENTER" prefHeight="585.0" prefWidth="335.0" styleClass="chosen-fruit-card" stylesheets="@../CssStyle/search.css">
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox fx:id="chosenProduit" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="nomproduit" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="151.0" text="Porte Tasse" textAlignment="RIGHT" textFill="WHITE">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="90.0" prefWidth="76.0" />
+                              <Label fx:id="prixproduit" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="95.0" text="40Dt" textAlignment="RIGHT" textFill="WHITE">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="imageproduit" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" styleClass="chosen-fruit-card">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="34.0" prefWidth="335.0" />
+                        <Text fx:id="desc" fill="#615b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Pane prefHeight="36.0" prefWidth="335.0" />
+                        <HBox prefHeight="47.0" prefWidth="335.0">
+                           <children>
+                              <Label prefHeight="47.0" prefWidth="138.0" text="Quantité" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="quanti" opacity="0.68" prefHeight="26.0" prefWidth="53.0">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <Separator prefHeight="14.0" prefWidth="267.0">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets left="5.0" right="5.0" />
+                           </opaqueInsets>
+                        </Separator>
+                        <Button mnemonicParsing="false" onAction="#ajouteraupanier" opacity="0.88" prefHeight="30.0" prefWidth="250.0" styleClass="add-btn" text="Ajouter au panier" textFill="#990f0f">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="30.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Pane prefHeight="66.0" prefWidth="766.0">
+                           <children>
+                              <Button layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../CssStyle/search.css" text="Home" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
+                        <Label prefHeight="48.0" prefWidth="195.0" text="My account" textFill="#6e5c5c">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fx:id="panier" fitHeight="46.0" fitWidth="45.0" onMouseClicked="#ConsulterPanier" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/panier.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>   
+</AnchorPane>
