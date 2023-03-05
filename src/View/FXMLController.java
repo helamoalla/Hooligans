@@ -89,7 +89,6 @@ public class FXMLController implements Initializable {
      */
 
     public void initialize(URL url, ResourceBundle rb) {
-                
         sorting.getItems().addAll("Averge Desc","Averge Asc","No filter");
        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
                list=bs.readAll();

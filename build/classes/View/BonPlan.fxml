@@ -24,10 +24,13 @@
                            <font>
                               <Font name="Bradley Hand ITC" size="26.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
                         </Text>
-                        <JFXTextArea fx:id="searchField" prefHeight="26.0" prefWidth="167.0">
+                        <JFXTextArea fx:id="searchField" prefHeight="44.0" prefWidth="171.0">
                            <font>
-                              <Font name="Arial Narrow" size="14.0" />
+                              <Font name="Berlin Sans FB Demi Bold" size="13.0" />
                            </font>
                         </JFXTextArea>
                      </children>

@@ -37,6 +37,8 @@ import javafx.scene.control.ToggleButton;
 import Service.UserService;
 import Util.Data;
 import Util.MyConnection;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 
 
 import javax.mail.Authenticator;
@@ -69,32 +71,17 @@ private Connection connection;
     @FXML
     private ToggleButton showbotton;
     @FXML
-    private Label mdpshow;
-    
-    
-   
+    private Text mdpshow;
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private boolean labelVisible = false;
+    @FXML
+    private FlowPane container;
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        container.setStyle("-fx-background-color: white; -fx-border-color: black;"
+                            + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
        mdpshow.textProperty().bind(pswd.textProperty());
 
     mdpshow.setVisible(false); 
@@ -161,7 +148,13 @@ UserService userService = new UserService();
                 stage.setScene(scene);
                 stage.show();
             
-        } 
+        } else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Email ou password incorecte");
+                alert.showAndWait();
+        }
         resultSet.close();
         statement.close();
       

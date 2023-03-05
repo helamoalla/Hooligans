@@ -75,8 +75,8 @@ public class MenuItemController implements Initializable {
         
         Image imgPic= new Image("http://localhost/images/"+userService.readById(Data.getId_user()).getImg());
         userImg.setImage(imgPic);
-        userImg.setFitHeight(45);
-        userImg.setFitWidth(45);
+        userImg.setFitHeight(46);
+        userImg.setFitWidth(46);
         Circle clip = new Circle(userImg.getFitWidth()/2, userImg.getFitHeight()/2, userImg.getFitWidth()/2);
         userImg.setClip(clip);
         user.setText("  "+userService.readById(Data.getId_user()).getNom());

@@ -20,12 +20,12 @@
             </ImageView>
          </children>
       </VBox>
-      <JFXButton fx:id="user" alignment="CENTER" onAction="#GoUser" prefHeight="39.0" prefWidth="128.0" text="   User" textFill="#b4abab">
+      <JFXButton fx:id="user" alignment="CENTER" onAction="#GoUser" prefHeight="77.0" prefWidth="102.0" text="   User" textFill="#b4abab">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <graphic>
-            <ImageView fx:id="userImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userImg" fitHeight="46.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/home.png" />
                </image>
@@ -106,7 +106,7 @@
             </ImageView>
          </graphic>
          <VBox.margin>
-            <Insets top="200.0" />
+            <Insets top="170.0" />
          </VBox.margin>
          <padding>
             <Insets left="20.0" />

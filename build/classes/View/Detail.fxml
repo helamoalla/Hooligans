@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1014.0" styleClass="back" stylesheets="@../Views/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DetailController">
    <children>
-      <HBox layoutX="107.0" layoutY="394.0" prefHeight="308.0" prefWidth="742.0">
+      <HBox fx:id="feedsContainer" layoutX="107.0" layoutY="394.0" prefHeight="370.0" prefWidth="759.0">
          <children>
             <AnchorPane prefHeight="308.0" prefWidth="746.0">
                <children>
@@ -42,29 +44,35 @@
                         <JFXTextArea fx:id="rate" prefHeight="10.0" prefWidth="46.0" style="-fx-background-color: #dcdcdc;" />
                      </children>
                   </HBox>
-                  <HBox layoutY="141.0" prefHeight="95.0" prefWidth="742.0">
+                  <HBox layoutY="141.0" prefHeight="66.0" prefWidth="742.0">
                      <children>
                         <Text fill="#898989" strokeType="OUTSIDE" strokeWidth="0.0" text="Commentaire" wrappingWidth="224.35858154296875">
                            <font>
                               <Font name="Bell MT" size="26.0" />
                            </font>
                         </Text>
-                        <JFXTextArea fx:id="commentaire" prefHeight="82.0" prefWidth="324.0" style="-fx-background-color: #dcdcdc;" text="Helloo Azizz" wrapText="true">
+                        <JFXTextArea fx:id="commentaire" prefHeight="50.0" prefWidth="282.0" style="-fx-background-color: #dcdcdc;" text="Helloo Azizz" wrapText="true">
                            <font>
                               <Font name="Arial Narrow" size="18.0" />
                            </font>
                         </JFXTextArea>
                      </children>
                   </HBox>
-                  <JFXToggleButton fx:id="report" contentDisplay="RIGHT" layoutX="6.0" layoutY="236.0" prefHeight="92.0" prefWidth="347.0" size="15.0" text="Report                   " textFill="#898989">
+                  <JFXToggleButton fx:id="report" contentDisplay="RIGHT" layoutX="-15.0" layoutY="207.0" prefHeight="92.0" prefWidth="314.0" size="15.0" text="Report                   " textFill="#898989">
                      <font>
                         <Font name="Bell MT" size="25.0" />
                      </font>
                   </JFXToggleButton>
-                  <JFXButton buttonType="RAISED" layoutX="444.0" layoutY="263.0" onAction="#ajouterFeedback" prefHeight="46.0" prefWidth="129.0" ripplerFill="#d9d9d9" text="Ajouter Feedback" textAlignment="CENTER" textFill="#e4e4e4">
+                  <JFXButton buttonType="RAISED" layoutX="291.0" layoutY="293.0" onAction="#ajouterFeedback" prefHeight="42.0" prefWidth="160.0" ripplerFill="#c1bbbb" style="-fx-background-color: gray;" text="Ajouter Feedback" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <BoxBlur />
+                     </effect>
                   </JFXButton>
                </children>
             </AnchorPane>

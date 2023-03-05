@@ -9,6 +9,8 @@ import Model.BonPlan;
 import Model.Feedback;
 import Service.BonPlanService;
 import Service.FeedbackService;
+import Service.UserService;
+import Util.Data;
 import View.FXMLController;
 import View.MenuItemController;
 import com.jfoenix.controls.JFXTextArea;
@@ -30,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
@@ -69,12 +72,19 @@ public class DetailController implements Initializable {
     private Rating ratingAvg;
     @FXML
     private Text rateAvg;
+    UserService userService=new UserService();
+    @FXML
+    private HBox feedsContainer;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+            feedsContainer.setVisible(false);
+        }
         report.selectedProperty().addListener((obs, oldState, newState) -> {
             if (newState) {
                 System.out.println("Toggle switch is on");
