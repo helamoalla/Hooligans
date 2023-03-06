@@ -57,24 +57,30 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label layoutX="85.0" layoutY="84.0" text="Adresse ">
+            <Label layoutX="85.0" layoutY="84.0" text="Gouvernorat">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="82.0" layoutY="142.0" text="Code postal">
+            <Label layoutX="87.0" layoutY="208.0" text="Code postal">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="85.0" layoutY="204.0" text="Email">
+            <TextField fx:id="tfgouvernorat" layoutX="172.0" layoutY="81.0" />
+            <TextField fx:id="tfrue" layoutX="172.0" layoutY="163.0" />
+            <TextField fx:id="tfville" layoutX="172.0" layoutY="124.0" />
+            <TextField fx:id="tfcodepostal" layoutX="172.0" layoutY="205.0" />
+            <Label layoutX="86.0" layoutY="127.0" text="Ville ">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfadresse" layoutX="172.0" layoutY="81.0" />
-            <TextField fx:id="tfcodepostal" layoutX="172.0" layoutY="142.0" />
-            <TextField fx:id="tfmail" layoutX="172.0" layoutY="201.0" />
+            <Label layoutX="88.0" layoutY="166.0" text="Rue ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </children>

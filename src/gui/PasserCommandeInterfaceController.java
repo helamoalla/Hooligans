@@ -42,6 +42,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.SQLException;
 /**
  * FXML Controller class
  *
@@ -68,11 +69,13 @@ public class PasserCommandeInterfaceController implements Initializable {
     @FXML
     private Button btnConfirmer;
     @FXML
-    private TextField tfadresse;
-    @FXML
     private TextField tfcodepostal;
     @FXML
-    private TextField tfmail;
+    private TextField tfgouvernorat;
+    @FXML
+    private TextField tfville;
+    @FXML
+    private TextField tfrue;
 
     /**
      * Initializes the controller class.
@@ -111,7 +114,7 @@ public class PasserCommandeInterfaceController implements Initializable {
     @FXML
     private void FenetrePanier(MouseEvent event) {
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ConsulterPanierInterface.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
             Parent view_2=loader.load();
             ConsulterPanierInterfaceController i =loader.getController();
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -124,24 +127,37 @@ public class PasserCommandeInterfaceController implements Initializable {
     }
 
     @FXML
-    private void ConfirmerCommande(MouseEvent event) throws FileNotFoundException, DocumentException {
+    private void ConfirmerCommande(MouseEvent event) throws FileNotFoundException, DocumentException, SQLException {
        
         CommandeService cs = new CommandeService();
         PanierService ps = new PanierService();
          Panier p = new Panier();   
         
-        if(tfadresse.getText().length() == 0||tfcodepostal.getText().length() == 0||tfmail.getText().length() == 0){
+        if(tfgouvernorat.getText().length() == 0||tfville.getText().length() == 0||tfrue.getText().length() == 0||tfcodepostal.getText().length() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Erreur de saisie !");
             alert.setContentText("Veuillez remplir tous les champs"+ "");
             alert.show(); 
            }
-        else if(tfadresse.getText().matches("\\d*")){
+        else if(tfgouvernorat.getText().matches("\\d*")){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("L'adresse doit doit etre une chaine"+ "");
+            alert.setContentText("Le gouvernorat doit doit etre une chaine"+ "");
             alert.show(); 
     }
+                else if(tfville.getText().matches("\\d*")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("La ville doit doit etre une chaine"+ "");
+            alert.show(); 
+    }
+         else if(tfrue.getText().matches("\\d*")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("La rue doit doit etre une chaine"+ "");
+            alert.show(); 
+    }
+                
         
         else if(!tfcodepostal.getText().matches("\\d*")||tfcodepostal.getText().length()!=4){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -149,38 +165,45 @@ public class PasserCommandeInterfaceController implements Initializable {
             alert.setContentText("Le code postal doit etre un nombre de 4 chiffres"+ "");
             alert.show(); 
     }
-              else if(!tfmail.getText().contains("@")||!tfmail.getText().contains(".")){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Erreur de saisie !");
-            alert.setContentText("L'adresse mail doit etre de la forme adresse@---.--"+ "");
-            alert.show(); 
-    }
   
-              else { 
-                  String adr= tfadresse.getText();
+            else { 
+            
+            if(ps.totalproduitParPanier(1)>10){
+                        String gov= tfgouvernorat.getText();
+                  String ville= tfville.getText();
+                  String rue= tfrue.getText();
                   int codep= Integer.parseInt(tfcodepostal.getText());
-                  String email= tfmail.getText();
-                Commande c = new Commande(p = ps.readById(1),ps.totalmontantPanier(1),"En cours de traitement",adr,codep,);  
-//                c.setPanier( p = ps.readById(1));
-//                c.setMontant(ps.totalmontantPanier(1));
-//                c.setEtat_commande("En cours de traitement");
-//                c.setAdresse(tfadresse.getText());
-//                c.setCode_postal(Integer.parseInt(tfcodepostal.getText()));
-//                c.setEmail(tfmail.getText());
-         cs.insert(c);
-          Document doc = new Document();
-        PdfWriter.getInstance(doc, new FileOutputStream("Facture.pdf"));
-        doc.open();
-         //doc.add(new Paragraph("Hello World!"));
-//        doc.add(new Paragraph("Votre Facture :"));
-//        doc.add(new Paragraph("Facture numéro"+listviewC.getSelectionModel().getSelectedItem().getId_commande()));
-//        doc.add(new Paragraph("Montant total "+listviewC.getSelectionModel().getSelectedItem().getMontant()));
-//        doc.add(new Paragraph("Statut de cotre commande"+listviewC.getSelectionModel().getSelectedItem().getEtat_commande()));
-//        doc.add(new Paragraph("La commande va etre livré à l'adresse"+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
-        doc.close();
+                  Commande c = new Commande();
+                c.setPanier( p = ps.readById(1));
+                c.setMontant(ps.totalmontantPanierAvec10Discount(1));
+                c.setEtat_commande("En cours de traitement");
+                c.setGouvernorat(gov);
+                c.setVille(ville);
+                c.setRue(rue);
+                c.setCode_postal(codep);
+                cs.insert(c);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Commande ajoutée avec succés");
             alert.show();
+            }
+            else{
+                  String gov= tfgouvernorat.getText();
+                  String ville= tfville.getText();
+                  String rue= tfrue.getText();
+                  int codep= Integer.parseInt(tfcodepostal.getText());
+                  Commande c = new Commande();
+                c.setPanier( p = ps.readById(1));
+                c.setMontant(ps.totalmontantPanier(1));
+                c.setEtat_commande("En cours de traitement");
+                c.setGouvernorat(gov);
+                c.setVille(ville);
+                c.setRue(rue);
+                c.setCode_postal(codep);
+                cs.insert(c);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Commande ajoutée avec succés");
+            alert.show();
+            }
     }
     }
                 
