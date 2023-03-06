@@ -121,7 +121,7 @@ public class MesCommandesInterfacesController implements Initializable {
         doc.add(new Paragraph("Facture numéro : "+listviewC.getSelectionModel().getSelectedItem().getId_commande()));
         doc.add(new Paragraph("Montant total à payer en DT : "+listviewC.getSelectionModel().getSelectedItem().getMontant()));
         doc.add(new Paragraph("Statut de votre commande : "+listviewC.getSelectionModel().getSelectedItem().getEtat_commande()));
-        doc.add(new Paragraph("La commande va etre livré à l'adresse : "+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
+        //doc.add(new Paragraph("La commande va etre livré à l'adresse : "+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
         doc.close();
                
     }

@@ -130,5 +130,4 @@ public class LignePanier {
                 "Prix : " + produit.getPrix_prod() +System.lineSeparator()+
                 "Quantite : " + quantite +System.lineSeparator();
     }
-    
 }

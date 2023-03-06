@@ -116,7 +116,7 @@ private PanierService ps = new PanierService();
     
     public void afficherpanier(){
     /****************Afficher panier by id_user***********************/
-        listprod.addAll(lps.AfficherPanierbyiduser(1));
+        listprod.addAll(lps.AfficherPanierbyiduser(2));
         //System.out.println(listprod);
          if (listprod.size() > 0) {
             setChosenLignePanier(listprod.get(1));

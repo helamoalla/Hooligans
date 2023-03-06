@@ -16,9 +16,8 @@ public class Commande {
     private double montant;
     private String etat_commande; 
     private Date date_commande;
-    private String adresse ;
+    private String gouvernorat, ville, rue ;
     private int code_postal;
-    private String email; 
     private Panier panier;
     
     
@@ -29,37 +28,40 @@ public class Commande {
       
     //Constructeur paramétré
     //sans id
-    public Commande(double montant,String etat_commande, Date date_commande, String adresse, int code_postal, String email, Panier panier) {
+
+    public Commande(double montant, String etat_commande, Date date_commande, String gouvernorat, String ville, String rue, int code_postal, Panier panier) {
         this.montant = montant;
         this.etat_commande = etat_commande;
         this.date_commande = date_commande;
-        this.adresse =adresse;
+        this.gouvernorat = gouvernorat;
+        this.ville = ville;
+        this.rue = rue;
         this.code_postal = code_postal;
-        this.email = email;
         this.panier = panier;
     }
+    
 
-    public Commande(double montant, String etat_commande, String adresse, int code_postal, String email, Panier panier) {
+    public Commande(double montant, String etat_commande, String gouvernorat, String ville, String rue, int code_postal, Panier panier) {
         this.montant = montant;
         this.etat_commande = etat_commande;
-        this.adresse = adresse;
+        this.gouvernorat = gouvernorat;
+        this.ville = ville;
+        this.rue = rue;
         this.code_postal = code_postal;
-        this.email = email;
         this.panier = panier;
     }
-    
-    
 
     //avec id
 
-    public Commande(int id_commande, double montant, String etat_commande, Date date_commande, String adresse, int code_postal, String email, Panier panier) {
+    public Commande(int id_commande, double montant, String etat_commande, Date date_commande, String gouvernorat, String ville, String rue, int code_postal, Panier panier) {
         this.id_commande = id_commande;
         this.montant = montant;
         this.etat_commande = etat_commande;
         this.date_commande = date_commande;
-        this.adresse = adresse;
+        this.gouvernorat = gouvernorat;
+        this.ville = ville;
+        this.rue = rue;
         this.code_postal = code_postal;
-        this.email = email;
         this.panier = panier;
     }
 
@@ -85,19 +87,24 @@ public class Commande {
         return panier;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
+    
 
     public int getCode_postal() {
         return code_postal;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGouvernorat() {
+        return gouvernorat;
     }
-    
-    
+
+    public String getVille() {
+        return ville;
+    }
+
+    public String getRue() {
+        return rue;
+    }
+
     
     //Settres 
 
@@ -105,9 +112,6 @@ public class Commande {
         this.id_commande = id_commande;
     }
 
-    public void setMontant(float montant) {
-        this.montant = montant;
-    }
 
     public void setEtat_commande(String etat_commande) {
         this.etat_commande = etat_commande;
@@ -126,32 +130,43 @@ public class Commande {
     }
 
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
 
     public void setCode_postal(int code_postal) {
         this.code_postal = code_postal;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGouvernorat(String gouvernorat) {
+        this.gouvernorat = gouvernorat;
     }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public void setRue(String rue) {
+        this.rue = rue;
+    }
+
     
     
     
-    //Affichage : toString
+    //toString
+
+//    @Override
+//    public String toString() {
+//        
+//         return "Commande numéro : " + id_commande +System.lineSeparator()+
+//                "Statuts : '" + etat_commande + System.lineSeparator()+
+//                "Montant total :" + montant +System.lineSeparator()+
+//             //   "Date lancement de votre commande='" + date_commande + System.lineSeparator()+
+//                "Code postal : " + code_postal +System.lineSeparator()+
+//                "Adresse : " + adresse +System.lineSeparator();
+//
+//    }  
 
     @Override
     public String toString() {
-        
-         return "Commande numéro : " + id_commande +System.lineSeparator()+
-                "Statuts : '" + etat_commande + System.lineSeparator()+
-                "Montant total :" + montant +System.lineSeparator()+
-             //   "Date lancement de votre commande='" + date_commande + System.lineSeparator()+
-                "Code postal : " + code_postal +System.lineSeparator()+
-                "Adresse : " + adresse +System.lineSeparator();
-
-    }  
+        return "Commande{" + "id_commande=" + id_commande + ", montant=" + montant + ", etat_commande=" + etat_commande + ", date_commande=" + date_commande + ", gouvernorat=" + gouvernorat + ", ville=" + ville + ", rue=" + rue + ", code_postal=" + code_postal + ", panier=" + panier + '}';
+    }
         
 }

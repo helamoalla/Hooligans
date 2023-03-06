@@ -160,7 +160,7 @@ public class PasserCommandeInterfaceController implements Initializable {
                   String adr= tfadresse.getText();
                   int codep= Integer.parseInt(tfcodepostal.getText());
                   String email= tfmail.getText();
-                Commande c = new Commande(ps.totalmontantPanier(1),"En cours de traitement",adr,codep,email,p = ps.readById(1));  
+                Commande c = new Commande(p = ps.readById(1),ps.totalmontantPanier(1),"En cours de traitement",adr,codep,);  
 //                c.setPanier( p = ps.readById(1));
 //                c.setMontant(ps.totalmontantPanier(1));
 //                c.setEtat_commande("En cours de traitement");
@@ -181,9 +181,6 @@ public class PasserCommandeInterfaceController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Commande ajoutée avec succés");
             alert.show();
-          tfadresse.setText("");
-          tfcodepostal.setText("");
-          tfmail.setText("");
     }
     }
                 

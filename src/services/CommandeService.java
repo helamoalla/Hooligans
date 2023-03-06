@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import util.MyConnection;
 import models.Commande;
 import java.util.List;
@@ -32,35 +30,16 @@ public class CommandeService implements InterfaceCRUD <Commande>{
     //insert
     public void insert(Commande c) {
         try {
-            //        try {
-//            //String req = "INSERT INTO `commande`(`montant`,`etat_commande`,`adresse`,`code_postal`,`email`,`id_panier`) VALUES(?,?,?,?,?,?)";
-//
-//            String req = "INSERT INTO commande(montant,etat_commande,adresse,code_postal,email,id_panier,date_commande) VALUES(?,?,?,?,?,?)";
-//            PreparedStatement ps = cnx.prepareStatement(req);
-//            ps.setDouble(1, c.getMontant());
-//            ps.setString(2, c.getEtat_commande());
-//            ps.setString(3, c.getAdresse());
-//            ps.setInt(4, c.getCode_postal());
-//            ps.setString(5, c.getEmail());
-//            ps.setInt(6, c.getPanier().getId_panier());
-//            ps.setString(7, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-//            ps.executeUpdate();
-//            System.out.println("Commande ajoutée avec succée");
-//            
-//        } catch (SQLException ex) {
-//        }     
-
-//String req = "INSERT INTO `commande`(`montant`,`etat_commande,`adresse`,`code_postal`,`email`,`id_panier`) VALUES(?,?,?,?,?,?)";
-String req = "INSERT INTO commande(montant,etat_commande,adresse,code_postal,email,id_panier) VALUES(?,?,?,?,?,?)";
+String req = "INSERT INTO `commande`(`id_panier`,`montant`,`etat_commande`,`gouvernorat`,`ville`,`rue`,`code_postal`) VALUES(?,?,?,?,?,?,?)";
      
 PreparedStatement ps = cnx.prepareStatement(req);
-             ps.setDouble(1, c.getMontant());
-             ps.setString(2, c.getEtat_commande());
-             ps.setString(3, c.getAdresse());
-             ps.setInt(4, c.getCode_postal());
-             ps.setString(5, c.getEmail());
-             ps.setInt(6, c.getPanier().getId_panier());
-             //ps.setString(7, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+             ps.setInt(1, c.getPanier().getId_panier());
+             ps.setDouble(2, c.getMontant());
+             ps.setString(3, c.getEtat_commande());
+             ps.setString(4, c.getGouvernorat());
+             ps.setString(5, c.getVille());
+             ps.setString(6, c.getRue());
+             ps.setInt(7, c.getCode_postal());
              ps.executeUpdate();
              System.out.println("Commande ajoutée avec succée");
 
@@ -89,15 +68,16 @@ PreparedStatement ps = cnx.prepareStatement(req);
     //update
     public void update(Commande c) {
         try {
-            String req ="UPDATE `commande` SET  `montant`= ? ,`etat_commande`= ? ,`adresse`= ?,`code_postal`= ?,`email`= ?,`id_panier`= ?   WHERE id_commande = ?";
+            String req ="UPDATE `commande` SET  `id_panier`= ? ,`montant`= ? ,`etat_commande`= ? ,`gouvernorat`= ?,`ville`= ?,`rue`= ?,`code_postal`= ? WHERE id_commande = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setDouble(1, c.getMontant());
-            ps.setString(2, c.getEtat_commande());
-            ps.setString(3, c.getAdresse());
-            ps.setInt(4, c.getCode_postal());
-            ps.setString(5, c.getEmail());
-            ps.setInt(6, c.getPanier().getId_panier());
-            ps.setInt(7,c.getId_commande());
+            ps.setInt(1, c.getPanier().getId_panier());
+            ps.setDouble(2, c.getMontant());
+            ps.setString(3, c.getEtat_commande());
+            ps.setString(4, c.getGouvernorat());
+            ps.setString(5, c.getVille());
+            ps.setString(6, c.getRue());
+            ps.setInt(7, c.getCode_postal());
+            ps.setInt(8,c.getId_commande());
             ps.executeUpdate();
             System.out.println("Commande mise à jour avec succés");
         } catch (SQLException ex) {
@@ -118,14 +98,14 @@ PreparedStatement ps = cnx.prepareStatement(req);
             while (rs.next()) {                
                 Commande c = new Commande();
                 c.setId_commande(rs.getInt(1));
-                c.setMontant(rs.getDouble(2));
-                c.setEtat_commande(rs.getString(3));
-                c.setAdresse(rs.getString(4));
-                c.setCode_postal(rs.getInt(5));
-                c.setEmail(rs.getString(6));
-                c.setPanier(ps.readById(rs.getInt(7)));
-                
-                commandes.add(c);
+                c.setPanier(ps.readById(rs.getInt(2)));
+                c.setMontant(rs.getDouble(3));
+                c.setEtat_commande(rs.getString(4));
+                c.setGouvernorat(rs.getString(5));
+                c.setVille(rs.getString(6));
+                c.setRue(rs.getString(7));
+                c.setCode_postal(rs.getInt(8));
+              commandes.add(c);
             }
             
         } catch (SQLException ex) {
@@ -147,13 +127,14 @@ PreparedStatement ps = cnx.prepareStatement(req);
             rs.beforeFirst();
             rs.next();
             c.setId_commande(rs.getInt(1));
-                c.setMontant(rs.getDouble(2));
-                c.setEtat_commande(rs.getString(3));
-                //c.setDate_commande(rs.getDate(5));
-                c.setAdresse(rs.getString(4));
-                c.setCode_postal(rs.getInt(5));
-                c.setEmail(rs.getString(6));
-                c.setPanier(ps.readById(rs.getInt(7)));
+            c.setPanier(ps.readById(rs.getInt(2)));
+            c.setMontant(rs.getDouble(3));
+            c.setEtat_commande(rs.getString(4));
+            c.setGouvernorat(rs.getString(5));
+            c.setVille(rs.getString(6));
+            c.setRue(rs.getString(7));
+            c.setCode_postal(rs.getInt(8));
+            //c.setDate_commande(rs.getDate(5));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -172,14 +153,15 @@ PreparedStatement ps = cnx.prepareStatement(req);
               ResultSet rs=ste.executeQuery(req);
               while(rs.next()){
                Commande c=new Commande();
-                c.setId_commande(rs.getInt(1));
-                c.setMontant(rs.getDouble(2));
-                c.setEtat_commande(rs.getString(3));
+               c.setId_commande(rs.getInt(1));
+               c.setPanier(ps.readById(rs.getInt(2)));
+               c.setMontant(rs.getDouble(3));
+               c.setEtat_commande(rs.getString(4));
+               c.setGouvernorat(rs.getString(5));
+               c.setVille(rs.getString(6));
+               c.setRue(rs.getString(7));
+               c.setCode_postal(rs.getInt(8));
                 //c.setDate_commande(rs.getDate(5));
-                c.setAdresse(rs.getString(4));
-                c.setCode_postal(rs.getInt(5));
-                c.setEmail(rs.getString(6));
-                c.setPanier(ps.readById(rs.getInt(7)));
                 ListeCommandeTriee.add(c);
               }  
           } catch (SQLException ex) {
@@ -188,6 +170,7 @@ PreparedStatement ps = cnx.prepareStatement(req);
            return (ArrayList<Commande>) ListeCommandeTriee ;
     }
     
+    //Afficher les commandes du panier d'un user 7
     public List<Commande> AfficherCommandesByidpanier(int id_panier) throws SQLException {
      
             List<Commande> listC = new ArrayList<>();
@@ -197,16 +180,40 @@ PreparedStatement ps = cnx.prepareStatement(req);
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                Commande cmd =new Commande(); 
-                cmd.setId_commande(rs.getInt(1));
-                cmd.setMontant(rs.getDouble(2));
-                cmd.setEtat_commande(rs.getString(3));
-                //c.setDate_commande(rs.getDate(5));
-                cmd.setAdresse(rs.getString(4));
-                cmd.setCode_postal(rs.getInt(5));
-                cmd.setEmail(rs.getString(6));
-                cmd.setPanier(ps.readById(rs.getInt(7)));
-                listC.add(cmd);
+                Commande c =new Commande(); 
+               c.setId_commande(rs.getInt(1));
+               c.setPanier(ps.readById(rs.getInt(2)));
+               c.setMontant(rs.getDouble(3));
+               c.setEtat_commande(rs.getString(4));
+               c.setGouvernorat(rs.getString(5));
+               c.setVille(rs.getString(6));
+               c.setRue(rs.getString(7));
+               c.setCode_postal(rs.getInt(8));
+                listC.add(c);
+            }
+                        return listC;
+    }
+    
+    //Afficher les commandes d'un user 
+    public List<Commande> AfficherCommandesByid_user(int id_user) throws SQLException {
+     
+            List<Commande> listC = new ArrayList<>();
+            
+            String sql = "SELECT * FROM commande c, panier p  WHERE c.id_panier = p.id_panier AND p.id_user= "+ id_user ;
+            PanierService ps = new PanierService();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+               Commande c =new Commande(); 
+               c.setId_commande(rs.getInt(1));
+               c.setPanier(ps.readById(rs.getInt(2)));
+               c.setMontant(rs.getDouble(3));
+               c.setEtat_commande(rs.getString(4));
+               c.setGouvernorat(rs.getString(5));
+               c.setVille(rs.getString(6));
+               c.setRue(rs.getString(7));
+               c.setCode_postal(rs.getInt(8));
+               listC.add(c);
             }
                         return listC;
     }

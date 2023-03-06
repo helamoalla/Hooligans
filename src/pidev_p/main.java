@@ -31,36 +31,33 @@ public class main {
     public static void main(String[] args) {
       // MyConnection m =new MyConnection();
        
-//     Panier p = new Panier();
-//
-//      
-//   InterfaceCRUD cs = new CommandeService();
-//    InterfaceCRUD ps = new PanierService();
-//    p = (Panier) ps.readById(1);
-//    
-//Commande c = new Commande(500,"En cours de traitement","Tnis",2000,"Asma@asma.com",p);  
-//        System.out.println(c);
+//Panier p = new Panier();
+//user u = new user ("Emna","Choueibi","Asma123","emna.choueibi@esprit.tn",52599464,"11663377",1);
+
+//Commande c = new Commande(p,500,"en cours","tunis","bardo","bardo",2000)
+//InterfaceCRUD ps = new PanierService();
+//p = (Panier) ps.readById(1);
+//Commande c = new Commande();
+//c.setPanier(p);
+//c.setMontant(500);
+//c.setEtat_commande("En cours de traitement");
+//c.setGouvernorat("tunis");
+//c.setVille("Bardo");
+//c.setRue("bardo");
+//c.setCode_postal(2000);     
+//InterfaceCRUD cs = new CommandeService();
 //cs.insert(c);
 
-//       Commande c = new Commande(500,10,"en cours", p);
+
        
 //      user u = new user ("Asma","Choueibi","Asma123","asma.choueibi@esprit.tn",52599464,"11663377",1);
 //      user u1 = new user ("Nadia","Karboul","Nadia123","nadia.Karboul@esprit.tn",5200400,"11663375",5);
 //      user u2 = new user ("Rim","Choueibi","Rim123","rim.choueibi@gmail.com",52500500,"11663378",6);
-     // UserService us = new UserService();
+// UserService us = new UserService();
 //      us.insert(u);
 //      us.insert(u2);
       
-//  try {
-//      Document document = new Document();
-//      PdfWriter.getInstance(document, new FileOutputStream("example.pdf"));
-//      document.open();
-//      document.add(new Paragraph("Hello World!"));
-//      document.close();
-//      System.out.println("PDF created successfully.");
-//    } catch (DocumentException | FileNotFoundException e) {
-//      e.printStackTrace();
-   // }    
+   
 
        
     

@@ -45,7 +45,6 @@ public class LignePanierService {
                 st.setString(5, lp.getProduit().getNom_prod());
                 st.setString(6, lp.getProduit().getDescription_prod());
                 st.setString(7, lp.getProduit().getImage());
-                
                 st.executeUpdate();
                 System.out.println("Produit ajouté dans ligne panier associé au panier  d'Id "+ lp.getPanier().getId_panier());
                 
