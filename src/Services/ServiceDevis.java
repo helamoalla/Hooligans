@@ -64,8 +64,8 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
 
         ArrayList<Maintenance> lm = sm.chercher(t.getId_user());
 
-        Maintenance m = lm.get(0);
-
+      //  Maintenance m = lm.get(lm.lastIndexOf(lm));
+        Maintenance m =lm.get(0);
         System.out.println(m);
         ArrayList<GarageC> lg = sg.readAll();
         GarageC g = lg.get(i);
@@ -139,8 +139,8 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
         float T = (somme * t.getTVA()) / 100f;
         TTC = (T + somme);
         System.out.println("Taux taxe compris (TVA=19%) :" + TTC);
-        float Red = (TTC * g.getTaux_de_reduction()) / 100;
-        System.out.println("Reduction de " + g.getTaux_de_reduction() + " : somme :" + Red);
+        float Red =TTC- (TTC * g.getTaux_de_reduction()) / 100;
+        System.out.println("Reduction de " + g.getTaux_de_reduction() + " :" + Red);
         t.setTotal(Red);
         insert(t);
         somme = 0;
@@ -230,7 +230,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
         float T = (somme * t.getTVA()) / 100f;
         TTC = (T + somme);
         //   System.out.println("Taux taxe compris (TVA=19%) :" +TTC);
-        float Red = (TTC * g.getTaux_de_reduction()) / 100;
+        float Red =TTC- (TTC * g.getTaux_de_reduction()) / 100;
         //   System.out.println("Reduction de "+g.getTaux_de_reduction()+" : somme :"+Red);
         t.setTotal(Red);
         // insert(t);
@@ -302,7 +302,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
     }
 
     private int size(List<Maintenance> lm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+return lm.size();
     }
 
     @Override

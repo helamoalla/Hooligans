@@ -34,24 +34,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 
-       
 /**
  * FXML Controller class
  *
  * @author helam
  */
 public class Demander_maintenanceController implements Initializable {
-InterfaceCRUD sm=new ServiceMaintenance();
-ServiceMaintenance sm1=new ServiceMaintenance();
+
+    InterfaceCRUD sm = new ServiceMaintenance();
+    ServiceMaintenance sm1 = new ServiceMaintenance();
     @FXML
     private TextField id_user;
     @FXML
@@ -93,79 +87,57 @@ ServiceMaintenance sm1=new ServiceMaintenance();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
-    private void demander_maintenance(ActionEvent event) throws MessagingException {
-   
-      
-    try {
-        Maintenance m=new Maintenance();
-        m.setId_user(Integer.parseInt(id_user.getText()));
-        m.setAutre(id_autre.getText());
-        m.setPanne_moteur(id_panne_moteur.isSelected());
-        m.setPompe_a_eau(id_pompe_a_eau.isSelected());
-        m.setPatin(id_patin.isSelected());
-        m.setEssuie_glace(id_essuie_glace.isSelected());
-        m.setRadiateur(id_radiateur.isSelected());
-        m.setVentilateur(id_ventilateur.isSelected());
-        m.setDuride(id_duride.isSelected());
-        m.setFuite_d_huile(id_fuite_d_huile.isSelected());
-        m.setVidange(id_vidange.isSelected());
-        m.setFiltre(id_filtre.isSelected());
-        m.setBatterie(id_batterie.isSelected());
-        m.setAmortisseur(id_amortisseur.isSelected());
-        m.setFrein_main(id_frein_main.isSelected());
-        m.setFeu_d_eclairage(id_feu_d_eclairage.isSelected());
-        
-        sm.insert(m);
-        System.out.println(m);
-        
-        
-        //////////////////////MAIL////////////
-         
-        
-    sm1.sendEmail("nadiakarboul24@gmail.com", "Attention!!!!", "Le produit risque d'être achevé","C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pdf/pdf.pdf");
+    private void demander_maintenance(ActionEvent event) {
 
-      
-       
-           
-        // Envoi du message
-    
-        
-        
-        
-        
-        ///////////////////////////////////
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./devis.fxml"));
-        Parent view_2=loader.load();
-       DevisController ItemDevisController =loader.getController();
-        
-     //  GarageC g=new GarageC();
-        ItemDevisController.getMaintenance(m);
-        System.out.println(m);
-        ItemDevisController.m=m;
-      
-        
-        
-        
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException ex) {
-        Logger.getLogger(Demander_maintenanceController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-   
-       
-        
+        try {
+            Maintenance m = new Maintenance();
+            m.setId_user(Integer.parseInt(id_user.getText()));
+            m.setAutre(id_autre.getText());
+            m.setPanne_moteur(id_panne_moteur.isSelected());
+            m.setPompe_a_eau(id_pompe_a_eau.isSelected());
+            m.setPatin(id_patin.isSelected());
+            m.setEssuie_glace(id_essuie_glace.isSelected());
+            m.setRadiateur(id_radiateur.isSelected());
+            m.setVentilateur(id_ventilateur.isSelected());
+            m.setDuride(id_duride.isSelected());
+            m.setFuite_d_huile(id_fuite_d_huile.isSelected());
+            m.setVidange(id_vidange.isSelected());
+            m.setFiltre(id_filtre.isSelected());
+            m.setBatterie(id_batterie.isSelected());
+            m.setAmortisseur(id_amortisseur.isSelected());
+            m.setFrein_main(id_frein_main.isSelected());
+            m.setFeu_d_eclairage(id_feu_d_eclairage.isSelected());
+
+            sm.insert(m);
+            System.out.println(m);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("./devis.fxml"));
+            Parent view_2 = loader.load();
+            DevisController ItemDevisController = loader.getController();
+
+            //  GarageC g=new GarageC();
+            ItemDevisController.getMaintenance(m);
+            System.out.println(m);
+            ItemDevisController.m = m;
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(view_2);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(Demander_maintenanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
     private void pdf(ActionEvent event) throws FileNotFoundException, DocumentException {
 
         String file_name = ("C:\\Users\\helam\\Documents\\NetBeansProjects\\PIDEV\\src\\pdf\\pdf.pdf");
-        
+
         Document doc = new Document();
         PdfWriter.getInstance(doc, new FileOutputStream(file_name));
         doc.open();
@@ -176,8 +148,7 @@ ServiceMaintenance sm1=new ServiceMaintenance();
         doc.add(new Paragraph("Taux taxe comprix : "));
         doc.add(new Paragraph("somme apres reduction : "));
         doc.close();
-    
 
     }
-    
+
 }

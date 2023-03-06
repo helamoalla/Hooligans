@@ -129,12 +129,5 @@ public class DevisController implements Initializable {
 
     }
 
-    private void confirmer(ActionEvent event) {
-
-        Devis selectedDevis = id_list.getSelectionModel().getSelectedItem();
-
-        sd.insert(selectedDevis);
-
-    }
 
 }

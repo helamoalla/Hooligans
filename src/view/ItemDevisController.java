@@ -32,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 
 /**
  * FXML Controller class
@@ -57,6 +58,7 @@ public class ItemDevisController implements Initializable {
     GarageC g1 = new GarageC();
     float TTC1;
     InterfaceCRUD sm = new ServiceMaintenance();
+    ServiceMaintenance sm1 = new ServiceMaintenance();
     ServiceDevis sd = new ServiceDevis();
     InterfaceCRUD sg = new ServiceGarageC();
     @FXML
@@ -105,60 +107,60 @@ public class ItemDevisController implements Initializable {
         String p = "";
 
         if (this.m.isAmortisseur() == true) {
-            p = p + " " + String.valueOf(g.getAmortisseur());
-            a = a + "Amortisseur ";
+            p = p + " | " + String.valueOf(g.getAmortisseur());
+            a = a + "| Amortisseur |";
         }
         if (this.m.isBatterie() == true) {
-            p = p + " " + String.valueOf(g.getBatterie());
-            a = a + " Batterie ";
+            p = p + " | " + String.valueOf(g.getBatterie());
+            a = a + "| Batterie |";
         }
         if (this.m.isDuride() == true) {
-            p = p + " " + String.valueOf(g.getDuride());
-            a = a + " Duride ";
+            p = p + " | " + String.valueOf(g.getDuride());
+            a = a + "| Duride |";
         }
         if (this.m.isEssuie_glace() == true) {
-            p = p + " " + String.valueOf(g.getEssuie_glace());
-            a = a + " Essuie_glace ";
+            p = p + " | " + String.valueOf(g.getEssuie_glace());
+            a = a + "| Essuie_glace |";
         }
         if (this.m.isFeu_d_eclairage() == true) {
-            p = p + " " + String.valueOf(g.getFeu_d_eclairage());
-            a = a + " Feu_d_eclairage ";
+            p = p + " | "+ String.valueOf(g.getFeu_d_eclairage());
+            a = a + "| Feu_d_eclairage |";
         }
         if (this.m.isFiltre() == true) {
-            p = p + " " + String.valueOf(g.getFiltre());
-            a = a + " Filtre ";
+            p = p + " | " + String.valueOf(g.getFiltre());
+            a = a + "| Filtre |";
         }
         if (this.m.isFrein_main() == true) {
-            p = p + " " + String.valueOf(g.getFrein_main());
-            a = a + " Frein_main ";
+            p = p + " | " + String.valueOf(g.getFrein_main());
+            a = a + "| Frein_main |";
         }
         if (this.m.isFuite_d_huile() == true) {
-            p = p + " " + String.valueOf(g.getFuite_d_huile());
-            a = a + " Fuite_d_huile ";
+            p = p + " | " + String.valueOf(g.getFuite_d_huile());
+            a = a + "| Fuite_d_huile |";
         }
         if (this.m.isPanne_moteur() == true) {
-            p = p + " " + String.valueOf(g.getPanne_moteur());
-            a = a + " Panne_moteur ";
+            p = p + " | " + String.valueOf(g.getPanne_moteur());
+            a = a + "| Panne_moteur |";
         }
         if (this.m.isPatin() == true) {
-            p = p + " " + String.valueOf(g.getPatin());
-            a = a + " Patin ";
+            p = p + " | " + String.valueOf(g.getPatin());
+            a = a + "| Patin |";
         }
         if (this.m.isPompe_a_eau() == true) {
-            p = p + " " + String.valueOf(g.getPompe_a_eau());
-            a = a + " Pompe_a_eau ";
+            p = p + " | " + String.valueOf(g.getPompe_a_eau());
+            a = a + "| Pompe_a_eau |";
         }
         if (this.m.isRadiateur() == true) {
-            p = p + " " + String.valueOf(g.getRadiateur());
-            a = a + " Radiateur ";
+            p = p + " | " + String.valueOf(g.getRadiateur());
+            a = a + "| Radiateur |";
         }
         if (this.m.isVentilateur() == true) {
-            p = p + " " + String.valueOf(g.getVentilateur());
-            a = a + " Ventilateur ";
+            p = p + " | " + String.valueOf(g.getVentilateur());
+            a = a + "| Ventilateur |";
         }
         if (this.m.isVidange() == true) {
-            p = p + " " + String.valueOf(g.getVidange());
-            a = a + " Vidange ";
+            p = p + " | " + String.valueOf(g.getVidange());
+            a = a + "| Vidange |";
         }
         panne.setText(a);
         prix.setText(p);
@@ -167,41 +169,37 @@ public class ItemDevisController implements Initializable {
         TTC.setText(String.valueOf(TTC1));
 
     }
-
+int n=0;
     @FXML
-    private void confirmer(ActionEvent event) throws DocumentException {
-        
-        
-//        try {
-//            FXMLLoader loader= new FXMLLoader(getClass().getResource("./modifier_Garage.fxml"));
-//            Parent view_2=loader.load();
-//            
-//              String file_name = ("C:\\Users\\helam\\Documents\\NetBeansProjects\\PIDEV\\src\\pdf\\pdf.pdf");
-//        
-//        Document doc = new Document();
-//        PdfWriter.getInstance(doc, new FileOutputStream(file_name));
-//        doc.open();
-//        System.out.println("PDF created successfully.");
-//        doc.add(new Paragraph("Votre DEVIS :"));
-//        doc.add(new Paragraph("PANNE : "+id_devis.getSelectionModel().getSelectedItem().getId_commande()));
-//        doc.add(new Paragraph("PRIX : "));
-//        doc.add(new Paragraph("Taux taxe comprix : "));
-//        doc.add(new Paragraph("somme apres reduction : "));
-//        doc.close();
-//    
-//            
-//            
-//            
-//            Modifier_GarageController Modifier_GarageController=loader.getController();
-//            Modifier_GarageController.getGarage((GarageC) sd.readById(Integer.valueOf(id_devis.getText())));
-//            Modifier_GarageController.g=(GarageC) sd.readById(Integer.valueOf(id_devis.getText()));
-//            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(view_2);
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException ex) {
-//            Logger.getLogger(ItemDevisController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-   
+    private void confirmer(ActionEvent event) throws DocumentException, MessagingException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
+            Parent view_2 = loader.load();
+            n++;
+            String file_name = ("C:\\Users\\helam\\Documents\\NetBeansProjects\\PIDEV\\src\\pdf\\pdf.pdf");
+
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, new FileOutputStream(file_name));
+            doc.open();
+            System.out.println("PDF created successfully.");
+            doc.add(new Paragraph(" DEVIS N° "+n+":"));
+            doc.add(new Paragraph("LES PANNES : "+panne.getText()));
+            doc.add(new Paragraph("LES PRIX DES PANNES : "+prix.getText()));
+            doc.add(new Paragraph("Taux taxe comprix (TVA 19%): "+TTC.getText()));
+            doc.add(new Paragraph("Somme apres reduction de "+reduction.getText()+"% est :"+total.getText()));
+            doc.add(new Paragraph("Arretez la presente Piece a la somme de  "+total.getText()+"DT"));
+            doc.close();
+
+            sm1.sendEmail("helamoalla91@gmail.com", "DEVIS!", "Voici votre devis du garage confirmé", "C:/Users/helam/Documents/NetBeansProjects/PIDEV/src/pdf/pdf.pdf");
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(view_2);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ItemDevisController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

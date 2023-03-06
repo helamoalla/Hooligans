@@ -51,8 +51,6 @@ Maintenance m=new Maintenance();
     @FXML
     private ListView<Maintenance> id_list;
     @FXML
-    private Button id_modifier;
-    @FXML
     private Button id_afficher;
    // private List<Maintenance> id_list_M=new ArrayList<>();
     @FXML
@@ -145,27 +143,7 @@ Maintenance m=new Maintenance();
     }
     }
 
-    @FXML
-    private void modifier_demande(ActionEvent event) {
-       
-    try {
-        Maintenance selectedMaintenance=id_list.getSelectionModel().getSelectedItem();
-        
-        
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Modifier_Demande.fxml"));
-        Parent view_2=loader.load();
-        Modifier_DemandeController Modifier_DemandeController=loader.getController();
-        Modifier_DemandeController.getMaintenance(selectedMaintenance);
-        Modifier_DemandeController.m=selectedMaintenance;
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException ex) {
-        Logger.getLogger(MaintenanceController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-   
-    }
+
 
     @FXML
     private void afficher_demande(ActionEvent event) {

@@ -67,6 +67,7 @@ InterfaceCRUD sm=new ServiceMaintenance();
                 AnchorPane anchorPane = fxmlLoader.load();
 
                ItemMaintenanceController itemController = fxmlLoader.getController();
+               itemController.m=id_list.get(i);
                 itemController.setData(id_list.get(i));
 
                 if (column == 3) {
