@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.EventuserController">
+   <children>
+      <HBox layoutY="-1.0" prefHeight="209.0" prefWidth="1178.0" styleClass="head-background" stylesheets="@../Views/cssstyle1.css">
+         <children>
+            <Pane prefHeight="198.0" prefWidth="559.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="43.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/image3.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="247.0" layoutY="82.0" text="Drift &amp; Race">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <VBox layoutX="10.0" layoutY="208.0" prefHeight="658.0" prefWidth="215.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="231.0" text="EVENTS ">
+               <VBox.margin>
+                  <Insets left="35.0" top="150.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#gestioneventadmin" prefHeight="44.0" prefWidth="231.0" styleClass="add-btn" stylesheets="@../Views/buttoncss.css" text="Gestion des Events Admin" textFill="#757272" />
+            <Button mnemonicParsing="false" onAction="#gestioneventuser" prefHeight="46.0" prefWidth="231.0" styleClass="add-btn" stylesheets="@../Views/buttoncss.css" text="Gestion des Events User " textFill="#757272" />
+         </children>
+      </VBox>
+      <ScrollPane layoutX="222.0" layoutY="209.0" prefHeight="658.0" prefWidth="955.0">
+         <content>
+            <VBox fx:id="Scenepanee" prefHeight="610.0" prefWidth="957.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

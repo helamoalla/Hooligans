@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -65,12 +66,15 @@ InterfaceCRUD Service_event = new Services_event();
     @FXML
     private TextField nom_image;
 private File selectedFile;
+    @FXML
+    private Button home;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println(LocalDate.now());
     }    
 
     @FXML
@@ -123,6 +127,18 @@ private File selectedFile;
         datef.setValue(null);
         return;
     }
+    
+        if (LocalDate.now().isBefore(dated.getValue())) {
+        // Afficher un message d'erreur
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("La date de debut doit être postérieure ou égale à la date d'aujourd'hui.");
+        alert.showAndWait();
+
+        // Réinitialiser la valeur du champ de saisie de la date de fin
+        datef.setValue(null);
+        return;
+    }
 
     
              
@@ -166,7 +182,7 @@ private File selectedFile;
             
             Service_event.insert(e);
             // return to the main 
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./AfficherEvent.fxml"));
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./test1.fxml"));
                  Parent view_2=loader.load();     
                  Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
                  Scene scene = new Scene(view_2);
@@ -229,6 +245,20 @@ FileChooser fileChooser = new FileChooser();
            
                  
 }
+
+    @FXML
+    private void home(ActionEvent event) {
+            try {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Acceuil.fxml"));
+        Parent view_2=loader.load();
+        Scene scene = new Scene(view_2);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(AfficherEventUserController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
 }
     
 

@@ -116,7 +116,7 @@ InterfaceCRUD Service_event = new Services_event();
                          lieu.setText(item.getLieu_event());
     type.setText(item.getType_event());
     dated.setText(item.getDate_debut().toLocalDate().toString());
-    dated.setText(item.getDate_debut().toLocalDate().toString());
+    datef.setText(item.getDate_fin().toLocalDate().toString());
     prix.setText(item.getPrix().toString());
                       //  System.out.println(item.getImage());
                         imageUrl = new URL("http://localhost/img/"+item.getImage());
@@ -180,9 +180,23 @@ InterfaceCRUD Service_event = new Services_event();
         stage.show();
     } catch (IOException ex) {
         Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    } 
         
         }
+
+    @FXML
+    private void home(ActionEvent event) {
+    try {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Acceuil.fxml"));
+        Parent view_2=loader.load();
+        Scene scene = new Scene(view_2);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(AfficherEventController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
     }
     
 

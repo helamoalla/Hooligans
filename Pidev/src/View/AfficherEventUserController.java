@@ -6,14 +6,21 @@
 package View;
 
 import interfaces.InterfaceCRUD;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -21,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Event;
 import model.Ticket;
 import services.Service_ticket;
@@ -84,7 +92,7 @@ public void getAllEvent(){
                          lieu.setText(item.getLieu_event());
     type.setText(item.getType_event());
     dated.setText(item.getDate_debut().toLocalDate().toString());
-    dated.setText(item.getDate_debut().toLocalDate().toString());
+    datef.setText(item.getDate_fin().toLocalDate().toString());
     prix.setText(item.getPrix().toString());
                       //  System.out.println(item.getImage());
                         imageUrl = new URL("http://localhost/img/"+item.getImage());
@@ -116,6 +124,20 @@ public void getAllEvent(){
          Service_ticket.insert(t);
          
          
+    }
+
+    @FXML
+    private void home(ActionEvent event) {
+    try {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Acceuil.fxml"));
+        Parent view_2=loader.load();
+        Scene scene = new Scene(view_2);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(AfficherEventUserController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     

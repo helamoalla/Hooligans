@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -51,6 +52,8 @@ public class ModifierEventController implements Initializable {
 
        Event e;
     Services_event Services_event=new Services_event();
+    @FXML
+    private Button home;
     /**
      * Initializes the controller class.
      */
@@ -68,7 +71,48 @@ void getEvent(Event e){
 }    
     @FXML
     private void ModifierEvent(ActionEvent event) {
-         
+         if (Nom.getText().length() == 0||lieu.getText().length() == 0||type.getText().length() == 0||prix.getText().length() == 0||dated.getValue()== null||datef.getValue()== null){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Please remplir tous les champs"+ "");
+            alert.show();
+            return;
+    }
+        // Vérifier que le prix est un nombre valide
+    float prixf;
+        try {
+        prixf = Float.parseFloat(prix.getText());
+        if (prixf <= 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Le prix doit être supérieur à zéro.");
+            alert.showAndWait();
+            return;
+        }
+    } catch (NumberFormatException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Le prix doit être un nombre");
+        alert.showAndWait();
+        return;
+    }
+        // Ajouter un écouteur sur le champ de saisie de la date de fin
+    // Vérifier si la date de fin est postérieure ou égale à la date de début
+    if (datef.getValue().isBefore(dated.getValue())) {
+        // Afficher un message d'erreur
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("La date de fin doit être postérieure ou égale à la date de début.");
+        alert.showAndWait();
+
+        // Réinitialiser la valeur du champ de saisie de la date de fin
+        datef.setValue(null);
+        return;
+    }
         try {
             e.setNom_event(Nom.getText());
             e.setLieu_event(lieu.getText());
@@ -95,6 +139,20 @@ void getEvent(Event e){
             Logger.getLogger(ModifierEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
         } 
+
+    @FXML
+    private void home(ActionEvent event) {
+            try {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Acceuil.fxml"));
+        Parent view_2=loader.load();
+        Scene scene = new Scene(view_2);
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException ex) {
+        Logger.getLogger(AfficherEventUserController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
     }
     
     

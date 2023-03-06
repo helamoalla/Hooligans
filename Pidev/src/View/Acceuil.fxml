@@ -3,11 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="View.AcceuilController">
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="736.0" stylesheets="@../Views/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AcceuilController">
    <children>
-      <Button layoutX="40.0" layoutY="174.0" mnemonicParsing="false" onAction="#event_admin" prefHeight="26.0" prefWidth="157.0" text="Gestion des evenement admin" />
-      <Button layoutX="237.0" layoutY="174.0" mnemonicParsing="false" onAction="#event_user" prefHeight="26.0" prefWidth="150.0" text="Gestion des evenement user" />
-      <Button layoutX="428.0" layoutY="174.0" mnemonicParsing="false" onAction="#ticket_admin" prefHeight="26.0" prefWidth="158.0" text="Gestion des ticket admin" />
+      <Button layoutX="97.0" layoutY="283.0" mnemonicParsing="false" onAction="#event_admin" prefHeight="42.0" prefWidth="250.0" text="Gestion des evenement admin" />
+      <Button layoutX="420.0" layoutY="283.0" mnemonicParsing="false" onAction="#event_user" prefHeight="42.0" prefWidth="264.0" text="Gestion des evenement user" />
+      <Button layoutX="260.0" layoutY="380.0" mnemonicParsing="false" onAction="#ticket_admin" prefHeight="42.0" prefWidth="281.0" text="Gestion des ticket admin" />
    </children>
 </AnchorPane>

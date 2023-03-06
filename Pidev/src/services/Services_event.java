@@ -14,7 +14,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Event;
+import model.Ticket;
+import model.user;
 import util.MaConnexion;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 
 /**
  *
@@ -40,10 +45,51 @@ Connection cnx = MaConnexion.getInstance().getCnx();
     @Override
     public void delete(int id) {
         try {
+                     Event e =readById(id);
+            Service_ticket sert=new Service_ticket();
+        ArrayList<Ticket> lt=sert.chercher(e.getId_e());
+      UserService us =new UserService();
+      for(Ticket t: lt){
+          System.out.println(t.getImage());
+         user u= us.readById(t.getId_spectateur());
+         u.setQuota(u.getQuota()+e.getPrix());
+         us.update(u);
+        String to = u.getEmail(); // Adresse email du destinataire
+          System.out.println(u.getEmail());
+        String from = "ayoub.bbarnat@gmail.com"; // Adresse email de l'expéditeur
+        String host = "smtp.gmail.com"; // Serveur SMTP de votre fournisseur d'email
+        // Paramètres SMTP
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.port", "465");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+         // Création d'une session SMTP sécurisée
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("ayoub.bbarnat@gmail.com", "flaqdmkgsnieumou"); // Adresse email de l'expéditeur et mot de passe
+            }
+        });
+        try {
+            // Création d'un message email
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Evenement annule");
+            message.setText(" l'evenement "+e.getNom_event()+" a été annule , Votre solde a ete mis a jour ");
+
+            // Envoi de l'email
+            Transport.send(message);
+            System.out.println("Email envoyé avec succès");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }}
         String req="DELETE FROM event WHERE (`id_e`='"+id+"' )";
         Statement st = cnx.createStatement();
         st.executeUpdate(req);
         System.out.println("Event supprimé avec succes");
+   
     } catch (SQLException ex) {
         Logger.getLogger(Services_event.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -53,12 +99,52 @@ Connection cnx = MaConnexion.getInstance().getCnx();
 @Override
     public void update(Event e) {
         
- 
+ Service_ticket sert=new Service_ticket();
     try {
         String req="UPDATE `event` SET `nom_event`='"+e.getNom_event()+"', `date_debut`='"+e.getDate_debut()+"', `date_fin`='"+e.getDate_fin()+"', `lieu_event`='"+e.getLieu_event()+"' ,`type_event`='"+e.getType_event()+"' ,`image_event`='"+e.getImage()+"' ,`prix_event`="+e.getPrix()+"WHERE `id_e`="+e.getId_e()+" ";
         Statement st = cnx.createStatement();
         st.executeUpdate(req);
         System.out.println("Event modifie avec succes");
+      ArrayList<Ticket> lt=sert.chercher(e.getId_e());
+      UserService us =new UserService();
+      for(Ticket t: lt){
+          System.out.println(t.getImage());
+         user u= us.readById(t.getId_spectateur());
+        String to = u.getEmail(); // Adresse email du destinataire
+          System.out.println(u.getEmail());
+        String from = "ayoub.bbarnat@gmail.com"; // Adresse email de l'expéditeur
+        String host = "smtp.gmail.com"; // Serveur SMTP de votre fournisseur d'email
+        // Paramètres SMTP
+        Properties properties = System.getProperties();
+        properties.setProperty("mail.smtp.host", host);
+        properties.setProperty("mail.smtp.port", "465");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+         // Création d'une session SMTP sécurisée
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("ayoub.bbarnat@gmail.com", "flaqdmkgsnieumou"); // Adresse email de l'expéditeur et mot de passe
+            }
+        });
+        try {
+            // Création d'un message email
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Sujet de l'email");
+            message.setText("la date de l'evenement a été modifier , l'evenement sera planifie pour "+e.getDate_debut()+" et se termine le "+e.getDate_fin() );
+
+            // Envoi de l'email
+            Transport.send(message);
+            System.out.println("Email envoyé avec succès");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+          
+      }
+        
+        
     } catch (SQLException ex) {
         Logger.getLogger(Services_event.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -141,6 +227,8 @@ List<Event> le=new ArrayList<>();
         Logger.getLogger(Services_event.class.getName()).log(Level.SEVERE, null, ex);
     }
      return (ArrayList<Event>) le; }
+    
+   
 
   
     }

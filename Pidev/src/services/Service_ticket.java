@@ -139,4 +139,30 @@ List<Ticket> le=new ArrayList<>();
     }
      return (ArrayList<Ticket>) le; }
     
+     
+    public ArrayList<Ticket> chercher(int id) {
+List<Ticket> lm=new ArrayList<>();
+        try {
+            Services_event se=new Services_event();
+              String req="SELECT * FROM `ticket` WHERE ((`id_e`='"+id+"')) ";
+              Statement ste = cnx.createStatement();
+              ResultSet res=ste.executeQuery(req);
+            
+                   while(res.next()){
+                       Ticket m=new Ticket();
+                 m.setId_ticket(res.getInt(1));
+                 m.setNum_ticket(res.getInt(2));
+                  m.setId_spectateur(res.getInt(3));
+                  Event e=se.readById(res.getInt(4));
+                  m.setEvent(e);
+                  m.setImage(res.getString(5));
+
+                  lm.add(m);
+                   }
+          } catch (SQLException ex) {
+              Logger.getLogger(Services_event.class.getName()).log(Level.SEVERE, null, ex);
+          }
+           return (ArrayList<Ticket>) lm;  
+    }
+    
 }

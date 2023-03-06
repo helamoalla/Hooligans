@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Views/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AfficherTicketController">
+   <children>
+      <ListView fx:id="afficher" layoutX="15.0" layoutY="166.0" opacity="0.65" prefHeight="210.0" prefWidth="570.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" text="Home" />
+      <Label layoutX="230.0" layoutY="133.0" prefHeight="18.0" prefWidth="56.0" text="Id Event" textFill="#faf9f9" />
+      <Label layoutX="27.0" layoutY="133.0" prefHeight="18.0" prefWidth="80.0" text="Num Ticket" textFill="#faf2f2" />
+      <Label layoutX="134.0" layoutY="133.0" prefHeight="18.0" prefWidth="80.0" text="Id Spectateur " textFill="#faf2f2" />
+      <Label layoutX="333.0" layoutY="133.0" prefHeight="18.0" prefWidth="56.0" text="Code Qr" textFill="#faf9f9" />
+      <ImageView fx:id="qrcode" fitHeight="150.0" fitWidth="200.0" layoutX="389.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

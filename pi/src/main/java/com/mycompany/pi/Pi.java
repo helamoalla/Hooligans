@@ -44,22 +44,22 @@ t.setImage("gh");
         
 
        //ajout Event 
-      //se.insert(e);
-      // int id_e=1;
-        //se.delete(3);
-        //e.setNom_event("ayoub");
-        //e.setId_e(7);
-      // se.update(e);
-      // System.out.println(se.readAll());
-    //System.out.println(se.readById(4));
+       se.insert(e);
+       // int id_e=1;
+       //se.delete(3);
+       //e.setNom_event("ayoub");
+       //e.setId_e(7);
+       //se.update(e);
+       //System.out.println(se.readAll());
+       //System.out.println(se.readById(4));
        //System.out.println(se.sortBy("nom_event","DESC"));
        //System.out.println(se.trie("type_event"));
        //st.insert(t);
        //st.delete(1);
        //st.update(t);
-      // System.out.println(st.readAll());
+       // System.out.println(st.readAll());
        //System.out.println(st.readById(2));
-    //  System.out.println(st.sortBy("num_ticket", "Asc"));
+       //System.out.println(st.sortBy("num_ticket", "Asc"));
        
     }
 }
