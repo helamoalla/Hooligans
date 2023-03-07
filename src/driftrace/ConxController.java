@@ -37,6 +37,11 @@ import javafx.scene.control.ToggleButton;
 import Service.UserService;
 import Util.Data;
 import Util.MyConnection;
+import com.jfoenix.controls.JFXButton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.PasswordField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
@@ -59,23 +64,23 @@ public class ConxController implements Initializable {
 
     @FXML
     private TextField adresse;
-    @FXML
-    private Button connect;
-    @FXML
-    private Button inscription;
 private Connection connection;
     @FXML
     private TextField pswd;
-    @FXML
-    private Button mot;
-    @FXML
-    private ToggleButton showbotton;
     @FXML
     private Text mdpshow;
 
     private boolean labelVisible = false;
     @FXML
     private FlowPane container;
+    @FXML
+    private ToggleButton showbotton;
+    @FXML
+    private JFXButton connect;
+    @FXML
+    private JFXButton inscription;
+    @FXML
+    private JFXButton mot;
     
     
     @Override
@@ -179,68 +184,68 @@ UserService userService = new UserService();
     stage.show();
     }
 
-   @FXML
-private void motoublier(ActionEvent event) throws SQLException, IOException, NoSuchAlgorithmException, MessagingException {
-
-    connection = MyConnection.getInstance().getCnx();
-    String email = adresse.getText();
-    if (email.isEmpty()) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Attention");
-        alert.setHeaderText(null);
-        alert.setContentText("Veuillez saisir l'email.");
-        alert.showAndWait();
-        return;
-    }
-    // Generate a new password
-    String newPassword = generateRandomPassword();
-    // Encrypt the new password
-    //String encryptedPassword = encryptPassword(newPassword);
-    // Update the user's password in the database
-    String updateQuery = "UPDATE user SET mdp = ? WHERE email = ?";
-    try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-        statement.setString(2, newPassword);
-        statement.setString(1, email);
-        statement.executeUpdate();
-    }
-    // Send the new password to the user's email
-    //sendEmail(email, "Nouveau mot de passe", "votre nouveau mot de passe" + newPassword);
-
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Succès");
-    alert.setHeaderText(null);
-    alert.setContentText("Un nouveau mot de passe a été envoyé à votre adresse email!");
-    alert.showAndWait();
-}
-/*private void sendEmail(String to, String subject, String body) throws MessagingException {
-    // Send an email
-    // ...
-    String from = "khadamni12@gmail.com";
-    String password = "cndodswgpbuheaht";
-
-    Properties props = new Properties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
-
-   Session session = Session.getInstance(props, new Authenticator() {
-    @Override
-    protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(from, password);
-    }
-});
+//    @FXML
+//    private void motoublier(ActionEvent event) throws SQLException, IOException, NoSuchAlgorithmException, MessagingException {
+//
+//    connection = MyConnection.getInstance().getCnx();
+//    String email = adresse.getText();
+//    if (email.isEmpty()) {
+//        Alert alert = new Alert(Alert.AlertType.WARNING);
+//        alert.setTitle("Attention");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Veuillez saisir l'email.");
+//        alert.showAndWait();
+//        return;
+//    }
+//    // Generate a new password
+//    String newPassword = generateRandomPassword();
+//    // Encrypt the new password
+//    //String encryptedPassword = encryptPassword(newPassword);
+//    // Update the user's password in the database
+//    String updateQuery = "UPDATE user SET mdp = ? WHERE email = ?";
+//    try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+//        statement.setString(2, newPassword);
+//        statement.setString(1, email);
+//        statement.executeUpdate();
+//    }
+//    // Send the new password to the user's email
+//    //sendEmail(email, "Nouveau mot de passe", "votre nouveau mot de passe" + newPassword);
+//
+//    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//    alert.setTitle("Succès");
+//    alert.setHeaderText(null);
+//    alert.setContentText("Un nouveau mot de passe a été envoyé à votre adresse email!");
+//    alert.showAndWait();
+//}
+///*private void sendEmail(String to, String subject, String body) throws MessagingException {
+//    // Send an email
+//    // ...
+//    String from = "khadamni12@gmail.com";
+//    String password = "cndodswgpbuheaht";
+//
+//    Properties props = new Properties();
+//    props.put("mail.smtp.auth", "true");
+//    props.put("mail.smtp.starttls.enable", "true");
+//    props.put("mail.smtp.host", "smtp.gmail.com");
+//    props.put("mail.smtp.port", "587");
+//
+//   Session session = Session.getInstance(props, new Authenticator() {
+//    @Override
+//    protected PasswordAuthentication getPasswordAuthentication() {
+//        return new PasswordAuthentication(from, password);
+//    }
+//});
 
     
-
-    Message message = new MimeMessage((MimeMessage) session);
-    message.setFrom(new InternetAddress(from));
-    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-    message.setSubject(subject);
-    message.setText(body);
-
-    Transport.send(message);
-}*/
+//
+//    Message message = new MimeMessage((MimeMessage) session);
+//    message.setFrom(new InternetAddress(from));
+//    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+//    message.setSubject(subject);
+//    message.setText(body);
+//
+//    Transport.send(message);
+//}*/
     
 
 
@@ -262,5 +267,20 @@ private void motoublier(ActionEvent event) throws SQLException, IOException, NoS
 
 
     }
+
+    @FXML
+    private void motoublier(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("mdpoublier.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ConxController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    }
+
     
 }

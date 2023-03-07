@@ -17,8 +17,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -40,7 +48,7 @@ public class UserService implements Interface.InterfaceCRUD<User>{
             usr.setString(4, t.getEmail());
             usr.setInt(5, t.getNum_tel());
             usr.setInt(6, t.getCin());
-            usr.setInt(7, t.getQuota());
+            usr.setDouble(7, 0);
             usr.setString(8, t.getImg());
             usr.setInt(9, t.getRole().getId_role());
        
@@ -69,14 +77,14 @@ public class UserService implements Interface.InterfaceCRUD<User>{
     @Override
     public void update(User t) {
         try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE user SET nom = ?, prenom = ? ,mdp = ?,email = ? ,num_tel = ?,cin = ?, quota = ? WHERE id_user = ?");
+            PreparedStatement ps = conn.prepareStatement("UPDATE user SET nom = ?, prenom = ? ,mdp = ?,email = ? ,num_tel = ?,cin = ?,quota = ? WHERE id_user = ?");
             ps.setString(1, t.getNom());
             ps.setString(2, t.getPrenom());
             ps.setString(3, t.getMdp());
             ps.setString(4, t.getEmail());
             ps.setInt(5, t.getNum_tel());
             ps.setInt(6, t.getCin());
-            ps.setInt(7, t.getQuota());
+            ps.setDouble(7, t.getQuota());
             ps.setInt(8, t.getId_user());
                             
             ps.executeUpdate();
@@ -92,14 +100,14 @@ public class UserService implements Interface.InterfaceCRUD<User>{
         String requete = "SELECT user.*, role.id_role, role.type FROM user INNER JOIN role ON user.id_role = role.id_role";
     ArrayList<User> list = new ArrayList<>();
     try {
-        Statement st = conn.createStatement();
+        Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = st.executeQuery(request);
         while (rs.next()) {
             /*Role r = new Role();
             r.setId_role(rs.getInt("id_role"));
             r.setType(rs.getString("type"));*/
             
-            User t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),roleService.readById(rs.getInt("id_role")));
+            User t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getDouble("quota"),roleService.readById(rs.getInt("id_role")));
             list.add(t);
         }
     } catch (SQLException ex) {
@@ -115,14 +123,14 @@ public class UserService implements Interface.InterfaceCRUD<User>{
     String request ="SELECT * from user WHERE id_user= "+id;
     User t = new User();
     try {
-        Statement st = conn.createStatement();
+        Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = st.executeQuery(request);
         while (rs.next()) {
             //Role r = new Role();
             //r.setId_role(rs.getInt("id_role"));
             //r.setType(rs.getString("type"));
            
-            t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),roleService.readById(rs.getInt("id_role")),rs.getString("img"));
+            t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getDouble("quota"),roleService.readById(rs.getInt("id_role")),rs.getString("img"));
         }
     } catch (SQLException ex) {
         Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,7 +200,7 @@ public class UserService implements Interface.InterfaceCRUD<User>{
             Role r = new Role();
             r.setId_role(rs.getInt("id_role"));
            
-             t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),roleService.readById(rs.getInt("id_role")));
+             t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getDouble("quota"),roleService.readById(rs.getInt("id_role")));
         }
     } catch (SQLException ex) {
         Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,5 +221,47 @@ public void setMotDePasse(int id_user, String nouveauMotDePasse) {
         Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
+
+public String readByMail(String email) {
+        try {
+            String req;
+            req = "SELECT mdp from `user` WHERE email='"+email+"'";
+            Statement ste = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet res=ste.executeQuery(req);
+              
+             while(res.next()){
+            String a=res.getString("mdp");
+           
+           return a;
+        }}
+        catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+public void sendEmail(String to, String subject, String body) throws MessagingException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("hadjali.aziz@gmail.com", "nrojtvtnufuaahli");
+            }
+          });
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("hadjali.aziz@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(to));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+    }
+
     
 }

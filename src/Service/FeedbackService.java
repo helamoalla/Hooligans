@@ -241,6 +241,33 @@ public class FeedbackService implements InterfaceCRUD<Feedback>{
 
     }
     
+    public boolean checkIfAlreadyReported(BonPlan b ){
+        boolean reported=false;
+        try {
+            // check if user already reported this bonPlan
+            String req = "SELECT report FROM feedback WHERE id_bonplan= "+b.getId_bonplan()+" AND id_user = "+Data.getId_user();
+            //Statement st = cnx.createStatement();
+            Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+
+            ResultSet rs = st.executeQuery(req);
+            //rs.beforeFirst();
+            //rs.next();
+            
+            while(rs.next()){
+              // System.out.println(rs.getInt("report"));
+               if(rs.getBoolean("report"))
+                   return rs.getBoolean("report");
+            }
+         
+          
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                return reported;
+
+    }
+    
     
 public void reportBonPlan(Feedback f) {
     if (!checkIfReported(f)) {
@@ -262,19 +289,22 @@ public void countReports() {
             //Statement st = cnx.createStatement();
             Statement st =cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet result = st.executeQuery(req);
+            int reportCount=0;
+            int bonplanId=0;
             while (result.next()) {
-            int bonplanId = result.getInt("id_bonplan");
-            int reportCount = result.getInt("report_count");
-                System.out.println(reportCount);
+            bonplanId = result.getInt("id_bonplan");
+             reportCount = result.getInt("report_count");
+                System.out.println(reportCount);}
             if (reportCount>=5){
                 System.out.println("bon plan deleted "+bonplanId);
                 BonPlanService bs=new BonPlanService();
+                
+                System.out.println(bs.readById(bonplanId).getUser().getEmail());
+                sendEmail(bs.readById(bonplanId).getUser().getEmail(), "Alert", "Votre bonplan ' "+bs.readById(bonplanId).getNom_bonplan() +" ' a été supprimé à cause de mutliple report ");
                 bs.delete(bonplanId);
-                sendEmail(bs.readById(bonplanId).getUser().getEmail(), "Alert", "Votre bonplan a été supprimé à cause de mutliple report ");
-
             }
     // Print or store the bonplan ID and report count as needed
-}
+
     } catch (SQLException ex) {
         Logger.getLogger(FeedbackService.class.getName()).log(Level.SEVERE, null, ex);
     }   catch (MessagingException ex) {

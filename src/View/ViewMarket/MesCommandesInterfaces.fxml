@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1315.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.MesCommandesInterfacesController">
+    <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="810.0" prefWidth="351.0" styleClass="right-bar" stylesheets="@../../Views/CssStyle/search.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="74.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="50.0" prefWidth="127.0" text="Mes" textFill="#ae3131">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="50.0" prefWidth="156.0" text="Factures" textFill="#515050">
+                           <font>
+                              <Font name="Cambria" size="37.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="36.0" prefWidth="351.0" />
+                  <VBox alignment="CENTER" prefHeight="402.0" prefWidth="250.0" styleClass="chosen-fruit-card" stylesheets="@../../Views/CssStyle/search.css">
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox fx:id="chosenProduit" alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="251.0">
+                           <children>
+                              <Label fx:id="nomproduit" alignment="CENTER" contentDisplay="RIGHT" prefHeight="64.0" prefWidth="251.0" text="Commande numéro : " textAlignment="CENTER" textFill="#070707">
+                                 <font>
+                                    <Font name="Cambria Math" size="15.0" />
+                                 </font>
+                                 <graphic>
+                                    <Label fx:id="tfnum" text="1">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="251.0">
+                           <children>
+                              <Label text="Lancé le : ">
+                                 <font>
+                                    <Font name="Cambria" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tfdate" text="1">
+                                 <font>
+                                    <Font name="Cambria Math" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="251.0">
+                           <children>
+                              <Label text="Montant total à payer  : ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tfmontant" text="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" DT">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="251.0">
+                           <children>
+                              <Label text="Adresser :  ">
+                                 <font>
+                                    <Font name="Cambria" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tfrue" text="Rue ">
+                                 <font>
+                                    <Font name="Cambria" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tfville" text="ville ">
+                                 <font>
+                                    <Font name="Cambria Math" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="tfgov" text="gouvernorat">
+                                 <font>
+                                    <Font name="Cambria Math" size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="27.0" prefWidth="306.0">
+                           <children>
+                              <Separator prefHeight="3.0" prefWidth="253.0" />
+                           </children></HBox>
+                        <Button fx:id="btnimprimer" mnemonicParsing="false" onAction="#supp" onMouseClicked="#Imprimer_facture" opacity="0.88" prefHeight="30.0" prefWidth="227.0" styleClass="add-btn" text="Imprimer Facture" textFill="#990f0f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnsupp" mnemonicParsing="false" onAction="#modif" onMouseClicked="#Annuler_Commande" opacity="0.88" prefHeight="30.0" prefWidth="229.0" styleClass="add-btn" text="Supprimer Commande " textFill="#990f0f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
+                           <children>
+                              <Button layoutX="89.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
+                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/calendar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="746.0" prefWidth="934.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

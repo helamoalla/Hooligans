@@ -16,12 +16,12 @@ public class User {
     private String email ;
     private int num_tel ;
     private int cin ;
-    private int quota ;
+    private double quota ;
     public Role role ;
     public String img ;
     public int etat ;
 
-    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img, int etat) {
+    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, double quota, Role role, String img, int etat) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -38,7 +38,7 @@ public class User {
 
     
 
-    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img) {
+    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, double quota, Role role, String img) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
@@ -51,7 +51,7 @@ public class User {
         this.img = img;
     }
 
-    public User(int id_user, String nom, String mdp, String email, int num_tel, int cin, int quota, Role role, String img, int etat) {
+    public User(int id_user, String nom, String mdp, String email, int num_tel, int cin, double quota, Role role, String img, int etat) {
         this.id_user = id_user;
         this.nom = nom;
         this.mdp = mdp;
@@ -103,7 +103,7 @@ public User(int id_user) {
         this.id_user = id_user;
     }
 
-    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role) {
+    public User(String nom, String prenom, String mdp, String email, int num_tel, int cin, double quota, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.mdp = mdp;
@@ -114,7 +114,7 @@ public User(int id_user) {
         this.role = role;
     }
 
-    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, int quota, Role role) {
+    public User(int id_user, String nom, String prenom, String mdp, String email, int num_tel, int cin, double quota, Role role) {
         this.id_user = id_user;
         this.nom = nom;
         this.prenom = prenom;
@@ -187,11 +187,11 @@ public User(int id_user) {
         this.cin = cin;
     }
 
-    public int getQuota() {
+    public double getQuota() {
         return quota;
     }
 
-    public void setQuota(int quota) {
+    public void setQuota(double quota) {
         this.quota = quota;
     }
 

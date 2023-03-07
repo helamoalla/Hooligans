@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1014.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AlimenterCompteController">
+   <children>
+      <Text fill="#913232" layoutX="91.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alimenter votre Compte" wrappingWidth="457.3367462158203">
+         <font>
+            <Font name="Berlin Sans FB" size="38.0" />
+         </font>
+      </Text>
+      <FlowPane layoutX="100.0" layoutY="152.0" prefHeight="522.0" prefWidth="788.0" vgap="50.0">
+         <children>
+            <HBox prefHeight="58.0" prefWidth="433.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/credit-card.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></ImageView>
+                  <JFXTextArea fx:id="carte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="270.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="72.0" prefWidth="565.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="36.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/calendar.png" />
+                     </image></ImageView>
+                        <Label layoutX="67.0" layoutY="175.0" prefHeight="26.0" prefWidth="90.0" text="Mois:" />
+                     <ChoiceBox fx:id="BoxMonth" prefHeight="25.0" prefWidth="70.0" />
+                        <Label layoutX="186.0" layoutY="175.0" prefHeight="28.0" prefWidth="64.0" text="Année:" />
+                      <ChoiceBox fx:id="BoxYear" layoutX="228.0" layoutY="171.0" prefHeight="25.0" prefWidth="84.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="57.0" prefWidth="398.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/cvv.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <JFXTextArea fx:id="CVV" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="70.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="58.0" prefWidth="433.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/money.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <JFXTextArea fx:id="montant" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="128.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="58.0" prefWidth="433.0" spacing="20.0">
+               <children>
+                  <JFXButton onAction="#Alimenter" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #dcdcdc;" text="Alimenter" />
+               </children>
+               <FlowPane.margin>
+                  <Insets left="180.0" />
+               </FlowPane.margin>
+            </HBox>
+         </children>
+      </FlowPane>
+   </children>
+</AnchorPane>

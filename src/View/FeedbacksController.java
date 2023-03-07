@@ -141,12 +141,14 @@ public class FeedbacksController implements Initializable {
         
 
         // Create the Rating control
+        
         Rating rating = new Rating();
         rating.setPrefSize(176, 22);
         rating.setRating(data.getRate());
         rating.setDisable(true);
         HBox.setMargin(rating, new Insets(0, 0, 0, 100));
         vBox.getChildren().add(rating);
+        if(data.getRate()==0){rating.setVisible(false);}
 
         // Create the user's message
         Text userMessage = new Text(data.getCommentaire());

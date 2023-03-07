@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="264.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.TicketController">
+   <children>
+      <Separator layoutX="477.0" layoutY="25.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="16.0" />
+      <ImageView fx:id="codeqr" fitHeight="122.0" fitWidth="144.0" layoutX="593.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="55.0" layoutY="40.0" prefHeight="18.0" prefWidth="54.0" text="Nom ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nom" layoutX="102.0" layoutY="85.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label layoutX="183.0" layoutY="39.0" prefHeight="25.0" prefWidth="90.0" text="Prenom">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenom" layoutX="222.0" layoutY="84.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label layoutX="321.0" layoutY="39.0" prefHeight="18.0" prefWidth="54.0" text="CIN">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="cin" layoutX="343.0" layoutY="84.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label layoutX="62.0" layoutY="146.0" prefHeight="25.0" prefWidth="90.0" text="Nom Event">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nom_event" layoutX="109.0" layoutY="191.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label layoutX="202.0" layoutY="146.0" prefHeight="18.0" prefWidth="54.0" text="Lieu">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lieu" layoutX="229.0" layoutY="191.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label layoutX="326.0" layoutY="146.0" prefHeight="18.0" prefWidth="54.0" text="Type">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="type" layoutX="359.0" layoutY="182.0" prefHeight="18.0" prefWidth="83.0" text="Label" textFill="#909090" />
+      <Label fx:id="dated_Month" layoutX="595.0" layoutY="74.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="538.0" layoutY="38.0" prefHeight="17.0" prefWidth="91.0" text="Date debut" />
+      <Label fx:id="dated_day" layoutX="538.0" layoutY="56.0" prefHeight="70.0" prefWidth="57.0" text="16">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="dated_year" layoutX="595.0" layoutY="91.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+      <Separator layoutX="647.0" layoutY="56.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="22.0" />
+      <Label fx:id="datef_Month" layoutX="741.0" layoutY="74.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="678.0" layoutY="38.0" prefHeight="17.0" prefWidth="91.0" text="Date fin" />
+      <Label fx:id="datef_day" layoutX="678.0" layoutY="55.0" prefHeight="70.0" prefWidth="57.0" text="16">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="datef_year" layoutX="741.0" layoutY="91.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+   </children>
+</AnchorPane>

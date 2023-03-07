@@ -21,11 +21,15 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import Service.UserService;
+import Util.Data;
+import View.MenuItemController;
 import driftrace.Driftrace;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -33,6 +37,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class ConnecterController implements Initializable {
@@ -60,17 +65,20 @@ public class ConnecterController implements Initializable {
     private Button deco;
     @FXML
     private TextField textfield;
-    @FXML
     private Label statusLabel;
+    BorderPane borderPane;
 
 
  public static final String ACCOUNT_SID = "AC84cee867fc660e687e457a4e5e7ea54a";
     public static final String AUTH_TOKEN = "2cfb90ef34ef5819dbd255e97bc5319e";
     public static final String TWILIO_NUMBER = "+12765308368";
 
+    public void setBorderPane(BorderPane borderPane){
+        this.borderPane=borderPane;
+    }
     public void initialize(URL url, ResourceBundle rb) {
-        /*
-        int utilisateurconnecte =Driftrace.idutilisateur;
+        
+        int utilisateurconnecte =Data.getId_user();
        
        UserService userService = new UserService();
     User utilisateur = userService.readById(utilisateurconnecte);
@@ -81,20 +89,7 @@ public class ConnecterController implements Initializable {
     resnum.setText(String.valueOf(utilisateur.getNum_tel()));
     rescin.setText(String.valueOf(utilisateur.getCin()));
 
- String dossierImages = "C:\\Users\\21694\\Desktop\\driftrace\\src\\image\\";
 
-        File dossier = new File(dossierImages);
-        File[] fichiers = dossier.listFiles();
-        for (File fichier : fichiers) {
-        String nomFichier = fichier.getName();
-        if (nomFichier.startsWith(utilisateur.getEmail()) && nomFichier.endsWith(".jpg")||nomFichier.startsWith(utilisateur.getEmail()) && nomFichier.endsWith(".png")) {
-            String cheminImage1 = fichier.toURI().toString();
-            Image image = new Image(cheminImage1);
-            cheminimg1.setImage(image);
-            break;
-        }
-
-        }*/
         }
 
     @FXML
@@ -129,13 +124,23 @@ ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANC
 alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == buttonTypeOK){
-    userService.update(utilisateur);
-    // Afficher un message de confirmation
-    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-    alert2.setTitle("Confirmation");
-    alert2.setHeaderText(null);
-    alert2.setContentText("Utilisateur modifié avec succès !");
-    alert2.showAndWait();
+                try {
+                    userService.update(utilisateur);
+                    // Afficher un message de confirmation
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Confirmation");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("Utilisateur modifié avec succès !");
+                    alert2.showAndWait();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/SideBar.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(ConnecterController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 } else {
     // User chose CANCEL or closed the dialog
 }
@@ -203,6 +208,18 @@ tfpassword.setText("");
     } else {
         statusLabel.setText("Error sending SMS to " + toPhoneNumber + ".");
     }
+    }
+
+    @FXML
+    private void goToAlimenter(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AlimenterCompte.fxml"));
+            Parent alimenterCarte = loader.load();            
+            borderPane.setCenter(null);
+            borderPane.setCenter(alimenterCarte);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 

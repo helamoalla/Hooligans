@@ -41,7 +41,7 @@ public class RoleService implements Interface.InterfaceCRUD<Role>{
     public void delete(int id) {
         String requete="delete from role where id_role = "+id;
         try {
-            Statement st=conn.createStatement();
+            Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             st.executeUpdate(requete);
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,7 +67,7 @@ public class RoleService implements Interface.InterfaceCRUD<Role>{
         String requete ="select * from role";
         ArrayList<Role> list=new ArrayList<>();
         try {
-            Statement st=conn.createStatement();
+            Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
            ResultSet rs= st.executeQuery(requete);
            while(rs.next()){
                Role t=new Role
@@ -87,7 +87,7 @@ public class RoleService implements Interface.InterfaceCRUD<Role>{
        Role r=new Role();
        
        try {
-             Statement st=conn.createStatement();
+             Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
            ResultSet rs= st.executeQuery(requete);
            while(rs.next()){
            r.setId_role(rs.getInt("id_role"));

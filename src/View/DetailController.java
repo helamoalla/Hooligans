@@ -140,6 +140,9 @@ public class DetailController implements Initializable {
             //rating.setRating(3.3);
             rating.setDisable(true);
         }
+         if(feedbackService.checkIfAlreadyReported(b)){
+             report.setVisible(false);
+         }
         System.out.println(b);
 } catch (MalformedURLException ex) {
          System.out.println(ex);
@@ -169,7 +172,7 @@ public class DetailController implements Initializable {
                 Feedback f=new Feedback();
                 f.setCommentaire(commentaire.getText());
                 if(feedbackService.checkIfRated(bonplan)==0){
-                   rate.setText("1");
+                   //rate.setText("1");
                 f.setRate(Integer.parseInt(rate.getText()));}
                 else 
                     f.setRate(0);

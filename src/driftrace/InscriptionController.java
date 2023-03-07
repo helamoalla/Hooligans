@@ -35,6 +35,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 
 
 public class InscriptionController implements Initializable {
@@ -54,12 +56,14 @@ public class InscriptionController implements Initializable {
     @FXML
     private TextField num_tel1;
     @FXML
-    private TextField text_image;
+    private Text text_image;
     RoleService roleService=new RoleService();
     @FXML
     private Button img;
     @FXML
     private ImageView imageView;
+    @FXML
+    private FlowPane container;
 
    private File selectedFile;
 
@@ -67,6 +71,8 @@ public class InscriptionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        container.setStyle("-fx-background-color: white; -fx-border-color: black;"
+                            + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
     }    
 
     

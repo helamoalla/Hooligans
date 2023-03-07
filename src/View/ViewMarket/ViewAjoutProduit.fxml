@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../Views/CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.ViewAjoutProduitController">
+   <children>
+      <TextField fx:id="nomprod" layoutX="328.0" layoutY="174.0" opacity="0.65" />
+      <TextField fx:id="prixprod" layoutX="328.0" layoutY="228.0" opacity="0.65" />
+      <TextArea fx:id="descprod" layoutX="327.0" layoutY="278.0" opacity="0.65" prefHeight="62.0" prefWidth="150.0" />
+      <TextField fx:id="quantiteprod" layoutX="328.0" layoutY="372.0" opacity="0.65" />
+      <Label layoutX="123.0" layoutY="177.0" text="Nom Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="123.0" layoutY="231.0" text="Prix Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="298.0" prefHeight="23.0" prefWidth="175.0" text="Description Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="375.0" text="Quantité Produit" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="123.0" layoutY="444.0" text="Categorie" textFill="#ece3e3">
+         <font>
+            <Font name="Book Antiqua" size="19.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="choixCP" layoutX="327.0" layoutY="441.0" opacity="0.6" prefWidth="150.0" />
+      <Button layoutX="152.0" layoutY="680.0" mnemonicParsing="false" onAction="#ajoutproduit" opacity="0.6" prefHeight="39.0" prefWidth="190.0" text="Ajouter Produit">
+         <font>
+            <Font name="Calisto MT" size="16.0" />
+         </font></Button>
+      <Button layoutX="360.0" layoutY="680.0" mnemonicParsing="false" onAction="#afficherproduits" opacity="0.6" prefHeight="39.0" prefWidth="190.0" text="Nos Produits">
+         <font>
+            <Font name="Calisto MT" size="16.0" />
+         </font></Button>
+      <Button layoutX="102.0" layoutY="554.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="26.0" prefWidth="122.0" text="Choose Image" />
+      <ImageView fx:id="image_view" fitHeight="107.0" fitWidth="161.0" layoutX="322.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="image_label" layoutX="322.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
+      <Label layoutX="260.0" layoutY="66.0" text="Ajout d'un produit">
+         <font>
+            <Font size="27.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.5047348484848485" endY="0.7462120923128994" startX="0.49337124102043384">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.4736842215061188" green="0.42456141114234924" blue="0.42456141114234924" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.821052610874176" green="0.057777777314186096" blue="0.057777777314186096" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>

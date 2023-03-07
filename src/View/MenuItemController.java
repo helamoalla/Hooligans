@@ -6,8 +6,11 @@ package View;
 
 import Service.UserService;
 import Util.Data;
+import View.View.EventuserController;
+import View.View.Test1Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import driftrace.ConnecterController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +62,8 @@ public class MenuItemController implements Initializable {
     UserService userService=new UserService();
     @FXML
     private JFXButton users;
+    @FXML
+    private JFXButton events;
     
     
 
@@ -170,9 +175,11 @@ public class MenuItemController implements Initializable {
     private void GoUser(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../driftrace/connecter.fxml"));
-            Parent profile = loader.load();            
+            Parent user = loader.load();            
+            ConnecterController connecterController = loader.getController();
+            connecterController.setBorderPane(borderPane);
             borderPane.setCenter(null);
-            borderPane.setCenter(profile);
+            borderPane.setCenter(user);
         } catch (IOException ex) {
             Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,6 +206,35 @@ public class MenuItemController implements Initializable {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoEvents(ActionEvent event) {
+        try {
+            FXMLLoader loader ;
+            if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+               loader = new FXMLLoader(getClass().getResource("../View/View/test1.fxml"));
+               Parent test = loader.load();            
+
+               Test1Controller test1 = loader.getController();
+                test1.setBorderPane(borderPane);
+                borderPane.setCenter(null);
+                borderPane.setCenter(test);
+            }
+            else{
+            loader = new FXMLLoader(getClass().getResource("../View/View/eventuser.fxml"));
+            Parent events = loader.load();            
+            EventuserController eventUserController = loader.getController();
+            eventUserController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+             borderPane.setCenter(events);
+            }
+            
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }

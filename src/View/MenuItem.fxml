@@ -94,6 +94,18 @@
             </VBox>
          </children>
       </VBox>
+      <JFXButton fx:id="events" alignment="CENTER" onAction="#GoEvents" prefHeight="39.0" prefWidth="128.0" text="  Event" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/finish-flag.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
       <JFXButton alignment="CENTER" onAction="#logOut" prefHeight="39.0" prefWidth="128.0" text=" " textFill="#b4abab">
          <opaqueInsets>
             <Insets />

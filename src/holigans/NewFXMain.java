@@ -32,7 +32,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
         try {
             
-            Parent root = FXMLLoader.load(getClass().getResource("../View/SideBar.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../View/ViewMarket/HomePage.fxml"));
             
             
             
