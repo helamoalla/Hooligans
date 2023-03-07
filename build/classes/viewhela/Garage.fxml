@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="743.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewhela.GarageController">
+   <children>
+      <ListView fx:id="id_list" layoutX="47.0" layoutY="61.0" opacity="0.57" prefHeight="474.0" prefWidth="610.0" />
+      <Button fx:id="id_afficher" layoutX="47.0" layoutY="23.0" mnemonicParsing="false" onAction="#afficher_garage" prefHeight="26.0" prefWidth="62.0" text="afficher" textFill="RED" />
+      <Button fx:id="id_suppr" layoutX="136.0" layoutY="23.0" mnemonicParsing="false" onAction="#supprimer_Garage" text="supprimer" textFill="RED" />
+      <Button fx:id="id_ajout" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" onAction="#ajouter_garage" text="ajouter" textFill="RED" />
+      <Button fx:id="id_modifier" layoutX="300.0" layoutY="23.0" mnemonicParsing="false" onAction="#modifier_garage" text="modifier" textFill="RED" />
+      <Button fx:id="id_retour" layoutX="670.0" layoutY="500.0" mnemonicParsing="false" onAction="#retour" text="retour" textFill="RED" />
+   </children>
+</AnchorPane>

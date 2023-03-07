@@ -31,6 +31,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
     Connection cnx = Maconnexion.getInstance().getCnx();
     InterfaceCRUD sm = new ServiceMaintenance();
     InterfaceCRUD sg = new ServiceGarageC();
+    UserService us=new UserService();
     Devis d = new Devis();
     public float TTC;
 
@@ -39,7 +40,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
         try {
             String req = "INSERT INTO `devis`(`id_user`, `TVA`, `total` , `id_garage`, `id_maintenance`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, t.getId_user());
+            ps.setInt(1, t.getUser().getId_user());
             ps.setInt(2, t.getTVA());
             ps.setFloat(3, t.getTotal());
             ps.setInt(4, t.getGarage().getId_garage());
@@ -62,7 +63,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
     @Override
     public void update(Devis t) {
 
-        ArrayList<Maintenance> lm = sm.chercher(t.getId_user());
+        ArrayList<Maintenance> lm = sm.chercher(t.getUser().getId_user());
 
       //  Maintenance m = lm.get(lm.lastIndexOf(lm));
         Maintenance m =lm.get(0);
@@ -133,7 +134,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
         }
         t.setGarage(g);
         t.setMaintenance(m);
-        t.setId_user(m.getId_user());
+        t.setUser(m.getUser());   ///////////mouch suuur 
         t.setTVA(19);
         System.out.println(somme);
         float T = (somme * t.getTVA()) / 100f;
@@ -153,7 +154,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
 
     public float update1(Devis t) {
 
-        ArrayList<Maintenance> lm = sm.chercher(t.getId_user());
+        ArrayList<Maintenance> lm = sm.chercher(t.getUser().getId_user());
 
         Maintenance m = lm.get(0);
 
@@ -224,7 +225,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
         }
         t.setGarage(g);
         t.setMaintenance(m);
-        t.setId_user(m.getId_user());
+        t.setUser(m.getUser());
         t.setTVA(19);
         //  System.out.println(somme);
         float T = (somme * t.getTVA()) / 100f;
@@ -252,7 +253,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
 
                 Devis m = new Devis();
                 m.setId_devis(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setTVA(res.getInt(3));
                 m.setTotal(res.getFloat(4));
                 GarageC c = (GarageC) sg.readById(res.getInt(5));
@@ -286,7 +287,7 @@ public class ServiceDevis implements InterfaceCRUD<Devis> {
             while (res.next()) {
                 Devis m = new Devis();
                 m.setId_devis(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setTVA(res.getInt(3));
                 m.setTotal(res.getFloat(4));
                 GarageC c = (GarageC) sg.readById(res.getInt(5));
@@ -315,7 +316,7 @@ return lm.size();
 
             while (res.next()) {
                 m.setId_devis(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setTVA(res.getInt(3));
                 m.setTotal(res.getInt(4));
                

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewhela.LesGaragesUserController">
+   <children>
+      <Pane>
+         <children>
+            <VBox prefHeight="344.0" prefWidth="279.0">
+               <children>
+                  <ImageView fx:id="id_image" fitHeight="194.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/car-on-hoist.jpg" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="237.0" prefWidth="280.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="165.0" prefWidth="290.0" spacing="10.0" styleClass="dark-background" stylesheets="@../css/css3.css">
+                           <children>
+                              <Label fx:id="id_garage" text="id" textFill="#201c1c" />
+                              <Label fx:id="nom_garage" text="nom du garage" textAlignment="RIGHT" textFill="#bfbcbc">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="adresse" alignment="CENTER" text="adresse" textAlignment="RIGHT" textFill="#6e6e6e">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="numero" text="numero" textFill="#696666">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

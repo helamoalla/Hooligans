@@ -13,7 +13,7 @@ import java.util.*;
 public class Maintenance {
     //attributs
     private int id_maintenance;
-    private int id_user;
+    private User user;
     private Date date_maintenance;
     private boolean panne_moteur,pompe_a_eau,patin,essuie_glace,radiateur,ventilateur,duride,fuite_d_huile,vidange,filtre,batterie,amortisseur,frein_main,feu_d_eclairage;
     private String Autre;
@@ -24,9 +24,9 @@ public class Maintenance {
     public Maintenance() {
     }
 
-    public Maintenance(int id_maintenance, int id_user, Date date_maintenance, boolean panne_moteur, boolean pompe_a_eau, boolean patin, boolean essuie_glace, boolean radiateur, boolean ventilateur, boolean duride, boolean fuite_d_huile, boolean vidange, boolean filtre, boolean batterie, boolean amortisseur, boolean frein_main, boolean feu_d_eclairage, String Autre) {
+    public Maintenance(int id_maintenance, User user, Date date_maintenance, boolean panne_moteur, boolean pompe_a_eau, boolean patin, boolean essuie_glace, boolean radiateur, boolean ventilateur, boolean duride, boolean fuite_d_huile, boolean vidange, boolean filtre, boolean batterie, boolean amortisseur, boolean frein_main, boolean feu_d_eclairage, String Autre) {
         this.id_maintenance = id_maintenance;
-        this.id_user = id_user;
+        this.user = user;
         this.date_maintenance = date_maintenance;
         this.panne_moteur = panne_moteur;
         this.pompe_a_eau = pompe_a_eau;
@@ -45,8 +45,8 @@ public class Maintenance {
         this.Autre = Autre;
     }
 
-    public Maintenance(int id_user, boolean panne_moteur, boolean pompe_a_eau, boolean patin, boolean essuie_glace, boolean radiateur, boolean ventilateur, boolean duride, boolean fuite_d_huile, boolean vidange, boolean filtre, boolean batterie, boolean amortisseur, boolean frein_main, boolean feu_d_eclairage, String Autre) {
-        this.id_user = id_user;
+    public Maintenance(User user, boolean panne_moteur, boolean pompe_a_eau, boolean patin, boolean essuie_glace, boolean radiateur, boolean ventilateur, boolean duride, boolean fuite_d_huile, boolean vidange, boolean filtre, boolean batterie, boolean amortisseur, boolean frein_main, boolean feu_d_eclairage, String Autre) {
+        this.user = user;
         this.panne_moteur = panne_moteur;
         this.pompe_a_eau = pompe_a_eau;
         this.patin = patin;
@@ -72,7 +72,7 @@ public class Maintenance {
    ///toString 
     @Override
     public String toString() {
-        return "Maintenance{" + ", id_user=" + id_user + ", date_maintenance=" + date_maintenance + ", panne_moteur=" + panne_moteur + ", pompe_a_eau=" + pompe_a_eau + ", patin=" + patin + ", essuie_glace=" + essuie_glace + ", radiateur=" + radiateur + ", ventilateur=" + ventilateur + ", duride=" + duride + ", fuite_d_huile=" + fuite_d_huile + ", vidange=" + vidange + ", filtre=" + filtre + ", batterie=" + batterie + ", amortisseur=" + amortisseur + ", frein_main=" + frein_main + ", feu_d_eclairage=" + feu_d_eclairage + ", Autre=" + Autre + '}';
+        return "Maintenance{" + ", id_user=" + user + ", date_maintenance=" + date_maintenance + ", panne_moteur=" + panne_moteur + ", pompe_a_eau=" + pompe_a_eau + ", patin=" + patin + ", essuie_glace=" + essuie_glace + ", radiateur=" + radiateur + ", ventilateur=" + ventilateur + ", duride=" + duride + ", fuite_d_huile=" + fuite_d_huile + ", vidange=" + vidange + ", filtre=" + filtre + ", batterie=" + batterie + ", amortisseur=" + amortisseur + ", frein_main=" + frein_main + ", feu_d_eclairage=" + feu_d_eclairage + ", Autre=" + Autre + '}';
     }
 
     ///getters & setters
@@ -84,12 +84,12 @@ public class Maintenance {
         this.id_maintenance = id_maintenance;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate_maintenance() {

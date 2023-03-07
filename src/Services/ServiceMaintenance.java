@@ -41,13 +41,13 @@ import javax.mail.internet.MimeMultipart;
 public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
 
     Connection cnx = Maconnexion.getInstance().getCnx();
-
+  UserService us = new UserService();
     @Override
     public void insert(Maintenance m) {
         try {
             String req = "INSERT INTO `maintenance`(`id_user`, `panne_moteur`, `pompe_a_eau` , `patin`, `essuie_glace`, `radiateur`, `ventilateur`, `duride`, `fuite_d_huile`, `vidange`, `filtre`, `batterie`, `amortisseur`, `frein_main`, `feu_d_eclairage`, `Autre`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, m.getId_user());
+            ps.setInt(1, m.getUser().getId_user());
             // ps.setDate(2, (Date) m.getDate_maintenance());
             ps.setBoolean(2, m.isPanne_moteur());
             ps.setBoolean(3, m.isPompe_a_eau());
@@ -86,7 +86,7 @@ public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
     @Override
     public void update(Maintenance m) {
         try {
-            String req = "UPDATE `maintenance` SET `panne_moteur`=" + m.isPanne_moteur() + " ,`pompe_a_eau`=" + m.isPompe_a_eau() + " ,`patin`=" + m.isPatin() + " ,`essuie_glace`=" + m.isEssuie_glace() + " ,`radiateur`=" + m.isRadiateur() + " ,`ventilateur`=" + m.isVentilateur() + " ,`duride`=" + m.isDuride() + " ,`fuite_d_huile`=" + m.isFuite_d_huile() + " ,`vidange`=" + m.isVidange() + " ,`filtre`=" + m.isFiltre() + " ,`batterie`=" + m.isBatterie() + ", `amortisseur`=" + m.isAmortisseur() + " ,`frein_main`=" + m.isFrein_main() + " ,`feu_d_eclairage`=" + m.isFeu_d_eclairage() + " ,`Autre`='" + m.getAutre() + "' WHERE `id_user`=" + m.getId_user() + " ";
+            String req = "UPDATE `maintenance` SET `panne_moteur`=" + m.isPanne_moteur() + " ,`pompe_a_eau`=" + m.isPompe_a_eau() + " ,`patin`=" + m.isPatin() + " ,`essuie_glace`=" + m.isEssuie_glace() + " ,`radiateur`=" + m.isRadiateur() + " ,`ventilateur`=" + m.isVentilateur() + " ,`duride`=" + m.isDuride() + " ,`fuite_d_huile`=" + m.isFuite_d_huile() + " ,`vidange`=" + m.isVidange() + " ,`filtre`=" + m.isFiltre() + " ,`batterie`=" + m.isBatterie() + ", `amortisseur`=" + m.isAmortisseur() + " ,`frein_main`=" + m.isFrein_main() + " ,`feu_d_eclairage`=" + m.isFeu_d_eclairage() + " ,`Autre`='" + m.getAutre() + "' WHERE `id_user`=" + m.getUser().getId_user()+ " ";
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("maintenance modifier avec succes");
@@ -106,7 +106,7 @@ public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
 
                 Maintenance m = new Maintenance();
                 m.setId_maintenance(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setDate_maintenance(res.getDate(3));
                 m.setPanne_moteur(res.getBoolean(4));
                 m.setPompe_a_eau(res.getBoolean(5));
@@ -143,7 +143,7 @@ public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
 
             while (res.next()) {
                 m.setId_maintenance(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setDate_maintenance(res.getDate(3));
                 m.setPanne_moteur(res.getBoolean(4));
                 m.setPompe_a_eau(res.getBoolean(5));
@@ -179,7 +179,7 @@ public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
 
                 Maintenance m = new Maintenance();
                 m.setId_maintenance(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setDate_maintenance(res.getDate(3));
                 m.setPanne_moteur(res.getBoolean(4));
                 m.setPompe_a_eau(res.getBoolean(5));
@@ -217,7 +217,7 @@ public class ServiceMaintenance implements InterfaceCRUD<Maintenance> {
             while (res.next()) {
                 Maintenance m = new Maintenance();
                 m.setId_maintenance(res.getInt(1));
-                m.setId_user(res.getInt(2));
+                m.setUser(us.readById(res.getInt(2)));
                 m.setDate_maintenance(res.getDate(3));
                 m.setPanne_moteur(res.getBoolean(4));
                 m.setPompe_a_eau(res.getBoolean(5));

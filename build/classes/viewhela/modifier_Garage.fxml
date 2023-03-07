@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewhela.Modifier_GarageController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-1.0" layoutY="5.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="id_modifier" layoutX="512.0" layoutY="359.0" mnemonicParsing="false" onAction="#modifier_garage" prefHeight="26.0" prefWidth="70.0" text="modifier" textFill="RED" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="30.0" layoutY="27.0" text="Nom Garage" textFill="WHITE" />
+      <Label layoutX="29.0" layoutY="71.0" text="Adresse" textFill="WHITE" />
+      <Label layoutX="28.0" layoutY="111.0" text="Numero" textFill="WHITE" />
+      <Label layoutX="26.0" layoutY="148.0" text="panne moteur" textFill="WHITE" />
+      <Label layoutX="29.0" layoutY="194.0" text="pompe a eau" textFill="WHITE" />
+      <Label layoutX="26.0" layoutY="234.0" text="patin " textFill="WHITE" />
+      <Label layoutX="24.0" layoutY="272.0" text="essuie glace" textFill="WHITE" />
+      <Label layoutX="26.0" layoutY="312.0" text="radiateur" textFill="WHITE" />
+      <Label layoutX="22.0" layoutY="355.0" text="ventilateur" textFill="WHITE" />
+      <Label layoutX="199.0" layoutY="149.0" text="duride" textFill="WHITE" />
+      <Label layoutX="199.0" layoutY="193.0" text="fuite d'huile" textFill="WHITE" />
+      <Label layoutX="207.0" layoutY="234.0" text="vidange" textFill="WHITE" />
+      <Label layoutX="204.0" layoutY="271.0" text="filtre" textFill="WHITE" />
+      <Label layoutX="210.0" layoutY="315.0" text="batterie" textFill="WHITE" />
+      <Label layoutX="201.0" layoutY="355.0" text="amortisseur" textFill="WHITE" />
+      <Label layoutX="340.0" layoutY="149.0" text="frain main" textFill="WHITE" />
+      <Label layoutX="343.0" layoutY="193.0" text="feu d'eclairage" textFill="WHITE" />
+      <Label layoutX="335.0" layoutY="234.0" text="taux de reduction" textFill="WHITE" />
+      <TextField fx:id="id_nom" layoutX="117.0" layoutY="23.0" />
+      <TextField fx:id="id_adresse" layoutX="117.0" layoutY="67.0" />
+      <TextField fx:id="id_num" layoutX="118.0" layoutY="107.0" />
+      <TextField fx:id="id_panne_moteur" layoutX="117.0" layoutY="144.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_pompe_a_eau" layoutX="118.0" layoutY="190.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_patin" layoutX="117.0" layoutY="230.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_essuie_glace" layoutX="118.0" layoutY="268.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_radiateur" layoutX="119.0" layoutY="311.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_ventilateur" layoutX="118.0" layoutY="351.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_duride" layoutX="268.0" layoutY="145.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_fuite_d_huile" layoutX="270.0" layoutY="190.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_vidange" layoutX="270.0" layoutY="230.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_filtre" layoutX="270.0" layoutY="267.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_batterie" layoutX="274.0" layoutY="308.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_amortisseur" layoutX="274.0" layoutY="351.0" prefHeight="26.0" prefWidth="54.0" />
+      <TextField fx:id="id_frain_main" layoutX="432.0" layoutY="144.0" prefHeight="26.0" prefWidth="48.0" />
+      <TextField fx:id="id_feu_eclairage" layoutX="432.0" layoutY="188.0" prefHeight="26.0" prefWidth="48.0" />
+      <TextField fx:id="id_reduction" layoutX="439.0" layoutY="230.0" prefHeight="26.0" prefWidth="48.0" />
+      <ImageView fx:id="image_view" fitHeight="95.0" fitWidth="123.0" layoutX="472.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="id_import_image" layoutX="297.0" layoutY="32.0" mnemonicParsing="false" onAction="#importer_image" text="importer image" textFill="RED" />
+      <Label fx:id="id_image" layoutX="406.0" layoutY="36.0" text="image" textFill="WHITE" />
+   </children>
+</AnchorPane>
