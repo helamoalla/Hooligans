@@ -23,12 +23,12 @@
       </ImageView>
       <Label layoutX="199.0" layoutY="192.0" text="Email" />
       <Label layoutX="201.0" layoutY="223.0" text="Mdp" />
-      <TextField fx:id="adresse" layoutX="246.0" layoutY="188.0">
+      <TextField fx:id="adresse" layoutX="246.0" layoutY="188.0" promptText="E_mail">
          <effect>
             <Blend />
          </effect>
       </TextField>
-      <Button fx:id="connect" layoutX="276.0" layoutY="270.0" mnemonicParsing="false" onAction="#con" text="Se connecter" textFill="RED">
+      <Button fx:id="connect" layoutX="279.0" layoutY="269.0" mnemonicParsing="false" onAction="#con" prefHeight="25.0" prefWidth="89.0" text="Se connecter" textFill="RED">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -54,7 +54,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="mot" layoutX="276.0" layoutY="334.0" mnemonicParsing="false" onAction="#motoublier" prefHeight="25.0" prefWidth="89.0" text="Mdp oublie" textFill="#fc0202">
+      <Button fx:id="mot" layoutX="279.0" layoutY="334.0" mnemonicParsing="false" onAction="#motdepasseoublier" prefHeight="25.0" prefWidth="89.0" text="Mdp oublie" textFill="#fc0202">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -69,8 +69,8 @@
             </Lighting>
          </effect>
       </Button>
-      <PasswordField fx:id="pswd" layoutX="246.0" layoutY="219.0" />
-      <ToggleButton fx:id="showbotton" layoutX="402.0" layoutY="219.0" mnemonicParsing="false" onAction="#showuserpw" prefHeight="17.0" prefWidth="5.0" text="ToggleButton" />
+      <PasswordField fx:id="pswd" layoutX="246.0" layoutY="219.0" promptText="Password" />
+      <ToggleButton fx:id="showbotton" layoutX="402.0" layoutY="219.0" mnemonicParsing="false" onAction="#showuserpw" prefHeight="17.0" prefWidth="24.0" text="V" />
       <Label fx:id="mdpshow" layoutX="246.0" layoutY="244.0" prefHeight="17.0" prefWidth="77.0" />
    </children>
 </AnchorPane>

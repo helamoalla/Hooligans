@@ -6,6 +6,7 @@
 package service;
 
 import entity.role;
+import entity.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -105,4 +106,15 @@ String requete="insert into role (type) values (?)";
        
        return r;
     }
+
+    @Override
+    public String readByMail(String id_user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+
+  
+
+ 
+
+

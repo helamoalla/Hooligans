@@ -28,6 +28,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.UserService;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 
 
 public class InscriptionController implements Initializable {
@@ -49,7 +53,7 @@ public class InscriptionController implements Initializable {
     @FXML
     private TextField text_image;
     @FXML
-    private Button imgage;
+    private Button img;
 
    
 

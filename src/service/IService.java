@@ -5,6 +5,7 @@
  */
 package service;
 
+import entity.user;
 import java.util.List;
 
 /**
@@ -16,5 +17,6 @@ public interface IService<T> {
     void delete(T t);
     void update(T t);
     List<T> readAll();
+    public String readByMail(String id_user);
     T readById(int id);    
 }

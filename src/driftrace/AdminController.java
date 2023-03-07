@@ -4,15 +4,22 @@
  * and open the template in the editor.
  */
 package driftrace;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 
 import entity.user;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +31,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import service.UserService;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 
 
@@ -57,6 +65,10 @@ public class AdminController implements Initializable {
  private UserService userService = new UserService();
     @FXML
     private ComboBox changer_id;
+    @FXML
+    private Button deco;
+    @FXML
+    private Button act;
     @Override
    public void initialize(URL url, ResourceBundle rb) {
       
@@ -173,6 +185,47 @@ public class AdminController implements Initializable {
             alert.showAndWait();
         }
     }
+    }
+
+    @FXML
+    private void dec(ActionEvent event) throws IOException {
+            // Charger la page de connexion
+    Parent root = FXMLLoader.load(getClass().getResource("conx.fxml"));
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+    }
+
+    @FXML
+    private void activer(ActionEvent event) {
+        int  etat = 1;
+         user selectedUser = afficher.getSelectionModel().getSelectedItem();
+       
+        if (selectedUser == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No user selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a user in the table.");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm ban");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to activate the selected user?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           
+             selectedUser.setId_role(etat);
+             userService.updateban(selectedUser,etat);
+             List<user> userList = userService.readAll();
+        
+        // affiche les données dans le tableau
+        afficher.getItems().setAll(userList);
+        }
     }
     
 }

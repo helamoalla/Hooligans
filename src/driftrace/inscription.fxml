@@ -9,16 +9,23 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../views/css1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="driftrace.InscriptionController">
    <children>
-      <Label layoutX="40.0" layoutY="82.0" text="Nom" />
-      <Label layoutX="40.0" layoutY="114.0" text="Penom" />
-      <Label layoutX="39.0" layoutY="143.0" text="Email" />
-      <Label layoutX="38.0" layoutY="174.0" text="Num_tel" />
-      <Label layoutX="38.0" layoutY="204.0" text="Cin" />
+      <ImageView fitHeight="419.0" fitWidth="666.0" layoutX="-13.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Downloads/Untitled%20design.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="40.0" layoutY="82.0" text="Nom" textFill="WHITE" />
+      <Label layoutX="40.0" layoutY="114.0" text="Penom" textFill="WHITE" />
+      <Label layoutX="39.0" layoutY="143.0" text="Email" textFill="WHITE" />
+      <Label layoutX="38.0" layoutY="174.0" text="Num_tel" textFill="WHITE" />
+      <Label layoutX="38.0" layoutY="204.0" text="Cin" textFill="WHITE" />
       <TextField fx:id="nom1" layoutX="123.0" layoutY="77.0" prefHeight="17.0" prefWidth="149.0">
          <effect>
             <Blend />
@@ -44,7 +51,7 @@
             <Blend />
          </effect>
       </TextField>
-      <Button fx:id="inscrire" layoutX="151.0" layoutY="352.0" mnemonicParsing="false" onAction="#insc" prefHeight="25.0" prefWidth="90.0" text="S'inscrire" textFill="RED">
+      <Button fx:id="inscrire" layoutX="153.0" layoutY="321.0" mnemonicParsing="false" onAction="#insc" prefHeight="25.0" prefWidth="90.0" text="S'inscrire" textFill="RED">
          <effect>
             <Lighting>
                <bumpInput>
@@ -59,7 +66,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="41.0" layoutY="235.0" text="Mdp" />
+      <Label layoutX="41.0" layoutY="235.0" text="Mdp" textFill="WHITE" />
       <Label layoutX="152.0" layoutY="32.0" text="Inscription" textFill="#b22323">
          <font>
             <Font name="System Bold Italic" size="18.0" />
@@ -68,8 +75,8 @@
             <Glow />
          </effect>
       </Label>
-      <Button fx:id="img" layoutX="215.0" layoutY="290.0" mnemonicParsing="false" onAction="#addimg" text="inserer" />
-      <TextField fx:id="text_image" layoutX="123.0" layoutY="268.0" prefHeight="70.0" prefWidth="74.0" />
+      <Button fx:id="img" layoutX="202.0" layoutY="278.0" mnemonicParsing="false" onAction="#addimg" prefHeight="25.0" prefWidth="65.0" text="inserer" />
+      <TextField fx:id="text_image" layoutX="122.0" layoutY="278.0" prefHeight="25.0" prefWidth="73.0" />
       <PasswordField fx:id="mdp1" layoutX="121.0" layoutY="231.0" />
    </children>
 </AnchorPane>

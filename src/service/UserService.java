@@ -16,8 +16,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import utils.DataSource;
 
 /**
@@ -169,7 +177,6 @@ ps.setInt(2,t.getId_user());
             role r = new role();
             r.setId_role(rs.getInt("id_role"));
             r.setType(rs.getString("type"));
-           
             t = new user(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getInt("quota"),rs.getInt("id_role"));
         }
     } catch (SQLException ex) {
@@ -178,6 +185,31 @@ ps.setInt(2,t.getId_user());
 
     return t;
     }
+    
+    
+    @Override
+    public String readByMail(String email) {
+        try {
+            String req;
+            req = "SELECT mdp from `user` WHERE email='"+email+"'";
+            Statement ste = conn.createStatement();
+            ResultSet res=ste.executeQuery(req);
+              
+             while(res.next()){
+            String a=res.getString("mdp");
+           
+           return a;
+        }}
+        catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+        
+    
+
+    
+    
 
     @Override
     public void delete(user t) {
@@ -238,7 +270,29 @@ public void setMotDePasse(int id_user, String nouveauMotDePasse) {
     }
 }
 
-    
+    public void sendEmail(String to, String subject, String body) throws MessagingException {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+          new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("hadjali.aziz@gmail.com", "nrojtvtnufuaahli");
+            }
+          });
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("hadjali.aziz@gmail.com"));
+        message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(to));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+    }
     
     
     }

@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/connecter.fxml</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/ConnecterController.java</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/Driftrace.java</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/MessageController.java</file>
+            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/MdpoublierController.java</file>
             <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/ConxController.java</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/service/UserService.java</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/entity/user.java</file>
-            <file>file:/C:/Users/21694/Desktop/driftrace/src/utils/DataSource.java</file>
+            <file>file:/C:/Users/21694/Desktop/driftrace/src/driftrace/conx.fxml</file>
         </group>
     </open-files>
 </project-private>
