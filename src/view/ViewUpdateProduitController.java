@@ -168,7 +168,7 @@ public class ViewUpdateProduitController implements Initializable {
     @FXML
     private void afficherproduits(ActionEvent event) {
               try {
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppProduit.fxml"));
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionProduit.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

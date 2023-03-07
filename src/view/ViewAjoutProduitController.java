@@ -151,19 +151,20 @@ public class ViewAjoutProduitController implements Initializable {
 
     @FXML
     private void afficherproduits(ActionEvent event) {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppProduit.fxml"));
         
-         try {
-             Parent view_2=loader.load();
-             ViewSuppProduitController afficheproduit=loader.getController();
-             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-         } catch (IOException ex) {
-             Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+             try {
+                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionProduit.fxml"));
+                 Parent view_2=loader.load();
+                 GestionProduitController afficheproduit=loader.getController();
+                 
+                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                 Scene scene = new Scene(view_2);
+                 stage.setScene(scene);
+                 stage.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(ViewAjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
     }
 
     @FXML

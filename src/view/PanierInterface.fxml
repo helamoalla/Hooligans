@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PanierInterfaceController">
+    
+     <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@../CssStyle/search.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" text="Votre ">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" text="Panier">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="535.0" prefWidth="100.0" styleClass="chosen-fruit-card" stylesheets="@../CssStyle/search.css">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox fx:id="chosenProduit" alignment="CENTER" prefHeight="72.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="nom" alignment="CENTER" prefHeight="46.0" prefWidth="335.0" text="Nom Produit">
+                                 <font>
+                                    <Font name="Cambria" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="image" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logo.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <HBox prefHeight="52.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="description" alignment="CENTER" prefHeight="49.0" prefWidth="335.0" text="Description">
+                                 <font>
+                                    <Font name="Cambria" size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="335.0">
+                           <children>
+                              <Label text="Quantité  : ">
+                                 <font>
+                                    <Font name="Cambria" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="quantite" text="1">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label text="Total  : ">
+                                 <font>
+                                    <Font name="Cambria" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="total" text="500 ">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label text="DT">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="335.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnplus" mnemonicParsing="false" onMouseClicked="#Plus1Qt" styleClass="add-btn" stylesheets="@../CssStyle/search.css" text="+">
+                                       <font>
+                                          <Font name="Cambria Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="83.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnmoins" mnemonicParsing="false" onMouseClicked="#Moins1Qt" styleClass="add-btn" stylesheets="@../CssStyle/search.css" text="-">
+                                       <font>
+                                          <Font name="Cambria Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnsupprimer" mnemonicParsing="false" onMouseClicked="#SupprimerDuPanier" prefHeight="32.0" prefWidth="128.0" styleClass="add-btn" stylesheets="@../CssStyle/search.css" text="Supprimer">
+                                       <font>
+                                          <Font name="Cambria" size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#ViderPanier" styleClass="search-button" stylesheets="@../CssStyle/search.css" text="Vider Panier">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="81.0" prefWidth="840.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#consucomm" prefHeight="38.0" prefWidth="177.0" styleClass="transparent" stylesheets="@../CssStyle/search.css" text="Consulter mes commandes " textFill="#c40000">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="600.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ImageView fx:id="home" fitHeight="32.0" fitWidth="39.0" onMouseClicked="#marketplace" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/accueil.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ScrollPane prefHeight="692.0" prefWidth="880.0" styleClass="transparent" stylesheets="@../CssStyle/search.css">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="0.0" prefWidth="6.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Montant total de votre panier  : ">
+                           <font>
+                              <Font name="Cambria" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfmontanttotal" prefHeight="31.0" prefWidth="236.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <VBox alignment="CENTER" prefHeight="92.0" prefWidth="197.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#passercommande" prefHeight="34.0" prefWidth="161.0" stylesheets="@../CssStyle/search.css" text="Passer commande" textFill="#dc3535">
+                                 <styleClass>
+                                    <String fx:value="transparent" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="add-btn" />
+                                 </styleClass>
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+    
+</AnchorPane>

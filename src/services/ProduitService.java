@@ -274,6 +274,7 @@ public class ProduitService implements InterfaceCRUD <Produit> {
           new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("nadiakarboul24@gmail.com", "buxcclntxcawogvs");
+                
             }
           });
 

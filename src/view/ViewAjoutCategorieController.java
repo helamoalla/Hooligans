@@ -107,18 +107,20 @@ public class ViewAjoutCategorieController implements Initializable {
 
     @FXML
     private void consulterliste(ActionEvent event) {
-         FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppCategorie.fxml"));
-         try {
-             Parent view_2=loader.load();
-             ViewSuppCategorieController suppcategorie=loader.getController();
-             
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionCategorie.fxml"));
+            
+            Parent view_2=loader.load();
+            GestionCategorieController suppcategorie=loader.getController();
+            
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(view_2);
             stage.setScene(scene);
             stage.show();
-         } catch (IOException ex) {
-             Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        } catch (IOException ex) {
+            Logger.getLogger(ViewAjoutCategorieController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

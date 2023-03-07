@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/pidev1/NewFXMain.java</file>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/LignePanierService.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/Util/conditions.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ProduitController.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/HomePageController.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/ProduitService.java</file>
-            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/models/Panier.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/PanierInterfaceController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/PanierService.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/Util/Dataa.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/models/Role.java</file>
             <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/MarketController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/PasserCommande.fxml</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/PasserCommandeController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/interfaces/InterfaceCRUD.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/pidev1/NewFXMain.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/RoleService.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/ProduitController.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/services/UserService.java</file>
+            <file>file:/C:/Users/Nadia/Documents/NetBeansProjects/pidev1/src/view/LignePanierController.java</file>
         </group>
     </open-files>
 </project-private>

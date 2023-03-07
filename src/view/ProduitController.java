@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Produit;
-import pidev1.MyListener;
+import interfaces.MyListener;
 
 /**
  * FXML Controller class
@@ -55,7 +55,7 @@ public class ProduitController implements Initializable {
              nom.setText(produit.getNom_prod());
              prix.setText(produit.getPrix_prod().toString()+"DT");
              
-             
+       
              URL imageUrl;
              
              imageUrl = new URL("http://localhost/images/"+produit.getImage());

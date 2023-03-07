@@ -145,7 +145,7 @@ public class PanierService implements InterfaceCRUD <Panier>{
     public double totalmontantPanier(int id_user){
         Double totalPrixPanier=0.0 ;
         try {
-            String sql = "SELECT SUM( prix * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.user = "+ 3;
+            String sql = "SELECT SUM( prix * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ 3;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -178,7 +178,32 @@ public class PanierService implements InterfaceCRUD <Panier>{
     public ArrayList<Panier> chercher(String nom_column, String valeur) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+  //Fonction qui calcule le montant total d'un panier avec réduction de 10%
+    public double totalmontantPanierAvec10Discount(int id_user){
+        Double totalPrixPanierWithDiscount=0.0 ;
+        try {
+            String sql = "SELECT SUM(quantite * prix*0.9) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ id_user;
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                totalPrixPanierWithDiscount = rs.getDouble("total");//total est colonne virtuell, il n'existe pas dans la table panier
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalPrixPanierWithDiscount;
+    }
+    
+    public int totalproduitParPanier (int id_user) throws SQLException {
+      int total_prod = 0;
+          String sql = "SELECT count(*) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ id_user;
+          Statement st = cnx.createStatement();
+          ResultSet rs = st.executeQuery(sql);
+          while (rs.next()) {
+              total_prod = rs.getInt("total");//total est une colonne virtuell, elle n'existe pas dans la table panier
+          } 
+          return total_prod; 
+    }
   
     
 }

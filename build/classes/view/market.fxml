@@ -182,26 +182,23 @@
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
-                              <ChoiceBox fx:id="choiceCP" layoutX="475.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../CssStyle/search.css">
+                              <ChoiceBox fx:id="choiceCP" layoutX="454.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../CssStyle/search.css">
                                  <styleClass>
                                     <String fx:value="comboBox" />
                                     <String fx:value="transparent" />
                                  </styleClass>
                               </ChoiceBox>
-                              <Button layoutX="625.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../CssStyle/search.css" text="Search" textFill="#c40000">
+                              <Button layoutX="604.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../CssStyle/search.css" text="Search" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="669.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotopanier" prefHeight="37.0" prefWidth="114.0" styleClass="transparent" stylesheets="@../CssStyle/search.css" text="Mon Panier" textFill="#766e6e">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
                            </children></Pane>
-                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
                         <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/panier.png" />

@@ -52,7 +52,7 @@ import javax.mail.MessagingException;
 import models.Categorie;
 import models.Produit;
 import org.controlsfx.control.Notifications;
-import pidev1.MyListener;
+import interfaces.MyListener;
 import services.CategorieService;
 import services.LignePanierService;
 import services.PanierService;
@@ -190,62 +190,73 @@ public class MarketController implements Initializable , MyListener {
     PanierService panierser=new PanierService();
     @FXML
     private void ajouteraupanier(ActionEvent event) {
-        // try {
-            
-            
-            int quantiteprod=Integer.parseInt(quanti.getText());
-// 
-                       lp.Create_LignePanier(p, quantiteprod);
-                         String productName = p.getNom_prod();
-                      Double a=panierser.totalmontantPanier(3);
-                      System.out.println(a);
-              Notifications NotificationBuilder = Notifications.create()
-            .title("Reminder !! ")
-            .text("Votre panier costs now " + a).hideAfter(Duration.seconds(5))
-                      .position(Pos.BOTTOM_RIGHT);
-              NotificationBuilder.show();
-                       
-            
-               ///////////////
-//            String req2 = "SELECT quantite_prod FROM produit WHERE id_prod = "+p.getId_prod();
-//            
-//            Statement st = cnx.createStatement();
-//              ResultSet rs=st.executeQuery(req2);
-//              rs.beforeFirst();
-//              rs.next();
-//              int nb =rs.getInt("quantite_prod");
-//        
-//             //PreparedStatement ps2 = cnx.prepareStatement(req2);
-//                 //ps2.setInt(1,selectedId );
-//                 //ResultSet rs = ps2.executeQuery(req2);
-//                 System.out.println(nb);
-//                 
-//          
-//            if(nb<5){
-//                String productName = p.getNom_prod();
+         try {
+             // try {
+             
+             
+             int quantiteprod=Integer.parseInt(quanti.getText());
+             if (p.getQuantite()-quantiteprod>0){
+                 lp.Create_LignePanier(p, quantiteprod);
+                 String productName = p.getNom_prod();
+                 Double a=panierser.totalmontantPanier(3);
+                 System.out.println(a);
+                 Notifications NotificationBuilder = Notifications.create()
+                         .title("Reminder !! ")
+                         .text("Votre panier costs now " + a).hideAfter(Duration.seconds(5))
+                         .position(Pos.BOTTOM_RIGHT);
+                 NotificationBuilder.show();}
+             else {
+                 
+                 Notifications NotificationBuilder = Notifications.create()
+                         .title("Desole ")
+                         .text("notre produit " + p.getNom_prod()+"  Est en repture de stock").hideAfter(Duration.seconds(5))
+                         .position(Pos.BOTTOM_RIGHT);
+                 NotificationBuilder.show();}
+             
+             
+             ///////////////
+             String req2 = "SELECT quantite_prod FROM produit WHERE id_prod = "+p.getId_prod();
+             
+             Statement st = cnx.createStatement();
+             ResultSet rs=st.executeQuery(req2);
+             rs.beforeFirst();
+             rs.next();
+             int nb =rs.getInt("quantite_prod");
+             
+             //PreparedStatement ps2 = cnx.prepareStatement(req2);
+             //ps2.setInt(1,selectedId );
+             //ResultSet rs = ps2.executeQuery(req2);
+             System.out.println(nb);
+             
+//
+if(nb<5){
+               String productName = p.getNom_prod();
 //              Notifications NotificationBuilder = Notifications.create()
 //            .title("Attention !! ")
-//            .text("Le stock de sécurite du produit  " + productName+"  risque d'être achevé").hideAfter(Duration.seconds(5))
+//            .text("Le stock de sécurite du produit   risque d'être achevé").hideAfter(Duration.seconds(5))
 //                      .position(Pos.BOTTOM_RIGHT);
 //              NotificationBuilder.show();
-//              
-//                try {
-//                    ps.sendEmail("sabrinebenaziza01@gmail.com", "Attention!!!!", "Rod belek el quantité ");
-//                } catch (MessagingException ex) {
-//                    Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-         //   }
+//
+try {
+    ps.sendEmail("balloumfarah@gmail.com", "Attention!!!!", " Le produit  "+productName+" risque d'être achevé");
+} catch (MessagingException ex) {
+    Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
+}
+System.out.println("rodbelek");
+}
+
+
+
+///////////////
+         } catch (SQLException ex) {
+             Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
+         }}
+      
     
-            
-            
-            /////////////////
-        //} catch (SQLException ex) {
-           // Logger.getLogger(ViewAfficherProduitUserController.class.getName()).log(Level.SEVERE, null, ex);
-        //}
-    }
 
     @FXML
     private void home(ActionEvent event) {
+      
          try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./HomePage.fxml"));
              Parent view_2=loader.load();
@@ -254,8 +265,9 @@ public class MarketController implements Initializable , MyListener {
              stage.setScene(scene);
              stage.show();
          } catch (IOException ex) {
-             Logger.getLogger(ViewSuppCategorieController.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
     }
 
     @FXML
@@ -318,8 +330,9 @@ public class MarketController implements Initializable , MyListener {
         Categorie c1 =catser.RetournerT(choiceCP.getSelectionModel().getSelectedItem());
       String a=Integer.toString(c1.getId_categorie());
          prodcat.addAll(ps.chercher("id_categorie", a));
-        System.out.println(prodcat);
-        
+         System.out.println(prodcat);
+         
+         
         
          int column = 0;
         int row = 1;
@@ -356,23 +369,21 @@ public class MarketController implements Initializable , MyListener {
          
     }
 
+    @FXML
+    private void gotopanier(ActionEvent event) {
+        
+         try {
+             FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
+             Parent view_2=loader.load();
+             Scene scene = new Scene(view_2);
+             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         } catch (IOException ex) {
+             Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+    }
 
   
-   
-      
-        
-       
-        
-      
-      
-      
-    
-    
-   
-       
-        
-        
-        
-    
-    
 }

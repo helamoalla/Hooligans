@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import services.LignePanierService;
 
 /**
  * FXML Controller class
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
  * @author Nadia
  */
 public class HomePageController implements Initializable {
-
+    LignePanierService lp =new LignePanierService() ;
 
     /**
      * Initializes the controller class.
@@ -40,12 +41,13 @@ public class HomePageController implements Initializable {
     private void MoveCat(ActionEvent event) {
         
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppCategorie.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionCategorie.fxml"));
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+           
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +58,7 @@ public class HomePageController implements Initializable {
     private void MoveProd(ActionEvent event) {
         
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppProduit.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionProduit.fxml"));
             Parent view_2=loader.load();
             Scene scene = new Scene(view_2);
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

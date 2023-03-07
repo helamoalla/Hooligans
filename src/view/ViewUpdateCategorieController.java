@@ -90,7 +90,7 @@ public class ViewUpdateCategorieController implements Initializable {
     @FXML
     private void consulterlist(ActionEvent event) {
             try {
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewSuppCategorie.fxml"));
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionCategorie.fxml"));
                 Parent view_2=loader.load();
                 Scene scene = new Scene(view_2);
                 Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

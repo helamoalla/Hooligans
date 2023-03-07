@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import services.LignePanierService;
 
 /**
  *
@@ -39,6 +40,8 @@ public class NewFXMain extends Application {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    
 
     }
 

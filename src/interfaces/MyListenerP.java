@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev1;
+package interfaces;
 
-import models.Produit;
+import models.LignePanier;
 
 /**
  *
  * @author Nadia
  */
-public interface MyListener {
-    public void onClickListener(Produit prod);
+public interface MyListenerP {
+     public void onClickListener(LignePanier lignepanier);
     
 }
