@@ -12,7 +12,7 @@ public class Panier {
    
    //Var 
    private int id_panier; 
-   private int utilisateur; 
+   private User utilisateur; 
    
    //Constructeurs
    //Constructeur par défaut, nom paramétrés 
@@ -21,34 +21,35 @@ public class Panier {
     
    //Constructeurs paramétrés
    //sans id
-    public Panier(int utilisateur) {
+
+    public User getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(User utilisateur) {
         this.utilisateur = utilisateur;
     }
-  
-    
-    //avec id
-    public Panier(int id_panier, int utilisateur) {
+
+    public Panier(int id_panier, User utilisateur) {
         this.id_panier = id_panier;
         this.utilisateur = utilisateur;
     }
+
+    public Panier(User utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+ 
 
     //Getters
     public int getId_panier() {
         return id_panier;
     }
 
-    public int getUtilisateur() {
-        return utilisateur;
-    }
 
 
     //Setters 
     public void setId_panier(int id_panier) {
         this.id_panier = id_panier;
-    }
-
-    public void setUtilisateur(int utilisateur) {
-        this.utilisateur = utilisateur;
     }
 
     

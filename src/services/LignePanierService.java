@@ -5,6 +5,7 @@
  */
 package services;
 
+import Util.Data;
 import Util.Maconnexion;
 import Util.conditions;
 import java.sql.Connection;
@@ -36,20 +37,20 @@ public class LignePanierService {
         try {
             
        
-    if(c.VerifProduitIdExistDansLignePanier(p.getId_prod(),3)==false){
+    if(c.VerifProduitIdExistDansLignePanier(p.getId_prod(),Data.getId_user())==false){
         String req = "INSERT INTO `lignepanier`(`id_produit`, `id_panier`, `quantite`, `prix`, `nom_produit`, `description_prod`, `image`) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1,p.getId_prod());
-        ps.setInt(2,3);
+        ps.setInt(2,Data.getId_user());
         ps.setInt(3,quantiteprod);
         ps.setDouble(4, p.getPrix_prod());
         ps.setString(5, p.getNom_prod());
         ps.setString(6,p.getDescription_prod());
         ps.setString(7, p.getImage());
-        System.out.println(c.VerifProduitIdExistDansLignePanier(p.getId_prod(),3));
+        System.out.println(c.VerifProduitIdExistDansLignePanier(p.getId_prod(),Data.getId_user()));
         ps.executeUpdate();} else {System.out.println(c.VerifProduitIdExistDansLignePanier(p.getId_prod(),3));
     //String req3 = "Update `lignepanier`(`id_produit`, `id_panier`, `quantite`, `prix`, `nom_produit`, `description_prod`, `image`) VALUES (?,?,?,?,?,?,?)";
-     String req3 ="UPDATE lignepanier SET quantite = quantite + ?  WHERE id_produit =? AND id_panier =3  ";
+     String req3 ="UPDATE lignepanier SET quantite = quantite + ?  WHERE id_produit =? AND id_panier ='"+ Data.getId_user()+"'";
                     PreparedStatement ps3 = cnx.prepareStatement(req3);
                     ps3.setInt(1,quantiteprod);
                     ps3.setInt(2, p.getId_prod());

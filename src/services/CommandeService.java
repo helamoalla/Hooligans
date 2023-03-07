@@ -7,10 +7,12 @@ package services;
 
 import Util.Maconnexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +31,7 @@ public class CommandeService {
     //insert
     public void insert(Commande c) {
         try {
-String req = "INSERT INTO `commande`(`id_panier`,`montant`,`etat_commande`,`gouvernorat`,`ville`,`rue`,`code_postal`) VALUES(?,?,?,?,?,?,?)";
+String req = "INSERT INTO `commande`(`id_panier`,`montant`,`etat_commande`,`gouvernorat`,`ville`,`rue`,`code_postal`,`date_commande`) VALUES(?,?,?,?,?,?,?,?)";
      
 PreparedStatement ps = cnx.prepareStatement(req);
              ps.setInt(1, c.getPanier().getId_panier());
@@ -39,6 +41,7 @@ PreparedStatement ps = cnx.prepareStatement(req);
              ps.setString(5, c.getVille());
              ps.setString(6, c.getRue());
              ps.setInt(7, c.getCode_postal());
+             ps.setDate(8, Date.valueOf(LocalDate.now()));
              ps.executeUpdate();
              System.out.println("Commande ajoutée avec succée");
 
@@ -103,6 +106,7 @@ PreparedStatement ps = cnx.prepareStatement(req);
                 c.setVille(rs.getString(6));
                 c.setRue(rs.getString(7));
                 c.setCode_postal(rs.getInt(8));
+                c.setDate_commande(rs.getDate(9));
               commandes.add(c);
             }
             
@@ -185,6 +189,7 @@ PreparedStatement ps = cnx.prepareStatement(req);
                c.setVille(rs.getString(6));
                c.setRue(rs.getString(7));
                c.setCode_postal(rs.getInt(8));
+               c.setDate_commande(rs.getDate(9));
                 listC.add(c);
             }
                         return listC;
@@ -209,6 +214,7 @@ PreparedStatement ps = cnx.prepareStatement(req);
                c.setVille(rs.getString(6));
                c.setRue(rs.getString(7));
                c.setCode_postal(rs.getInt(8));
+                c.setDate_commande(rs.getDate(9));
                listC.add(c);
             }
                         return listC;

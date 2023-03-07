@@ -5,7 +5,7 @@
  */
 package services;
 
-import Util.Dataa;
+import Util.Data;
 import Util.Maconnexion;
 import interfaces.InterfaceCRUD;
 import java.sql.Connection;
@@ -16,7 +16,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.chart.PieChart.Data;
 import models.Role;
 import models.User;
 
@@ -87,7 +86,7 @@ public class UserService implements InterfaceCRUD <User>{
 
     @Override
     public ArrayList<User> readAll() {
-       String request="SELECT * FROM user where id_user <> "+Dataa.getId_user();
+       String request="SELECT * FROM user where id_user <> "+Data.getId_user();
         String requete = "SELECT user.*, role.id_role, role.type FROM user INNER JOIN role ON user.id_role = role.id_role";
     ArrayList<User> list = new ArrayList<>();
     try {

@@ -5,6 +5,7 @@
  */
 package services;
 
+import Util.Data;
 import Util.Maconnexion;
 import Util.conditions;
 import interfaces.InterfaceCRUD;
@@ -37,7 +38,7 @@ public class PanierService implements InterfaceCRUD <Panier>{
             PreparedStatement ps = cnx.prepareStatement(req);
             
           // if (c.VerifUserIdExistDansPanier(p.getUtilisateur().getId_user())==false){
-            ps.setInt(1,3);
+            ps.setInt(1,Data.getId_user());
             ps.executeUpdate();
             System.out.println("Panier ajouté avec succés");
 //            }
@@ -85,13 +86,14 @@ public class PanierService implements InterfaceCRUD <Panier>{
          try {
             String req ="UPDATE `panier` SET  `id_user`= ?  WHERE id_panier = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, 3);   
+            ps.setInt(1, Data.getId_user());   
             System.out.println("Panier mis à jour avec succés");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
+    UserService us =new UserService() ;
     //Read
     @Override
     public ArrayList readAll() {
@@ -107,7 +109,7 @@ public class PanierService implements InterfaceCRUD <Panier>{
             while (rs.next()) {                
                 Panier p = new Panier();
                 p.setId_panier(rs.getInt(1));
-                p.setUtilisateur(3);
+                p.setUtilisateur(us.readById(rs.getInt(2)));
                 listPaniers.add(p);
             }
             
@@ -129,7 +131,7 @@ public class PanierService implements InterfaceCRUD <Panier>{
             rs.beforeFirst();
             rs.next();
                 p.setId_panier(rs.getInt(1));
-                p.setUtilisateur(3);            
+                p.setUtilisateur(us.readById(rs.getInt(2)));           
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -145,7 +147,7 @@ public class PanierService implements InterfaceCRUD <Panier>{
     public double totalmontantPanier(int id_user){
         Double totalPrixPanier=0.0 ;
         try {
-            String sql = "SELECT SUM( prix * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ 3;
+            String sql = "SELECT SUM( prix * quantite) AS total FROM panier JOIN lignepanier ON panier.id_panier = lignepanier.id_panier WHERE panier.id_user = "+ id_user;
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
