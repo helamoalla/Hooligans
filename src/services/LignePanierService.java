@@ -116,6 +116,7 @@ PanierService ps = new PanierService();
                 prod.setPrix_prod(rs.getDouble("pr.prix_prod"));
                 prod.setDescription_prod(rs.getString("pr.description_prod"));
                 prod.setQuantite(rs.getInt("pr.quantite_prod"));
+                prod.setImage(rs.getString("pr.image"));
                 lp.setProduit(prod);
                 listlp.add(lp);
 

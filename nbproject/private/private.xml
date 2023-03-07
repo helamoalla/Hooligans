@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/PanierInterfaceController.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/LignePanierController.java</file>
-            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/MarketController.java</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/interfaces/MyListenerP.java</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/ProduitController.java</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/Commande.fxml</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/interfaces/MyListenerC.java</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/Produit.fxml</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/LignePanier.fxml</file>
+            <file>file:/C:/Users/choua/OneDrive/Documents/NetBeansProjects/Pidev_p/src/gui/CommandeController.java</file>
         </group>
     </open-files>
 </project-private>

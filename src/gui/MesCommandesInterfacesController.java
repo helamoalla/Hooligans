@@ -36,9 +36,20 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import interfaces.MyListenerC;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
+import models.LignePanier;
+import util.MyConnection;
 
 
 
@@ -49,24 +60,38 @@ import javafx.scene.control.Alert;
  *
  * @author choua
  */
-public class MesCommandesInterfacesController implements Initializable {
+public class MesCommandesInterfacesController implements Initializable, MyListenerC {
 
     @FXML
-    private AnchorPane root;
+    private HBox chosenProduit;
     @FXML
-    private VBox sideArea;
+    private Label nomproduit;
     @FXML
-    private HBox sideControls;
+    private Label tfnum;
     @FXML
-    private VBox sideNavPanier;
+    private Label tfdate;
     @FXML
-    private Region home;
+    private Label tfmontant;
     @FXML
-    private Region MonPanier;
+    private Label tfrue;
     @FXML
-    private Pane handPaneMac;
+    private Label tfville;
     @FXML
-    private ListView<Commande> listviewC;
+    private Label tfgov;
+    @FXML
+    private Button btnimprimer;
+    @FXML
+    private Button btnsupp;
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private GridPane grid;
+     private Commande c ;
+     private CommandeService cs = new CommandeService();
+      Connection cnx = MyConnection.getInstance().getCnx();
+    ObservableList<Commande> list = FXCollections.observableArrayList();
+    List<Commande> listprod =new ArrayList();
+    private MyListenerC myListener;
 
     /**
      * Initializes the controller class.
@@ -75,36 +100,69 @@ public class MesCommandesInterfacesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-         MesCommandes();
+         affichercommande();
+        
     }    
 
-    @FXML
-    private void fenetre_accueil(MouseEvent event) {
-        try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./AccueilInterface.fxml"));
-            Parent view_2=loader.load();
-            AccueilInterfaceController i =loader.getController();
-            
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(MesCommandesInterfacesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+public void setChosenCommande(Commande c){
+
+            this.c = c;
+             tfnum.setText(String.valueOf(c.getId_commande()));
+             tfdate.setText(String.valueOf(c.getDate_commande()));
+             tfmontant.setText(String.valueOf(c.getMontant()));
+             tfrue.setText(c.getRue());
+             tfville.setText(c.getVille());
+             tfgov.setText(c.getGouvernorat());
+      
     }
 
-    @FXML
-    private void MontrerMonPanier(MouseEvent event) {
+public void affichercommande(){
         try {
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ConsulterPanierInterface.fxml"));
-            Parent view_2=loader.load();
-            ConsulterPanierInterfaceController i =loader.getController();
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
+            /****************Afficher commande by id_user***********************/
+            listprod.addAll(cs.AfficherCommandesByid_user(1));
+            System.out.println(listprod);
+            if (listprod.size() > 0) {
+                setChosenCommande(listprod.get(1));
+                myListener = new MyListenerC() {
+                    @Override
+                    public void onClickListener(Commande commande) {
+                        setChosenCommande(commande);
+                        c=commande;
+                    }
+                };}
+            int column = 0;
+            int row = 1;
+            for (int i = 0; i < listprod.size(); i++) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/gui/Commande.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    
+                    CommandeController p = fxmlLoader.getController();
+                    p.setData(listprod.get(i),myListener);
+                    
+                    if (column == 1) {
+                        column = 0;
+                        row++;
+                    }
+                    grid.add(anchorPane, column++, row); //(child,column,row)
+                    //set grid width
+                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxWidth(Region.USE_PREF_SIZE);
+                    
+                    //set grid height
+                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxHeight(Region.USE_PREF_SIZE);
+                    
+                    GridPane.setMargin(anchorPane, new Insets(10));
+                    GridPane.setColumnIndex(anchorPane, column);
+                } catch (IOException ex) {
+                    Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (SQLException ex) {    
             Logger.getLogger(MesCommandesInterfacesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -112,40 +170,50 @@ public class MesCommandesInterfacesController implements Initializable {
     @FXML
     private void Imprimer_facture(MouseEvent event) throws FileNotFoundException, DocumentException {
         
-        String file_name = ("C:\\Users\\choua\\OneDrive\\Documents\\Files\\facture.pdf");
-        Document doc = new Document();
-        PdfWriter.getInstance(doc, new FileOutputStream(file_name));
-        doc.open();
-      System.out.println("PDF created successfully.");
-        doc.add(new Paragraph("Votre Facture :"));
-        doc.add(new Paragraph("Facture numéro : "+listviewC.getSelectionModel().getSelectedItem().getId_commande()));
-        doc.add(new Paragraph("Montant total à payer en DT : "+listviewC.getSelectionModel().getSelectedItem().getMontant()));
-        doc.add(new Paragraph("Statut de votre commande : "+listviewC.getSelectionModel().getSelectedItem().getEtat_commande()));
-        //doc.add(new Paragraph("La commande va etre livré à l'adresse : "+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
-        doc.close();
+//        String file_name = ("C:\\Users\\choua\\OneDrive\\Documents\\Files\\facture.pdf");
+//        Document doc = new Document();
+//        PdfWriter.getInstance(doc, new FileOutputStream(file_name));
+//        doc.open();
+//      System.out.println("PDF created successfully.");
+//        doc.add(new Paragraph("Votre Facture :"));
+//        doc.add(new Paragraph("Facture numéro : "+listviewC.getSelectionModel().getSelectedItem().getId_commande()));
+//        doc.add(new Paragraph("Montant total à payer en DT : "+listviewC.getSelectionModel().getSelectedItem().getMontant()));
+//        doc.add(new Paragraph("Statut de votre commande : "+listviewC.getSelectionModel().getSelectedItem().getEtat_commande()));
+//        //doc.add(new Paragraph("La commande va etre livré à l'adresse : "+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
+//        doc.close();
                
     }
-    
-    void MesCommandes() {
-        try {
-            CommandeService cs =new CommandeService();
-            List<Commande> pa = cs.AfficherCommandesByidpanier(1);
-            ObservableList<Commande> obslist = FXCollections.observableArrayList(pa);
-            listviewC.setItems(obslist);
-        } catch (SQLException ex) {
-            Logger.getLogger(MesCommandesInterfacesController.class.getName()).log(Level.SEVERE, null, ex);
-        }     
-    }                    
+                      
 
     @FXML
     private void Annuler_Commande(MouseEvent event) {
         CommandeService cs =new CommandeService(); 
-        int selectedidcommande = listviewC.getSelectionModel().getSelectedItem().getId_commande();
-        cs.delete(selectedidcommande);
-       MesCommandes();
+        cs.delete(c.getId_commande());
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Commande annulée avec succés");
             alert.show();
     }
+
+    @FXML
+    private void supp(ActionEvent event) {
+    }
+
+    @FXML
+    private void modif(ActionEvent event) {
+    }
+
+    @FXML
+    private void home(ActionEvent event) {
+    }
+
+    @Override
+    public void onClickListener(Commande commande) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void chercherparcat(MouseEvent event) {
+    }
+
 }
 

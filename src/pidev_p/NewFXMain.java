@@ -29,7 +29,7 @@ public class NewFXMain extends Application {
    public void start(Stage primaryStage) throws MalformedURLException, IOException {
 
 try {
-            Parent root = FXMLLoader.load(getClass().getResource("../gui/PasserCommandeInterface.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/MesCommandesInterfaces.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Drift & Race");
