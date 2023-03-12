@@ -78,7 +78,6 @@ public class AjouterController implements Initializable {
         this.borderPane=borderPane;
     }
 
-    @FXML
     private void gestioneventadmin(ActionEvent event) {
                 try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./test1.fxml"));
@@ -237,7 +236,6 @@ public class AjouterController implements Initializable {
     
 }
 
-    @FXML
     private void gestioneventuser(ActionEvent event) {
          try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./eventuser.fxml"));

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="581.0" prefWidth="907.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TessstController">
+   <children>
+      <VBox layoutY="150.0" prefHeight="433.0" prefWidth="223.0" style="-fx-background-color: #000000;">
+         <effect>
+            <ColorAdjust brightness="0.24" />
+         </effect>
+         <children>
+            <JFXButton prefHeight="50.0" prefWidth="227.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="223.0" layoutY="152.0" prefHeight="434.0" prefWidth="686.0" />
+      <HBox fx:id="hbax1" prefHeight="152.0" prefWidth="907.0" styleClass="head-background" stylesheets="@../../Views/Views/cssstyle1.css">
+         <children>
+            <Pane>
+               <children>
+                  <Label layoutX="233.0" layoutY="61.0" text="Drift &amp; Race">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="137.0" fitWidth="181.0" layoutX="91.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/image3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

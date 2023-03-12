@@ -32,6 +32,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -88,6 +89,7 @@ InterfaceCRUD sg=new ServiceGarageC();
     @FXML
     private Label id_image;
 private File selectedFile;
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
@@ -95,7 +97,10 @@ private File selectedFile;
     public void initialize(URL url, ResourceBundle rb) {
       
         // TODO
-    }   
+    }
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
      void getGarage(GarageC g){
     try {
         URL imageUrl;
@@ -212,10 +217,10 @@ private File selectedFile;
                     sg.update(g);
                      FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
                 Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                            AffichageGarageController afficherController = loader.getController();
+            afficherController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
                
                
             }   catch (IOException ex) {
@@ -228,10 +233,10 @@ private File selectedFile;
                 sg.update(g);
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
                 Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                 AffichageGarageController afficherController = loader.getController();
+            afficherController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
                 System.out.println("selected file is null "+selectedFile);
             } catch (IOException ex) {
                 Logger.getLogger(Modifier_GarageController.class.getName()).log(Level.SEVERE, null, ex);

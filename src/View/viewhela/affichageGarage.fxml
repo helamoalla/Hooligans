@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,14 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="dark-background" stylesheets="@../../Views/css/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.AffichageGarageController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.AffichageGarageController">
    <children>
-      <HBox alignment="BOTTOM_RIGHT" layoutX="21.0" layoutY="8.0" prefHeight="71.0" prefWidth="952.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#retour" text="retour" />
-            <Button fx:id="id_ajout" mnemonicParsing="false" onAction="#ajouter_garage" text="ajouter" />
-         </children></HBox>
-      <ScrollPane hbarPolicy="ALWAYS" layoutX="6.0" layoutY="94.0" opacity="0.76" prefHeight="594.0" prefWidth="985.0" styleClass="transparent" stylesheets="@../../Views/css/css3.css" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="ALWAYS" layoutY="103.0" opacity="0.76" prefHeight="716.0" prefWidth="1436.0" styleClass="transparent" stylesheets="@../../Views/css/css3.css" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="grid" prefHeight="210.0" prefWidth="190.0">
               <columnConstraints>
@@ -30,5 +27,15 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Button fx:id="id_ajout" layoutX="1091.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajouter_garage" prefHeight="57.0" prefWidth="202.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="Ajouter Garage" />
+      <Button mnemonicParsing="false" onAction="#retour" text="retour" visible="false" />
    </children>
+   <styleClass>
+      <String fx:value="roota5" />
+      <String fx:value="root" />
+   </styleClass>
+   <stylesheets>
+      <URL value="@../../Views/css/cssfinal.css" />
+      <URL value="@../../Views/css/css4.css" />
+   </stylesheets>
 </AnchorPane>

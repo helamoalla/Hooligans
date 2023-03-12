@@ -34,9 +34,12 @@ import javafx.stage.Stage;
 import Model.Commande;
 import Model.LignePanier;
 import Model.Panier;
+import Model.User;
 import Service.CommandeService;
 import Service.LignePanierService;
 import Service.PanierService;
+import Service.UserService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -71,6 +74,9 @@ public class PasserCommandeController implements Initializable {
     private TextField tfville;
     @FXML
     private TextField tfrue;
+    private BorderPane borderPane;
+    @FXML
+    private Label prix;
 
     /**
      * Initializes the controller class.
@@ -90,6 +96,9 @@ public class PasserCommandeController implements Initializable {
             alert.setContentText("Panier vidé avec succés");
             alert.show();
     }
+            public void setBorderPane(BorderPane borderPane,String somme) {
+        this.borderPane = borderPane;
+            prix.setText(somme);}
 
     @FXML
     private void FenetreAccueil(MouseEvent event) {
@@ -98,10 +107,11 @@ public class PasserCommandeController implements Initializable {
            FXMLLoader loader= new FXMLLoader(getClass().getResource("./market.fxml"));
            Parent view_2=loader.load();
            MarketController i =loader.getController();
-           Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-           Scene scene = new Scene(view_2);
-           stage.setScene(scene);
-           stage.show();
+             
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
        } catch (IOException ex) {
            Logger.getLogger(PasserCommandeController.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -115,10 +125,11 @@ public class PasserCommandeController implements Initializable {
            FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
            Parent view_2=loader.load();
            PanierInterfaceController i =loader.getController();
-           Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-           Scene scene = new Scene(view_2);
-           stage.setScene(scene);
-           stage.show();
+             
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
        } catch (IOException ex) {
            Logger.getLogger(PasserCommandeController.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -180,15 +191,26 @@ public class PasserCommandeController implements Initializable {
                 c.setVille(ville);
                 c.setRue(rue);
                 c.setCode_postal(codep);
+                UserService us = new UserService();
+                User cuurentUser = us.readById(Data.getId_user());
+                System.out.println(cuurentUser);
+                System.out.println(Double.parseDouble(prix.getText()));
+                if(cuurentUser.getQuota()<Double.parseDouble(prix.getText())){
+                      Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Vote solde est insuffisant");
+            alert.show(); 
+                }
                 cs.insert(c);
+                cuurentUser.setQuota(cuurentUser.getQuota()-Double.parseDouble(prix.getText()));
+                us.update(cuurentUser);
            
-             FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
-           Parent view_2=loader.load();
-           PanierInterfaceController i =loader.getController();
-           Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-           Scene scene = new Scene(view_2);
-           stage.setScene(scene);
-           stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/SideBar.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
          
             }
             else{
@@ -204,16 +226,36 @@ public class PasserCommandeController implements Initializable {
                 c.setVille(ville);
                 c.setRue(rue);
                 c.setCode_postal(codep);
+                UserService us = new UserService();
+                User cuurentUser = us.readById(Data.getId_user());
+                System.out.println(cuurentUser);
+                System.out.println(Double.parseDouble(prix.getText()));
+                if(cuurentUser.getQuota()<Double.parseDouble(prix.getText())){
+                      Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("Vote solde est insuffisant");
+            alert.show(); 
+            return;
+                }
                 cs.insert(c);
-           
-//            lp.ViderLigne_panier(Data.getId_user());
-             FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
-           Parent view_2=loader.load();
-           PanierInterfaceController i =loader.getController();
-           Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-           Scene scene = new Scene(view_2);
-           stage.setScene(scene);
-           stage.show();
+                cuurentUser.setQuota(cuurentUser.getQuota()-Double.parseDouble(prix.getText()));
+                us.update(cuurentUser);
+   // na7aha aziz        
+           lp.ViderLigne_panier(Data.getId_user());
+//             FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
+//           Parent view_2=loader.load();
+//           PanierInterfaceController i =loader.getController();
+//             
+//                
+//            i.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(view_2);
+FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/SideBar.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
     
             }
     }

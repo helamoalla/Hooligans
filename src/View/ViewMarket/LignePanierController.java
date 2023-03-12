@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import Model.LignePanier;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -40,6 +41,7 @@ public class LignePanierController implements Initializable {
     private ImageView image_prod;
     
      private MyListenerP myListenerP;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -48,7 +50,8 @@ public class LignePanierController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
      public void setData(LignePanier lp,MyListenerP myListenerP){
     
         try {

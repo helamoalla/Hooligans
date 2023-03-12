@@ -10,6 +10,7 @@ import Util.Data;
 import Util.Stripeapi;
 import com.jfoenix.controls.JFXTextArea;
 import com.stripe.exception.StripeException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -19,9 +20,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -89,9 +95,17 @@ public class AlimenterCompteController implements Initializable {
             us.update(u1);
             System.out.println(montant.getText());
             System.out.println("Afterr "+u1.getQuota());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/SideBar.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
         } catch (StripeException ex) {
             Logger.getLogger(AlimenterCompteController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Erreur solde insufissant or carte incorrecte");
+        } catch (IOException ex) {
+            Logger.getLogger(AlimenterCompteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

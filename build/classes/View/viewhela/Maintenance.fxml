@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="root4" stylesheets="@../../Views/css/css4.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.MaintenanceController">
+   <children>
+      <Button fx:id="id_demande" layoutX="501.0" layoutY="24.0" mnemonicParsing="false" onAction="#demander_maintenance" prefHeight="42.0" prefWidth="217.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="demande Maintenance" textFill="RED" />
+      <ListView fx:id="id_list" layoutX="14.0" layoutY="60.0" opacity="0.72" prefHeight="58.0" prefWidth="812.0" visible="false" />
+      <Button fx:id="id_afficher" layoutX="785.0" layoutY="24.0" mnemonicParsing="false" onAction="#afficher_demande" prefHeight="42.0" prefWidth="218.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="afficher mes demandes" textFill="RED" />
+      <Button fx:id="id_retour" layoutX="1137.0" layoutY="24.0" mnemonicParsing="false" onAction="#retour" prefHeight="42.0" prefWidth="109.0" text="retour" textFill="RED" visible="false" />
+      <ScrollPane layoutX="-3.0" layoutY="82.0" opacity="0.79" prefHeight="694.0" prefWidth="1453.0">
+         <content>
+            <GridPane fx:id="grid">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+               <children>
+                  <HBox fx:id="Vboxe" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

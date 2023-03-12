@@ -5,59 +5,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../Views/CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.ViewUpdateCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="roota4" stylesheets="@../../Views/css/cssfinal.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.ViewUpdateCategorieController">
    <children>
-      <Button layoutX="113.0" layoutY="556.0" mnemonicParsing="false" onAction="#Modifiercat" opacity="0.6" prefHeight="43.0" prefWidth="170.0" text="Modifier">
+      <Button layoutX="532.0" layoutY="629.0" mnemonicParsing="false" onAction="#Modifiercat" opacity="0.6" prefHeight="43.0" prefWidth="170.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="Modifier">
          <font>
             <Font name="Calisto MT" size="16.0" />
          </font></Button>
-      <TextField fx:id="updatenom" layoutX="326.0" layoutY="291.0" opacity="0.6" />
-      <TextField fx:id="updatedesc" layoutX="326.0" layoutY="367.0" opacity="0.6" />
-      <ChoiceBox fx:id="updatechoix" layoutX="326.0" layoutY="429.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
-      <Label contentDisplay="TOP" layoutX="82.0" layoutY="291.0" text="Nom de la catégorie" textFill="#ece3e3" textOverrun="CLIP">
+      <TextField fx:id="updatenom" layoutX="770.0" layoutY="290.0" opacity="0.6" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <TextField fx:id="updatedesc" layoutX="770.0" layoutY="380.0" opacity="0.6" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <ChoiceBox fx:id="updatechoix" layoutX="770.0" layoutY="467.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
+      <Label contentDisplay="TOP" layoutX="526.0" layoutY="290.0" text="Nom de la catégorie" textFill="#a1a0a0" textOverrun="CLIP">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="75.0" layoutY="361.0" text="Description de la catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="519.0" layoutY="374.0" text="Description de la catégorie" textFill="#a1a0a0">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="82.0" layoutY="429.0" text="Type de Catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="526.0" layoutY="467.0" text="Type de Catégorie" textFill="#a1a0a0">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="318.0" layoutY="556.0" mnemonicParsing="false" onAction="#consulterlist" opacity="0.6" prefHeight="43.0" prefWidth="206.0" text="Consulter les categories">
+      <Button layoutX="762.0" layoutY="629.0" mnemonicParsing="false" onAction="#consulterlist" opacity="0.6" prefHeight="43.0" prefWidth="206.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Consulter les categories">
          <font>
             <Font name="Calisto MT" size="16.0" />
          </font></Button>
-      <Label layoutX="133.0" layoutY="140.0" text="Modification d'une catégorie">
+      <Label layoutX="553.0" layoutY="84.0" prefHeight="78.0" prefWidth="381.0" text="Modifier une catégorie" textFill="WHITE">
          <font>
-            <Font size="25.0" />
+            <Font name="Chiller" size="55.0" />
          </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="0.9242424242424242" startY="0.22727272727272727">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.4736842215061188" green="0.42456141114234924" blue="0.42456141114234924" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.821052610874176" green="0.057777777314186096" blue="0.057777777314186096" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
       </Label>
    </children>
 </AnchorPane>

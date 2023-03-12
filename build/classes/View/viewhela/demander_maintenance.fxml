@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" stylesheets="@../../Views/css/cssfinal.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.Demander_maintenanceController">
+   <children>
+      <CheckBox fx:id="id_panne_moteur" layoutX="509.0" layoutY="250.0" mnemonicParsing="false" text="panne_moteur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Label layoutX="266.0" layoutY="250.0" text="Precisez votre panne :" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <CheckBox fx:id="id_pompe_a_eau" layoutX="509.0" layoutY="291.0" mnemonicParsing="false" text="pompe a eau" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_patin" layoutX="509.0" layoutY="339.0" mnemonicParsing="false" text="patin" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_essuie_glace" layoutX="509.0" layoutY="385.0" mnemonicParsing="false" text="essuie glace" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_radiateur" layoutX="509.0" layoutY="431.0" mnemonicParsing="false" text="radiateur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_ventilateur" layoutX="509.0" layoutY="482.0" mnemonicParsing="false" text="ventilateur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_duride" layoutX="510.0" layoutY="524.0" mnemonicParsing="false" text="duride" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_fuite_d_huile" layoutX="813.0" layoutY="250.0" mnemonicParsing="false" text="fuite d'huile" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_vidange" layoutX="813.0" layoutY="291.0" mnemonicParsing="false" text="vidange" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_filtre" layoutX="813.0" layoutY="339.0" mnemonicParsing="false" text="filtre" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_batterie" layoutX="813.0" layoutY="385.0" mnemonicParsing="false" text="batterie" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_amortisseur" layoutX="814.0" layoutY="431.0" mnemonicParsing="false" text="amortisseur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_frein_main" layoutX="815.0" layoutY="482.0" mnemonicParsing="false" text="frein main" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="id_feu_d_eclairage" layoutX="814.0" layoutY="524.0" mnemonicParsing="false" text="feu d'eclairage" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Label layoutX="643.0" layoutY="210.0" text="Autre" textFill="WHITE" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="id_autre" layoutX="831.0" layoutY="206.0" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Button fx:id="id_demande" layoutX="945.0" layoutY="659.0" mnemonicParsing="false" onAction="#demander_maintenance" prefHeight="54.0" prefWidth="217.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="Ajouter Demande" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label layoutX="553.0" layoutY="84.0" prefHeight="78.0" prefWidth="381.0" text="Ajouter une Demande" textFill="WHITE">
+         <font>
+            <Font name="Chiller" size="55.0" />
+         </font>
+      </Label>
+   </children>
+   <styleClass>
+      <String fx:value="root" />
+      <String fx:value="roota5" />
+   </styleClass>
+</AnchorPane>

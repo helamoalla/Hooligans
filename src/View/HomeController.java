@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 /**
@@ -26,12 +30,22 @@ import javafx.stage.Stage;
  */
 public class HomeController implements Initializable {
 
+    @FXML
+    private MediaView mediaView;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String path = "C:/Users/azizh/OneDrive/Bureau/holigans/MyVideo.mp4";
+File file = new File(path);
+Media media = new Media(file.toURI().toString());
+MediaPlayer mediaPlayer = new MediaPlayer(media);
+mediaView.setMediaPlayer(mediaPlayer);
+
+mediaPlayer.play();
     }    
 
 

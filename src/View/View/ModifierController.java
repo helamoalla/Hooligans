@@ -174,6 +174,17 @@ void getEvent(Event e){
         datef.setValue(null);
         return;
     }
+    if (dated.getValue().isBefore(LocalDate.now())) {
+        // Afficher un message d'erreur
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("La date de debut doit être postérieure ou égale à la date d'auhourd'hui.");
+        alert.showAndWait();
+
+        // Réinitialiser la valeur du champ de saisie de la date de fin
+        datef.setValue(null);
+        return;
+    }
         
             e.setNom_event(nom.getText());
             e.setLieu_event(lieu.getText());

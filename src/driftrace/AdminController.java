@@ -26,6 +26,9 @@ import javafx.scene.input.KeyEvent;
 import Service.UserService;
 import Util.Data;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 
@@ -60,6 +63,9 @@ public class AdminController implements Initializable {
     @FXML
     private ComboBox changer_id;
     RoleService roleService=new RoleService();
+    
+    @FXML
+    private Button activer;
     @Override
    public void initialize(URL url, ResourceBundle rb) {
        
@@ -72,6 +78,7 @@ public class AdminController implements Initializable {
    changer_id.getItems().add("pilote");
    changer_id.setPromptText("changer type utilisateur");
    
+       
         nom2.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom2.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         pswd2.setCellValueFactory(new PropertyValueFactory<>("mdp"));
@@ -178,6 +185,37 @@ public class AdminController implements Initializable {
             alert.showAndWait();
         }
     }
+    }
+
+    @FXML
+    private void activer(ActionEvent event) {
+        int  etat = 1;
+         User selectedUser = afficher.getSelectionModel().getSelectedItem();
+       
+        if (selectedUser == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No user selected");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a user in the table.");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm ban");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to Activate the selected user?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+           
+             selectedUser.setEtat(etat);
+             userService.updateban(selectedUser,etat);
+             List<User> userList = userService.readAll();
+        
+        // affiche les données dans le tableau
+        afficher.getItems().setAll(userList);
+        }
     }
     
 }

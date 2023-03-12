@@ -5,8 +5,10 @@
  */
 package driftrace;
 
+import Model.Panier;
 import Model.Role;
 import Model.User;
+import Service.PanierService;
 import Service.RoleService;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import Service.UserService;
+import Util.Data;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -235,6 +238,15 @@ if (userService.checkEmailExists(email1.getText())) {
       
     // Utiliser le service UserService pour ajouter l'utilisateur à la base de données
     userService.insert(u);
+                    PanierService ps= new PanierService();
+                    Panier p=new Panier();
+                    User u1=userService.readByEmail(email1.getText());
+                    System.out.println(u1);
+                    //Data.setId_user(u1.getId_user());
+                    p.setId_panier(u1.getId_user());
+                    p.setUtilisateur(u1);
+                    System.out.println(p);
+                    ps.insert(p);
 
    
 /*String destinationPath = "C:\\Users\\21694\\Desktop\\driftrace\\src\\image\\"+u.getEmail()+";";

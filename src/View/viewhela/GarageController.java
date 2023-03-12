@@ -28,6 +28,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -51,10 +52,14 @@ InterfaceCRUD sg=new ServiceGarageC();
     private Button id_modifier;
     @FXML
     private Button id_retour;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -130,10 +135,10 @@ getAllGarage();
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./Ajout_Garage.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+            Ajout_GarageController ajouterGarageController = loader.getController();
+            ajouterGarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -150,10 +155,10 @@ getAllGarage();
         Modifier_GarageController Modifier_GarageController=loader.getController();
         Modifier_GarageController.getGarage(selectedGarage);
         Modifier_GarageController.g=selectedGarage;
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    
+            Modifier_GarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -166,10 +171,10 @@ getAllGarage();
          FXMLLoader loader= new FXMLLoader(getClass().getResource("./GESTION.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    GESTIONController gestionController = loader.getController();
+            gestionController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
     }

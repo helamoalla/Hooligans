@@ -8,9 +8,18 @@ import Service.UserService;
 import Util.Data;
 import View.View.EventuserController;
 import View.View.Test1Controller;
+import View.ViewMarket.GestionCategorieController;
+import View.ViewMarket.GestionProduitController;
+import View.ViewMarket.HomePageController;
+import View.ViewMarket.MarketController;
+import View.viewhela.AffichageGarageController;
+import View.viewhela.Afficher_MaintenanceController;
+import View.viewhela.GESTIONController;
+import View.viewhela.MaintenanceController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import driftrace.ConnecterController;
+import driftrace.ModifierMdpController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -64,6 +73,18 @@ public class MenuItemController implements Initializable {
     private JFXButton users;
     @FXML
     private JFXButton events;
+    @FXML
+    private JFXButton GarageC;
+    @FXML
+    private JFXButton Market;
+    @FXML
+    private JFXButton Product;
+    @FXML
+    private JFXButton Categorie;
+    @FXML
+    private JFXButton Maintenance;
+    @FXML
+    private JFXButton modifierMdp;
     
     
 
@@ -76,6 +97,17 @@ public class MenuItemController implements Initializable {
         if(userService.readById(Data.getId_user()).getRole().getId_role()!=1){
             users.setVisible(false);
             users.setManaged(false);
+            Product.setVisible(false);
+            Product.setManaged(false);
+            Categorie.setVisible(false);
+            Categorie.setManaged(false);
+            Maintenance.setVisible(false);
+            Maintenance.setManaged(false);
+        }
+        if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+            Market.setVisible(false);
+            Market.setManaged(false);
+           
         }
         
         Image imgPic= new Image("http://localhost/images/"+userService.readById(Data.getId_user()).getImg());
@@ -239,5 +271,105 @@ public class MenuItemController implements Initializable {
             Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+//FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/viewhela/Gestion.fxml"))
+    @FXML
+    private void GoToGarage(ActionEvent event) {
+        
+            
+              try {         
+                  FXMLLoader loader ;
+
+                  if(userService.readById(Data.getId_user()).getRole().getId_role()==1){
+                  loader = new FXMLLoader(getClass().getResource("../View/viewhela/affichageGarage.fxml"));
+                  Parent garageAdmin = loader.load();
+                  
+                  AffichageGarageController test1 = loader.getController();
+                  test1.setBorderPane(borderPane);
+                  borderPane.setCenter(null);
+                  borderPane.setCenter(garageAdmin);
+             
+            }
+            else{
+            loader = new FXMLLoader(getClass().getResource("../View/viewhela/Maintenance.fxml"));
+            Parent maint = loader.load();            
+                      MaintenanceController maintController = loader.getController();
+            maintController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+             borderPane.setCenter(maint);
+            } } catch (IOException ex) {
+                  Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+              }
+    }
+
+    @FXML
+    private void GoToMarket(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ViewMarket/market.fxml"));
+            Parent market = loader.load();            
+            MarketController marketController = loader.getController();
+            marketController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(market);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoToProduct(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ViewMarket/GestionProduit.fxml"));
+            Parent market = loader.load();            
+            GestionProduitController gestionProduitController = loader.getController();
+            gestionProduitController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(market);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoToCategorie(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ViewMarket/GestionCategorie.fxml"));
+            Parent market = loader.load();            
+             GestionCategorieController gestionCategorieController = loader.getController();
+            gestionCategorieController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(market);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoToMaintenance(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/viewhela/afficher_Maintenance.fxml"));
+            Parent maintAdmin = loader.load();            
+            Afficher_MaintenanceController afficherMaintController = loader.getController();
+            afficherMaintController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(maintAdmin);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoToModifierMdp(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../driftrace/ModifierMdp.fxml"));
+            Parent mdofierMdp = loader.load();            
+            ModifierMdpController modfifierMdpController = loader.getController();
+            modfifierMdpController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(mdofierMdp);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }

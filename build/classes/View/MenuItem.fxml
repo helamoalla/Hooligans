@@ -8,19 +8,19 @@
 
 <VBox prefHeight="832.0" prefWidth="102.0" spacing="3.0" style="-fx-background-color: #303240;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuItemController">
    <children>
-      <VBox prefHeight="66.0" prefWidth="85.0">
+      <VBox alignment="CENTER" prefHeight="22.0" prefWidth="102.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <children>
-            <ImageView fitHeight="84.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="81.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo.png" />
                </image>
             </ImageView>
          </children>
       </VBox>
-      <JFXButton fx:id="user" alignment="CENTER" onAction="#GoUser" prefHeight="77.0" prefWidth="102.0" text="   User" textFill="#b4abab">
+      <JFXButton fx:id="user" alignment="CENTER" onAction="#GoUser" prefHeight="34.0" prefWidth="119.0" text="   User" textFill="#b4abab">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -32,7 +32,7 @@
             </ImageView>
          </graphic>
          <VBox.margin>
-            <Insets bottom="50.0" top="30.0" />
+            <Insets bottom="10.0" top="30.0" />
          </VBox.margin>
       </JFXButton>
       <JFXButton fx:id="goback" alignment="CENTER" onAction="#GoBack" prefHeight="39.0" prefWidth="128.0" text="  Home" textFill="#b4abab">
@@ -55,6 +55,78 @@
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/user.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="GarageC" alignment="CENTER" onAction="#GoToGarage" prefHeight="39.0" prefWidth="128.0" text="  Garage" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/car-service.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="Maintenance" alignment="CENTER" onAction="#GoToMaintenance" prefHeight="39.0" prefWidth="128.0" text="  Maintenace" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tools.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="Market" alignment="CENTER" onAction="#GoToMarket" prefHeight="39.0" prefWidth="128.0" text="  Market" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/brand-identity.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="Product" alignment="CENTER" onAction="#GoToProduct" prefHeight="39.0" prefWidth="128.0" text="  Product" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/package.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="Categorie" alignment="CENTER" onAction="#GoToCategorie" prefHeight="39.0" prefWidth="128.0" text="  Categorie" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tag.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="events" alignment="CENTER" onAction="#GoEvents" prefHeight="39.0" prefWidth="128.0" text="  Event" textFill="#b4abab">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/finish-flag.png" />
                </image>
             </ImageView>
          </graphic>
@@ -94,26 +166,42 @@
             </VBox>
          </children>
       </VBox>
-      <JFXButton alignment="CENTER" onAction="#logOut" prefHeight="39.0" prefWidth="128.0" text=" " textFill="#b4abab">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/exit.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <VBox.margin>
-            <Insets top="170.0" />
-         </VBox.margin>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </JFXButton>
+      <VBox prefHeight="90.0" prefWidth="102.0">
+         <children>
+            <JFXButton fx:id="modifierMdp" alignment="CENTER" onAction="#GoToModifierMdp" prefHeight="39.0" prefWidth="128.0" text="   " textFill="#b4abab">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/setting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="CENTER" onAction="#logOut" prefHeight="39.0" prefWidth="128.0" text=" " textFill="#b4abab">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </VBox>
    </children>
-   <padding>
-      <Insets top="30.0" />
-   </padding>
 </VBox>

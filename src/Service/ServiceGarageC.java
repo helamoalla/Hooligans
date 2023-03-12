@@ -60,7 +60,7 @@ public class ServiceGarageC implements InterfaceCRUD<GarageC>{
           }
     }*/
    public static final String ACCOUNT_SID = "AC897724b24d27bff3bfd176fce2cee841";     /// 
-    public static final String AUTH_TOKEN = "a7ac03e9f2e383338173210eb0d0dc9e"; ///   
+    public static final String AUTH_TOKEN = "6c16ed28d500255f53dd6e1b4df84fdc"; ///   
     public static final String TWILIO_NUMBER = "+12765660986";
 
     @Override

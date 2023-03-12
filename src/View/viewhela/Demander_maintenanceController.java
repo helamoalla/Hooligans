@@ -37,6 +37,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import Util.Data;
+import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -81,9 +82,14 @@ public class Demander_maintenanceController implements Initializable {
     @FXML
     private CheckBox id_fuite_d_huile;
 UserService us=new UserService();
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
+
+           public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -116,17 +122,17 @@ UserService us=new UserService();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./devis.fxml"));
             Parent view_2 = loader.load();
-            DevisController ItemDevisController = loader.getController();
+            DevisController devisController = loader.getController();
 
             //  GarageC g=new GarageC();
-            ItemDevisController.getMaintenance(m);
+            devisController.getMaintenance(m,borderPane);
             System.out.println(m);
-            ItemDevisController.m = m;
+            devisController.m = m;
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+                        
+            devisController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(Demander_maintenanceController.class.getName()).log(Level.SEVERE, null, ex);
         }

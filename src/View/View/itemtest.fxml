@@ -9,43 +9,43 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="abc" prefHeight="283.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.ItemtestController">
+<AnchorPane id="AnchorPane" fx:id="abc" prefHeight="283.0" prefWidth="1428.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.ItemtestController">
    <children>
       <ImageView fx:id="image" fitHeight="117.0" fitWidth="136.0" layoutX="14.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
-      <Separator layoutX="154.0" layoutY="118.0" prefHeight="4.0" prefWidth="625.0" />
-      <Label layoutX="164.0" layoutY="21.0" prefHeight="30.0" prefWidth="180.0" text="Nom Evenement ">
+      <Separator layoutX="363.0" layoutY="118.0" prefHeight="11.0" prefWidth="1065.0" />
+      <Label layoutX="362.0" layoutY="29.0" prefHeight="36.0" prefWidth="226.0" text="Nom Evenement ">
          <font>
-            <Font size="20.0" />
+            <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="nom" layoutX="237.0" layoutY="55.0" prefHeight="50.0" prefWidth="233.0">
+      <Label fx:id="nom" layoutX="530.0" layoutY="57.0" prefHeight="50.0" prefWidth="256.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="dated_Month" layoutX="585.0" layoutY="64.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
-      <Label layoutX="528.0" layoutY="28.0" prefHeight="17.0" prefWidth="91.0" text="Date debut" />
-      <Label fx:id="dated_day" layoutX="528.0" layoutY="46.0" prefHeight="70.0" prefWidth="57.0" text="16">
+      <Label fx:id="dated_Month" layoutX="1054.0" layoutY="57.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="997.0" layoutY="21.0" prefHeight="17.0" prefWidth="91.0" text="Date debut" />
+      <Label fx:id="dated_day" layoutX="997.0" layoutY="39.0" prefHeight="70.0" prefWidth="57.0" text="16">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label fx:id="dated_year" layoutX="585.0" layoutY="81.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
-      <Separator layoutX="651.0" layoutY="46.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="22.0" />
-      <Label fx:id="datef_Month" layoutX="731.0" layoutY="64.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
-      <Label layoutX="668.0" layoutY="28.0" prefHeight="17.0" prefWidth="91.0" text="Date fin" />
-      <Label fx:id="datef_day" layoutX="668.0" layoutY="45.0" prefHeight="70.0" prefWidth="57.0" text="16">
+      <Label fx:id="dated_year" layoutX="1054.0" layoutY="74.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+      <Separator layoutX="1120.0" layoutY="39.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="22.0" />
+      <Label fx:id="datef_Month" layoutX="1200.0" layoutY="57.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="1137.0" layoutY="21.0" prefHeight="17.0" prefWidth="91.0" text="Date fin" />
+      <Label fx:id="datef_day" layoutX="1137.0" layoutY="38.0" prefHeight="70.0" prefWidth="57.0" text="16">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label fx:id="datef_year" layoutX="731.0" layoutY="81.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
-      <Button layoutX="595.0" layoutY="149.0" mnemonicParsing="false" onAction="#detail" prefHeight="25.0" prefWidth="77.0" text="Detail" />
-      <Button layoutX="687.0" layoutY="149.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="77.0" text="Supprimer" />
+      <Label fx:id="datef_year" layoutX="1200.0" layoutY="74.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+      <Button layoutX="941.0" layoutY="158.0" mnemonicParsing="false" onAction="#detail" prefHeight="50.0" prefWidth="126.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Detail" />
+      <Button layoutX="1102.0" layoutY="157.0" mnemonicParsing="false" onAction="#delete" prefHeight="50.0" prefWidth="136.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Supprimer" />
       <Label fx:id="id_e" text="Label" visible="false" />
-      <Button layoutX="506.0" layoutY="150.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="77.0" text="Modifier" />
-      <BorderPane layoutY="6.0" prefHeight="200.0" prefWidth="200.0" />
-      <Separator layoutY="224.0" prefHeight="11.0" prefWidth="840.0" />
+      <Button layoutX="766.0" layoutY="157.0" mnemonicParsing="false" onAction="#modifier" prefHeight="50.0" prefWidth="146.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Modifier" />
+      <BorderPane layoutX="20.0" layoutY="16.0" prefHeight="250.0" prefWidth="336.0" />
+      <Separator layoutX="362.0" layoutY="224.0" prefHeight="11.0" prefWidth="1066.0" />
    </children>
    <effect>
       <InnerShadow height="10.0" radius="4.5" width="10.0" />

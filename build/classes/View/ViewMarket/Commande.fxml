@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#click" prefHeight="50.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.CommandeController">
+     <children>
+      <VBox alignment="TOP_CENTER" layoutX="44.0" layoutY="14.0" prefHeight="535.0" prefWidth="100.0" stylesheets="@../../Views/CssStyle/search.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="603.0">
+               <children>
+                  <Label fx:id="lbnom_prod" alignment="CENTER" prefHeight="69.0" prefWidth="254.0" text="Numéro commande">
+                     <font>
+                        <Font name="Cambria" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="num_commande" text="1">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <styleClass>
+            <String fx:value="fruit-item" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="48.0" prefHeight="64.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lbdescription_prod" alignment="CENTER" prefHeight="44.0" prefWidth="133.0" text="Lancé le :">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="date" text="22/05/2023">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="103.0" prefHeight="64.0" prefWidth="603.0">
+         <children>
+            <Label prefHeight="64.0" prefWidth="254.0" text="Montant total à payer :  ">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="montant" text="1 ">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label text="DT">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutY="309.0" prefHeight="0.0" prefWidth="200.0" />
+      <HBox alignment="CENTER" layoutX="13.0" layoutY="160.0" prefHeight="44.0" prefWidth="590.0">
+         <children>
+            <Label prefHeight="31.0" prefWidth="108.0" text="Adresse:">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="rue" text="rue ">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="ville" text="ville">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="gouvernorat" text=" gouvernorat">
+               <font>
+                  <Font name="Cambria Math" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+    
+</AnchorPane>

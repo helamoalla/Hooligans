@@ -5,76 +5,55 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.ModifierController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="roota4" stylesheets="@../../Views/css/cssfinal.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.ModifierController">
    <children>
-      <HBox layoutX="20.0" layoutY="20.0" prefHeight="198.0" prefWidth="935.0" styleClass="head-background" stylesheets="@../../Views/Views/cssstyle1.css">
-         <children>
-            <Pane>
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="247.0" layoutY="82.0" text="Drift &amp; Race">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </children>
-      </HBox>
-      <Label layoutX="390.0" layoutY="237.0" prefHeight="44.0" prefWidth="327.0" text="Modifier un Event ">
+      <Label layoutX="528.0" layoutY="111.0" prefHeight="44.0" prefWidth="327.0" stylesheets="@../../Views/css/cssfinal.css" text="Modifier un Event " textFill="WHITE">
          <font>
-            <Font size="36.0" />
+            <Font name="Chiller" size="55.0" />
          </font>
       </Label>
-      <Button fx:id="Modifier" layoutX="609.0" layoutY="720.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="137.0" text="Valider" />
-      <Label layoutX="424.0" layoutY="321.0" prefHeight="17.0" prefWidth="64.0" text="Nom">
+      <Button fx:id="Modifier" layoutX="552.0" layoutY="663.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="137.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Valider" />
+      <Label layoutX="520.0" layoutY="261.0" prefHeight="17.0" prefWidth="64.0" text="Nom" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="nom" layoutX="507.0" layoutY="317.0" promptText="Saisir nom" />
-      <Label layoutX="419.0" layoutY="454.0" prefHeight="17.0" prefWidth="64.0" text="Type">
+      <TextField fx:id="nom" layoutX="603.0" layoutY="257.0" promptText="Saisir nom" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <Label layoutX="515.0" layoutY="394.0" prefHeight="17.0" prefWidth="64.0" text="Type" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="type" layoutX="507.0" layoutY="454.0" promptText="Type" />
-      <Label layoutX="416.0" layoutY="501.0" prefHeight="17.0" prefWidth="64.0" text="Lieu">
+      <TextField fx:id="type" layoutX="603.0" layoutY="394.0" promptText="Type" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <Label layoutX="512.0" layoutY="441.0" prefHeight="17.0" prefWidth="64.0" text="Lieu" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="lieu" layoutX="507.0" layoutY="501.0" promptText="Lieu" />
-      <Label layoutX="417.0" layoutY="554.0" prefHeight="17.0" prefWidth="64.0" text="Prix">
+      <TextField fx:id="lieu" layoutX="603.0" layoutY="441.0" promptText="Lieu" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <Label layoutX="513.0" layoutY="494.0" prefHeight="17.0" prefWidth="64.0" text="Prix" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="prix" layoutX="502.0" layoutY="552.0" prefHeight="28.0" prefWidth="159.0" promptText="Prix" />
-      <DatePicker fx:id="dated" layoutX="508.0" layoutY="363.0" promptText="Date Debut" />
-      <DatePicker fx:id="datef" layoutX="508.0" layoutY="410.0" promptText="Date Fin" />
-      <Label layoutX="415.0" layoutY="410.0" text="Date Fin">
+      <TextField fx:id="prix" layoutX="598.0" layoutY="492.0" prefHeight="28.0" prefWidth="159.0" promptText="Prix" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <DatePicker fx:id="dated" layoutX="604.0" layoutY="303.0" opacity="0.63" promptText="Date Debut" stylesheets="@../../Views/css/cssfinal.css" />
+      <DatePicker fx:id="datef" layoutX="604.0" layoutY="350.0" opacity="0.63" promptText="Date Fin" stylesheets="@../../Views/css/cssfinal.css" />
+      <Label layoutX="511.0" layoutY="350.0" text="Date Fin" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="415.0" layoutY="363.0" text="Date Debut">
+      <Label layoutX="511.0" layoutY="303.0" text="Date Debut" textFill="#999999">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="importerimage" layoutX="591.0" layoutY="613.0" mnemonicParsing="false" onAction="#importerimage" prefHeight="26.0" prefWidth="159.0" text="importer image" textFill="#cf4040" textOverrun="CLIP">
+      <Button fx:id="importerimage" layoutX="335.0" layoutY="553.0" mnemonicParsing="false" onAction="#importerimage" prefHeight="26.0" prefWidth="159.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="importer image" textFill="#cf4040" textOverrun="CLIP">
          <font>
             <Font size="13.0" />
          </font>
@@ -82,7 +61,7 @@
             <Cursor fx:constant="NONE" />
          </cursor>
       </Button>
-      <ImageView fx:id="imageview" fitHeight="116.0" fitWidth="190.0" layoutX="373.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="nom_image" layoutX="380.0" layoutY="613.0" prefHeight="26.0" prefWidth="175.0" promptText="Image.png" />
+      <ImageView fx:id="imageview" fitHeight="116.0" fitWidth="190.0" layoutX="806.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="nom_image" layoutX="590.0" layoutY="553.0" prefHeight="26.0" prefWidth="175.0" promptText="Image.png" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
    </children>
 </AnchorPane>

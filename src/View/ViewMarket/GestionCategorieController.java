@@ -54,6 +54,7 @@ import Service.CategorieService;
 import Service.LignePanierService;
 import Service.PanierService;
 import Service.ProduitService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -96,6 +97,7 @@ public class GestionCategorieController implements Initializable , MyListener1 {
      CategorieService catser = new CategorieService();
     @FXML
     private ImageView imagecategorie;
+    private BorderPane borderPane;
    
       
     
@@ -105,6 +107,9 @@ public class GestionCategorieController implements Initializable , MyListener1 {
          
          desc.setText(p.getDescription_categorie());
     }
+             public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+             afficherall();}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,7 +119,7 @@ public class GestionCategorieController implements Initializable , MyListener1 {
      
      
         
-        afficherall();
+//        afficherall();
       
       //   
     }
@@ -141,6 +146,10 @@ public class GestionCategorieController implements Initializable , MyListener1 {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CategorieController catController = fxmlLoader.getController();
+                
+            catController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
                 catController.setData(listcateg.get(i),myListener);
 
                 if (column == 3) {
@@ -206,6 +215,10 @@ public class GestionCategorieController implements Initializable , MyListener1 {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CategorieController prodController = fxmlLoader.getController();
+                
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
                 prodController.setData(categ.get(i),myListener);
 
                 if (column == 3) {
@@ -263,6 +276,9 @@ public class GestionCategorieController implements Initializable , MyListener1 {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CategorieController prodController = fxmlLoader.getController();
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
                 prodController.setData(prodcat.get(i),myListener);
 
                 if (column == 3) {
@@ -308,10 +324,10 @@ public class GestionCategorieController implements Initializable , MyListener1 {
             ViewUpdateCategorieController updateproduitController=loader.getController();
             updateproduitController.getCategorie(c);
             updateproduitController.c=c;
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_1);
-            stage.setScene(scene);
-            stage.show();
+      
+            updateproduitController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_1);
              
         } catch (Exception ex) {
             System.out.println(ex);   
@@ -325,10 +341,10 @@ public class GestionCategorieController implements Initializable , MyListener1 {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewAjoutCategorie.fxml"));
              Parent view_2=loader.load();
              ViewAjoutCategorieController ajoutproduit=loader.getController();
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);
-             stage.show();
+             
+            ajoutproduit.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (IOException ex) {
              Logger.getLogger(GestionCategorieController.class.getName()).log(Level.SEVERE, null, ex);
          }

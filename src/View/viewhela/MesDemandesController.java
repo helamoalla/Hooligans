@@ -32,6 +32,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import Util.Data;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -49,6 +50,7 @@ ServiceMaintenance sm=new ServiceMaintenance();
 Maintenance m;
 int id;
 ObservableList<Maintenance> d ;
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
@@ -94,11 +96,9 @@ ObservableList<Maintenance> d ;
 //    return m;
     
    // }
-      
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-         int column = 0;
+           public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+        int column = 0;
         int row = 0;
         id_list.addAll(sm.chercher(Data.getId_user()));
         System.out.println(id_list);
@@ -110,6 +110,10 @@ ObservableList<Maintenance> d ;
 
                 ItemMaintenanceUController itemController = fxmlLoader.getController();
                 itemController.setData(id_list.get(i));
+                          
+            itemController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -138,6 +142,54 @@ ObservableList<Maintenance> d ;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    } 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+//         int column = 0;
+//        int row = 0;
+//        id_list.addAll(sm.chercher(Data.getId_user()));
+//        System.out.println(id_list);
+//        try { 
+//            for (int i = 0; i < id_list.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//               fxmlLoader.setLocation(getClass().getResource("../viewhela/itemMaintenanceU.fxml"));
+//                AnchorPane anchorPane = fxmlLoader.load();
+//
+//                ItemMaintenanceUController itemController = fxmlLoader.getController();
+//                itemController.setData(id_list.get(i));
+//                          
+//            itemController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
+//
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+//
+//             
+//               grid.add(anchorPane, column++, row); //(child,column,row)
+//            //set grid width
+//             //  column++;
+//            
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                //set grid height
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//
+//               GridPane.setMargin(anchorPane,new Insets(5));
+//             GridPane.setColumnIndex(anchorPane, column);
+//              
+//                   
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
  private void refreshNodes()
@@ -158,6 +210,10 @@ ObservableList<Maintenance> d ;
                 
                 
                 Vboxe.getChildren().add(abc);
+                            
+            itemcontroller.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(abc);
                 
                 //////////
                 
@@ -181,10 +237,10 @@ ObservableList<Maintenance> d ;
          FXMLLoader loader= new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    MaintenanceController mainteController = loader.getController();
+            mainteController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
     }

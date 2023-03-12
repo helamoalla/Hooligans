@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="root" stylesheets="@../../Views/css/css4.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.Afficher_MaintenanceController">
+   <children>
+      <Button fx:id="id_retour" layoutX="524.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" text="retour" textFill="RED" visible="false" />
+      <ScrollPane layoutX="-10.0" opacity="0.81" prefHeight="791.0" prefWidth="1451.0">
+         <content>
+            <GridPane fx:id="grid">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+               <children>
+                  <HBox fx:id="Vboxe" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

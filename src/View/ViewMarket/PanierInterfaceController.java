@@ -44,6 +44,7 @@ import Model.LignePanier;
 import Service.LignePanierService;
 import Service.PanierService;
 import Service.ProduitService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -83,6 +84,7 @@ public class PanierInterfaceController implements Initializable , MyListenerP {
     private TextField tfmontanttotal;
     
 private PanierService ps = new PanierService();
+    private BorderPane borderPane;
 
 
 
@@ -92,10 +94,13 @@ private PanierService ps = new PanierService();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO 
-        afficherpanier();
+        //afficherpanier();
         //Calculer le monatant total d'un panier par id_user
-       tfmontanttotal.setText(String.valueOf(ps.totalmontantPanier(Data.getId_user()))+"DT");
-    }    
+       tfmontanttotal.setText(String.valueOf(ps.totalmontantPanier(Data.getId_user())));
+    }  
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+            afficherpanier();}
     
     
     public void setChosenLignePanier(LignePanier lp){
@@ -144,6 +149,10 @@ private PanierService ps = new PanierService();
 
                 LignePanierController p = fxmlLoader.getController();
                 p.setData(listprod.get(i),myListener);
+                
+            p.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -180,10 +189,10 @@ private PanierService ps = new PanierService();
             Parent view_2=loader.load();
             MarketController i =loader.getController();
             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -199,10 +208,10 @@ private PanierService ps = new PanierService();
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
              Parent view_2=loader.load();
              PanierInterfaceController i =loader.getController();
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);
-             stage.show();
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (SQLException ex) {
              Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -219,10 +228,10 @@ private PanierService ps = new PanierService();
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
              Parent view_2=loader.load();
              PanierInterfaceController i =loader.getController();
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);      
-             stage.show();
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (SQLException ex) {
              Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -237,10 +246,10 @@ private PanierService ps = new PanierService();
             Parent view_2=loader.load();
            PanierInterfaceController i =loader.getController();
             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Produit supprimé du panier avec succés");
             alert.show();
@@ -256,10 +265,10 @@ private PanierService ps = new PanierService();
             Parent view_2=loader.load();
            PanierInterfaceController i =loader.getController();
             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Panier vidé avec succés");
             alert.show();
@@ -272,10 +281,10 @@ private PanierService ps = new PanierService();
              Parent view_2=loader.load();
              PasserCommandeController i =loader.getController();
              
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);
-             stage.show();
+                
+            i.setBorderPane(borderPane,tfmontanttotal.getText());
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (IOException ex) {
              Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -288,10 +297,9 @@ private PanierService ps = new PanierService();
              Parent view_2=loader.load();
             MesCommandesInterfacesController i =loader.getController();
              
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);
-             stage.show();
+             i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (IOException ex) {
              Logger.getLogger(PanierInterfaceController.class.getName()).log(Level.SEVERE, null, ex);
          }

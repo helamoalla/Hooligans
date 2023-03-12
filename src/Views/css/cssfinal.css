@@ -1,0 +1,138 @@
+.root{
+    -fx-background-image:url('../../images/a1.png');
+    -fx-background-size:cover ;
+}
+.roota2 {
+    -fx-background-image:url('../../images/a2.png');
+    -fx-background-size:cover ;
+}
+.roota3 {
+    -fx-background-image:url('../../images/a3.png');
+    -fx-background-size:cover ;
+}
+.roota4 {
+    -fx-background-image:url('../../images/a4.png');
+    -fx-background-size:cover ;
+}.roota5 {
+    -fx-background-image:url('../../images/a5.png');
+    -fx-background-size:cover ;
+}.roota6 {
+    -fx-background-image:url('../../images/a6.png');
+    -fx-background-size:cover ;
+}.roota7 {
+    -fx-background-image:url('../../images/a7.png');
+    -fx-background-size:cover ;
+}
+.text-inputclient{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #cb4335;
+    -fx-text-fill: #ffffff;
+    
+}
+
+.text-inputwelsetting{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+    
+}
+
+.text-inputartiste{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #E19405;
+    
+}
+
+.text-inputlogin{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #000;
+    
+}
+
+.selected-border{
+    -fx-border-color:  #DFC583;
+    -fx-border-width: 0 3 0 0;
+}
+
+.selected:hover{
+    -fx-background-color: #3C3D5B;
+}
+.sidebar:hover{
+    -fx-background-color: #fff;
+    -fx-border-color:  #fff;
+    -fx-border-width: 1 1 1 3;
+    
+}
+.sale
+{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0,0 0 6 0,0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%,#a34313 0%,#cb4335 100%),
+             #cb4335,
+             #cb4335,
+            radial-gradient(center 50% 50%, radius 100%,#cb4335,#cb4335);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75),4,0,0,1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+.sale:hover
+{
+
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%,#a34313 0%,#B22222
+ 100),
+            #B22222,
+            #B22222,
+            radial-gradient(center 50% 50%,radius 100%,#B22222
+,#B22222
+);
+}
+
+.sale:pressed
+{
+     -fx-padding: 10 15 13 15;
+     -fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
+
+}
+.sale1
+{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0,0 0 6 0,0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%,#626262 0%,#626262 100%),
+             #626262,
+             #626262,
+            radial-gradient(center 50% 50%, radius 100%,#626262,#626262);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75),4,0,0,1);
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-text-fill: white;
+}
+
+.sale1:hover
+{
+
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%,#c4c4c4 0%,#c4c4c4
+ 100),
+            #c4c4c4,
+            #c4c4c4,
+            radial-gradient(center 50% 50%,radius 100%,#c4c4c4
+,#c4c4c4
+);
+}
+
+.sale1:pressed
+{
+     -fx-padding: 10 15 13 15;
+     -fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
+
+}

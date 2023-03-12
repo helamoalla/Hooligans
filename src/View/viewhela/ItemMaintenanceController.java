@@ -27,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -47,6 +48,7 @@ Maintenance m;
     private Button id_supp;
     @FXML
     private Label id_maintenance;
+    private BorderPane borderPane;
 //private List<Maintenance> id_list = new ArrayList<>();
     /**
      * Initializes the controller class.
@@ -54,7 +56,10 @@ Maintenance m;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
      public void setData(Maintenance m)
     {  
         this.m =m;
@@ -105,10 +110,10 @@ Maintenance m;
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./afficher_Maintenance.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    Afficher_MaintenanceController afficherMaintController = loader.getController();
+            afficherMaintController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         // afficher_garage(event);
     } catch (IOException ex) {
         Logger.getLogger(ItemMaintenanceController.class.getName()).log(Level.SEVERE, null, ex);

@@ -50,6 +50,9 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import Util.Data;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Table;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -82,6 +85,7 @@ public class ItemDevisController implements Initializable {
     private Button confirmer;
     @FXML
     private Label id_devis;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -89,6 +93,9 @@ public class ItemDevisController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+    }
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }
 
     public GarageC getGarage(GarageC g) {
@@ -247,90 +254,48 @@ if (this.m.isAmortisseur() == true) {
     @FXML
     private void confirmer(ActionEvent event) throws  MessagingException {
 
-        try {
+       try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
             Parent view_2 = loader.load();
             n++;
-           
-           // String file_name = ("C:\\Users\\helam\\Documents\\NetBeansProjects\\PIDEV\\src\\pdf\\pdf.pdf");
 
             // Creating a new PDF document
-PdfWriter writer = new PdfWriter("C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\pdf.pdf");
-PdfDocument pdf = new PdfDocument(writer);
-Document document = new Document(pdf);
+            PdfWriter writer = new PdfWriter("C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\devis.pdf");
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
 
-//            Document doc = new Document();
-//            PdfWriter.getInstance(doc, new FileOutputStream(file_name));
-          //  document.open();
- PdfFont titleFont = PdfFontFactory.createFont("Helvetica-Bold", "Cp1252");
-        Paragraph title = new Paragraph("Devis")
-               .setFont(titleFont)
-              .setFontSize(25f)
-              .setBold()
-                .setTextAlignment(TextAlignment.CENTER);
-        document.add(title);
-            
-//        Image logo = new Image(ImageDataFactory.create(file_name));
-//        logo.setWidth(100);
-//        logo.setHeight(100);
-//        doc.add(logo);
+            ImageData imageData = ImageDataFactory.create("http://localhost/images/en_tete1.png");
+            Image image = new Image(imageData);
+
+            document.add(image);
+    System.out.println("PDF created successfully.");
+            Table table = new Table(4);
+                  table.addCell(new Cell().add(new Paragraph(" DEVIS N° " + n + ":")));
+                  table.addCell(new Cell().add(new Paragraph("LES PANNES " + panne.getText())));
+                  table.addCell(new Cell().add(new Paragraph("LES PRIX DES PANNES " + prix.getText())));
+                   table.addCell(new Cell().add(new Paragraph("Taux taxe comprix (TVA 19%): \n" + TTC.getText())));
+                  document.add(table);
         
-//Image logo = new Image(ImageDataFactory.create("http://localhost/images/car-on-hoist.jpg"));
-//        logo.setWidth(UnitValue.createPercentValue(30));
-//        logo.setAutoScale(false);
-//        document.add((Element) logo);
-ImageData imageData = ImageDataFactory.create("http://localhost/images/logo.png");
-Image image = new Image(imageData);
-image.setWidth(60);
-        image.setHeight(60);
-       
-//image.setWidth(UnitValue.createPercentValue(50));
-document.add(image);
+            document.add(new Paragraph("Arretez la presente Piece apres une reduction de "+reduction.getText()+" % a la somme de : "+total.getText()+"DT"));
 
-//PdfPTable table = new PdfPTable(3);
-//
-//// Ajout de l'en-tête de la table
-//PdfPCell cell = new PdfPCell(new Phrase("Les Pannes : "));
-//table.addCell(cell);
-//cell = new PdfPCell(new Phrase("Les Prix : "));
-//table.addCell(cell);
-//cell = new PdfPCell(new Phrase("Taux Taxe Comprix : "));
-//table.addCell(cell);
-//
-//// Ajout des données à la table
-//table.addCell("Donnée 1, colonne 1");
-//table.addCell("Donnée 1, colonne 2");
-//table.addCell("Donnée 1, colonne 3");
-//table.addCell("Donnée 2, colonne 1");
-//table.addCell("Donnée 2, colonne 2");
-//table.addCell("Donnée 2, colonne 3");
-//
-//// Ajout de la table au document
-//document.add(table);
+            ImageData imageData1 = ImageDataFactory.create("http://localhost/images/bas_page.png");
+            Image image1 = new Image(imageData1);
+            image1.setFixedPosition(pdf.getDefaultPageSize().getWidth()-700,5);
+            document.add(image1);
 
-            System.out.println("PDF created successfully.");
-            document.add(new Paragraph(" DEVIS N° " + n + ":"));
-            document.add(new Paragraph("LES PANNES : " + panne.getText()));
-            document.add(new Paragraph("LES PRIX DES PANNES : " + prix.getText()));
-            document.add(new Paragraph("Taux taxe comprix (TVA 19%): " + TTC.getText()));
-            document.add(new Paragraph("Somme apres reduction de " + reduction.getText() + "% est :" + total.getText()));
-            Paragraph p = new Paragraph("Arretez la presente Piece a la somme de  " + total.getText() + "DT");
-            p.setFixedPosition(document.getRightMargin(), document.getBottomMargin(), 100);
-            document.add(p);
-            //document.add(new Paragraph("Arretez la presente Piece a la somme de  " + total.getText() + "DT"));
             document.close();
             UserService us = new UserService();
             User u1 = us.readById(Data.getId_user());
-            sm1.sendEmail(u1.getEmail(), "DEVIS!", "Voici votre devis du garage confirmé", "C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\pdf.pdf");
+            sm1.sendEmail(u1.getEmail(), "DEVIS!", "Voici votre devis du garage confirmé", "C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\devis.pdf");
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+            MaintenanceController maintenaceController = loader.getController();
+            maintenaceController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(ItemDevisController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+ 
 
 
 

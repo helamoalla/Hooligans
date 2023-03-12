@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -50,12 +51,16 @@ URL imageUrl;
     private Button id_modifier;
     @FXML
     private Button id_suppr;
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+      public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }    
   
     public void setData(GarageC g)
@@ -85,10 +90,10 @@ URL imageUrl;
         Modifier_GarageController Modifier_GarageController=loader.getController();
         Modifier_GarageController.getGarage((GarageC) sg.readById(Integer.valueOf(id_garage.getText())));
         Modifier_GarageController.g=(GarageC) sg.readById(Integer.valueOf(id_garage.getText()));
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                   
+            Modifier_GarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -103,10 +108,10 @@ URL imageUrl;
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    AffichageGarageController affichageGarageController = loader.getController();
+            affichageGarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         // afficher_garage(event);
     } catch (IOException ex) {
         Logger.getLogger(LesGaragesController.class.getName()).log(Level.SEVERE, null, ex);

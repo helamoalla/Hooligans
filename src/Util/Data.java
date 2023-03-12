@@ -9,7 +9,7 @@ package Util;
  * @author azizh
  */
 public class Data {
-    public static int id_user=12; 
+    public static int id_user; 
 
     public static int getId_user() {
         return id_user;

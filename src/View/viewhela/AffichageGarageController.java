@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -47,6 +48,7 @@ private List<GarageC> id_list = new ArrayList<>();
     private GridPane grid;
     @FXML
     private Button id_ajout;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -61,12 +63,9 @@ private List<GarageC> id_list = new ArrayList<>();
     return g;
     
     }
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-// refreshNodes();
-
-
+        public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+        
  int column = 0;
         int row = 0;
         id_list.addAll(sg.readAll());
@@ -78,6 +77,9 @@ private List<GarageC> id_list = new ArrayList<>();
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 LesGaragesController itemController = fxmlLoader.getController();
+               itemController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(anchorPane);
                 itemController.setData(id_list.get(i));
 
                 if (column == 3) {
@@ -107,6 +109,56 @@ private List<GarageC> id_list = new ArrayList<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+// refreshNodes();
+
+//
+// int column = 0;
+//        int row = 0;
+//        id_list.addAll(sg.readAll());
+//        System.out.println(id_list);
+//        try { 
+//            for (int i = 0; i < id_list.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//               fxmlLoader.setLocation(getClass().getResource("../viewhela/lesGarages.fxml"));
+//                AnchorPane anchorPane = fxmlLoader.load();
+//
+//                LesGaragesController itemController = fxmlLoader.getController();
+//               itemController.setBorderPane(borderPane);
+//            //borderPane.setCenter(null);
+//            //borderPane.setCenter(anchorPane);
+//                itemController.setData(id_list.get(i));
+//
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+//
+//             
+//               grid.add(anchorPane, column++, row); //(child,column,row)
+//            //set grid width
+//             //  column++;
+//            
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                //set grid height
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//
+//               GridPane.setMargin(anchorPane,new Insets(5));
+//             GridPane.setColumnIndex(anchorPane, column);
+//              
+//                   
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
      
     }   
   
@@ -125,6 +177,10 @@ private List<GarageC> id_list = new ArrayList<>();
                  AnchorPane abc = fxmlLoader.load();
                  LesGaragesController itemcontroller = fxmlLoader.getController();
                  itemcontroller.setData(lg.get(i));
+                             
+            itemcontroller.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(abc);
                  
             
                 Vboxe.getChildren().add(abc);
@@ -149,10 +205,10 @@ private List<GarageC> id_list = new ArrayList<>();
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./Ajout_Garage.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    Ajout_GarageController ajoutGarageController = loader.getController();
+            ajoutGarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -164,10 +220,10 @@ private List<GarageC> id_list = new ArrayList<>();
          FXMLLoader loader= new FXMLLoader(getClass().getResource("./GESTION.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                   GESTIONController gestionController = loader.getController();
+            gestionController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GESTIONController.class.getName()).log(Level.SEVERE, null, ex);
     }

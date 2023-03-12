@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -39,6 +40,7 @@ public class LesGaragesUserController implements Initializable {
 GarageC g;
 URL imageUrl;
 InterfaceCRUD sg =new ServiceGarageC();
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
@@ -46,6 +48,9 @@ InterfaceCRUD sg =new ServiceGarageC();
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
+    }
+      public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }    
       public void setData(GarageC g)
     {   try {

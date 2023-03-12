@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import Model.Categorie;
 import Service.CategorieService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -39,6 +40,7 @@ public class ViewUpdateCategorieController implements Initializable {
     @FXML
     private ChoiceBox<String> updatechoix;
      private String[] choix ={"Pieces de rechange","mode"} ;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -55,6 +57,8 @@ public class ViewUpdateCategorieController implements Initializable {
     updatechoix.setValue(c.getType_categorie());
 }    
    
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
     @FXML
     private void Modifiercat(ActionEvent event) {
         
@@ -92,10 +96,12 @@ public class ViewUpdateCategorieController implements Initializable {
             try {
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionCategorie.fxml"));
                 Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                 GestionCategorieController i =loader.getController();
+             
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
             } catch (IOException ex) {
                 Logger.getLogger(ViewUpdateCategorieController.class.getName()).log(Level.SEVERE, null, ex);
             }

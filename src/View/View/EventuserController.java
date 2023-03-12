@@ -90,7 +90,6 @@ List<Event> le=new ArrayList<>();
         }
     }
 
-    @FXML
     private void gestioneventadmin(ActionEvent event) {
         try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./test1.fxml"));
@@ -105,7 +104,6 @@ List<Event> le=new ArrayList<>();
          }
     }
 
-    @FXML
     private void gestioneventuser(ActionEvent event) {
 //        try {
 //             FXMLLoader loader= new FXMLLoader(getClass().getResource("./eventuser.fxml"));
@@ -123,6 +121,22 @@ List<Event> le=new ArrayList<>();
             Parent profile = loader.load();            
             borderPane.setCenter(null);
             borderPane.setCenter(profile);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GoToTickets(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("./MesTickets.fxml"));
+            Parent profile = loader.load();
+            MesTicketsController mesTickController =loader.getController();
+            mesTickController.setBorderPane(borderPane);
+                      borderPane.setCenter(null);
+                      borderPane.setCenter(profile);
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(MenuItemController.class.getName()).log(Level.SEVERE, null, ex);
         }

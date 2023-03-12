@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -40,6 +41,9 @@ InterfaceCRUD sm=new ServiceMaintenance();
 Maintenance m;
     @FXML
     private Label id_maintenance;
+    private BorderPane borderPane;
+    @FXML
+    private Button modifier;
 //private List<Maintenance> id_list = new ArrayList<>();
     /**
      * Initializes the controller class.
@@ -47,6 +51,9 @@ Maintenance m;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+      public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }    
      public void setData(Maintenance m)
     {  
@@ -88,6 +95,24 @@ Maintenance m;
        
        
        
+    }
+
+    @FXML
+    private void modifier(ActionEvent event) {
+        try {
+        
+        
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("./Modifier_Demande.fxml"));
+        Parent view_2=loader.load();
+        Modifier_DemandeController Modifier_DemandeController=loader.getController();
+      Modifier_DemandeController.getMaintenance((Maintenance) sm.readById(Integer.valueOf(id_maintenance.getText())));
+        Modifier_DemandeController.m=(Maintenance) sm.readById(Integer.valueOf(id_maintenance.getText()));
+         Modifier_DemandeController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
+    } catch (IOException ex) {
+        Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
    

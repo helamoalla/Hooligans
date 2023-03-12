@@ -6,59 +6,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../Views/CssStyle/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.ViewAjoutCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="733.6" prefWidth="1428.8" styleClass="roota7" stylesheets="@../../Views/css/cssfinal.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.ViewAjoutCategorieController">
    <children>
-      <TextField fx:id="NomCat" layoutX="301.0" layoutY="286.0" opacity="0.6" />
-      <TextField fx:id="DescCat" layoutX="301.0" layoutY="363.0" opacity="0.6" />
-      <ChoiceBox fx:id="choicefx" layoutX="301.0" layoutY="438.0" opacity="0.6" prefHeight="26.0" prefWidth="150.0" />
-      <Label contentDisplay="TOP" layoutX="60.0" layoutY="285.0" prefHeight="28.0" prefWidth="210.0" text="Nom de la catégorie" textFill="#ece3e3">
+      <TextField fx:id="NomCat" layoutX="773.0" layoutY="276.0" opacity="0.6" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <TextField fx:id="DescCat" layoutX="773.0" layoutY="353.0" opacity="0.6" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <ChoiceBox fx:id="choicefx" layoutX="773.0" layoutY="428.0" opacity="0.51" prefHeight="26.0" prefWidth="150.0" />
+      <Label contentDisplay="TOP" layoutX="532.0" layoutY="275.0" prefHeight="28.0" prefWidth="210.0" text="Nom de la catégorie" textFill="#919191">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="59.0" layoutY="362.0" prefHeight="28.0" prefWidth="286.0" text="Description de la catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="531.0" layoutY="352.0" prefHeight="28.0" prefWidth="286.0" text="Description de la catégorie" textFill="#919191">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Label contentDisplay="TOP" layoutX="60.0" layoutY="437.0" prefHeight="28.0" prefWidth="210.0" text="Type de catégorie" textFill="#c9c8c8">
+      <Label contentDisplay="TOP" layoutX="532.0" layoutY="427.0" prefHeight="28.0" prefWidth="210.0" text="Type de catégorie" textFill="#919191">
          <font>
             <Font name="Book Antiqua" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="301.0" layoutY="568.0" mnemonicParsing="false" onAction="#consulterliste" opacity="0.6" prefHeight="43.0" prefWidth="184.0" text="Consulter liste Categorie" textOverrun="CLIP">
+      <Button layoutX="773.0" layoutY="601.0" mnemonicParsing="false" onAction="#consulterliste" opacity="0.6" prefHeight="43.0" prefWidth="184.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Consulter liste Categorie" textOverrun="CLIP">
          <font>
             <Font name="Calisto MT" size="15.0" />
          </font></Button>
-      <Button fx:id="AddBtn" layoutX="86.0" layoutY="568.0" mnemonicParsing="false" onAction="#AjouterCat" opacity="0.6" prefHeight="43.0" prefWidth="184.0" text="Ajouter">
+      <Button fx:id="AddBtn" layoutX="532.0" layoutY="601.0" mnemonicParsing="false" onAction="#AjouterCat" opacity="0.6" prefHeight="43.0" prefWidth="184.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="Ajouter">
          <font>
             <Font name="Calisto MT" size="16.0" />
          </font></Button>
-      <Label layoutX="159.0" layoutY="123.0" text="Ajout d'une catégorie">
+      <Label layoutX="553.0" layoutY="84.0" prefHeight="78.0" prefWidth="381.0" text="Ajouter une catégorie " textFill="WHITE">
          <font>
-            <Font size="22.0" />
+            <Font name="Chiller" size="55.0" />
          </font>
-         <textFill>
-            <LinearGradient endX="0.5047348484848485" endY="0.7462120923128994" startX="0.49337124102043384">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.4736842215061188" green="0.42456141114234924" blue="0.42456141114234924" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.821052610874176" green="0.057777777314186096" blue="0.057777777314186096" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
       </Label>
    </children>
    <opaqueInsets>

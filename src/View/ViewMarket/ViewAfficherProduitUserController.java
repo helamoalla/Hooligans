@@ -39,6 +39,7 @@ import org.controlsfx.control.Notifications;
 import Service.CategorieService;
 import Service.LignePanierService;
 import Service.ProduitService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -57,14 +58,18 @@ public class ViewAfficherProduitUserController implements Initializable {
     private ListView<Categorie> listcategorie;
     @FXML
     private TextField quantite;
+    private BorderPane borderPane;
  
 
     /**
      * Initializes the controller class.
      */
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+            getAllProduits();}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        getAllProduits();
+        //getAllProduits();
             ObservableList<Categorie> categories = FXCollections.observableArrayList(categorieservice.readAll());
         listcategorie.setItems(categories);
          

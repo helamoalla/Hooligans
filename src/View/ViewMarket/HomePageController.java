@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import Service.LignePanierService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -28,6 +29,7 @@ import Service.LignePanierService;
  */
 public class HomePageController implements Initializable {
     LignePanierService lp =new LignePanierService() ;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -35,7 +37,9 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+        public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}    
 
     @FXML
     private void MoveCat(ActionEvent event) {
@@ -43,10 +47,10 @@ public class HomePageController implements Initializable {
         try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionCategorie.fxml"));
             Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            GestionCategorieController gestionCategorieController = loader.getController();
+            gestionCategorieController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
            
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,10 +64,10 @@ public class HomePageController implements Initializable {
         try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionProduit.fxml"));
             Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+           GestionProduitController homePageController = loader.getController();
+            homePageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,10 +78,10 @@ public class HomePageController implements Initializable {
          try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./market.fxml"));
             Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            MarketController homePageController = loader.getController();
+            homePageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }

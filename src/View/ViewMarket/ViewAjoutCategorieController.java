@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import Model.Categorie;
 import Service.CategorieService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -55,7 +56,11 @@ public class ViewAjoutCategorieController implements Initializable {
     private ChoiceBox<Categorie> essaye1;
     @FXML
     private Button AddBtn;
+    private BorderPane borderPane;
 
+    
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         choicefx.getItems().addAll(choix);
@@ -113,10 +118,11 @@ public class ViewAjoutCategorieController implements Initializable {
             Parent view_2=loader.load();
             GestionCategorieController suppcategorie=loader.getController();
             
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+             
+                
+            suppcategorie.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
         } catch (IOException ex) {
             Logger.getLogger(ViewAjoutCategorieController.class.getName()).log(Level.SEVERE, null, ex);
         }

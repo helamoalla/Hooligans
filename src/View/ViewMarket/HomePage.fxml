@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" stylesheets="@../../Views/CssStyle/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.HomePageController">
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" styleClass="root" stylesheets="@../../Views/CssStyle/css3.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.HomePageController">
    <children>
       <Button layoutX="847.0" layoutY="520.0" mnemonicParsing="false" onAction="#MoveCat" opacity="0.74" prefHeight="70.0" prefWidth="243.0" text="Gestion Categorie" textFill="#ac2424">
          <font>

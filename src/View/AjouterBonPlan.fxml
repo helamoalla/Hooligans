@@ -9,47 +9,47 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="787.0" prefWidth="1014.0" styleClass="back" stylesheets="@../Views/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterBonPlanController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="back" stylesheets="@../Views/css2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterBonPlanController">
    <children>
-      <Label layoutX="259.0" layoutY="39.0" prefHeight="80.0" prefWidth="373.0" text="Ajouter Bon Plan" textAlignment="CENTER" textFill="#d90202" textOverrun="WORD_ELLIPSIS">
-         <font>
-            <Font name="Book Antiqua" size="31.0" />
-         </font>
-      </Label>
-      <TextField fx:id="adresseBonPlan" layoutX="383.0" layoutY="242.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
-      <TextField fx:id="nomBonPlan" layoutX="383.0" layoutY="174.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
-      <ChoiceBox fx:id="typeBonPlan" layoutX="383.0" layoutY="324.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
-      <Label layoutX="169.0" layoutY="184.0" prefHeight="35.0" prefWidth="139.0" text="Nom Bon Plan " textFill="#cfcfcf">
+      <TextField fx:id="adresseBonPlan" layoutX="641.0" layoutY="353.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" styleClass="text-inputclient" stylesheets="@../Views/css/cssfinal.css" />
+      <TextField fx:id="nomBonPlan" layoutX="641.0" layoutY="285.0" opacity="0.6" prefHeight="35.0" prefWidth="187.0" styleClass="text-inputclient" stylesheets="@../Views/css/cssfinal.css" />
+      <ChoiceBox fx:id="typeBonPlan" layoutX="641.0" layoutY="435.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.6" prefHeight="35.0" prefWidth="187.0" />
+      <Label layoutX="427.0" layoutY="295.0" prefHeight="35.0" prefWidth="139.0" text="Nom Bon Plan " textFill="#b1afaf">
          <font>
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="242.0" prefHeight="42.0" prefWidth="139.0" text="Adresse Bon Plan " textFill="#cfcfcf">
+      <Label layoutX="430.0" layoutY="353.0" prefHeight="42.0" prefWidth="139.0" text="Adresse Bon Plan " textFill="#b1afaf">
          <font>
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="320.0" prefHeight="42.0" prefWidth="139.0" text="Type Bon Plan " textFill="#cfcfcf">
+      <Label layoutX="430.0" layoutY="431.0" prefHeight="42.0" prefWidth="139.0" text="Type Bon Plan " textFill="#b1afaf">
          <font>
             <Font name="Book Antiqua" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="Add_btn" layoutX="356.0" layoutY="617.0" mnemonicParsing="false" onAction="#ajouterBonPlan" opacity="0.6" prefHeight="26.0" prefWidth="90.0" style="-fx-region-border: 1px solid #266DB6;" text="Ajouter">
+      <Button fx:id="Add_btn" layoutX="592.0" layoutY="746.0" mnemonicParsing="false" onAction="#ajouterBonPlan" prefHeight="42.0" prefWidth="154.0" style="-fx-region-border: 1px solid #266DB6;" styleClass="sale" stylesheets="@../Views/css/cssfinal.css" text="Ajouter" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="retour_btn" layoutX="496.0" layoutY="617.0" mnemonicParsing="false" onAction="#backToMain" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Retour">
+      <Button fx:id="retour_btn" layoutX="751.0" layoutY="802.0" mnemonicParsing="false" onAction="#backToMain" opacity="0.6" prefHeight="26.0" prefWidth="90.0" text="Retour" visible="false">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Text fx:id="image_label" layoutX="383.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
-      <Button layoutX="169.0" layoutY="453.0" mnemonicParsing="false" onAction="#chooseImage" opacity="0.6" prefHeight="35.0" prefWidth="139.0" text="Choisir Image">
+      <Text fx:id="image_label" layoutX="641.0" layoutY="669.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.20000000000005" />
+      <Button layoutX="427.0" layoutY="564.0" mnemonicParsing="false" onAction="#chooseImage" prefHeight="35.0" prefWidth="139.0" styleClass="sale" stylesheets="@../Views/css/cssfinal.css" text="Choisir Image">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <ImageView fx:id="image_view" fitHeight="129.0" fitWidth="187.0" layoutX="383.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image_view" fitHeight="129.0" fitWidth="187.0" layoutX="641.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="553.0" layoutY="84.0" prefHeight="78.0" prefWidth="381.0" text="Ajouter un bon plan " textFill="WHITE">
+         <font>
+            <Font name="Chiller" size="55.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

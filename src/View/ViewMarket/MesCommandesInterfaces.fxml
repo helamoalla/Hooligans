@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1315.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.MesCommandesInterfacesController">
+<AnchorPane prefHeight="773.6" prefWidth="1428.8" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.MesCommandesInterfacesController">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -158,33 +158,10 @@
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                     <children>
-                        <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
-                           <children>
-                              <Button layoutX="89.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000">
-                                 <font>
-                                    <Font name="System Bold Italic" size="15.0" />
-                                 </font>
-                              </Button>
-                           </children></Pane>
-                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/calendar.png" />
-                           </image>
-                        </ImageView>
-                     </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="746.0" prefWidth="934.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                        <ScrollPane fx:id="scroll" prefHeight="737.0" prefWidth="1078.0">
                            <content>
                               <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
                                  <rowConstraints>

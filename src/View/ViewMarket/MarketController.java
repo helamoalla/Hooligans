@@ -60,6 +60,7 @@ import Service.LignePanierService;
 import Service.PanierService;
 import Service.ProduitService;
 import Service.UserService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -105,6 +106,7 @@ public class MarketController implements Initializable , MyListener {
      * Initializes the controller class.
      */
      CategorieService catser = new CategorieService();
+    private BorderPane borderPane;
       
     
      private void setChosenFruit(Produit p) {
@@ -121,6 +123,9 @@ public class MarketController implements Initializable , MyListener {
              Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
+             public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+             afficherall();}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,7 +139,7 @@ public class MarketController implements Initializable , MyListener {
            
            }
         
-        afficherall();
+        //afficherall();
       
       //   
     }
@@ -160,6 +165,10 @@ public class MarketController implements Initializable , MyListener {
 
                 ProduitController prodController = fxmlLoader.getController();
                 prodController.setData(listprod.get(i),myListener);
+                                
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -192,6 +201,8 @@ public class MarketController implements Initializable , MyListener {
     
   
     PanierService panierser=new PanierService();
+    UserService user1 =new UserService();
+    
     @FXML
     private void ajouteraupanier(ActionEvent event) {
          try {
@@ -199,17 +210,29 @@ public class MarketController implements Initializable , MyListener {
              
              
              int quantiteprod=Integer.parseInt(quanti.getText());
-             if (p.getQuantite()>quantiteprod || p.getQuantite()!=0){
+             
+            
+             
+             if (p.getQuantite()>quantiteprod ){
                  lp.Create_LignePanier(p, quantiteprod);
                  p.setQuantite(p.getQuantite()-quantiteprod);
                  String productName = p.getNom_prod();
                  Double a=panierser.totalmontantPanier(Data.getId_user());
                  System.out.println(a);
+                 
                  Notifications NotificationBuilder = Notifications.create()
                          .title("Reminder !! ")
                          .text("Votre panier costs now " + a).hideAfter(Duration.seconds(5))
                          .position(Pos.BOTTOM_RIGHT);
-                 NotificationBuilder.show();}
+                 NotificationBuilder.show();
+              if(user1.readById(Data.getId_user()).getQuota()<a){
+                 Notifications notificationBuilder = Notifications.create()
+                         .title("Attention !! ")
+                         .text("Mr/Mme " +user1.readById(Data.getId_user()).getNom()+" Le total de votre panier dépasse votre solde  " ).hideAfter(Duration.seconds(5))
+                         .position(Pos.BOTTOM_RIGHT);
+                 notificationBuilder.show();
+             }}
+             
              else {
                  
                  Notifications NotificationBuilder = Notifications.create()
@@ -292,6 +315,10 @@ System.out.println("rodbelek");
 
                 ProduitController prodController = fxmlLoader.getController();
                 prodController.setData(prod.get(i),myListener);
+                
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -350,6 +377,10 @@ System.out.println("rodbelek");
 
                 ProduitController prodController = fxmlLoader.getController();
                 prodController.setData(prodcat.get(i),myListener);
+                
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -381,10 +412,11 @@ System.out.println("rodbelek");
          try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./PanierInterface.fxml"));
              Parent view_2=loader.load();
-             Scene scene = new Scene(view_2);
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             stage.setScene(scene);
-             stage.show();
+             PanierInterfaceController catController = loader.getController();
+                
+            catController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (IOException ex) {
              Logger.getLogger(MarketController.class.getName()).log(Level.SEVERE, null, ex);
          }

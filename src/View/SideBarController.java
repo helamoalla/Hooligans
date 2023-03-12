@@ -6,6 +6,7 @@ package View;
 
 import Model.BonPlan;
 import Service.BonPlanService;
+import Service.UserService;
 import Util.Data;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -60,6 +61,9 @@ public class SideBarController implements Initializable {
     private FlowPane contianer;
     
     BonPlanService bs =new BonPlanService();
+    UserService us= new UserService();
+    @FXML
+    private Text solde;
 
 
     /**
@@ -88,6 +92,7 @@ public class SideBarController implements Initializable {
                 }
             });
             //getAllBonPlans();
+            solde.setText(Double.toString(us.readById(Data.getId_user()).getQuota()));
 
         } catch (IOException ex) {
             Logger.getLogger(SideBarController.class.getName()).log(Level.SEVERE, null, ex);

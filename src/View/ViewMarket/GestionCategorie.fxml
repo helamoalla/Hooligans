@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.GestionCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.GestionCategorieController">
      <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -37,9 +37,9 @@
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Market" textFill="#515050">
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Categorie" textFill="#515050">
                            <font>
-                              <Font name="Cambria" size="40.0" />
+                              <Font name="Cambria" size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -71,7 +71,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </HBox>
-                  <Pane prefHeight="94.0" prefWidth="351.0" />
+                  <Pane prefHeight="94.0" prefWidth="351.0" stylesheets="@../../Views/css/cssfinal.css" />
                   <VBox alignment="CENTER" prefHeight="402.0" prefWidth="250.0" styleClass="chosen-fruit-card" stylesheets="@../../Views/CssStyle/search.css">
                      <VBox.margin>
                         <Insets bottom="30.0" left="50.0" right="50.0" />
@@ -144,7 +144,7 @@
                      <children>
                         <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
                            <children>
-                              <Button layoutX="89.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000">
+                              <Button layoutX="89.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000" visible="false">
                                  <font>
                                     <Font name="System Bold Italic" size="15.0" />
                                  </font>
@@ -160,7 +160,7 @@
                                  </font>
                               </Button>
                            </children></Pane>
-                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c">
+                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c" visible="false">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -168,16 +168,11 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/user.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="746.0" prefWidth="934.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                        <ScrollPane fx:id="scroll" prefHeight="728.0" prefWidth="1079.0">
                            <content>
                               <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
                                  <rowConstraints>
@@ -192,5 +187,6 @@
             </VBox>
          </center>
       </BorderPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

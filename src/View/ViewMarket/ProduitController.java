@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import Model.Produit;
 import Interface.MyListener;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -34,6 +35,7 @@ public class ProduitController implements Initializable {
     private Label prix;
     @FXML
     private ImageView img;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -42,6 +44,8 @@ public class ProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
     //private void click(MouseEvent mouseEvent) {
       //  myListener.onClickListener(produit);
     //}

@@ -39,6 +39,7 @@ import Model.Categorie;
 import Model.Produit;
 import Service.CategorieService;
 import Service.ProduitService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -66,6 +67,7 @@ public class ViewUpdateProduitController implements Initializable {
     private Text image_label;
     
     File selectedFile;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -107,8 +109,12 @@ public class ViewUpdateProduitController implements Initializable {
                     }
 }    
 
+    
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
     @FXML
     private void modifproduit(ActionEvent event) {
+        try{
         if (modifnomprod.getText().length() == 0||modifdescprod.getText().length() == 0||modifprixprod.getText().length() == 0||modifquantiteprod.getText().length() == 0|| choixP.valueProperty() ==null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -123,11 +129,20 @@ public class ViewUpdateProduitController implements Initializable {
             alert.setContentText("Le nom de produit doit etre une chaine"+ "");
             alert.show(); 
     }
-           else if(!modifprixprod.getText().matches("\\d*")||!modifquantiteprod.getText().matches("\\d*")){
+           else if(!modifquantiteprod.getText().matches("\\d*")){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur de saisie !");
             alert.setContentText("Le prix de produit ou la quantite doit etre un nombre"+ "");
+            alert.show(); 
+    }
+            double prix=Double.parseDouble(modifprixprod.getText());
+        
+           if(prix<=0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de saisie !");
+            alert.setContentText("le prix  doit etre un nombre positive"+ "");
             alert.show(); 
     }
         else {
@@ -163,6 +178,15 @@ public class ViewUpdateProduitController implements Initializable {
  
         
     }
+      
+    }catch (NumberFormatException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Le prix doit être un nombre");
+        alert.showAndWait();
+        
+    }     
     }
 
     @FXML
@@ -170,10 +194,12 @@ public class ViewUpdateProduitController implements Initializable {
               try {
                 FXMLLoader loader= new FXMLLoader(getClass().getResource("./GestionProduit.fxml"));
                 Parent view_2=loader.load();
-                Scene scene = new Scene(view_2);
-                Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                 GestionProduitController i =loader.getController();
+             
+                
+            i.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
             } catch (IOException ex) {
                 Logger.getLogger(ViewUpdateProduitController.class.getName()).log(Level.SEVERE, null, ex);
             }

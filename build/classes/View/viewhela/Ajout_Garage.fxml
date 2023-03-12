@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="roota5" stylesheets="@../../Views/css/cssfinal.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.Ajout_GarageController">
+   <children>
+      <Label layoutX="134.0" layoutY="198.0" text="Nom Garage" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <Label layoutX="159.0" layoutY="298.0" text="Adresse" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <Label layoutX="157.0" layoutY="393.0" text="Numero" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <Label layoutX="848.0" layoutY="364.0" text="panne moteur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="851.0" layoutY="414.0" text="pompe a eau" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="1111.0" layoutY="224.0" text="patin " textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="1105.0" layoutY="282.0" text="essuie glace" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="1098.0" layoutY="332.0" text="radiateur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="1103.0" layoutY="399.0" text="ventilateur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="608.0" layoutY="210.0" text="duride" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="599.0" layoutY="263.0" text="fuite d'huile" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="607.0" layoutY="316.0" text="vidange" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="616.0" layoutY="364.0" text="filtre" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="608.0" layoutY="413.0" text="batterie" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="857.0" layoutY="316.0" text="amortisseur" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="864.0" layoutY="211.0" text="frain main" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="846.0" layoutY="259.0" text="feu d'eclairage" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="134.0" layoutY="482.0" text="taux de reduction" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <Button fx:id="id_ajout" layoutX="1146.0" layoutY="667.0" mnemonicParsing="false" onAction="#ajouter_garage" prefHeight="62.0" prefWidth="178.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="ajouter garage" textFill="RED" />
+      <TextField fx:id="id_nom" layoutX="315.0" layoutY="201.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <TextField fx:id="id_adresse" layoutX="315.0" layoutY="302.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <TextField fx:id="id_num" layoutX="315.0" layoutY="400.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <TextField fx:id="id_panne_moteur" layoutX="976.0" layoutY="353.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_pompe_a_eau" layoutX="976.0" layoutY="407.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_patin" layoutX="1215.0" layoutY="208.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_essuie_glace" layoutX="1221.0" layoutY="273.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_radiateur" layoutX="1221.0" layoutY="325.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_ventilateur" layoutX="1221.0" layoutY="379.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_duride" layoutX="733.0" layoutY="194.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_fuite_d_huile" layoutX="733.0" layoutY="252.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_vidange" layoutX="733.0" layoutY="309.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_filtre" layoutX="733.0" layoutY="346.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_batterie" layoutX="733.0" layoutY="397.0" prefHeight="34.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_amortisseur" layoutX="976.0" layoutY="296.0" prefHeight="26.0" prefWidth="54.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_frain_main" layoutX="979.0" layoutY="199.0" prefHeight="26.0" prefWidth="48.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_feu_eclairage" layoutX="979.0" layoutY="247.0" prefHeight="26.0" prefWidth="48.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="id_reduction" layoutX="327.0" layoutY="485.0" prefHeight="28.0" prefWidth="150.0" styleClass="text-inputclient" stylesheets="@../../Views/css/cssfinal.css" />
+      <ImageView fx:id="image_view" fitHeight="163.0" fitWidth="216.0" layoutX="759.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="id_import_image" layoutX="402.0" layoutY="663.0" mnemonicParsing="false" onAction="#importer_image" prefHeight="52.0" prefWidth="197.0" styleClass="sale" stylesheets="@../../Views/css/cssfinal.css" text="importer image" textFill="RED" />
+      <Label fx:id="id_image" layoutX="634.0" layoutY="675.0" prefHeight="34.0" prefWidth="130.0" text="image" textFill="WHITE" />
+      <Label layoutX="553.0" layoutY="84.0" prefHeight="78.0" prefWidth="381.0" text="Ajouter un Garage" textFill="WHITE">
+         <font>
+            <Font name="Chiller" size="55.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

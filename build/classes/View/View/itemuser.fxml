@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="251.0" prefWidth="1428.8" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View.ItemuserController">
+   <children>
+      <ImageView fx:id="image" fitHeight="209.0" fitWidth="249.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+      <Separator layoutX="301.0" layoutY="128.0" prefHeight="11.0" prefWidth="1133.0" />
+      <Label layoutX="306.0" layoutY="58.0" prefHeight="36.0" prefWidth="234.0" text="Nom Evenement ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="nom" layoutX="540.0" layoutY="58.0" prefHeight="50.0" prefWidth="276.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="dated_Month" layoutX="1078.0" layoutY="67.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="1021.0" layoutY="31.0" prefHeight="17.0" prefWidth="91.0" text="Date debut" />
+      <Label fx:id="dated_day" layoutX="1021.0" layoutY="49.0" prefHeight="70.0" prefWidth="57.0" text="16">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="dated_year" layoutX="1078.0" layoutY="84.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+      <Separator layoutX="1144.0" layoutY="49.0" orientation="VERTICAL" prefHeight="70.0" prefWidth="22.0" />
+      <Label fx:id="datef_Month" layoutX="1224.0" layoutY="67.0" prefHeight="17.0" prefWidth="70.0" text="Avril" />
+      <Label layoutX="1161.0" layoutY="31.0" prefHeight="17.0" prefWidth="91.0" text="Date fin" />
+      <Label fx:id="datef_day" layoutX="1161.0" layoutY="48.0" prefHeight="70.0" prefWidth="57.0" text="16">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="datef_year" layoutX="1224.0" layoutY="84.0" prefHeight="17.0" prefWidth="48.0" text="2023" />
+      <Button layoutX="1067.0" layoutY="139.0" mnemonicParsing="false" onAction="#detail" prefHeight="40.0" prefWidth="136.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="Detail" />
+      <Label fx:id="id_e" layoutX="10.0" layoutY="10.0" text="Label" visible="false" />
+      <Separator layoutX="300.0" layoutY="200.0" prefHeight="11.0" prefWidth="1134.0" />
+   </children>
+</AnchorPane>

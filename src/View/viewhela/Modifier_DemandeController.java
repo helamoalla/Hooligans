@@ -27,6 +27,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import Util.Data;
+import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -37,8 +38,6 @@ import Util.Data;
 public class Modifier_DemandeController implements Initializable {
 Maintenance m=new Maintenance();
 InterfaceCRUD sm=new ServiceMaintenance();
-    @FXML
-    private TextField id_user;
     @FXML
     private CheckBox id_panne_moteur;
     @FXML
@@ -67,10 +66,10 @@ InterfaceCRUD sm=new ServiceMaintenance();
     private CheckBox id_frein_main;
     @FXML
     private CheckBox id_feu_d_eclairage;
-    @FXML
-    private TextField id_autre;
+   
     @FXML
     private Button id_modifier;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -78,11 +77,14 @@ InterfaceCRUD sm=new ServiceMaintenance();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
   void getMaintenance(Maintenance m){
     
-          id_user.setText(String.valueOf(m.getUser().getId_user()));
-           id_autre.setText(m.getAutre());
+          //id_user.setText(String.valueOf(m.getUser().getId_user()));
+          
           id_panne_moteur.setSelected(m.isPanne_moteur());
            id_pompe_a_eau.setSelected(m.isPompe_a_eau());
             id_patin.setSelected(m.isPatin());
@@ -105,7 +107,7 @@ InterfaceCRUD sm=new ServiceMaintenance();
     private void modifier_demande(ActionEvent event) {
         try {
              m.setUser(us.readById(Data.getId_user()));
-            m.setAutre(id_autre.getText());
+           
             m.setPanne_moteur(id_panne_moteur.isSelected());
             m.setPompe_a_eau(id_pompe_a_eau.isSelected());
             m.setPatin(id_patin.isSelected());
@@ -122,12 +124,14 @@ InterfaceCRUD sm=new ServiceMaintenance();
             m.setFeu_d_eclairage(id_feu_d_eclairage.isSelected());
 
             sm.update(m);
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("./devis.fxml"));
             Parent view_2=loader.load();
-            Scene scene = new Scene(view_2);
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+                        DevisController devisController = loader.getController();
+                        devisController.getMaintenance(m, borderPane);
+                        devisController.m=m;
+            //devisController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
             
             
         } catch (IOException ex) {

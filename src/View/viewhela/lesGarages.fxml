@@ -16,14 +16,14 @@
          <children>
             <VBox prefHeight="344.0" prefWidth="279.0">
                <children>
-                  <ImageView fx:id="id_image" fitHeight="194.0" fitWidth="299.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="id_image" fitHeight="194.0" fitWidth="347.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/car-on-hoist.jpg" />
                      </image>
                   </ImageView>
                   <HBox prefHeight="237.0" prefWidth="280.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="183.0" prefWidth="304.0" spacing="10.0" styleClass="dark-background" stylesheets="@../../Views/css/css3.css">
+                        <VBox alignment="CENTER" prefHeight="237.0" prefWidth="319.0" spacing="10.0" styleClass="dark-background" stylesheets="@../../Views/css/css3.css">
                            <children>
                               <Label fx:id="id_garage" text="id" textFill="#201c1c" />
                               <Label fx:id="nom_garage" text="nom du garage" textAlignment="RIGHT" textFill="#bfbcbc">
@@ -41,8 +41,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="id_modifier" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#modifier_garage" text="modifier" />
-                              <Button fx:id="id_suppr" mnemonicParsing="false" onAction="#supprimer_garage" text="supprimer" />
+                              <Button fx:id="id_modifier" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#modifier_garage" prefHeight="42.0" prefWidth="125.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="     modifier" />
+                              <Button fx:id="id_suppr" mnemonicParsing="false" onAction="#supprimer_garage" prefHeight="42.0" prefWidth="125.0" styleClass="sale1" stylesheets="@../../Views/css/cssfinal.css" text="supprimer" />
                            </children>
                         </VBox>
                      </children>
@@ -51,6 +51,6 @@
             </VBox>
          </children>
       </Pane>
-      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <HBox layoutX="2.0" prefHeight="92.0" prefWidth="198.0" />
    </children>
 </AnchorPane>

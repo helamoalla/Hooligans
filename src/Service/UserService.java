@@ -138,6 +138,28 @@ public class UserService implements Interface.InterfaceCRUD<User>{
 
     return t;
     }
+    
+     public User readByEmail(String email) {
+        String requete;
+    //requete = "SELECT user.*, role.id_role, role.type FROM user INNER JOIN role ON user.id_role = user.id_role where id_user=" + id;
+    String request ="SELECT * from `user` WHERE email='"+email+"'";
+    User t = new User();
+    try {
+        Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = st.executeQuery(request);
+        while (rs.next()) {
+            //Role r = new Role();
+            //r.setId_role(rs.getInt("id_role"));
+            //r.setType(rs.getString("type"));
+           
+            t = new User(rs.getInt("id_user"), rs.getString("nom"),rs.getString("prenom"),rs.getString("mdp"),rs.getString("email"),rs.getInt("num_tel"),rs.getInt("cin"),rs.getDouble("quota"),roleService.readById(rs.getInt("id_role")),rs.getString("img"));
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    return t;
+    }
 
     @Override
     public ArrayList<User> sortBy(String nom_column, String Asc_Dsc) {
@@ -239,6 +261,7 @@ public String readByMail(String email) {
         }
         return null;
     }
+
 public void sendEmail(String to, String subject, String body) throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

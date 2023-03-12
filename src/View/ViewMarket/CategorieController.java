@@ -20,6 +20,7 @@ import Model.Categorie;
 import Model.Produit;
 import Interface.MyListener;
 import Interface.MyListener1;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -36,6 +37,7 @@ public class CategorieController implements Initializable {
     private ImageView img;
     @FXML
     private Label description;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -43,7 +45,9 @@ public class CategorieController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+        public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}    
 
       public void setData(Categorie categorie,MyListener1 myListener){
     

@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -33,10 +34,14 @@ public class GESTIONController implements Initializable {
     private Button id_MA;
     @FXML
     private Button id_MU;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -48,10 +53,10 @@ public class GESTIONController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+             AffichageGarageController affichageGarageController = loader.getController();
+            affichageGarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(GarageController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -64,10 +69,10 @@ public class GESTIONController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./afficher_Maintenance.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    Afficher_MaintenanceController afficherMaintenanceController = loader.getController();
+            afficherMaintenanceController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(Afficher_MaintenanceController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -80,10 +85,10 @@ public class GESTIONController implements Initializable {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("./Maintenance.fxml"));
         Parent view_2=loader.load();
         
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(view_2);
-        stage.setScene(scene);
-        stage.show();
+                    MaintenanceController maintenanceController = loader.getController();
+            maintenanceController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
     } catch (IOException ex) {
         Logger.getLogger(MaintenanceController.class.getName()).log(Level.SEVERE, null, ex);
     }

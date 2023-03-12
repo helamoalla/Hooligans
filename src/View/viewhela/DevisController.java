@@ -33,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -62,19 +63,24 @@ public class DevisController implements Initializable {
     Devis d1 = new Devis();
     private List<Maintenance> id_list_m = new ArrayList<>();
     private List<GarageC> id_list_g = new ArrayList<>();
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+              
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
     float TTC;
 
-    public void getMaintenance(Maintenance m) {
+    public void getMaintenance(Maintenance m,BorderPane borderPane) {
         this.m = m;
-
+        this.borderPane = borderPane;
         int column = 0;
         int row = 0;
         id_list_d.addAll(sd.readAll());
@@ -87,6 +93,10 @@ public class DevisController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("../viewhela/itemDevis.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemDevisController ItemDevisController = fxmlLoader.getController();
+                            
+            ItemDevisController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(anchorPane);
 
                 GarageC g1 = ItemDevisController.getGarage(id_list_g.get(i));
 

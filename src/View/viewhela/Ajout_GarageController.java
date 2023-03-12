@@ -34,6 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -90,10 +91,14 @@ public class Ajout_GarageController implements Initializable {
     @FXML
     private Button id_import_image;
     private File selectedFile;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -193,10 +198,10 @@ return;
             FXMLLoader loader= new FXMLLoader(getClass().getResource("./affichageGarage.fxml"));
             Parent view_2=loader.load();
     
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_2);
-            stage.setScene(scene);
-            stage.show();
+                        AffichageGarageController affichageGarageController = loader.getController();
+            affichageGarageController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
                    } catch (IOException ex) {
                 ex.printStackTrace();
             }

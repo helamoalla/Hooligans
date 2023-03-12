@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.MarketController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.MarketController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -172,43 +172,38 @@
                      <children>
                         <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
                            <children>
-                              <Button layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000">
-                                 <font>
-                                    <Font name="System Bold Italic" size="12.0" />
-                                 </font>
-                              </Button>
                               <Button layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#showall" prefHeight="37.0" prefWidth="114.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Show all Product" textFill="#c40000">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
-                              <ChoiceBox fx:id="choiceCP" layoutX="454.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../../Views/CssStyle/search.css">
+                              <ChoiceBox fx:id="choiceCP" layoutX="498.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../../Views/CssStyle/search.css">
                                  <styleClass>
                                     <String fx:value="comboBox" />
                                     <String fx:value="transparent" />
                                  </styleClass>
                               </ChoiceBox>
-                              <Button layoutX="604.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="#c40000">
+                              <Button layoutX="648.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="#c40000">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="669.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotopanier" prefHeight="37.0" prefWidth="114.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Mon Panier" textFill="#766e6e">
+                              <Button layoutX="783.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotopanier" prefHeight="37.0" prefWidth="114.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Mon Panier" textFill="#766e6e">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
+                              <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="919.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/12279141161608676334-128.png" />
+                                 </image>
+                              </ImageView>
                            </children></Pane>
-                        <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/feedback.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                        <ScrollPane fx:id="scroll" prefHeight="708.0" prefWidth="998.0">
                            <content>
                               <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
                                  <rowConstraints>

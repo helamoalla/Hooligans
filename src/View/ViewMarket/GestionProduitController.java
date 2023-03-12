@@ -58,6 +58,7 @@ import Service.CategorieService;
 import Service.LignePanierService;
 import Service.PanierService;
 import Service.ProduitService;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -106,6 +107,7 @@ public class GestionProduitController implements Initializable , MyListener {
     private Label prixproduit11;
     @FXML
     private Label labelquantite;
+    private BorderPane borderPane;
       
     
      private void setChosenFruit(Produit p) {
@@ -137,10 +139,13 @@ public class GestionProduitController implements Initializable , MyListener {
            
            }
         
-        afficherall();
+        //afficherall();
       
       //   
     }
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+            afficherall();}
     public void afficherall(){
        
        listprod.addAll(ps.readAll());
@@ -163,7 +168,12 @@ public class GestionProduitController implements Initializable , MyListener {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ProduitController prodController = fxmlLoader.getController();
+                
                 prodController.setData(listprod.get(i),myListener);
+                
+            prodController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
 
                 if (column == 3) {
                     column = 0;
@@ -182,6 +192,7 @@ public class GestionProduitController implements Initializable , MyListener {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
                 GridPane.setColumnIndex(anchorPane, column);
+                 
             }   
         } catch (IOException e) {
             e.printStackTrace();
@@ -290,8 +301,11 @@ try {
                 fxmlLoader.setLocation(getClass().getResource("./Produit.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ProduitController prodController = fxmlLoader.getController();
+               ProduitController prodController = fxmlLoader.getController();
                 prodController.setData(prod.get(i),myListener);
+           prodController.setBorderPane(borderPane);
+                
+            
 
                 if (column == 3) {
                     column = 0;
@@ -310,6 +324,9 @@ try {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
                 GridPane.setColumnIndex(anchorPane, column);
+                
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(grid);
             }   
         } catch (IOException e) {
             e.printStackTrace();
@@ -349,6 +366,7 @@ try {
 
                 ProduitController prodController = fxmlLoader.getController();
                 prodController.setData(prodcat.get(i),myListener);
+                prodController.setBorderPane(borderPane);
 
                 if (column == 3) {
                     column = 0;
@@ -386,6 +404,8 @@ try {
              ps.executeUpdate();
              System.out.println("Quantity updated successfully !");
              System.out.println(p.getQuantite());
+             listprod.clear();
+             afficherall();
          } catch (SQLException ex) {
              Logger.getLogger(GestionProduitController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -412,10 +432,11 @@ try {
             ViewUpdateProduitController updateproduitController=loader.getController();
             updateproduitController.getProduit(p);
             updateproduitController.p=p;
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(view_1);
-            stage.setScene(scene);
-            stage.show();
+             
+                
+            updateproduitController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_1);
              
         } catch (Exception ex) {
             System.out.println(ex);   
@@ -429,10 +450,11 @@ try {
              FXMLLoader loader= new FXMLLoader(getClass().getResource("./ViewAjoutProduit.fxml"));
              Parent view_2=loader.load();
              ViewAjoutProduitController ajoutproduit=loader.getController();
-             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-             Scene scene = new Scene(view_2);
-             stage.setScene(scene);
-             stage.show();
+             
+                
+            ajoutproduit.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(view_2);
          } catch (IOException ex) {
              Logger.getLogger(GestionProduitController.class.getName()).log(Level.SEVERE, null, ex);
          }

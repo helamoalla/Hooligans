@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="root" stylesheets="@../../Views/css/css4.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.Afficher_MaintenanceController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" styleClass="root" stylesheets="@../../Views/css/css4.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.viewhela.Afficher_MaintenanceController">
    <children>
-      <Button fx:id="id_retour" layoutX="524.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" text="retour" textFill="RED" />
-      <ScrollPane layoutX="11.0" layoutY="76.0" opacity="0.81" prefHeight="595.0" prefWidth="929.0">
+      <Button fx:id="id_retour" layoutX="524.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" text="retour" textFill="RED" visible="false" />
+      <ScrollPane layoutX="-10.0" opacity="0.81" prefHeight="791.0" prefWidth="1451.0">
          <content>
             <GridPane fx:id="grid">
               <columnConstraints>

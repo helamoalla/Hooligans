@@ -29,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -48,14 +49,13 @@ ServiceMaintenance sm=new ServiceMaintenance();
     private GridPane grid;
     @FXML
     private HBox Vboxe;
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
+          public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
         int column = 0;
         int row = 0;
         id_list.addAll(sm.readAll());
@@ -67,6 +67,10 @@ ServiceMaintenance sm=new ServiceMaintenance();
                 AnchorPane anchorPane = fxmlLoader.load();
 
                ItemMaintenanceController itemController = fxmlLoader.getController();
+                   
+            itemController.setBorderPane(borderPane);
+            borderPane.setCenter(null);
+            borderPane.setCenter(anchorPane);
                itemController.m=id_list.get(i);
                 itemController.setData(id_list.get(i));
 
@@ -97,6 +101,56 @@ ServiceMaintenance sm=new ServiceMaintenance();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        
+//        int column = 0;
+//        int row = 0;
+//        id_list.addAll(sm.readAll());
+//        System.out.println(id_list);
+//        try { 
+//            for (int i = 0; i < id_list.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//               fxmlLoader.setLocation(getClass().getResource("../viewhela/itemMaintenance.fxml"));
+//                AnchorPane anchorPane = fxmlLoader.load();
+//
+//               ItemMaintenanceController itemController = fxmlLoader.getController();
+//                   
+//            itemController.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
+//               itemController.m=id_list.get(i);
+//                itemController.setData(id_list.get(i));
+//
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+//
+//             
+//               grid.add(anchorPane, column++, row); //(child,column,row)
+//            //set grid width
+//             //  column++;
+//            
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                //set grid height
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//
+//               GridPane.setMargin(anchorPane,new Insets(5));
+//             GridPane.setColumnIndex(anchorPane, column);
+//              
+//                   
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }    
 
   

@@ -5,7 +5,7 @@
  */
 package View.ViewMarket;
 
-import Util.Data;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -18,28 +18,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
 import Model.Commande;
 import Service.CommandeService;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import Interface.MyListenerC;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
@@ -49,10 +36,34 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
-import Model.LignePanier;
-import Util.MyConnection;
-import java.time.LocalDate;
 
+import Model.User;
+import Service.ServiceMaintenance;
+import Service.UserService;
+import Util.MyConnection;
+import Util.Data;
+import View.viewhela.ItemDevisController;
+import View.viewhela.MaintenanceController;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.VerticalAlignment;
+import javafx.scene.Parent;
+
+
+
+
+
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
+
+import javax.mail.MessagingException;
 
 
 
@@ -94,6 +105,10 @@ public class MesCommandesInterfacesController implements Initializable, MyListen
     ObservableList<Commande> list = FXCollections.observableArrayList();
     List<Commande> listprod =new ArrayList();
     private MyListenerC myListener;
+    private BorderPane borderPane;
+ServiceMaintenance sm1 = new ServiceMaintenance();
+UserService us = new UserService();
+    User u1= us.readById(Data.getId_user());
 
     /**
      * Initializes the controller class.
@@ -102,9 +117,12 @@ public class MesCommandesInterfacesController implements Initializable, MyListen
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-         affichercommande();
+         //affichercommande();
         
-    }    
+    } 
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+            affichercommande();}
 
 public void setChosenCommande(Commande c){
 
@@ -147,8 +165,12 @@ public void affichercommande(){
                     
                     CommandeController p = fxmlLoader.getController();
                     p.setData(listprod.get(i),myListener);
+                
+            p.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(anchorPane);
                     
-                    if (column == 3) {
+                    if (column == 1) {
                         column = 0;
                         row++;
                     }
@@ -175,20 +197,58 @@ public void affichercommande(){
     }
 
     @FXML
-    private void Imprimer_facture(MouseEvent event) throws FileNotFoundException, DocumentException {
+    private void Imprimer_facture(MouseEvent event) throws MessagingException  {
         
-//        String file_name = ("C:\\Users\\choua\\OneDrive\\Documents\\Files\\facture.pdf");
-//        Document doc = new Document();
-//        PdfWriter.getInstance(doc, new FileOutputStream(file_name));
-//        doc.open();
-//      System.out.println("PDF created successfully.");
-//        doc.add(new Paragraph("Votre Facture :"));
-//        doc.add(new Paragraph("Facture numéro : "+listviewC.getSelectionModel().getSelectedItem().getId_commande()));
-//        doc.add(new Paragraph("Montant total à payer en DT : "+listviewC.getSelectionModel().getSelectedItem().getMontant()));
-//        doc.add(new Paragraph("Statut de votre commande : "+listviewC.getSelectionModel().getSelectedItem().getEtat_commande()));
-//        //doc.add(new Paragraph("La commande va etre livré à l'adresse : "+listviewC.getSelectionModel().getSelectedItem().getAdresse()));
-//        doc.close();
-               
+         try {
+           
+
+            // Creating a new PDF document
+            PdfWriter writer = new PdfWriter("C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\facture.pdf");
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            ImageData imageData = ImageDataFactory.create("http://localhost/images/en_tete.png");
+            Image image = new Image(imageData);
+
+            document.add(image);
+    System.out.println("PDF created successfully.");
+             //Body
+                  document.add(new Paragraph("Vendeur : Drift&Race"));
+                  document.add(new Paragraph("___________________________________"));
+                  document.add(new Paragraph("Client : "+u1.getNom()+" "+u1.getPrenom()));
+                  document.add(new Paragraph("___________________________________"));
+                  document.add(new Paragraph(""));
+                  Table table = new Table(4);
+                  table.addHeaderCell(new Cell().add(new Paragraph("Numéro de la commnde")).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addHeaderCell(new Cell().add(new Paragraph("Status")).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addHeaderCell(new Cell().add(new Paragraph("Adresse de livraison")).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addHeaderCell(new Cell().add(new Paragraph("Montant total à payer")).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addCell(new Cell().add(new Paragraph(""+c.getId_commande())).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addCell(new Cell().add(new Paragraph(""+c.getEtat_commande())).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  table.addCell(new Cell().add(new Paragraph(""+c.getRue()+" "+c.getVille()+" "+c.getGouvernorat())).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                   table.addCell(new Cell().add(new Paragraph(""+c.getMontant()+" "+"DT")).setVerticalAlignment(VerticalAlignment.MIDDLE));
+                  document.add(table);
+                  document.add(new Paragraph(""));
+                  document.add(new Paragraph("Merci pour votre confiance"));
+                  
+            ImageData imageData1 = ImageDataFactory.create("http://localhost/images/bas_page.png");
+            Image image1 = new Image(imageData1);
+            image1.setFixedPosition(pdf.getDefaultPageSize().getWidth()-700,5);
+            document.add(image1);
+
+            document.close();
+            UserService us = new UserService();
+            User u1 = us.readById(Data.getId_user());
+            sm1.sendEmail(u1.getEmail(), "Facture!", "Voici votre ci joint votre facture cher client", "C:\\Users\\azizh\\OneDrive\\Bureau\\pdf_hela\\facture.pdf");
+
+           
+        } catch (IOException ex) {
+            Logger.getLogger(ItemDevisController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+
+
+//           
     }
                       
 

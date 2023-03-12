@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.GestionProduitController">
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.GestionProduitController">
     
 
    <children>
@@ -40,7 +40,7 @@
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Market" textFill="#515050">
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Product" textFill="#515050">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
@@ -197,7 +197,7 @@
             </VBox>
          </left>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="754.0" prefWidth="829.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="65.0" prefWidth="200.0">
                      <opaqueInsets>
@@ -206,53 +206,40 @@
                      <children>
                         <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
                            <children>
-                              <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000">
+                              <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000" visible="false">
                                  <font>
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="118.0" layoutY="14.0" mnemonicParsing="false" onAction="#showall" prefHeight="37.0" prefWidth="132.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Show all Product" textFill="#c40000">
+                              <Button layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#showall" prefHeight="37.0" prefWidth="132.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Show all Product" textFill="#c40000">
                                  <font>
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Button>
-                              <ChoiceBox fx:id="choiceCP" layoutX="489.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../../Views/CssStyle/search.css">
+                              <ChoiceBox fx:id="choiceCP" layoutX="720.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../../Views/CssStyle/search.css">
                                  <styleClass>
                                     <String fx:value="comboBox" />
                                     <String fx:value="transparent" />
                                  </styleClass>
                               </ChoiceBox>
-                              <Button layoutX="639.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="#c40000">
+                              <Button layoutX="879.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="#c40000">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="274.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajout" prefHeight="37.0" prefWidth="188.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Ajouter nouveau produit" textFill="#c40000">
+                              <Button layoutX="384.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajout" prefHeight="37.0" prefWidth="188.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Ajouter nouveau produit" textFill="#c40000">
                                  <font>
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Button>
                            </children></Pane>
-                        <Label prefHeight="54.0" prefWidth="142.0" text="My account" textFill="#6e5c5c">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/home.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0">
+                        <ScrollPane fx:id="scroll" prefHeight="708.0" prefWidth="1028.0">
                            <content>
-                              <GridPane fx:id="grid" prefHeight="2.0" prefWidth="17.0">
+                              <GridPane fx:id="grid" prefHeight="253.0" prefWidth="287.0">
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                  </rowConstraints>

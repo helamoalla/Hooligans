@@ -34,11 +34,12 @@ public class PanierService implements InterfaceCRUD <Panier>{
     public void insert(Panier p) {
                 try {
             conditions c =new conditions();
-            String req = "INSERT INTO `panier`(`id_user`) VALUES(?)";
+            String req = "INSERT INTO `panier`(`id_panier`,`id_user`) VALUES(?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             
           // if (c.VerifUserIdExistDansPanier(p.getUtilisateur().getId_user())==false){
-            ps.setInt(1,Data.getId_user());
+            ps.setInt(1,p.getUtilisateur().getId_user());
+            ps.setInt(2,p.getUtilisateur().getId_user());
             ps.executeUpdate();
             System.out.println("Panier ajouté avec succés");
 //            }

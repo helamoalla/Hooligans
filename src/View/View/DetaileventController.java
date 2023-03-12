@@ -132,15 +132,21 @@ UserService us =new UserService();
          us.update(u1);
          st.insert(t);
          
-            
+            // aziz badlha
                           
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ticket.fxml"));
-            Parent view_2=loader.load();
-            TicketController itemcontroller = loader.getController();
-                 itemcontroller.getTicket(t);
-                 itemcontroller.setBorderPane(borderPane);
-            borderPane.setCenter(null);
-            borderPane.setCenter(view_2);
+//            FXMLLoader loader= new FXMLLoader(getClass().getResource("./ticket.fxml"));
+//            Parent view_2=loader.load();
+//            TicketController itemcontroller = loader.getController();
+//                 itemcontroller.getTicket(t);
+//                 itemcontroller.setBorderPane(borderPane);
+//            borderPane.setCenter(null);
+//            borderPane.setCenter(view_2);
+FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/SideBar.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
 
           
         

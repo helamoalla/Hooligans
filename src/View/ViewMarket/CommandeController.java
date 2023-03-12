@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import Model.Commande;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -41,6 +42,7 @@ public class CommandeController implements Initializable {
     @FXML
     private Label gouvernorat;
     private MyListenerC myListenerc;
+    private BorderPane borderPane;
 
 
     /**
@@ -49,7 +51,9 @@ public class CommandeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
+    } 
+            public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;}
     
     
         public void setData(Commande commande,MyListenerC myListenerc){

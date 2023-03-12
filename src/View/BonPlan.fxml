@@ -9,14 +9,14 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.PrefixSelectionChoiceBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1014.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FXMLController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FXMLController">
    <content>
-      <FlowPane hgap="4.0" prefHeight="2000.0" prefWidth="1015.0" style="-fx-background-color: #dcdcdc;" vgap="10.0">
+      <FlowPane hgap="4.0" prefHeight="2000.0" prefWidth="1428.8" style="-fx-background-color: #dcdcdc;" vgap="10.0">
          <padding>
             <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
          </padding>
          <children>
-            <HBox prefHeight="28.0" prefWidth="974.0" spacing="170.0">
+            <HBox prefHeight="39.0" prefWidth="996.0" spacing="170.0">
                <children>
                   <HBox prefHeight="45.0" prefWidth="291.0" spacing="20.0">
                      <children>
@@ -55,6 +55,9 @@
                <padding>
                   <Insets left="300.0" />
                </padding>
+               <FlowPane.margin>
+                  <Insets left="150.0" />
+               </FlowPane.margin>
             </HBox>
             <FlowPane fx:id="container" hgap="4.0" prefHeight="2000.0" prefWidth="1015.0" style="-fx-background-color: #dcdcdc;" vgap="50.0">
                <padding>

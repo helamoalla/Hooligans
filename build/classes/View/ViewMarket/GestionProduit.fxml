@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="773.6" prefWidth="1428.8" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ViewMarket.GestionProduitController">
+    
+
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="810.0" prefWidth="405.0" styleClass="right-bar" stylesheets="@../../Views/CssStyle/search.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="74.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="50.0" prefWidth="127.0" text="D&amp;R" textFill="#ae3131">
+                           <font>
+                              <Font name="Cambria Bold" size="40.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="BOTTOM" text="Product" textFill="#515050">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="360.0" stylesheets="@../../Views/CssStyle/search.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="nompro" prefHeight="40.0" prefWidth="245.0" promptText="Type here to search" stylesheets="@../../Views/CssStyle/search.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#chercher" prefHeight="40.0" prefWidth="84.0" styleClass="search-button" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="WHITE" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Pane prefHeight="62.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Pane>
+                  <VBox alignment="CENTER" prefHeight="649.0" prefWidth="309.0" styleClass="chosen-fruit-card" stylesheets="@../../Views/CssStyle/search.css">
+                     <VBox.margin>
+                        <Insets bottom="30.0" left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox fx:id="chosenProduit" prefHeight="64.0" prefWidth="306.0">
+                           <children>
+                              <Label fx:id="nomproduit" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="151.0" text="Porte Tasse" textAlignment="RIGHT" textFill="#ac0b0b">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="54.0" prefWidth="33.0" />
+                              <Label fx:id="prixproduit" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="95.0" text="40Dt" textAlignment="RIGHT" textFill="#564e4e">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="69.0" prefWidth="306.0">
+                           <children>
+                              <Pane prefHeight="62.0" prefWidth="66.0">
+                                 <children>
+                                    <Label fx:id="prixproduit11" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutY="1.0" prefHeight="54.0" prefWidth="135.0" text="Quantité en stock" textAlignment="RIGHT" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="62.0" prefWidth="90.0" />
+                              <Label fx:id="labelquantite" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="54.0" prefWidth="117.0" text="10" textAlignment="RIGHT" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="imageproduit" fitHeight="143.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" styleClass="chosen-fruit-card">
+                           <image>
+                              <Image url="@../../images/cvv.png" />
+                           </image>
+                        </ImageView>
+                        <Pane prefHeight="18.0" prefWidth="306.0" />
+                        <Text fx:id="desc" fill="#615b5b" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Pane prefHeight="36.0" prefWidth="335.0" />
+                        <HBox prefHeight="27.0" prefWidth="306.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="138.0" text="Quantité" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="quanti" opacity="0.68" prefHeight="26.0" prefWidth="53.0">
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <Separator prefHeight="14.0" prefWidth="267.0">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets left="5.0" right="5.0" />
+                           </opaqueInsets>
+                        </Separator>
+                        <Button mnemonicParsing="false" onAction="#modifqu" opacity="0.88" prefHeight="30.0" prefWidth="250.0" styleClass="add-btn" text="Modifier quantité produit" textFill="#990f0f">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#supp" opacity="0.88" prefHeight="30.0" prefWidth="250.0" styleClass="add-btn" text="Supprimer produit" textFill="#990f0f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#modif" opacity="0.88" prefHeight="30.0" prefWidth="250.0" styleClass="add-btn" text="Modifier produit" textFill="#990f0f">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="754.0" prefWidth="829.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="65.0" prefWidth="200.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Pane onDragDetected="#chercherparcat" prefHeight="66.0" prefWidth="766.0">
+                           <children>
+                              <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="37.0" prefWidth="87.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Home" textFill="#c40000" visible="false">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="172.0" layoutY="14.0" mnemonicParsing="false" onAction="#showall" prefHeight="37.0" prefWidth="132.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Show all Product" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ChoiceBox fx:id="choiceCP" layoutX="720.0" layoutY="20.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" stylesheets="@../../Views/CssStyle/search.css">
+                                 <styleClass>
+                                    <String fx:value="comboBox" />
+                                    <String fx:value="transparent" />
+                                 </styleClass>
+                              </ChoiceBox>
+                              <Button layoutX="879.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchparcateg" prefHeight="37.0" prefWidth="65.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Search" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="384.0" layoutY="14.0" mnemonicParsing="false" onAction="#ajout" prefHeight="37.0" prefWidth="188.0" styleClass="transparent" stylesheets="@../../Views/CssStyle/search.css" text="Ajouter nouveau produit" textFill="#c40000">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="708.0" prefWidth="1028.0">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="253.0" prefWidth="287.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
