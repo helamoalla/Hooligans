@@ -1,0 +1,32 @@
+{% extends "index.html.twig" %}
+{% block body %}
+<h3 style="margin : 10em;">la liste des utilisateurs est de taille  {{allUsers|length}} </h3>
+<table border="2" >
+    <tr>
+        <th>nom</th>
+        <th>Email</th>
+        <th>type</th>
+        <th>image</th>
+        <th>quota</th>
+        
+    </tr>
+    {% for item in allUsers %}
+
+        <tr>
+            <td>{{item.nom}}</td>
+            <td>{{item.email|upper}}</td>
+            <td>
+                {{item.getIdRole().getType()}}
+            </td>
+            <td>
+                {{item.img}}
+            </td>
+            <td>
+                {{item.quota}}
+            </td>
+        </tr>
+   
+    {% endfor %}
+</table>
+
+{% endblock %}
