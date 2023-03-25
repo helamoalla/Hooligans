@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class HomeController extends AbstractController
+{
+    #[Route('/', name: 'app_home')]
+    public function index(): Response
+    {
+        return $this->render('index.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+    #[Route('/resume', name: 'resume')]
+    public function resume(): Response
+    {
+        return $this->render('resume.html.twig', [
+            
+        ]);
+    }
+
+  
+    #[Route('/homeadmin', name: 'home_admin')]
+    public function homeadmin(): Response
+    {
+        return $this->render('homeadmin.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+
+    
+}
