@@ -1,0 +1,237 @@
+{% extends 'homeuser.html.twig' %}
+
+{% block content %}
+<!-- Content -->
+ <!-- Content -->
+ <div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url(../images/background/bg4.jpg);">
+        <div class="container">
+            <div class="dlab-bnr-inr-entry">
+                <h1 class="text-white">Product Details</h1>
+            </div>
+        </div>
+    </div>
+    <!-- inner page banner END -->
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Product Details</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+ </div>
+ 
+
+{% endblock %}
+
+{% block body %}
+<div class="section-full content-inner bg-white">
+    <!-- Product details -->
+    <div class="container woo-entry">
+        <div class="row m-b30">
+            <div class="col-lg-5 col-md-5">
+                <div class="product-gallery on-show-slider"> 
+                    <div id="sync1" class="owl-carousel owl-theme owl-btn-center-lr m-b5 owl-btn-1 primary">
+                        <div class="item">
+                            <div class="mfp-gallery">
+                                <div class="dlab-box">
+                                    <div class="dlab-thum-bx dlab-img-overlay1 ">
+                                        <img src="('../images/product/item1.jpg')" alt="">
+                                        <div class="overlay-bx">
+                                            <div class="overlay-icon">
+                                                <a class="mfp-link" title="Product Name" href="('../images/product/item1.jpg')">
+                                                    <i class="ti-fullscreen"></i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="mfp-gallery">
+                                <div class="dlab-box">
+                                    <div class="dlab-thum-bx dlab-img-overlay1 ">
+                                        <img src="{{asset('images/product/item2.jpg')}}" alt="">
+                                        <div class="overlay-bx">
+                                            <div class="overlay-icon">
+                                                <a class="mfp-link" title="Product Name" href="{{asset('images/product/item2.jpg')}}">
+                                                    <i class="ti-fullscreen"></i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="mfp-gallery">
+                                <div class="dlab-box">
+                                    <div class="dlab-thum-bx dlab-img-overlay1 ">
+                                        <img src="{{asset('images/product/item3.jpg')}}" alt="">
+                                        <div class="overlay-bx">
+                                            <div class="overlay-icon">
+                                                <a class="mfp-link" title="Product Name" href="{{asset('images/product/item3.jpg')}}">
+                                                    <i class="ti-fullscreen"></i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="mfp-gallery">
+                                <div class="dlab-box">
+                                    <div class="dlab-thum-bx dlab-img-overlay1 ">
+                                        <img src="{{asset('images/product/item4.jpg')}}" alt="">
+                                        <div class="overlay-bx">
+                                            <div class="overlay-icon">
+                                                <a class="mfp-link" title="Product Name" href="{{asset('images/product/item4.jpg')}}">
+                                                    <i class="ti-fullscreen"></i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="mfp-gallery">
+                                <div class="dlab-box">
+                                    <div class="dlab-thum-bx dlab-img-overlay1 ">
+                                        <img src="{{ asset('../images/product/item5.jpg') }}" alt="">
+                                        <div class="overlay-bx">
+                                            <div class="overlay-icon">
+                                                <a class="mfp-link" title="Product Name" href="{{asset('../images/product/item5.jpg')}}">
+                                                    <i class="ti-fullscreen"></i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sync2" class="owl-carousel owl-theme owl-none">
+                        <div class="item">
+                            <div class="dlab-media">
+                                <img src="../images/product/thumb/item1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dlab-media">
+                                <img src="{{ asset('../images/product/thumb/item2.jpg') }}" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dlab-media">
+                                <img src="{{asset('images/product/thumb/item3.jpg')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dlab-media">
+                                <img src="{{asset('../images/product/thumb/item4.jpg')}}" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dlab-media">
+                                <img src="http://localhost/images/{{p.getImage}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7">
+                <div class="sticky-top">
+                    <form method="post" class="cart">
+                        <div class="dlab-post-title ">
+                            <h2 class="post-title"><a href="#">{{p.nom_prod}}</a></h2>
+                            <p class="m-b10">{{p.description_prod}}</p>
+                            <div class="dlab-divider bg-gray tb15"><i class="icon-dot c-square"></i></div>
+                        </div>
+                        <div class="relative">
+                            <h3 class="m-tb10">{{p.prix_prod}} Dt</h3>
+                            <div class="shop-item-rating">
+                                <span class="rating-bx"> 
+                                    <i class="fas fa-star"></i> 
+                                    <i class="fas fa-star"></i> 
+                                    <i class="fas fa-star"></i> 
+                                    <i class="far fa-star"></i> 
+                                    <i class="far fa-star"></i> 
+                                </span>
+                                <span>4.5 Rating</span>
+                            </div>
+                        </div>
+                        <div class="shop-item-tage">
+
+                        
+
+                            <span>Categorie : </span>
+                            <a href="#"> {{p.categorie.nom_categorie}}</a>
+                            <li>Type de categorie:  {{p.categorie.type_categorie}}</li>
+                            
+                        </div>
+                        <div class="dlab-divider bg-gray tb15"><i class="icon-dot c-square"></i></div>
+                        <div class="row">
+                            
+                            <div class="m-b30 col-lg-6 col-md-6 col-sm-6">
+                                <h6>Select quantity</h6>
+                                <div class="quantity btn-quantity style-1">
+                                    <input id="demo_vertical2" type="text" value="1" name="demo_vertical2"/>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <button class="site-button radius-no"><i class="ti-shopping-cart"></i> Add To Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h5 class="m-b20">Related Products</h5>
+                <div class="img-carousel-content owl-carousel owl-btn-center-lr owl-btn-1 primary">
+                    {% for i in s %}
+                    <div class="item">
+                        <div class="item-box">
+                            <div class="item-img">
+                                <img src="http://localhost/images/{{i.getImage}}" alt="">
+                                <div class="item-info-in">
+                                    <ul>
+                                        <li><a href="#"><i class="ti-shopping-cart"></i></a></li>
+                                        <li><a href="#"><i class="ti-eye"></i></a></li>
+                                        <li><a href="#"><i class="ti-heart"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="item-info text-center text-black p-a10">
+                                
+                                <h6 class="item-title text-uppercase font-weight-500"><a href="#">{{i.nom_prod}}</a></h6>
+                                <ul class="item-review">
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star"></i></li>
+                                    <li><i class="fas fa-star-half-alt"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                </ul>
+                                <h4 class="item-price"><span class="text-primary">{{i.prix_prod}} Dt</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
