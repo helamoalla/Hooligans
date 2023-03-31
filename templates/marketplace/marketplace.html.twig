@@ -1,0 +1,54 @@
+{% extends 'base-front.html.twig' %}
+{% block title%} Boutique{% endblock %}
+{% block body%} 
+
+
+<div class="content-inner section-full bg-white">
+  
+    <div class="container">
+        {% for p in produits %}   
+<div class="row m-b40 d-sm-none d-lg-flex">
+   
+    <div class="col-lg-4 m-b30">
+      
+        <div class="dlab-box add-product">
+           
+            <div class="dlab-media dlab-img-effect"> <img src="images/ads/thum1.jpg" alt="">
+                <div class="dlab-info-has p-a20 bg-black no-hover">
+                    <div class="clearfix">
+                        <h3 class="m-t10">We Have The Expertise</h3>
+                        <h2 class="">150$<del class="m-lr15">180$</del></h2> 
+                    </div>
+                    <div class="clearfix">
+                        <a href="#" class="site-button">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+     
+    </div>
+ {% endfor %}   
+</div>
+
+</div>
+
+
+<table border="1">
+    <tr>
+      
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Prix</th>
+        <th>Catégorie</th>
+      
+    
+    </tr>
+    <tr {% for p in produits %}>
+        <td>{{p.getNomProd()}}</td>
+        <td>{{p.getDescriptionProd()}}</td>
+        <td>{{p.getPrixProd()}}</td>
+        <td>{{p.getCategorie().getNomCategorie()}}</td>
+    </tr {% endfor %}>
+</table>
+{% endblock %}
