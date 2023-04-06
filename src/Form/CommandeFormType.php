@@ -17,7 +17,7 @@ class CommandeFormType extends AbstractType
             ->add('ville')
             ->add('rue')
             ->add('code_postal')
-            ->add('save',SubmitType::class)
+            ->add('Confirmer',SubmitType::class)
         ;
     }
 

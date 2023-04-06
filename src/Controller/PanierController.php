@@ -13,6 +13,7 @@ use App\Entity\Commande;
 use App\Repository\PanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Form\CommandeFormType;
 
 
 
@@ -132,13 +133,16 @@ public function passerCommande(int $idPanier, float $total,ManagerRegistry $doct
     $panier = $entityManager->getRepository(Panier::class)->find($idPanier);
     
     $commande = new Commande();
-    $form=$this->createForm(CommanndeFormType::class,$commande);
+    $form=$this->createForm(CommandeFormType::class,$commande);
     $form->handleRequest($request);
+    $dateCommande = new \DateTime();
+
 
     if ($form->isSubmitted() && $form->isValid()) {
         $commande->setPanier($panier);
         $commande->setMontant($total);
         $commande->setEtatCommande("En cours de traitement");
+        $commande->setDateCommande($dateCommande);
         $entityManager = $doctrine->getManager() ;
         $entityManager->persist($commande);
         $entityManager->flush();

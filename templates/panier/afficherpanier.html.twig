@@ -1,8 +1,17 @@
 {% extends 'base-front.html.twig' %}
+{% block titre%}
+<title>Panier</title>
+{% endblock %}
 {% block body%} 
-
-<div class="form-group">
-<h1 style="margin-top: 70px; text-align: center;">Votre Panier </h1>
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url({{ asset('images/background/slide11.jpg') }});">
+        <div class="container">
+            <div class="dlab-bnr-inr-entry">
+                <h1 class="text-white">Votre panier</h1>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="section-full content-inner">
     <!-- Product -->
@@ -50,7 +59,12 @@
     </td>
     <td class="product-item-quantity" colspan="2" style="text-align: center;">
         <div class="form-group">
-            <a  class="site-button m-r15" >Passer Commande</a>
+            <a  class="site-button m-r15" href="{{path('passer_commande',{'idPanier':panier.getId(),'total':total})}}">Passer Commande</a>
+        </div>
+    </td>
+    <td class="product-item-quantity" colspan="2" style="text-align: center;">
+        <div class="form-group">
+            <a  class="site-button m-r15" href="{{path('afficher_commandes',{'idPanier':panier.getId()})}}">Consulter Commandes</a>
         </div>
     </td>
 </tr>
