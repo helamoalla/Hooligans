@@ -14,7 +14,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{asset('admin/assets/images/favicon.png')}}" type="image/x-icon">
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" type="image/x-icon">
-    <title>Fastkart - Dashboard</title>
+    <title>D&R - Dashboard</title>
 
 
     <!-- Google font-->
@@ -91,7 +91,7 @@
                         <div class="Typeahead Typeahead--twitterUsers">
                             <div class="u-posRelative">
                                 <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                                    placeholder="Search Fastkart .." name="q" title="" autofocus>
+                                    placeholder="Search D&R .." name="q" title="" autofocus>
                                 <i class="close-search" data-feather="x"></i>
                                 <div class="spinner-border Typeahead-spinner" role="status">
                                     <span class="sr-only">Loading...</span>
@@ -209,7 +209,7 @@
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
                         <a href="index.html" data-bs-original-title="" title="">
-                            <img class="img-fluid for-white" src="{{asset('admin/assets/images/logo/full-white.png')}}" alt="logo">
+                            <img class="img-fluid for-white" src="{{asset('admin/assets/images/logo/logo1.png')}}" alt="logo">
                         </a>
                         <div class="back-btn">
                             <i class="fa fa-angle-left"></i>
@@ -232,6 +232,8 @@
 
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
+                                <br>
+                                <br>
                                 <li class="back-btn"></li>
 
                                 <li class="sidebar-list">
@@ -525,126 +527,28 @@
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="category-slider no-arrow">
+                                        {% for i in c %}
                                         <div>
+                                            
                                             <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/vegetable.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Vegetables & Fruit</h6>
-                                                </a>
-                                            </div>
-                                        </div>
+                                                <a href="adminaffichecategorie" >
 
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/cup.svg')}}" class="img-fluid" alt="">
+                                                    {% if i.type_categorie == 'mode' %}
+                                                    <img src="{{asset('admin/assets/images/veste.jpg')}}" class="img-fluid" alt="">
+                                                {% else %}
+                                                    <img src="{{asset('admin/assets/images/piece.png')}}" class="img-fluid" alt="">
+                                                {% endif %}
                                                 </a>
                                                 <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Beverages</h6>
+                                                    <h6>{{i.nom_categorie}}</h6>
                                                 </a>
                                             </div>
                                         </div>
+                                        {% endfor %}
 
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/meats.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Meats & Seafood</h6>
-                                                </a>
-                                            </div>
-                                        </div>
+                                       
 
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/breakfast.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Breakfast</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/frozen.svg')}}" class="img-fluid" alt="">
-                                                </a
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Frozen Foods</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/milk.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Milk & Dairies</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/pet.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Pet Food</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/vegetable.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Vegetables & Fruit</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/cup.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Beverages</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/meats.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Meats & Seafood</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/breakfast.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Breakfast</h6>
-                                                </a>
-                                            </div>
-                                        </div>
+                                     
 
                                         <div>
                                             <div class="dashboard-category">
@@ -652,32 +556,12 @@
                                                     <img src="{{asset('admin/assets/svg/frozen.svg')}}" class="img-fluid" alt="">
                                                 </a>
                                                 <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Frozen Foods</h6>
+                                                    <h6>Pull d'hiver</h6>
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/milk.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Milk & Dairies</h6>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <div class="dashboard-category">
-                                                <a href="javascript:void(0)" class="category-image">
-                                                    <img src="{{asset('admin/assets/svg/pet.svg')}}" class="img-fluid" alt="">
-                                                </a>
-                                                <a href="javascript:void(0)" class="category-name">
-                                                    <h6>Pet Food</h6>
-                                                </a>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -706,7 +590,7 @@
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
-                                        <h4>Best Selling Product</h4>
+                                        <h4>Our Products</h4>
                                     </div>
 
                                     <div class="best-selling-box d-sm-flex d-none">
@@ -731,16 +615,16 @@
                                             w-image
                                             w-image table border-0">
                                                 <tbody>
+                                                    {% for i in p %}
                                                     <tr>
                                                         <td>
                                                             <div class="best-product-box">
                                                                 <div class="product-image">
-                                                                    <img src="{{asset('admin/assets/images/product/1.png')}}"
+                                                                    <img src=http://localhost/images/{{i.getImage}} 
                                                                         class="img-fluid" alt="Product">
                                                                 </div>
                                                                 <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
+                                                                    <h5> {{i.nom_prod}}</h5>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -748,117 +632,32 @@
                                                         <td>
                                                             <div class="product-detail-box">
                                                                 <h6>Price</h6>
-                                                                <h5>$29.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
+                                                                <h5>{{i.prix_prod}}</h5>
                                                             </div>
                                                         </td>
 
                                                         <td>
                                                             <div class="product-detail-box">
                                                                 <h6>Stock</h6>
-                                                                <h5>510</h5>
+                                                                <h5>{{i.quantite_prod}}</h5>
                                                             </div>
                                                         </td>
 
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
-                                                            </div>
+                                                      
+
+                                                        {% if i.quantite_prod < 10 %}
+                                                        <td class="status-danger">
+                                                            <span>Risque</span>
                                                         </td>
+                                                        {% else %}
+                                                        <td class="status-close">
+                                                            <span>En stock</span>
+                                                        </td>
+                                                        {% endif %}
                                                     </tr>
+                                                    {% endfor %}
 
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-image">
-                                                                    <img src="{{asset('admin/assets/images/product/2.png')}}"
-                                                                        class="img-fluid" alt="Product">
-                                                                </div>
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$29.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>510</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-image">
-                                                                    <img src="{{asset('admin/assets/images/product/3.png')}}"
-                                                                        class="img-fluid" alt="Product">
-                                                                </div>
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$29.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Orders</h6>
-                                                                <h5>62</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>510</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Amount</h6>
-                                                                <h5>$1,798</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                
                                                 </tbody>
                                             </table>
                                         </div>

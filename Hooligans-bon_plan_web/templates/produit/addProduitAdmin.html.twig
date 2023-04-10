@@ -121,7 +121,14 @@
                                             Name</label>
                                         <div class="col-sm-9">
                                             {{ form_widget(f.nom_prod, {'attr': {'class': 'form-control', 'placeholder': 'Product Name'}}) }}
-                                            {{form_errors(f.nom_prod) }}
+                                           
+                                            {% if form_errors(f.nom_prod) %}
+                                            <div class="alert alert-warning">
+                                                
+                                                <strong><i class="fas fa-exclamation-triangle"></i> Warning!</strong>{{ form_errors(f.nom_prod)  }} 
+                                            </div>
+                                            {% endif %}
+                                            
                                         </div>
                                     </div>
                                     
@@ -141,7 +148,14 @@
                                             Description</label>
                                         <div class="col-sm-9">
                                             {{ form_widget(f.description_prod, {'attr': {'class': 'form-control', 'placeholder': 'Product Description'}}) }}
-                                            {{form_errors(f.description_prod) }}
+                                           
+                                            {% if form_errors(f.description_prod) %}
+                                            <div class="alert alert-warning">
+                                                
+                                                <strong><i class="fas fa-exclamation-triangle"></i> Warning!</strong>{{ form_errors(f.description_prod)  }} 
+                                            </div>
+                                            {% endif %}
+
 
                                         </div>
                                     </div>
@@ -150,7 +164,14 @@
                                         <label class="col-sm-3 form-label-title">Price</label>
                                         <div class="col-sm-9">
                                             {{ form_widget(f.prix_prod, {'attr': {'class': 'form-control', 'placeholder': 'Prodcut Price'}}) }}
-                                            {{form_errors(f.prix_prod) }}
+                                            
+                                            {% if form_errors(f.prix_prod) %}
+                                            <div class="alert alert-warning">
+                                                
+                                                <strong><i class="fas fa-exclamation-triangle"></i> Warning!</strong>{{ form_errors(f.prix_prod)  }} 
+                                            </div>
+                                            {% endif %}
+
                                         </div>
                                     </div>
 
@@ -158,7 +179,13 @@
                                         <label class="col-sm-3 col-form-label form-label-title">Quantity</label>
                                         <div class="col-sm-9">
                                             {{ form_widget(f.quantite_prod, {'attr': {'class': 'form-control', 'placeholder': 'Product Quantity'}}) }}
-                                           {{ form_errors(f.quantite_prod) }}
+                                       
+                                    {% if form_errors(f.quantite_prod) %}
+                                    <div class="alert alert-warning">
+                                        
+                                        <strong><i class="fas fa-exclamation-triangle"></i> Warning!</strong>{{ form_errors(f.quantite_prod) }} 
+                                    </div>
+                                    {% endif %}
 
                                         </div>
                                     </div>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -33,7 +32,7 @@ class Produit
     public ?int $quantite_prod = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'ce champs est obligatoire')]
+    
     public ?string $image = null;
 
     #[ORM\ManyToOne]

@@ -68,8 +68,7 @@
 
                                                     <li>
 
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal" 
-                                                            data-bs-target="#exampleModalToggle">
+                                                        <a href="{{path('supprimec',{'id':i.getId}) }}" >
                                                             <i class="ri-delete-bin-line"></i>
                                                         </a>
 
@@ -125,7 +124,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <form action="{{path('supprimec',{'id':i.getId}) }}"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button> </form>
+        <form action=""><button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button> </form>
     </div>
 </div>
 </div>

@@ -17,10 +17,14 @@ use App\Form\ProduitFormType ;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
-    {
+    public function index(CategorieRepository $Rep, ProduitRepository $Rep1): Response
+    {  $Categorie=$Rep->findAll();
+     $Produit=$Rep1->findAll();
+
         return $this->render('homeadmin.html.twig', [
             'controller_name' => 'AdminController',
+            'c'=>$Categorie ,
+            'p'=>$Produit ,
         ]);
     }
     
@@ -168,7 +172,7 @@ class AdminController extends AbstractController
            $Produit=$r->find($id);
        $form=$this->createForm(ProduitFormType::class,$Produit);
         $form->handleRequest($request);
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
        $em =$doctrine->getManager() ;
        $imageFile = $form->get('image')->getData();
           
