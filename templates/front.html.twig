@@ -304,6 +304,7 @@
         <!-- main header END -->
     </header>
     <!-- header END -->
+ {% block body %}
 	<!-- Content -->
     <div class="page-content bg-white">	
 		<!-- Main Slider -->
@@ -559,7 +560,7 @@
 			</div>  
 		</div>  
         <!-- Main Slider -->
-		  {% block body %}
+		 
 		<!-- Our Services -->
 		<div class="section-full content-inner car-services" style="background-image:url(images/background/bg11.jpg); background-repeat:no-repeat; background-position:bottom;">
 			<div class="container">
@@ -847,8 +848,7 @@
         <div class="section-full bg-white content-inner recent-vehicle">
             <div class="container">
                 <div class="section-head text-center ">
-                    <h2 class="text-uppercase">RECENT <span class="text-primary">VEHICLE </span></h2>
-                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+                    <h2 class="text-uppercase">NOS GARAGES <span class="text-primary"> CONVENTIONNES </span></h2>
                 </div>
                 <div class="section-content ">
                     <div class="row">
@@ -882,198 +882,38 @@
 						</div>
 						<div class="col-lg-9 col-md-9">
 							<ul id="masonry" class="row dlab-gallery-listing gallery-grid-4 gallery lightgallery m-b0">
+							{% for i in g %}
 								<li class="home card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
 									<div class="dlab-box dlab-gallery-box">
 										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic1.jpg" alt=""></a>
+											<a href="javascript:void(0);"><img src="http://localhost/images/{{i.getImage}}" class="img-fluid" alt=""></a>
 											<div class="overlay-bx">
 												<div class="overlay-icon"> 
 													<a href="javascript:void(0);">
 														<i class="fas fa-link icon-bx-xs"></i> 
 													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic1.jpg" data-src="images/our-work/pic1.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
+													<span data-exthumbimage="http://localhost/images/{{i.getImage}}" data-src="http://localhost/images/{{i.getImage}}" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
 												</div>
 											</div>
 										</div>
 										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
+											<h4 class="font-weight-600 m-b15"><a href="#">{{i.getNomGarage}}</a></h4>
 											<div class="car-part-list m-b15">
 												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
+												
+													<li>Reduction : {{i.getTauxDeReduction}} %</li>
 												</ul>
 											</div>
 											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
+												<p>Adresse : {{i.getAdresse}}</p>
+												<p>Numero : {{i.getNumero}}</p>
 											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
+											
 										</div>								
 									</div>
 								</li>
-								<li class="office card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic2.jpg" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic2.jpg" data-src="images/our-work/pic2.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
-											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
-										</div>								
-									</div>
-								</li>
-								<li class="card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12 commercial">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic3.jpg" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic3.jpg" data-src="images/our-work/pic3.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
-											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
-										</div>								
-									</div>
-								</li>
-								<li class="commercial card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic4.jpg" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic4.jpg" data-src="images/our-work/pic4.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
-											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
-										</div>								
-									</div>
-								</li>
-								<li class="window card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic5.jpg" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic5.jpg" data-src="images/our-work/pic5.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
-											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
-										</div>								
-									</div>
-								</li>
-								<li class="window card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="images/our-work/small/pic6.jpg" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="images/our-work/thum/pic6.jpg" data-src="images/our-work/pic6.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="#">GTA 5 Lowriders DLC</a></h4>
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-													<li>2022</li>
-													<li>Manual </li>
-													<li>210 hp </li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Lorem ipsum dolor consectetur adipiscing Fusce varius feugiat...</p>
-											</div>
-											<div class="service-price">
-												<span class="service-old-price">$44,768</span>
-												<span class="service-new-price text-primary">$33,698 </span>
-											</div>
-										</div>								
-									</div>
-								</li>
+								 {% endfor %}
+								
 							</ul>
 						</div>
                     </div>
@@ -1160,10 +1000,11 @@
         </div>
         <!-- Client logo END -->
     </div>
-    {% endblock %}
-
-    {% block footer %}
+   
+ {% endblock %}
+   
     <!-- Content END-->
+ {% block footer %}
     <!-- Footer -->
     <footer class="site-footer ">
         <!-- footer top part -->
@@ -1267,7 +1108,7 @@
                 </div>
             </div>
         </div>
-        
+         {% endblock %}
         <!-- footer bottom part -->
         <div class="footer-bottom">
             <div class="container">
@@ -1287,7 +1128,7 @@
             </div>
         </div>
     </footer>
-    {% endblock %}
+   
     <!-- Footer END-->
     <!-- scroll top button -->
     <button class="scroltop fas fa-arrow-up style4" ></button>

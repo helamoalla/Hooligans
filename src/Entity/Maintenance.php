@@ -63,7 +63,7 @@ class Maintenance
     #[ORM\Column]
     private ?bool $feu_d_eclairage = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length:255,nullable:true)]
     private ?string $Autre = null;
 
     public function getId(): ?int

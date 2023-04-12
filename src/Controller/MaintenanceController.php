@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Garagec;
 use App\Entity\Maintenance;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,7 @@ class MaintenanceController extends AbstractController
         $maintenances = $r->findMaintenanceByIdUser(26);
         $test = false;
         $dateAujourdhui = new DateTime();
-        
+        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->findAll();
         foreach ($maintenances as $maintenance) {
             $diff =$dateAujourdhui->diff( $maintenance->getDateMaintenance())->days;
             if ($diff > 2) {
@@ -35,7 +36,7 @@ class MaintenanceController extends AbstractController
          //$dateLimite = $dateAujourdhui|date_modify('-2 days')|date('m/d/Y') ;
        
         return $this->render('front.html.twig', [
-            't'=>$test,
+            't'=>$test,'g'=>$garageC
         ]);
     }
     #[Route('/afficheM', name: 'app_afficheM')]

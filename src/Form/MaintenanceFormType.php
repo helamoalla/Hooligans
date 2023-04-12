@@ -72,7 +72,7 @@ class MaintenanceFormType extends AbstractType
                 'label' => 'feu_d_eclairage',
                 'required' => false,
             ])
-            ->add('Autre')
+          
            // ->add('user')
            ->add('ajouter',SubmitType::class)
         ;
