@@ -18,6 +18,7 @@ use App\Entity\Lignepanier;
 use App\Repository\LignepanierRepository;
 use App\Form\LignePanierFormType;
 
+
 class MarketplaceController extends AbstractController
 {
     #[Route('/marketplace', name: 'app_marketplace')]
@@ -48,7 +49,7 @@ class MarketplaceController extends AbstractController
 
     //Afficherdetail d'un produit et ajputer le produit au panier
     #[Route('/useraffichedetailproduit/{id}', name: 'affichedetail')]
-    public function affichedetail(int $id, LignepanierRepository $lr, PanierRepository $pr, UserRepository $ur, ProduitRepository $repproduit,ManagerRegistry $doctrine, Request $request): Response
+    public function affichedetail(int $id, LignepanierRepository $lr, PanierRepository $pr, UserRepository $ur, ProduitRepository $repproduit,ManagerRegistry $doctrine,Request $request): Response
        { 
         $produit=$repproduit->find($id);
         $stock = $produit->getQuantiteProd();
@@ -75,12 +76,7 @@ class MarketplaceController extends AbstractController
                 }
                 else {
                     // Quantité ajoutée supérieure à la quantité en stock, afficher un message d'erreur
-                   //hethi baad tetbadel ki yabda aana session 
-                   // $this->addFlash('error', 'La quantité ajoutée est supérieure à la quantité en stock.');
-                   $response = new Response();
-                   $response->setContent('La quantité ajoutée est supérieure à la quantité en stock.');
-                   $response->setStatusCode(Response::HTTP_BAD_REQUEST);
-                   return $response;
+                   $this->addFlash('error', 'La quantité ajoutée est supérieure à la quantité en stock.');
                 }
             } 
             else {
@@ -110,12 +106,7 @@ class MarketplaceController extends AbstractController
                   } 
                  else {
                     // Quantité ajoutée supérieure à la quantité en stock, afficher un message d'erreur
-                    //hethi baad tetbadel ki yabda aana session 
-                    //$this->addFlash('error', 'La quantité ajoutée est supérieure à la quantité en stock.');
-                    $response = new Response();
-                    $response->setContent('La quantité ajoutée est supérieure à la quantité en stock.');
-                    $response->setStatusCode(Response::HTTP_BAD_REQUEST);
-                    return $response;
+                    $this->addFlash('error', 'La quantité ajoutée est supérieure à la quantité en stock.');        
                 }
             }
         }
