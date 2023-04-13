@@ -13,6 +13,16 @@
         </div>
     </div>
 </div>
+<!-- Breadcrumb row -->
+<div class="breadcrumb-row">
+    <div class="container">
+        <ul class="list-inline">
+            <li><a href="{{path('resume')}}">Accueil</a></li>
+            <li>Votre Panier</li>
+        </ul>
+    </div>
+</div>
+<!-- Breadcrumb row END -->
 <div class="section-full content-inner">
     <!-- Product -->
     <div class="container">
@@ -52,7 +62,7 @@
         <td class="product-item-price">{{total}} DT </td>
     </tr>
         <tr class="alert">
-        <td class="product-item-quantity" colspan="3" style="text-align: center;">
+        <td class="product-item-quantity" colspan="2" style="text-align: center;">
         <div class="form-group">
             <a class="site-button m-r15" href="{{path('vider_panier',{'id':panier.getId()}) }}">Vider Panier</a>
         </div>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LignepanierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LignepanierRepository::class)]
 class Lignepanier
@@ -24,6 +25,7 @@ class Lignepanier
 
     #[ORM\Column]
     private ?int $quantite = null;
+ 
 
     #[ORM\Column]
     private ?float $prix = null;

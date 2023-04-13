@@ -3,13 +3,13 @@
 <title>Boutique</title>
 {% endblock %}
 {% block body%} 
-
-<div class="page-content">
+<!-- Content -->
+<div class="page-content bg-white">
     <!-- inner page banner -->
-    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url({{ asset('images/background/slide11.jpg') }});">
+    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url(images/background/slide13.jpg);">
         <div class="container">
             <div class="dlab-bnr-inr-entry">
-                <h1 class="text-white">Boutique</h1>
+                <h1 class="text-white">Nos Produits</h1>
             </div>
         </div>
     </div>
@@ -18,45 +18,52 @@
     <div class="breadcrumb-row">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="#">Accueil</a></li>
-                <li>Produits</li>
+                <li><a href="{{path('resume')}}">Accueil</a></li>
+                <li>Nos Produits</li>
             </ul>
         </div>
     </div>
     <!-- Breadcrumb row END -->
-<div class="row">
-    <div class="col-lg-12 col-md-12">
-        <div class="text-center m-b50">
-            <h2 class="m-t0">Nos Produits</h2>
-            <div class="dlab-separator-outer "><div class="dlab-separator bg-primary style-skew"></div> </div>
-        </div>
-        <div class="row" id="masonry">
-<div class="content-inner section-full bg-white">
-    <!-- Product -->
-    {% for p in produits %} 
-    {#{{ dump(p) }}#}
-<div class="col-lg-3 col-md-6 col-sm-6 m-b30 product-item card-container">
-    <div class="dlab-box ">
-         <div class="dlab-thum-bx  dlab-img-effect "> <img src="http://localhost/images/{{p.getImage()}}" alt="">
-            <div class="overlay-bx">
-                <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="ti-shopping-cart icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fas fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="ti-heart icon-bx-xs"></i> </a> </div>
-            </div>
-         </div>
-           <div class="dlab-info p-a20 text-center">
-            <h4 class="dlab-title m-t0 text-uppercase"><a href="#">{{p.getNomProd()}}</a></h4>
-            <h2 class="m-b0">{{p.getPrixProd()}} DT</h2>
-            <div class="m-t20">
-                <a href="{#{{path('ajouter_produit_panier',{'panier':panier, 'produit':p})}}#}" class="site-button">Ajouter au Panier</a>
-            </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-7 align-self-center">
+        <div class="section-title text-center">
+            <h6 class="sub-title double-line"><span></span>  Produits</h6>
+            <h2 class="title">Nos Produits Populaires</h2>
+            <p class="content">D&R est le principal fournisseur tunisien de pièces automobiles et de produits pour les fans et les supporters de Drift ! Avec plus de 250 produits de haute qualité.</p>
         </div>
     </div>
-</div>
-
-{% endfor %}   
-</div>
-</div>
-</div>
-</div>
-</div>
-
+    
+  <!-- contact area -->
+  <div class="section-full content-inner">
+    <!-- Product -->
+    <div class="container">
+        <div class="row">
+            {% for i in p %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="item-box m-b10">
+                    <div class="item-img">
+                        <img src="http://localhost/images/{{i.getImage}}" alt=""/>
+                        <div class="item-info-in">
+                            <ul>
+                                <li><a href="#"><i class="ti-shopping-cart"></i></a></li>
+                                <li><a href="{{path('affichedetail',{'id':i.id})}}"><i class="ti-eye"></i></a></li>
+                                <li><a href="#"><i class="ti-heart"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-info text-center text-black p-a10">
+                        <h6 class="item-title"><a href="{{path('affichedetail',{'id':i.id})}}">{{i.getNomProd()}}</a></h6>
+                       
+                        
+                        <p class="content">{{i.getDescriptionProd()}}</p>
+                        <h4 class="item-price"><span class="text-primary">{{i.getPrixProd()}} Dt</span></h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
 {% endblock %}

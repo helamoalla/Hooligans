@@ -11,6 +11,8 @@ use App\Entity\Lignepanier;
 use App\Entity\Panier;
 use App\Entity\Commande;
 use App\Repository\PanierRepository;
+use App\Repository\ProduitRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Form\CommandeFormType;
@@ -28,13 +30,13 @@ class PanierController extends AbstractController
     }
 
     //Fonction qui retourne les produits du panier d'un user ainsi que le montant total de son panier
-    #[Route('/panier/{idPanier}', name: 'app_Affichepanier')]
-    public function ProduitsParPanier($idPanier)
+    #[Route('/affichepanier', name: 'app_Affichepanier')]
+    public function ProduitsParPanier(PanierRepository $panierRep,UserRepository $ur,LignepanierRepository $rep):Response
     {
-        $produits = $this->getDoctrine()->getRepository(Lignepanier::class)
-        ->findBy(['panier' => $idPanier]);
-
-        $panier = $this->getDoctrine()->getRepository(Panier::class)->findOneBy(['id' => $idPanier]);
+        $user = $ur->find(22);
+        $panier = $panierRep->findOneBy(['user' => $user]);
+        $idPanier=$panier->getId();
+        $produits = $rep->findBy(['panier' => $idPanier]);
 
         $total = 0;
         foreach ($produits as $lignePanier) {
@@ -52,10 +54,10 @@ class PanierController extends AbstractController
 
     //Fonction quit met a jours la qantité +1 d'un produit dans un panier
     #[Route('/qtPlusUn/{id}', name: 'plus1')]
-    public function updateLignePanierQuantitePlusUn(int $id)
+    public function updateLignePanierQuantitePlusUn(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep)
 {
-    $entityManager = $this->getDoctrine()->getManager();
-    $lignePanier = $entityManager->getRepository(LignePanier::class)->find($id);
+    $entityManager = $doctrine->getManager();
+    $lignePanier = $rep->find($id);
     $lignePanier->setQuantite($lignePanier->getQuantite() + 1);
 
     $entityManager->persist($lignePanier);
@@ -72,10 +74,10 @@ class PanierController extends AbstractController
     
     //Fonction quit met a jours la qantité -1 d'un produit dans un panier
     #[Route('/qtMoinsUn/{id}', name: 'moins1')]
-    public function updateLignePanierQuantiteMoinsUn(int $id)
+    public function updateLignePanierQuantiteMoinsUn(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep)
 {
-    $entityManager = $this->getDoctrine()->getManager();
-    $lignePanier = $entityManager->getRepository(LignePanier::class)->find($id);
+    $entityManager = $doctrine->getManager();
+    $lignePanier = $rep->find($id);
     $lignePanier->setQuantite($lignePanier->getQuantite() - 1);
 
     $entityManager->persist($lignePanier);
@@ -89,27 +91,25 @@ class PanierController extends AbstractController
 
    //Fonction qui supprime un produit du panier 
    #[Route('SupprimerProduit/{id}', name: 'supprimer_ligne_panier')]
-   public function deleteLignePanier(int $id, ManagerRegistry $doctrine): Response
+   public function deleteLignePanier(int $id,ManagerRegistry $doctrine,LignepanierRepository $rep): Response
 {
     $entityManager = $doctrine->getManager();
-    $lignePanier = $entityManager->getRepository(LignePanier::class)->find($id);
+    $lignePanier = $rep->find($id);
        // Récupérer l'ID du panier
    $idPanier = $lignePanier->getPanier()->getId();
-
     //Supprimer la ligne panier
     $entityManager->remove($lignePanier);
     $entityManager->flush();
-
    // Rediriger vers la page d'affichage du panier en passant l'ID du panier
    return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
 }
 
   //Fonction qui vide le panier d'un user 
   #[Route('/ViderPanier/{id}', name: 'vider_panier')]
-  public function ViderPanier(int $id): Response
+  public function ViderPanier(int $id,ManagerRegistry $doctrine,LignepanierRepository $rep): Response
 {
-    $entityManager = $this->getDoctrine()->getManager();
-    $lignesPanier = $entityManager->getRepository(LignePanier::class)->findBy(['panier' => $id]);
+    $entityManager = $doctrine->getManager();
+    $lignesPanier = $rep->findBy(['panier' => $id]);
         
 
     foreach ($lignesPanier as $lignePanier) {
