@@ -39,6 +39,15 @@ class FeedbackRepository extends ServiceEntityRepository
         }
     }
 
+    public function getFeedbackByBonPlan($bonplan){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("SELECT f FROM APP\Entity\Feedback f WHERE f.bonplan= :bonplan ")
+            ->setParameter('bonplan',$bonplan)
+        ;
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Feedback[] Returns an array of Feedback objects
 //     */

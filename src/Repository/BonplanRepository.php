@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Bonplan;
+use App\Entity\Feedback;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,44 @@ class BonplanRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+    public function getAllBonPlanWithFeedbacks(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT b, COUNT(f.bonplan) AS count_feeds
+            FROM App\Entity\Bonplan b
+            LEFT JOIN App\Entity\Feedback f
+            WITH b = f.bonplan
+            WHERE b.etat ='accepté'
+            GROUP BY b
+        ")
+        ;
+        return $query->getResult();
+    }
+
+    public function validateBonplan($bonplan){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            UPDATE App\Entity\Bonplan b SET b.etat = 'accepté' WHERE b.id = :bonplan 
+
+        ")
+        ->setParameter('bonplan',$bonplan)
+        ;
+        return $query->getResult();
+    }
+
+    public function getAllValidateBonplan(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT b
+            FROM App\Entity\Bonplan b
+            where b.etat = 'accepté'
+        ")
+        ;
+        return $query->getResult();
     }
 
 //    /**
