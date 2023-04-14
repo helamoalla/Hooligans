@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="panel shadow-2xl">
+
+        <a href="{{ path('app_formation_new') }}" class=" uppercase self-end text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-2 rounded-lg w-auto
+                      focus:outline-none focus:shadow-outline">
+            Ajouter une formation
+        </a>
+                <table class="w-full text-sm text-left">
+                    <caption class="p-5 text-lg font-bold text-left  text-white shadow-2xl">
+                        Mes Formations:
+                        <p class="mt-1 text-sm font-normal white">Vous pouvez gérer vos formations éxistantes  ou ajouter une nouvelle formation. </p>
+
+                    </caption>
+
+
+
+                    <thead class="text-xs  whitespace-nowrap uppercase bg-gray-700 text-gray-300">
+
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Nom du Formation
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Déscription
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Durée
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Prix
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Edit</span>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            <span class="sr-only">Del</span>
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for f in formations %}
+                       <tr class="ligne text-white font-medium whitespace-nowrap ">
+                            <th scope="row" class="px-6 py-4">
+                                {{ f.nomFormation|upper() }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ f.description }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ f.duree }} semaines
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ f.prix }} TND
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <a href="{{ path('app_formation_edit',{'idFormation':f.idFormation}) }}" class="font-bold text-blue-800 hover:underline expand-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <div>
+                                    <form method="post" action="{{ path('app_formation_delete', {'idFormation': f.idFormation}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ??');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ f.idFormation) }}">
+                                        <button class="font-bold text-blue-800 hover:underline expand-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
+                                    </form>
+                                </div>
+
+                        </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+
+{% endblock %}
