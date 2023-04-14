@@ -6,6 +6,7 @@ use App\Entity\Garagec;
 use App\Entity\Maintenance;
 use App\Form\GarageCFormType;
 use App\Repository\GaragecRepository;
+use App\Repository\MaintenanceRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -26,9 +27,9 @@ class GarageCController extends AbstractController
         ]);
     }
     #[Route('/afficheGC', name: 'app_afficheGC')]
-    public function afficheGC(): Response
+    public function afficheGC(GaragecRepository $r): Response
     {
-        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->findAll();
+        $garageC=$r->orderById();
         return $this->render('garage_c/afficheGC.html.twig', [
             'g'=>$garageC,
         ]);
@@ -42,10 +43,10 @@ class GarageCController extends AbstractController
         ]);
     }
     #[Route('/index', name: 'app_index')]
-    public function afficheGCA(): Response
+    public function afficheGCA(GaragecRepository $r,MaintenanceRepository $r1): Response
     {
-        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->findAll();
-        $maintenance=$this->getDoctrine()->getRepository(Maintenance::class)->findAll();
+        $garageC=$r->orderById();
+        $maintenance=$r1->orderById();
         return $this->render('index.html.twig', [
             'g'=>$garageC, 'm'=> $maintenance
         ]);

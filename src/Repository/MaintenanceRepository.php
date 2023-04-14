@@ -41,11 +41,16 @@ class MaintenanceRepository extends ServiceEntityRepository
     public function findMaintenanceByIdUser($id)
     {
         $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery("SELECT m FROM App\Entity\Maintenance m WHERE m.user = :id");
+        $query = $entityManager->createQuery("SELECT m FROM App\Entity\Maintenance m WHERE m.user = :id  ORDER BY m.id DESC ");
         $query->setParameter('id', $id);
         return $query->getResult();
     }
-
+    public function orderById() :array {
+        return $this->createQueryBuilder('m')
+                ->orderBy('m.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
 //    /**
 //     * @return Maintenance[] Returns an array of Maintenance objects
 //     */

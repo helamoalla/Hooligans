@@ -38,7 +38,12 @@ class GaragecRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    public function orderById() :array {
+        return $this->createQueryBuilder('g')
+                ->orderBy('g.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
 //    /**
 //     * @return Garagec[] Returns an array of Garagec objects
 //     */

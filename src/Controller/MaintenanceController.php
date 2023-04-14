@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\MaintenanceFormType;
 use App\Repository\MaintenanceRepository;
+use App\Repository\GaragecRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,12 +21,12 @@ use Symfony\Component\HttpFoundation\Request;
 class MaintenanceController extends AbstractController
 {
     #[Route('/maintenance', name: 'app_maintenance')]
-    public function index(MaintenanceRepository $r, ManagerRegistry $doctrine): Response
+    public function index(MaintenanceRepository $r, ManagerRegistry $doctrine,GaragecRepository $r1): Response
     {
         $maintenances = $r->findMaintenanceByIdUser(26);
         $test = false;
         $dateAujourdhui = new DateTime();
-        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->findAll();
+        $garageC=$r1->orderById();
         foreach ($maintenances as $maintenance) {
             $diff =$dateAujourdhui->diff( $maintenance->getDateMaintenance())->days;
             if ($diff > 2) {
@@ -40,14 +41,21 @@ class MaintenanceController extends AbstractController
         ]);
     }
     #[Route('/afficheM', name: 'app_afficheM')]
-    public function afficheM(): Response
+    public function afficheM(MaintenanceRepository $r): Response
     {
-        $maintenance=$this->getDoctrine()->getRepository(Maintenance::class)->findAll();
+        $maintenance=$r->orderById();
         return $this->render('maintenance/afficheM.html.twig', [
             'm'=>$maintenance,
         ]);
     }
-   
+    #[Route('/detailGCU/{id}', name: 'detailGCU')]
+    public function detailGCU($id): Response
+    {
+        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->find($id);
+        return $this->render('garage_c/detailGCU.html.twig', [
+            'g'=>$garageC,
+        ]);
+    }
     #[Route('/afficheMU', name: 'app_afficheMU')]
     public function afficheMU(MaintenanceRepository $r, ManagerRegistry $doctrine): Response
     {   
