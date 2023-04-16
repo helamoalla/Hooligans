@@ -136,7 +136,7 @@
 											<span class="says">says:</span>
 										</div>
 										<div class="star-rating">
-											{% for i in range(0,4) %}
+											{# {% for i in range(0,4) %}
 												{% if i < item.getRate() %}
 													<i class="fas fa-star" data-alt="1" title="regular"></i>
 												{% else %}
@@ -144,7 +144,12 @@
 
 												{% endif %}
 
-											{% endfor %}
+											{% endfor %} #}
+											{% if item.getRate() >= 0 %}
+											{{item.getRate()|rating }}
+											{% endif %}
+											
+											
 
 										</div>
 										<p>

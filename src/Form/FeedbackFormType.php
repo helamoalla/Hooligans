@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Feedback;
+use Sbyaute\StarRatingBundle\Form\StarRatingType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,7 +15,10 @@ class FeedbackFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('rate')
+            ->add('rate',StarRatingType::class,[
+                'label' => 'Rating',
+                'stars' => 5,
+            ])
             ->add('commentaire',null,[
                 'attr' => [
                     'placeholder' => 'Write your Feedback ',

@@ -34,6 +34,23 @@ class BonplanController extends AbstractController
         $user=$userRep->find(22);
         $feedback=new Feedback();
         $form=$this->createForm(FeedbackFormType::class,$feedback);
+
+        if($bonplanRep->checkIfAlreadyReported($bonplan,$user)>0){
+            $form->add('report', null, [
+                'disabled' => true,
+            ]);
+            $feedback->setReport(false);
+
+        }
+        if($bonplanRep->checkIfAlreadyRated($bonplan,$user)>0){
+            $form->add('rate', null, [
+                'disabled' => true,
+                'attr' => [
+                    'style' => 'display:none',
+                ],
+            ]);
+            $feedback->setRate(-1);
+        }
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -43,6 +60,19 @@ class BonplanController extends AbstractController
 
             $em->persist($feedback);
             $em->flush();
+
+            // bonplan reporting
+            $reportLines=$bonplanRep->count_reports();
+            foreach ($reportLines as $line){
+                $bonplanReported = $line[0]->getBonplan();
+                $reportCount = $line['report_count'];
+                if($reportCount >=5 ){
+                    $em->remove($bonplanReported);
+                    $em->flush();
+                    return $this->redirectToRoute("all_bonplan");
+                }
+            }
+            
             return $this->redirectToRoute("detail_bonplan",["id"=>$id]);}
 
         return $this->renderForm("bonplan/detailBonplan.html.twig",["f" => $form,

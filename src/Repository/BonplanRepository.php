@@ -43,13 +43,13 @@ class BonplanRepository extends ServiceEntityRepository
         $entityManager=$this->getEntityManager();
         $query=$entityManager
             ->createQuery("
-            SELECT b, COUNT(f.bonplan) AS count_feeds
+            SELECT b, COUNT(f.bonplan) AS count_feeds,AVG(CASE WHEN f.rate >= 0 THEN f.rate ELSE :null END) AS avg_rating
             FROM App\Entity\Bonplan b
             LEFT JOIN App\Entity\Feedback f
             WITH b = f.bonplan
             WHERE b.etat ='accepté'
             GROUP BY b
-        ")
+        ")->setParameter('null',NULL)
         ;
         return $query->getResult();
     }
@@ -66,6 +66,38 @@ class BonplanRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function checkIfAlreadyReported($bonplan,$user){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT count(f)
+            FROM App\Entity\Feedback f
+            WHERE f.user = :user AND f.bonplan = :bonplan AND f.report = true
+        ")
+        ->setParameter('bonplan',$bonplan)
+        ->setParameter('user',$user)
+        ;
+        $result = $query->getSingleScalarResult();
+
+        return ($result > 0);
+    }
+
+    public function checkIfAlreadyRated($bonplan,$user){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT count(f)
+            FROM App\Entity\Feedback f
+            WHERE f.user = :user AND f.bonplan = :bonplan AND f.rate > 0
+        ")
+        ->setParameter('bonplan',$bonplan)
+        ->setParameter('user',$user)
+        ;
+        $result = $query->getSingleScalarResult();
+
+        return ($result > 0);
+    }
+
     public function getAllValidateBonplan(){
         $entityManager=$this->getEntityManager();
         $query=$entityManager
@@ -73,6 +105,17 @@ class BonplanRepository extends ServiceEntityRepository
             SELECT b
             FROM App\Entity\Bonplan b
             where b.etat = 'accepté'
+        ")
+        ;
+        return $query->getResult();
+    }
+
+    public function count_reports(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT f,COUNT(f) AS report_count FROM App\Entity\Feedback f WHERE f.report = true 
+            GROUP BY f.bonplan
         ")
         ;
         return $query->getResult();

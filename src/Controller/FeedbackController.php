@@ -6,6 +6,7 @@ use App\Entity\Feedback;
 use App\Form\FeedbackFormType;
 use App\Repository\BonplanRepository;
 use App\Repository\FeedbackRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,13 +36,30 @@ class FeedbackController extends AbstractController
         return $this->redirectToRoute('detail_bonplan',["id" => $feedback->getBonplan()->getId()]);
     }
     #[Route('/updateFeedback/{id}', name: 'update_feedback')]
-    public function updateFeedback($id, FeedbackRepository $feedRep, Request $request,BonplanRepository $bonplanRep, ManagerRegistry $doctrine): Response
+    public function updateFeedback($id, FeedbackRepository $feedRep,UserRepository $userRep, Request $request,BonplanRepository $bonplanRep, ManagerRegistry $doctrine): Response
     {
         $feedback = $feedRep->find($id);
+        $user=$userRep->find(22);
         $bonplan = $bonplanRep->find($feedback->getBonplan()->getId());
         $feeds=$feedRep->getFeedbackByBonPlan($bonplan);
         
         $form = $this->createForm(FeedbackFormType::class, $feedback);
+        if($bonplanRep->checkIfAlreadyReported($bonplan,$user)>0){
+            $form->add('report', null, [
+                'disabled' => true,
+            ]);
+            $feedback->setReport(false);
+        }
+        if($feedback->getRate()<0){
+            $form->add('rate', null, [
+                'disabled' => true,
+                'attr' => [
+                    'style' => 'display:none',
+                ],
+            ]);
+            $feedback->setRate(-1);
+            
+        }
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 

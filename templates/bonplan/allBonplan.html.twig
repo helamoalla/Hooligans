@@ -69,6 +69,9 @@
 												<div class="dlab-post-text">
 													<p>{{item.0.getDescription()}}</p>
 												</div>
+												<div class="dlab-post-text" style="text-align:center">
+													<p>{{item.avg_rating|rating }} {{item.avg_rating|number_format(1, '.', '')}} </p>
+												</div>
 												<div class="dlab-post-readmore">
 													<a href="{{path('detail_bonplan',{'id':item.0.getId()}) }}" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i>
 													</a>

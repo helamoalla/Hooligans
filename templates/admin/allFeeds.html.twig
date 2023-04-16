@@ -34,7 +34,7 @@
 													<td>
 														<ul class="rating">
 
-															{% for i in range(1,5)  %}
+															{# {% for i in range(1,5)  %}
 																{% if i <= item.getRate() %}
 																	<li>
 																		<i class="fas fa-star theme-color"></i>
@@ -46,7 +46,8 @@
 
 																{% endif %}
 
-															{% endfor %}
+															{% endfor %} #}
+															{{item.getRate()|rating}}
 
 
 														</ul>
