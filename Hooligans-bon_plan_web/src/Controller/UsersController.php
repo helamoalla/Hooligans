@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository ;
 use App\Entity\Produit;
 use App\Repository\CategorieRepository ;
 use App\Entity\Categorie;
+use Knp\Component\Pager\PaginatorInterface;
 
 class UsersController extends AbstractController
 {
@@ -23,8 +25,14 @@ class UsersController extends AbstractController
                  
     //Afficher Produit
     #[Route('/userafficheproduit', name: 'affichep')]
-    public function affichep(ProduitRepository $Rep,CategorieRepository $Rep1 ): Response
+    public function affichep(ProduitRepository $Rep,CategorieRepository $Rep1,PaginatorInterface $paginator , Request $request): Response
     { $Produit=$Rep->findAll();
+        $Produit = $paginator->paginate(
+            $Produit, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            12/*limit per page*/
+        );
+
         $Categorie=$Rep1->findAll();
     
         return $this->render('produit/afficherProduitUser.html.twig', [
@@ -48,6 +56,6 @@ class UsersController extends AbstractController
         
 
         ]);
-
 }
+
 }

@@ -65,7 +65,7 @@
                 <div class="header-logo-wrapper p-0">
                     <div class="logo-wrapper">
                         <a href="index.html">
-                            <img class="img-fluid main-logo" src="admin/assets/images/logo/1.png" alt="logo">
+                            <img class="img-fluid main-logo" src="admin/assets/images/logo/logo1.png" alt="logo">
                             <img class="img-fluid white-logo" src="admin/assets/images/logo/1-white.png" alt="logo">
                         </a>
                     </div>
@@ -200,7 +200,7 @@
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
                         <a href="index.html" data-bs-original-title="" title="">
-                            <img class="img-fluid for-white" src="admin/assets/images/logo/full-white.png" alt="logo">
+                            <img class="img-fluid for-white" src="admin/assets/images/logo/logo1.png" alt="logo">
                         </a>
                         <div class="back-btn">
                             <i class="fa fa-angle-left"></i>
@@ -223,6 +223,8 @@
 
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
+                                <br>
+                                <br>
                                 <li class="back-btn"></li>
 
                                 <li class="sidebar-list">
@@ -447,7 +449,21 @@
                                             </ul>
                                         </div>
                                     </div>
+                                     {% for message in app.flashes('error') %}
+                                    
+                                    <div class="alert alert-danger"> <strong><i class="far fa-thumbs-up"></i> Success!</strong> {{ message }}  </div>
+                               
+                                      {% endfor %}
+
+                                      {% for message in app.flashes('error1') %}
+                                    
+                                    <div class="alert alert-danger"> <strong><i class="far fa-thumbs-up"></i> Success!</strong> {{ message }}  </div>
+                               
+                                      {% endfor %}
+                                       
+
                                     <div>
+                                      
                                         <div class="table-responsive">
                                             <table class="table all-package theme-table table-product" id="table_id">
                                                 <thead>
@@ -502,7 +518,7 @@
                                                         <td>
                                                             <ul>
                                                                 <li>
-                                                                    <a href="order-detail.html">
+                                                                    <a href="{{path('affichedetailp',{'id':i.id})}}">
                                                                         <i class="ri-eye-line"></i>
                                                                     </a>
                                                                 </li>

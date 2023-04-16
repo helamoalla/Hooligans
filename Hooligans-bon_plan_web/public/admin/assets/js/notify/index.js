@@ -1,5 +1,5 @@
 'use strict';
-var notify = $.notify('<i class="fas fa-bell"></i></i><strong>AAA</strong> page Do not close this page...', {
+/*var notify = $.notify('<i class="fas fa-bell"></i></i><strong>AAA</strong> page Do not close this page...', {
     type: 'theme',
     allow_dismiss: true,
     delay: 4000,
@@ -14,4 +14,4 @@ var notify = $.notify('<i class="fas fa-bell"></i></i><strong>AAA</strong> page 
 
 setTimeout(function () {
     notify.update('message', '<i class="fas fa-bell"></i></i><strong>Loading</strong> Inner Data.');
-}, 1000);
+}, 1000);*/

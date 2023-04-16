@@ -39,6 +39,13 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
+    public function orderById() :array {
+        return $this->createQueryBuilder('p')
+                ->orderBy('p.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

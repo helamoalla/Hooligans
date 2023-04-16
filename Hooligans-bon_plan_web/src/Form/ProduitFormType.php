@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType ;
 use Symfony\Component\Form\FormEvents ;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class ProduitFormType extends AbstractType
 {
@@ -50,7 +52,7 @@ class ProduitFormType extends AbstractType
             ->add('categorie',EntityType::class,
             ['class'=>Categorie::class,
             'choice_label'=>'nom_categorie'])
-            ->add('save',SubmitType::class)
+            ->add('save',SubmitType::class);
         ;
     }
 

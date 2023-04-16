@@ -13,6 +13,11 @@ use App\Entity\Categorie;
 use App\Entity\Produit;
 use App\Form\CategoryFormType ;
 use App\Form\ProduitFormType ;
+use CMEN\GoogleChartsBundle\CMENGoogleChartsBundle\Barchart ;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart ;
+
+use CMEN\GoogleChartsBundle\GoogleCharts;
+
 
 class AdminController extends AbstractController
 {
@@ -20,11 +25,68 @@ class AdminController extends AbstractController
     public function index(CategorieRepository $Rep, ProduitRepository $Rep1): Response
     {  $Categorie=$Rep->findAll();
      $Produit=$Rep1->findAll();
+    //    $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
+    //     $chart->getData()->setArrayToDataTable([
+    //         ['Year', 'Sales', 'Expenses'],
+    //         ['2014', 1000, 400],
+    //         ['2015', 1170, 460],
+    //         ['2016', 660, 1120],
+    //         ['2017', 1030, 540]
+    //     ]);
 
+// Récupérer les données de votre base de données
+$em = $this->getDoctrine()->getManager();
+$query = $em->createQuery('SELECT p.nom_prod, p.quantite_prod FROM App\Entity\Produit p');
+$results = $query->getResult();
+
+
+// Convertir les données en un format de données pris en charge par PieChart
+$data = [['Product', 'Quantity']];
+foreach ($results as $result) {
+    $data[] = [$result['nom_prod'], (int) $result['quantite_prod']];
+}
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable($data);
+        $pieChart->getOptions()->setTitle(' Quantité en stock');
+        $pieChart->getOptions()->setHeight(400);
+        $pieChart->getOptions()->setWidth(700);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#bde0ff');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->setColors(['#bde0ff', '#c8f4d5', '#e3f1cb', '#d4e9da', '#d7ffe4', '#dde3e3','#d7e5db','#afeeee','#e6f6c6','#fdf1b8']);
+        $pieChart->getOptions()->setIs3D(true);
+        $pieChart->getOptions()->getLegend()->getTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getLegend()->getTextStyle()->setFontSize(14);
+        $pieChart->getOptions()->getLegend()->getTextStyle()->setColor('#666666');
+        $pieChart->getOptions()->getPieSliceTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getPieSliceTextStyle()->setFontSize(14);
+        $pieChart->getOptions()->setBackgroundColor('#f5f5f5');
+        $pieChart->getOptions()->getLegend()->setPosition('left');
+        $pieChart->getOptions()->setPieSliceText('label');
+
+
+
+
+
+
+
+
+
+
+      // Créer un objet GoogleCharts, ajouter le PieChart et le rendre disponible dans la vue Twig
+  
+
+    
         return $this->render('homeadmin.html.twig', [
             'controller_name' => 'AdminController',
             'c'=>$Categorie ,
             'p'=>$Produit ,
+           // 'charts'=>$chart ,
+            'pieCharts'=>$pieChart ,
+          
         ]);
     }
     
@@ -43,7 +105,7 @@ class AdminController extends AbstractController
                         $em =$doctrine->getManager() ;
                         $em->persist($Categorie);
                         $em->flush();
-                        return $this->redirectToRoute("addcategory");}
+                        return $this->redirectToRoute("affichecategorie");}
                 return $this->renderForm("Categorie/addCategoryAdmin.html.twig",
                         array("f"=>$form));
                     }
@@ -51,7 +113,7 @@ class AdminController extends AbstractController
     //Afficher Categorie
         #[Route('/adminaffichecategorie', name: 'affichecategorie')]
         public function afficheCategorie(CategorieRepository $Rep): Response
-        { $Categorie=$Rep->findAll();
+        { $Categorie=$Rep->orderById();
         
             return $this->render('Categorie/afficherCategorieAdmin.html.twig', [
             's'=>$Categorie  ,
@@ -98,7 +160,7 @@ class AdminController extends AbstractController
              //Afficher Produit
         #[Route('/adminafficheproduit', name: 'afficheproduit')]
         public function afficheProduit(ProduitRepository $Rep): Response
-        { $Produit=$Rep->findAll();
+        { $Produit=$Rep->orderById();
         
             return $this->render('produit/afficherProduitAdmin.html.twig', [
             's'=>$Produit  ,
@@ -119,7 +181,21 @@ class AdminController extends AbstractController
                     if($form->isSubmitted()&& $form->isValid()){
                         $em =$doctrine->getManager() ;
                         $imageFile = $form->get('image')->getData();
-                        
+
+                // Vérifier si le produit existe déjà en base de données
+               $existingProduit = $em->getRepository(Produit::class)->findOneBy([
+             'nom_prod' => $Produit->getNomProd(),
+              
+                  ]);
+                  $nomprod = $form->get('nom_prod')->getData();
+                  if ($existingProduit) {
+                    // Si le produit existe déjà, mettre à jour la quantité
+                    $existingProduit->setQuantiteProd($existingProduit->getQuantiteProd() + $Produit->getQuantiteProd());
+                    $this->addFlash('error1', 'La quantité du produit '. $nomprod .'  est modifiée avec succes.');
+                } else {
+                    // Sinon, ajouter le nouveau produit à la base de données 
+
+
                         if ($imageFile) {
                             $imagesDirectory = 'C:/xampp/htdocs/images';
                             $originalFilename = $imageFile->getClientOriginalName();
@@ -136,17 +212,20 @@ class AdminController extends AbstractController
                         }
                         
             
-                        //$bonplan->setImage("img.jpg");
                      
                         $em->persist($Produit);
+                       
+                        $this->addFlash('error', 'Le produit '. $nomprod .' est ajoutée avec succes.');
+                }
                         $em->flush();
+                      
                         return $this->redirectToRoute('afficheproduit');}
             
                        return $this->renderForm("produit/addProduitAdmin.html.twig",
                        
                         array("f"=>$form));
                     }
-
+        
                  
                     
 
@@ -203,5 +282,19 @@ class AdminController extends AbstractController
    }}
 
 
+
+       //Afficherdetail
+       #[Route('/adminaffichedetailproduit/{id}', name: 'affichedetailp')]
+       public function affichedetailp(ProduitRepository $Rep, int $id ): Response
+       { $Produit=$Rep->find($id);
+       
+           
+           return $this->render('produit/afficherDetailProduitAdmin.html.twig', [
+           'p'=>$Produit  ,
+
+   
+           ]);
+   }
+   
 
 }
