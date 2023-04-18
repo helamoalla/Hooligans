@@ -12,9 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Notifier\Bridge\Twilio\TwilioTransport;
 use Symfony\Component\Routing\Annotation\Route;
-
-
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\TexterInterface;
 
 
 class GarageCController extends AbstractController
@@ -63,16 +64,16 @@ class GarageCController extends AbstractController
     }
 
     #[Route('/ajouterGC', name: 'ajouterGC')]
-    public function ajouterGC(ManagerRegistry $doctrine,Request $request): Response
-    {
+    public function ajouterGC(ManagerRegistry $doctrine,Request $request,TwilioTransport $twilio): Response
+    { 
         $garageC=new Garagec();
         $form=$this->createForm(GarageCFormType::class,$garageC);
         $form->handleRequest($request);
-       
+        
         if($form->isSubmitted() && $form->isValid()){
             $em =$doctrine->getManager() ;
             $imageFile = $form->get('image')->getData();
-
+            $numero= $form->get('numero')->getData();
             if ($imageFile) {
                 $imagesDirectory = 'C:/xampp/htdocs/images';
                 $originalFilename = $imageFile->getClientOriginalName();
@@ -87,8 +88,11 @@ class GarageCController extends AbstractController
                 
                 $garageC->setImage($filenameWithoutSpaces);
                }
+               $sms = new SmsMessage('+216'.$numero,'Garage ajouter !');
+               $twilio->send($sms);
                $em->persist($garageC);
                $em->flush();
+               
                return $this->redirectToRoute('app_afficheGC',);
          }
 
