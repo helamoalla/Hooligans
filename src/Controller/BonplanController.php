@@ -12,16 +12,30 @@ use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class BonplanController extends AbstractController
 {
     #[Route('/allBonplan', name: 'all_bonplan')]
-    public function allBonplan(BonplanRepository $bonplanRep): Response
+    public function allBonplan(BonplanRepository $bonplanRep,Request $request,SerializerInterface $serializer): Response
     {
+        $query = $request->get('query');
         $allBonplan = $bonplanRep->getAllBonPlanWithFeedbacks();
+
+        if ($request->get('ajax')) {
+             $allBonplan = $bonplanRep->findAll();
+             $view=$this->renderView('bonplan/search.html.twig', [
+                'allBonplan' => $allBonplan,
+             ]);
+
+             $response = new JsonResponse($serializer->serialize($allBonplan, 'json'));
+             $response->headers->set('Content-Type', 'application/json');
+             return $response;
+        }
         return $this->render('bonplan/allBonplan.html.twig', [
             'allBonplan' => $allBonplan,
         ]);
@@ -30,6 +44,7 @@ class BonplanController extends AbstractController
     public function detailBonPlan(ManagerRegistry $doctrine,Request $request,UserRepository $userRep,BonplanRepository $bonplanRep,$id,FeedbackRepository $feedRep): Response
     {
         $bonplan = $bonplanRep->find($id);
+        $bonplanDetail=$bonplanRep->getBonPlanWithFeedbacks($bonplan);
         $feeds=$feedRep->getFeedbackByBonPlan($bonplan);
         $user=$userRep->find(22);
         $feedback=new Feedback();
@@ -76,7 +91,7 @@ class BonplanController extends AbstractController
             return $this->redirectToRoute("detail_bonplan",["id"=>$id]);}
 
         return $this->renderForm("bonplan/detailBonplan.html.twig",["f" => $form,
-        'bonplan' => $bonplan,
+        'bonplan' => $bonplanDetail,
         'feeds'=>$feeds,
         ]);
     }

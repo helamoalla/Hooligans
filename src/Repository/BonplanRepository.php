@@ -39,6 +39,25 @@ class BonplanRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function Search($req){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT b, COUNT(f.bonplan) AS count_feeds,AVG(CASE WHEN f.rate >= 0 THEN f.rate ELSE :null END) AS avg_rating
+            FROM App\Entity\Bonplan b
+            LEFT JOIN App\Entity\Feedback f
+            WITH b = f.bonplan
+            WHERE b.etat ='accepté'
+            and b.nom_bonplan like ':req'
+            GROUP BY b
+        ")->setParameter('null',NULL)
+        ->setParameter('req',$req)
+        ;
+        return $query->getResult();
+    }
+
+
+
     public function getAllBonPlanWithFeedbacks(){
         $entityManager=$this->getEntityManager();
         $query=$entityManager
@@ -50,6 +69,23 @@ class BonplanRepository extends ServiceEntityRepository
             WHERE b.etat ='accepté'
             GROUP BY b
         ")->setParameter('null',NULL)
+        ;
+        return $query->getResult();
+    }
+
+    public function getBonPlanWithFeedbacks($bonplan){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager
+            ->createQuery("
+            SELECT b, COUNT(f.bonplan) AS count_feeds,AVG(CASE WHEN f.rate >= 0 THEN f.rate ELSE :null END) AS avg_rating
+            FROM App\Entity\Bonplan b
+            LEFT JOIN App\Entity\Feedback f
+            WITH b = f.bonplan
+            WHERE b.etat ='accepté' 
+            and b = :bonplan
+            GROUP BY b
+        ")->setParameter('null',NULL)
+        ->setParameter('bonplan',$bonplan)
         ;
         return $query->getResult();
     }

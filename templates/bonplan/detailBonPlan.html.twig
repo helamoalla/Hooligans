@@ -11,14 +11,14 @@
 				<!-- blog start -->
 				<div class="blog-post blog-single">
 					<div class="dlab-post-title ">
-						<h3 class="post-title">{{bonplan.getNomBonplan()}}</h3>
+						<h3 class="post-title">{{bonplan.0[0].getNomBonplan()}}</h3>
 					</div>
 					<div class="dlab-post-meta m-b20">
 						<ul>
 							<li class="post-author">
 								<i class="fas fa-user"></i>By
-								<a href="#">{{bonplan.getUser().getNom()}}
-									{{bonplan.getUser().getPrenom()}}</a>
+								<a href="#">{{bonplan.0[0].getUser().getNom()}}
+									{{bonplan.0[0].getUser().getPrenom()}}</a>
 							</li>
 							<li class="post-comment">
 								<i class="fas fa-comments"></i>
@@ -37,14 +37,21 @@
 										<div class="col-md-12 col-lg-12 col-sm-12">
 											<div class="dlab-box">
 												<div class="dlab-media">
-													<a href="#"><img style="height: 500px" src="http://localhost/images/{{bonplan.getImage()}}" alt=""></a>
+													<a href="#"><img style="height: 500px" src="http://localhost/images/{{bonplan.0[0].getImage()}}" alt=""></a>
 												</div>
 												<div class="dlab-info m-t30 ">
 													<h4 class="dlab-title m-t0">
-														<a href="#">{{bonplan.getNomBonplan()}}
-														</a>
+														{{bonplan.0[0].getNomBonplan()}}
 													</h4>
-													<p>{{bonplan.getDescription()}}.
+													<h4 class="dlab-title m-t0">
+														Average   :  
+														{{bonplan.0.avg_rating|number_format(1, '.', '')}}
+
+
+													</h4>
+													<p>{{bonplan.0.avg_rating|rating}}
+													</p>
+													<p>{{bonplan.0[0].getDescription()}}.
 													</p>
 												</div>
 
@@ -56,11 +63,11 @@
 								<div class="col-lg-3 col-md-4 side-sticky">
 									<div class="icon-bx-wraper bx-style-1 p-a30 center m-b15">
 										<div class="icon-bx-sm text-primary bg-white radius border-2 m-b20">
-											<img src="http://localhost/images/{{bonplan.getUser().getImg()}}" style=" border-radius: 100%;height:100% ">
+											<img src="http://localhost/images/{{bonplan.0[0].getUser().getImg()}}" style=" border-radius: 100%;height:100% ">
 										</div>
 										<div class="icon-content">
-											<h5 class="dlab-tilte text-uppercase">{{bonplan.getUser().getNom()}}
-												{{bonplan.getUser().getPrenom()}}</h5>
+											<h5 class="dlab-tilte text-uppercase">{{bonplan.0[0].getUser().getNom()}}
+												{{bonplan.0[0].getUser().getPrenom()}}</h5>
 											<div class="widget widget_getintuch">
 
 												<ul>
@@ -70,14 +77,14 @@
 														<strong>phone
 														</strong>
 														+216
-														{{bonplan.getUser().getNumTel()}}
+														{{bonplan.0[0].getUser().getNumTel()}}
 														<br>
 													</li>
 													<li>
 														<i class="fas fa-envelope"></i>
 														<strong>email
 														</strong>
-														{{bonplan.getUser().getEmail()}}</li>
+														{{bonplan.0[0].getUser().getEmail()}}</li>
 												</ul>
 											</div>
 
@@ -89,16 +96,16 @@
 											<li>
 												<i class="fas fa-map-marker-alt"></i>
 												<strong>address</strong>
-												{{bonplan.getGouvernorat()}}
+												{{bonplan.0[0].getGouvernorat()}}
 												<br/>
-												{{bonplan.getVille()}}
+												{{bonplan.0[0].getVille()}}
 												<br/>
-												{{bonplan.getRue()}}
+												{{bonplan.0[0].getRue()}}
 											</li>
 											<li>
 												<i class="fas fa-taxi"></i>
 												<strong>Type</strong>
-												{{bonplan.getType()}}</li>
+												{{bonplan.0[0].getType()}}</li>
 										</li>
 
 
@@ -135,42 +142,42 @@
 											</cite>
 											<span class="says">says:</span>
 										</div>
-										<div class="star-rating">
+										<div
+											class="star-rating">
 											{# {% for i in range(0,4) %}
-												{% if i < item.getRate() %}
-													<i class="fas fa-star" data-alt="1" title="regular"></i>
-												{% else %}
-													<i class="far fa-star" data-alt="3" title="regular"></i>
-
-												{% endif %}
-
-											{% endfor %} #}
+																							{% if i < item.getRate() %}
+																								<i class="fas fa-star" data-alt="1" title="regular"></i>
+																							{% else %}
+																								<i class="far fa-star" data-alt="3" title="regular"></i>
+											
+																							{% endif %}
+											
+																						{% endfor %} #}
 											{% if item.getRate() >= 0 %}
-											{{item.getRate()|rating }}
+												{{item.getRate()|rating }}
 											{% endif %}
-											
-											
+
 
 										</div>
 										<p>
 											{{item.getCommentaire()}}
 										</p>
 										<div style="position: absolute;
-																								    top: 50px;
-																								    right: 30px;
-																								    margin-top: -5px;
-																								    color: #213454;
-																								    font-weight: 600;">
+																																				    top: 50px;
+																																				    right: 30px;
+																																				    margin-top: -5px;
+																																				    color: #213454;
+																																				    font-weight: 600;">
 
 											<a href="{{path('update_feedback',{'id':item.getId()}) }}">
 												<i class="fas fa-pencil" style="color:red;"></i>Update</a>
 										</div>
 										<div style="position: absolute;
-																								    top: 80px;
-																								    right: 30px;
-																								    margin-top: -5px;
-																								    color: var(--primary);
-																								    font-weight: 600;">
+																																				    top: 80px;
+																																				    right: 30px;
+																																				    margin-top: -5px;
+																																				    color: var(--primary);
+																																				    font-weight: 600;">
 
 											<a href="{{path('delete_feedback',{'id':item.getId()}) }}">
 												<i class="fa-solid fa-trash-can" style="color: red;"></i>
@@ -199,7 +206,7 @@
 												<strong>Danger!</strong>
 												{{ form_errors(f.rate) }}</div>
 										{% endif %}
-								
+
 										{{ form_widget(f.rate) }}
 									</div>
 									<div class="comment-form-email">
