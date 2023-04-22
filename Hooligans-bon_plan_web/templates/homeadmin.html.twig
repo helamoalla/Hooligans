@@ -610,91 +610,48 @@
                         </div> -->
                         <!-- Earning chart  end-->
 
-
-                        <!-- Best Selling Product Start -->
-                        <div class="col-xl-6 col-md-12">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
-                                    <div class="card-header-title">
-                                        <h4>Our Products</h4>
-                                    </div>
-
-                                    <div class="best-selling-box d-sm-flex d-none">
-                                        <span>Short By:</span>
-                                        <div class="dropdown">
-                                            <button class="btn p-0 dropdown-toggle" type="button"
-                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="true">Today</button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
+                               <!-- Earning chart star-->
+                               <div class="col-xl-6">
+                                <div class="card o-hidden card-hover">
+                                    <div class="card-header border-0 mb-0">
+                                        <div class="card-header-title">
+                                            <h4>Earning</h4>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table w-image
-                                            w-image
-                                            w-image table border-0">
-                                                <tbody>
-                                                    {% for i in p %}
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-image">
-                                                                    <img src=http://localhost/images/{{i.getImage}} 
-                                                                        class="img-fluid" alt="Product">
-                                                                </div>
-                                                                <div class="product-name">
-                                                                    <h5> {{i.nom_prod}}</h5>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>{{i.prix_prod}}</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Stock</h6>
-                                                                <h5>{{i.quantite_prod}}</h5>
-                                                            </div>
-                                                        </td>
-
-                                                      
-
-                                                        {% if i.quantite_prod < 10 %}
-                                                        <td class="status-danger">
-                                                            <span>Risque</span>
-                                                        </td>
-                                                        {% else %}
-                                                        <td class="status-close">
-                                                            <span>En stock</span>
-                                                        </td>
-                                                        {% endif %}
-                                                    </tr>
-                                                    {% endfor %}
-
-                                                
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="card-body p-0">
+                                        <div id="div_chartee"></div>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <script type="text/javascript">
+                                            {{ gc_draw(lines, 'div_chartee') }}
+                                        </script>
+                                    
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Best Selling Product End -->
+                            <!-- Earning chart end-->
+                                <!-- Earning chart  end-->
 
+                               <!-- Earning chart star-->
+                               <div class="col-xl-6">
+                                <div class="card o-hidden card-hover">
+                                    <div class="card-header border-0 mb-0">
+                                        <div class="card-header-title">
+                                            <h4>Earning</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div id="div_chartee1"></div>
+                                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <script type="text/javascript">
+                                            {{ gc_draw(bars, 'div_chartee1') }}
+                                        </script>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Earning chart end-->
 
-                        <!-- Recent orders start-->
+                                 <!-- Recent orders start-->
                         <div class="col-xl-6">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
@@ -888,6 +845,91 @@
                             </div>
                         </div>
                         <!-- Recent orders end-->
+
+                        <!-- Best Selling Product Start -->
+                        <div class="col-xl-6 col-md-12">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
+                                    <div class="card-header-title">
+                                        <h4>Our Products</h4>
+                                    </div>
+
+                                    <div class="best-selling-box d-sm-flex d-none">
+                                        <span>Short By:</span>
+                                        <div class="dropdown">
+                                            <button class="btn p-0 dropdown-toggle" type="button"
+                                                id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                data-bs-auto-close="true">Today</button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-0">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="best-selling-table w-image
+                                            w-image
+                                            w-image table border-0">
+                                                <tbody>
+                                                    {% for i in p %}
+                                                    <tr>
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-image">
+                                                                    <img src=http://localhost/images/{{i.getImage}} 
+                                                                        class="img-fluid" alt="Product">
+                                                                </div>
+                                                                <div class="product-name">
+                                                                    <h5> {{i.nom_prod}}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Price</h6>
+                                                                <h5>{{i.prix_prod}}</h5>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Stock</h6>
+                                                                <h5>{{i.quantite_prod}}</h5>
+                                                            </div>
+                                                        </td>
+
+                                                      
+
+                                                        {% if i.quantite_prod < 10 %}
+                                                        <td class="status-danger">
+                                                            <span>Risque</span>
+                                                        </td>
+                                                        {% else %}
+                                                        <td class="status-close">
+                                                            <span>En stock</span>
+                                                        </td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% endfor %}
+
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Best Selling Product End -->
+
+
+               
 
                         <!-- Earning chart star-->
                         <div class="col-xl-6">

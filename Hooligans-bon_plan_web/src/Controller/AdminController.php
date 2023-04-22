@@ -15,7 +15,8 @@ use App\Form\CategoryFormType ;
 use App\Form\ProduitFormType ;
 use CMEN\GoogleChartsBundle\CMENGoogleChartsBundle\Barchart ;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart ;
-
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart ;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BareChart ;
 use CMEN\GoogleChartsBundle\GoogleCharts;
 
 
@@ -38,7 +39,6 @@ class AdminController extends AbstractController
 $em = $this->getDoctrine()->getManager();
 $query = $em->createQuery('SELECT p.nom_prod, p.quantite_prod FROM App\Entity\Produit p');
 $results = $query->getResult();
-
 
 // Convertir les données en un format de données pris en charge par PieChart
 $data = [['Product', 'Quantity']];
@@ -67,17 +67,48 @@ foreach ($results as $result) {
         $pieChart->getOptions()->getLegend()->setPosition('left');
         $pieChart->getOptions()->setPieSliceText('label');
 
+///////2EME CHART///////
+     $query1 = $em->createQuery('SELECT p.nom_prod, p.prix_prod FROM App\Entity\Produit p');
+    $result1 = $query1->getResult();
+
+// Convertir les données en un format de données pris en charge par PieChart
+$data1 = [['Product', 'Price']];
+foreach ($result1 as $result) {
+    $data1[] = [$result['nom_prod'], (float) $result['prix_prod']];}
+
+    $line = new LineChart();
+    $line->getData()->setArrayToDataTable($data1);
+    $line->getOptions()->setTitle('Variation des prix des produits');
+    $line->getOptions()->setCurveType('function');
+    $line->getOptions()->setLineWidth(4);
+    $line->getOptions()->getLegend()->setPosition('none');
+    $line->getOptions()->setHeight(400);
+    $line->getOptions()->setWidth(700);
+    $line->getOptions()->setPointShape('point');
+    $line->getOptions()->getTitleTextStyle()->setBold(true);
+    $line->getOptions()->getTitleTextStyle()->setColor('#bde0ff');
+    $line->getOptions()->setBackgroundColor('#f5f5f5');
+    $line->getOptions()->getHAxis()->setTitle('Produits');
+    $line->getOptions()->getVAxis()->setTitle('Price');
+    $line->getOptions()->getTooltip()->setIsHtml(true);
+    $line->getOptions()->setColors(['#bde0ff', '#DC3912', '#FF9900']);
+    $line->getOptions()->getLegend()->setPosition('top');
+    $line->getOptions()->getAnimation()->setDuration(1000);
+    $line->getOptions()->setPointSize(7);
 
 
+//////3EME CHART/////
+$query2 = $em->createQuery('SELECT c.id, COUNT(p.id) AS nb_produits FROM App\Entity\Categorie c , App\Entity\Produit p Where c.id=p.id GROUP BY c.id');
+$result2 = $query2->getResult();
 
-
-
-
-
-
-
-      // Créer un objet GoogleCharts, ajouter le PieChart et le rendre disponible dans la vue Twig
+// Convertir les données en un format de données pris en charge par PieChart
+$data2 = [['Categorie', 'Nbre produit']];
+foreach ($result2 as $result) {
+    $data2[] = (int)[$result['id_categorie'], (int) $result['nb_produits']];}
   
+    $bar = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
+    $bar->getData()->setArrayToDataTable($data2);
+    $bar->getOptions()->setTitle('Population of Largest U.S. Cities');
 
     
         return $this->render('homeadmin.html.twig', [
@@ -86,6 +117,8 @@ foreach ($results as $result) {
             'p'=>$Produit ,
            // 'charts'=>$chart ,
             'pieCharts'=>$pieChart ,
+            'lines'=>$line,
+            'bars'=>$bar ,
           
         ]);
     }

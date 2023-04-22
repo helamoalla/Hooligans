@@ -37,7 +37,7 @@
     <form id="filters">
         {% for categorie in c %}
         {# On vérifie si la catégorie est dans les paramètres #}
-        {% if queryParams is not empty and queryParams.categories is not empty  %}
+        {% if queryParams is not empty and queryParams.categories is defined  %}
             {% set checked = (categorie.id in queryParams.categories) ? "checked" : "" %}
         {% else %}
             {% set checked = "" %}
@@ -48,10 +48,10 @@
         <input type="hidden" name="page" value="{{pagenum}}">
     </form>
     
-    <div class="col-lg-7 align-self-center"  >
+    <div class="col-lg-7 align-self-center"   >
         <div class="section-title text-center">
          
-            <h6 class="sub-title double-line"><span></span>  Products ( {{ p.getTotalItemCount }} )</h6>
+            <h6 class="sub-title double-line"><span></span>  Products </h6>
             <h2 class="title">Our Popular Products</h2>
             <p class="content">D&R is the Tunisian's number 1 supplier of Car Parts and products for the Drift fans and supporters ! With over 250+ products of hights quality </p>
         </div>
@@ -62,6 +62,7 @@
   <div class="section-full content-inner">
     <!-- Product -->
     <div class="container" id="content">
+        
         <div class="row">
             {% for i in p %}
             <div class="col-lg-3 col-md-4 col-sm-6">
