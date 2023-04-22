@@ -58,10 +58,11 @@ class MarketplaceController extends AbstractController
         $panier = $pr->findOneBy(['user' => $user]);
         $em = $doctrine->getManager() ;
         $produits_par_panier=$lr->findBy(['panier' => $panier]);
-        $verif = true;
+        $verif = false;
       
-       foreach ($produits_par_panier as $p) {  
+        foreach ($produits_par_panier as $p) {  
             if ($p->getProduit() == $produit) {
+              $verif = true;
                 //le produit existe dans le panier --> mettre à jours sa quantité 
                 $form=$this->createForm(LignePanierFormType::class,$p);
                 $form->handleRequest($request);
@@ -69,7 +70,6 @@ class MarketplaceController extends AbstractController
                 $quantite = $form->get('quantite')->getData();
                 if ($quantite <= $stock) {
                 $p->setQuantite($p->getQuantite()+$quantite);
-                $em->persist($p);
                 $em->flush();
                   // Rediriger vers la page d'affichage des produits 
                 return $this->redirectToRoute("app_marketplace");
@@ -77,19 +77,16 @@ class MarketplaceController extends AbstractController
                 else {
                     // Quantité ajoutée supérieure à la quantité en stock, afficher un message d'erreur
                    $this->addFlash('error', 'La quantité ajoutée est supérieure à la quantité en stock.');
-                }
+                     }
             } 
-            else {
-               $verif=false;
-         }
-        }
-     }
+            }
+          }
+          
             if ($verif==false){
                 // Le produit n'est pas encore dans le panier, on crée une nouvelle ligne panier
                 $lignePanier = new Lignepanier();
                 $form=$this->createForm(LignePanierFormType::class,$lignePanier);
                 $form->handleRequest($request);
-                
                   if ($form->isSubmitted() && $form->isValid()) {
                     $quantite = $form->get('quantite')->getData();
                      if ($quantite <= $stock) {

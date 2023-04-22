@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from autocare.dexignlab.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Mar 2023 22:21:24 GMT -->
+<!-- Mirrored from autocare.dexignlab.com/xhtml/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Mar 2023 22:22:25 GMT -->
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -17,22 +17,22 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+	<link rel="icon" href="{{asset('images/favicon.ico"')}} type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" />
 	
 	<!-- PAGE TITLE HERE -->
     {% block titre%}
 	<title>Drift&Race</title>
-	{% endblock %}
+    {% endblock %}
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if lt IE 9]>
-		<script src="js/html5shiv.min.js"></script>
-		<script src="js/respond.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="{{asset('js/html5shiv.min.js')}}"></script>
+		<script src="{{asset('js/respond.min.js')}}"></script>
 	<![endif]-->
-
-	{% block css%}
+		
+    {% block css%}
 	<!-- STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="{{asset('css/style.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/templete.min.css')}}">
@@ -40,248 +40,208 @@
 	<!-- Revolution Slider Css -->
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/revolution/css/settings.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/revolution/css/navigation.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('plugins/revolution/css/layers.css')}}">
     {% endblock %}	
-	
+
 </head>
-<body id="bg"><div id="loading-area"></div>
-<div class="page-wraper">
+<body id="bg"><div id="loading-area" class="loader1"></div>
     {% block header%}
+<div class="page-wraper">
+    
     <!-- header -->
-    <header class="site-header header mo-left header-style-1">
-        <!-- top bar -->
-        <div class="top-bar">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="dlab-topbar-left"> </div>
-                    <div class="dlab-topbar-right">
-                        <ul class="social-bx list-inline float-end">
-                            <li><a class="fab fa-facebook-f" href="{{asset('https://www.facebook.com/')}}" target="blank"></a></li>
-                            <li><a class="fab fa-twitter" href="{{asset('https://twitter.com/')}}" target="blank"></a></li>
-                            <li><a class="fab fa-linkedin-in" href="{{asset('https://www.linkedin.com/')}}" target="blank" ></a></li>
-                            <li><a class="fab fa-google-plus-g" href="{{asset('https://mail.google.com/')}}" target="blank" ></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- top bar END-->
-        <!-- main header -->
-        <div class="sticky-header header-curve main-bar-wraper navbar-expand-lg">
-            <div class="main-bar bg-primary clearfix ">
-                <div class="container clearfix">
-                    <!-- website logo -->
-                    <div class="logo-header logo-white mostion"><a href="index.html"><img src="{{asset('images/logo.png')}}" width="193" height="89" alt=""></a></div>
-                    <!-- nav toggle button -->
-					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-                    <!-- extra nav -->
-                    <div class="extra-nav">
-                        <div class="extra-cell">
-                            <button id="quik-search-btn" type="button" class="site-button bg-primary-dark"><i class="fas fa-search"></i></button>
+    <header class="site-header header header-style-6 style-1 mo-left">
+        <div class="bg-white">
+			<div class="container header-contant-block">
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="logo-header logo-dark"><img src="{{asset('images/logo-black.png')}}" width="193" height="89" alt=""></a></div>
+					</div>
+					<div class="col-lg-8">
+						<ul class="contact-info clearfix">
+							<li>
+								<h6 class="text-primary"><i class="ti-mobile text-primary"></i> Contactez Nous</h6>
+								<span>+216 0800-123456</span> </li>
+							<li>
+								<h6 class="text-primary"><i class="ti-email text-primary"></i> Send us a Mail</h6>
+								<span>drift&race@gmail.com</span> </li>
+							<li>
+								<h6 class="text-primary"><i class="far fa-clock text-primary"></i> Opening Time</h6>
+								<span>Lundi -Vendredi: 7:00 - 17:00</span> </li>
+							<li> 
+								<a class="site-button w-100 radius-sm text-center"> 
+									<h6 class="m-a0 dis-block font-16">Call Toll Free</h6>
+									<p class="m-a0 text-white dis-block">+91 123 456 7890</p>
+								</a> 
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- main header -->
+        <div class="sticky-header main-bar-wraper navbar-expand-lg">
+            <div class="main-bar clearfix ">
+                <div class="navigation-bar">
+                    <div class="container clearfix">
+                        <!-- website logo -->
+                        <div class="logo-header logo-white mostion"><a href="index.html"><img src="{{asset('images/logo-white.png')}}" width="193" height="89" alt=""></a></div>
+						<!-- nav toggle button -->
+						<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+                        <!-- extra nav -->
+                        <div class="extra-nav">
+                            <div class="extra-cell">
+                                <button id="quik-search-btn" type="button" class="site-button"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Quik search -->
-                    <div class="dlab-quik-search bg-primary">
-                        <form action="#">
-                            <input name="search" value="" type="text" class="form-control" placeholder="Type to search">
-                            <span id="quik-search-remove"><i class="fas fa-times"></i></span>
-                        </form>
-                    </div>
-                    <!-- main nav -->
-                    <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-                        <ul class="nav navbar-nav nav-style">
-                            <li class="active"> <a href="{{path('resume')}}">Accueil<i class="fas fa-chevron-down"></i></a>
-                               {#<ul class="sub-menu">
-                                    <li><a href="index.html">Home Car Service</a></li>
-                                    <li><a href="index-2.html">Car Washing</a></li>
-                                    <li><a href="index-3.html">Car Denting Penting</a></li>
-                                    <li><a href="index-4.html">Auto Car Service</a></li>
-									<li><a href="index-5.html">Car Maintenance</a></li>
-									<li><a href="index-6.html">Swiper Home </a></li>
-									<li><a href="index-7.html">Onepage 1 </a></li>
-									<li><a href="index-8.html">Onepage 2 </a></li>
-									<li><a href="index-9.html">Onepage 3 <span class="new-tag">New</span> </a></li>
-                                </ul>#}
-                            </li>
-                            <li> <a href="javascript:;">Évènements<i class="fas fa-chevron-down"></i></a>
-                                {# <ul class="sub-menu">
-                                    <li> <a href="javascript:;">Header <i class="fas fa-angle-right"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="header-style-1.html">Header 1</a></li>
-                                            <li><a href="header-style-2.html">Header 2</a></li>
-                                            <li><a href="header-style-3.html">Header 3</a></li>
-                                            <li><a href="header-style-4.html">Header 4</a></li>
-                                            <li><a href="header-style-5.html">Header 5</a></li>
-											<li><a href="header-style-6.html">Header 6</a></li>
-											<li><a href="header-style-7.html">Header 7</a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Footer <i class="fas fa-angle-right"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="footer-fixed.html">Footer Fixed</a></li>
-                                            <li><a href="footer-white.html">Footer White</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>#}
-                            </li>
-							<li class="has-mega-menu "> <a href="javascript:;">Bon Plans<i class="fas fa-chevron-down"></i></a>
-                                {# <ul class="mega-menu">
-                                    <li> <a href="javascript:;">Pages</a>
-                                        <ul>
-                                            <li><a href="about-1.html">About us 1</a></li>
-                                            <li><a href="about-2.html">About us 2</a></li>
-											<li><a href="faq-1.html">FAQ 1</a></li>
-                                            <li><a href="faq-2.html">FAQ 2</a></li>
-											<li><a href="our-team.html">Our Team</a></li>
-											<li><a href="testimonials.html">testimonials</a></li>
-											<li><a href="career.html">Career</a></li>
-											<li><a href="who-we-are.html">Who we are</a></li>
-											<li><a href="project.html">Project</a></li>
-                                            <li><a href="project-details.html">Project Details</a></li>
-										</ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Pages</a>
-                                        <ul>
-                                            <li><a href="all-service.html">All Service </a></li>
-                                            <li><a href="engine-diagnostics.html">Engine Diagnostics</a>  </li>
-											<li><a href="lube-oil-and-filters.html">Lube Oil And Filters</a>  </li>
-											<li><a href="belts-and-hoses.html">Belts And Hoses</a>  </li>
-											<li><a href="air-conditioning.html">Air Conditioning</a> </li>
-											<li><a href="brake-repair.html">Brake Repair</a> </li>
-											<li><a href="tire-and-wheel-services.html">Tire And Wheel Services</a> </li>
-											<li><a href="service-car-cleaning.html">Car Cleaning</a></li>
-											<li><a href="service-car-services.html">Car Services</a></li>
-											<li><a href="service-car-wrapping.html">Car Wrapping</a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Pages</a>
-                                        <ul>
-                                            <li><a href="service-dent-paint.html">Car Dent Paint</a></li>
-											<li><a href="services-1.html">Services 1 </a></li>
-											<li><a href="services-2.html">Services 2</a></li>
-											<li><a href="services-3.html">Services 3</a></li>
-											<li><a href="portfolio-1.html">Portfolio 1</a></li>
-                                            <li><a href="portfolio-2.html">Portfolio 2</a></li>
-                                            <li><a href="portfolio-3.html">Portfolio 3</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
-											<li><a href="full-page-gallery-dark.html">Gallery Full Page Style 1</a></li>
-											<li><a href="full-page-gallery-light.html">Gallery Full Page Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Pages</a>
-                                        <ul>
-                                            <li><a href="gallery-grid-2.html">Gallery Grid 2</a></li>
-                                            <li><a href="gallery-grid-3.html">Gallery Grid 3</a></li>
-                                            <li><a href="gallery-grid-4.html">Gallery Grid 4</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-											<li><a href="coming-soon-1.html">Coming Soon 1</a></li>
-											<li><a href="coming-soon-2.html">Coming Soon 2</a></li>
-											<li><a href="login-1.html">Login 1</a></li>
-											<li><a href="login-2.html">Login 2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>#}
-                            </li>
-                            <li> <a href="javascript:;">Boutique<i class="fas fa-chevron-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{path('app_marketplace')}}">Produits</a></li>
-                                    <li><a href="{{path('app_Affichepanier')}}">Panier</a></li>
-                                </ul>
-                            </li>
-                            <li> <a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i></a>
-                                {#<ul class="sub-menu">
-                                    <li> <a href="javascript:;">Default <i class="fas fa-angle-right"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-half-img.html">Half image</a></li>
-                                            <li><a href="blog-half-img-sidebar.html">Half image sidebar</a></li>
-                                            <li><a href="blog-half-img-left-sidebar.html">Half image sidebar left</a></li>
-                                            <li><a href="blog-large-img.html">Large image</a></li>
-                                            <li><a href="blog-large-img-sidebar.html">Large image sidebar</a></li>
-                                            <li><a href="blog-large-img-left-sidebar.html">Large image sidebar left</a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Grid <i class="fas fa-angle-right"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-grid-2.html">Grid 2</a></li>
-                                            <li><a href="blog-grid-2-sidebar.html">Grid 2 sidebar</a></li>
-                                            <li><a href="blog-grid-2-sidebar-left.html">Grid 2 sidebar left</a></li>
-                                            <li><a href="blog-grid-3.html">Grid 3</a></li>
-                                            <li><a href="blog-grid-3-sidebar.html">Grid 3 sidebar</a></li>
-                                            <li><a href="blog-grid-3-sidebar-left.html">Grid 3 sidebar left</a></li>
-                                            <li><a href="blog-grid-4.html">Grid 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Single <i class="fas fa-angle-right"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-single.html">Single</a></li>
-                                            <li><a href="blog-single-sidebar.html">Single sidebar</a></li>
-                                            <li><a href="blog-single-left-sidebar.html">Single sidebar right</a></li>
-                                        </ul>
-                                    </li>
-									<li> <a href="javascript:;">Full Page Blog <i class="fas fa-angle-right"></i></a>
-										<ul class="sub-menu">
-											<li><a href="blog-full-grid-dark-style-1.html">Dark Style 1</a></li>
-											<li><a href="blog-full-grid-dark-style-2.html">Dark Style 2</a></li>
-											<li><a href="blog-full-grid-dark-style-3.html">Dark Style 3</a></li>
-											<li><a href="blog-full-grid-light-style-1.html">Light Style 1</a></li>
-											<li><a href="blog-full-grid-light-style-2.html">Light Style 2</a></li>
-											<li><a href="blog-full-grid-light-style-3.html">Light Style 3</a></li>
-										</ul>
-									</li>
-                                </ul>#}
-                            </li>
-                            <li class="has-mega-menu "> <a href="javascript:;">Blog<i class="fas fa-chevron-down"></i></a>
-                                {# <ul class="mega-menu">
-                                    <li> <a href="javascript:;">Shortcodes</a>
-                                        <ul>
-                                            <li><a href="shortcode-buttons.html">Buttons </a></li>
-                                            <li><a href="shortcode-icon-box-styles.html">Icon box styles</a></li>
-                                            <li><a href="shortcode-pricing-table.html">Pricing table</a></li>
-                                            <li><a href="shortcode-toggles.html">Toggles</a></li>
-                                            <li><a href="shortcode-team.html">Team </a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Shortcodes</a>
-                                        <ul>
-                                            <li><a href="shortcode-carousel-sliders.html">Carousel sliders</a></li>
-                                            <li><a href="shortcode-image-box-content.html">Image box content</a></li>
-                                            <li><a href="shortcode-tabs.html">Tabs</a></li>
-                                            <li><a href="shortcode-counters.html">Counters</a></li>
-                                            <li><a href="shortcode-magnific-popup.html">Magnific Gallery </a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Shortcodes</a>
-                                        <ul>
-                                            <li><a href="shortcode-accordians.html">Accordians</a></li>
-                                            <li><a href="shortcode-dividers.html">Dividers</a></li>
-                                            <li><a href="shortcode-images-effects.html">Images effects</a></li>
-                                            <li><a href="shortcode-testimonials.html">Testimonials </a></li>
-                                            <li><a href="shortcode-light-box.html">Light Gallery </a></li>
-                                        </ul>
-                                    </li>
-                                    <li> <a href="javascript:;">Shortcodes</a>
-                                        <ul>
-                                            <li><a href="shortcode-alert-box.html">Alert box</a></li>
-                                            <li><a href="shortcode-icon-box.html">Icon-box</a></li>
-                                            <li><a href="shortcode-list-group.html">List group</a></li>
-                                            <li><a href="shortcode-title-separators.html">title-separators</a></li>
-                                            <li><a href="shortcode-all-widgets.html">Widgets</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>#}
-                            </li>
-                            <li> <a href="javascript:;">Mon Compte <i class="fas fa-chevron-down"></i></a>
-                                {# <ul class="sub-menu">
-                                    <li><a href="contact.html">Contact us 1</a></li>
-                                    <li><a href="contact-2.html">Contact us 2</a></li>
-                                    <li><a href="contact-3.html">Contact us 3</a></li>
-                                    <li><a href="contact-4.html">Contact us 4</a></li>
-                                </ul>#}
-                            </li>
-                        </ul>
+                        <!-- Quik search -->
+                        <div class="dlab-quik-search bg-primary">
+                            <form action="#">
+                                <input name="search" value="" type="text" class="form-control" placeholder="Type to search">
+                                <span  id="quik-search-remove"><i class="fas fa-times"></i></span>
+                            </form>
+                        </div>
+                        <!-- main nav -->
+                        <div class="header-nav navbar-collapse collapse nav-dark justify-content-start" id="navbarNavDropdown">
+                            <ul class="nav navbar-nav">
+								<li class="active"> <a href="{{path('resume')}}">Accueil<i class="fas fa-chevron-down"></i></a>
+								</li>
+								<li> <a href="">Évènements<i class="fas fa-chevron-down"></i></a>
+									{#<ul class="sub-menu">
+										<li> <a href="javascript:;">Header <i class="fas fa-angle-right"></i></a>
+											<ul class="sub-menu">
+												<li><a href="header-style-1.html">Header 1</a></li>
+												<li><a href="header-style-2.html">Header 2</a></li>
+												<li><a href="header-style-3.html">Header 3</a></li>
+												<li><a href="header-style-4.html">Header 4</a></li>
+												<li><a href="header-style-5.html">Header 5</a></li>
+												<li><a href="header-style-6.html">Header 6</a></li>
+												<li><a href="header-style-7.html">Header 7</a></li>
+											</ul>
+										</li>
+										<li> <a href="">Footer <i class="fas fa-angle-right"></i></a>
+											<ul class="sub-menu">
+												<li><a href="footer-fixed.html">Footer Fixed</a></li>
+											</ul>
+										</li>
+									</ul>#}
+								</li>
+								<li class="has-mega-menu "> <a href="javascript:;">Bon Plans<i class="fas fa-chevron-down"></i></a>
+									{#<ul class="mega-menu">
+										<li> <a href="javascript:;">Pages</a>
+											<ul>
+												<li><a href="about-1.html">About us 1</a></li>
+												<li><a href="about-2.html">About us 2</a></li>
+												<li><a href="faq-1.html">FAQ 1</a></li>
+												<li><a href="faq-2.html">FAQ 2</a></li>
+												<li><a href="our-team.html">Our Team</a></li>
+												<li><a href="testimonials.html">testimonials</a></li>
+												<li><a href="career.html">Career</a></li>
+												<li><a href="who-we-are.html">Who we are</a></li>
+												<li><a href="project.html">Project</a></li>
+												<li><a href="project-details.html">Project Details</a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Pages</a>
+											<ul>
+												<li><a href="all-service.html">All Service </a></li>
+												<li><a href="engine-diagnostics.html">Engine Diagnostics</a>  </li>
+												<li><a href="lube-oil-and-filters.html">Lube Oil And Filters</a>  </li>
+												<li><a href="belts-and-hoses.html">Belts And Hoses</a>  </li>
+												<li><a href="air-conditioning.html">Air Conditioning</a> </li>
+												<li><a href="brake-repair.html">Brake Repair</a> </li>
+												<li><a href="tire-and-wheel-services.html">Tire And Wheel Services</a> </li>
+												<li><a href="service-car-cleaning.html">Car Cleaning</a></li>
+												<li><a href="service-car-services.html">Car Services</a></li>
+												<li><a href="service-car-wrapping.html">Car Wrapping</a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Pages</a>
+											<ul>
+												<li><a href="service-dent-paint.html">Car Dent Paint</a></li>
+												<li><a href="services-1.html">Services 1 </a></li>
+												<li><a href="services-2.html">Services 2</a></li>
+												<li><a href="services-3.html">Services 3</a></li>
+												<li><a href="portfolio-1.html">Portfolio 1</a></li>
+												<li><a href="portfolio-2.html">Portfolio 2</a></li>
+												<li><a href="portfolio-3.html">Portfolio 3</a></li>
+												<li><a href="portfolio-details.html">Portfolio Details</a></li>
+												<li><a href="full-page-gallery-dark.html">Gallery Full Page Style 1</a></li>
+												<li><a href="full-page-gallery-light.html">Gallery Full Page Style 2</a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Pages</a>
+											<ul>
+												<li><a href="gallery-grid-2.html">Gallery Grid 2</a></li>
+												<li><a href="gallery-grid-3.html">Gallery Grid 3</a></li>
+												<li><a href="gallery-grid-4.html">Gallery Grid 4</a></li>
+												<li><a href="error-404.html">Error 404</a></li>
+												<li><a href="coming-soon-1.html">Coming Soon 1</a></li>
+												<li><a href="coming-soon-2.html">Coming Soon 2</a></li>
+												<li><a href="login-1.html">Login 1</a></li>
+												<li><a href="login-2.html">Login 2</a></li>
+											</ul>
+										</li>
+									</ul>#}
+								</li>
+								<li> <a href="{{path('app_marketplace')}}">Boutique<i class="fas fa-chevron-down"></i></a>
+								</li>
+								<li> <a href="{{path('app_Affichepanier')}}">Panier<i class="fas fa-chevron-down"></i></a>
+									
+								</li>
+								<li class="has-mega-menu "> <a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i></a>
+									{#<ul class="mega-menu">
+										<li> <a href="javascript:;">Shortcodes</a>
+											<ul>
+												<li><a href="shortcode-buttons.html">Buttons </a></li>
+												<li><a href="shortcode-icon-box-styles.html">Icon box styles</a></li>
+												<li><a href="shortcode-pricing-table.html">Pricing table</a></li>
+												<li><a href="shortcode-toggles.html">Toggles</a></li>
+												<li><a href="shortcode-team.html">Team </a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Shortcodes</a>
+											<ul>
+												<li><a href="shortcode-carousel-sliders.html">Carousel sliders</a></li>
+												<li><a href="shortcode-image-box-content.html">Image box content</a></li>
+												<li><a href="shortcode-tabs.html">Tabs</a></li>
+												<li><a href="shortcode-counters.html">Counters</a></li>
+												<li><a href="shortcode-magnific-popup.html">Magnific Gallery </a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Shortcodes</a>
+											<ul>
+												<li><a href="shortcode-accordians.html">Accordians</a></li>
+												<li><a href="shortcode-dividers.html">Dividers</a></li>
+												<li><a href="shortcode-images-effects.html">Images effects</a></li>
+												<li><a href="shortcode-testimonials.html">Testimonials </a></li>
+												<li><a href="shortcode-light-box.html">Light Gallery </a></li>
+											</ul>
+										</li>
+										<li> <a href="javascript:;">Shortcodes</a>
+											<ul>
+												<li><a href="shortcode-alert-box.html">Alert box</a></li>
+												<li><a href="shortcode-icon-box.html">Icon-box</a></li>
+												<li><a href="shortcode-list-group.html">List group</a></li>
+												<li><a href="shortcode-title-separators.html">title-separators</a></li>
+												<li><a href="shortcode-all-widgets.html">Widgets</a></li>
+											</ul>
+										</li>
+									</ul>#}
+								</li>
+								<li> <a href="javascript:;">Blog <i class="fas fa-chevron-down"></i></a>
+									{#<ul class="sub-menu">
+										<li><a href="contact.html">Contact us 1</a></li>
+										<li><a href="contact-2.html">Contact us 2</a></li>
+										<li><a href="contact-3.html">Contact us 3</a></li>
+										<li><a href="contact-4.html">Contact us 4</a></li>
+									</ul>#}
+								</li>
+							</ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,880 +254,1040 @@
     {% block body %}
     <div class="page-content">
         <!-- Slider -->
-        <div class="main-slider style-two default-banner">
+        <div class="main-slider style-two default-banner" id="home">
             <div class="tp-banner-container">
                 <div class="tp-banner" >
-                    <div id="rev_slider_1014_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="typewriter-effect" data-source="gallery">
-                        <!-- START REVOLUTION SLIDER 5.3.0.2 -->
-                        <div id="rev_slider_1014_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.3.0.2">
-                            <ul>
-                                <!-- SLIDE 1 -->
-                                <li data-index="rs-1000" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/main-slider/slide1.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                                    <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slide1.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina/>
-                                    <!-- LAYER NR. 1 [ for overlay ] -->
-                                    <div class="tp-caption tp-shape tp-shapewrapper " 
-										id="slide-100-layer-1" 
+					<div id="rev_slider_1077_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="scroll-effect136" data-source="gallery" style="background-color:#111111;padding:0px;">
+						<!-- START REVOLUTION SLIDER 5.3.0.2 fullscreen mode -->
+						<div id="rev_slider_1077_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.3.0.2">
+							<ul>	
+								<!-- SLIDE  -->
+								<li data-index="rs-3042" data-transition="fadeIn" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slide4.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+									<!-- MAIN IMAGE -->
+									<img src="{{asset('images/main-slider/slide4.jpg')}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+									<!-- LAYERS -->
+									
+									<!-- LAYER NR. 1 -->
+									<div class="tp-caption tp-shape tp-shapewrapper  " 
+										id="slide-3042-layer-11" 
 										data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-										data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" 
 										data-width="full"
-										data-height="full"
+										data-height="['400','400','400','550']"
 										data-whitespace="nowrap"
 										data-type="shape" 
 										data-basealign="slide" 
 										data-responsive_offset="off" 
 										data-responsive="off"
-										data-frames='[{"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}]'
+										data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
 										data-textAlign="['left','left','left','left']"
 										data-paddingtop="[0,0,0,0]"
 										data-paddingright="[0,0,0,0]"
 										data-paddingbottom="[0,0,0,0]"
 										data-paddingleft="[0,0,0,0]"
-										style="z-index: 12;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);border-width:0px;"> 
+										style="z-index: 5;text-transform:left;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);border-width:0px;background:linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%);cursor:default;"> 
 									</div>
 									
-									<!-- LAYER NR. 2 [ for title ] -->
-									<div class="tp-caption tp-resizeme" 
-										id="slide-100-layer-2" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['150','110','110','70']" 
-										data-fontsize="['55','55','55','36']"
-										data-lineheight="['60','60','60','46']"
-										data-width="['800','800','800','800']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
+									<!-- LAYER NR. 2 -->
+									<div class="tp-caption BigBold-Title tp-resizeme" 
+										id="slide-3042-layer-1" 
+										data-x="['left','left','left','left']" data-hoffset="['50','50','30','17']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['110','110','150','140']" 
+										data-fontsize="['110','100','70','50']"
+										data-lineheight="['100','90','60','60']"
+										data-width="['none','none','none','400']"
+										data-height="none"
+										data-whitespace="['nowrap','nowrap','nowrap','normal']"
 										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":1500,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]'
 										data-textAlign="['left','left','left','left']"
-										data-paddingtop="[0,0,0,0]"
+										data-paddingtop="[10,10,10,10]"
 										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
+										data-paddingbottom="[10,10,10,10]"
 										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13; white-space: normal; font-size: 60px; line-height: 60px; font-weight: 700; color: rgba(255, 255, 255, 1.00); border-width:0px;"> 
-										<span class="text-uppercase" style="font-family: 'Poppins',sans-serif;">MAKE YOUR CAR <br/> LAST LONGER</span> 
-									</div>
-									
-									<!-- LAYER NR. 3 [ for paragraph] -->
-									<div class="tp-caption tp-resizeme" 
-										id="slide-100-layer-3" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['300','250','250','190']" 
-										data-fontsize="['20','20','20','20']"
-										data-lineheight="['30','30','30','30']"
-										data-width="['800','800','700','420']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
-										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
-										data-textAlign="['left','left','left','left']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13; font-weight: 500; color: rgba(255, 255, 255, 0.85); border-width:0px;"> 
-											<span> There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took a galley of type and scrambled </span> 
-									</div>
-									
-									<!-- LAYER NR. 4 [ for readmore botton ] -->
-									<div class="tp-caption tp-resizeme" 	
-										id="slide-100-layer-4"						
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['420','370','370','370']" 
-										data-fontsize="['none','none','none','none']"
-										data-lineheight="['none','none','none','none']"
-										data-width="['700','700','700','700']"
-										data-height="['none','none','none','none']"
-										data-fontweight="['700','700','700','700']"
-										data-whitespace="['normal','normal','normal','normal']"
-										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
-										data-textAlign="['left','left','left','left']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13;">
-										<a href="about-1.html" class="site-button button-skew"><span>Read More</span><i class="fas fa-angle-right"></i></a>
-									</div>
-                                </li>
-                                <!-- SLIDE 2 -->
-                                <li data-index="rs-2000" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="images/main-slider/slide2.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                                    <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slide2.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina/>
-                                    <!-- LAYERS -->
-                                    <!-- LAYER NR. 1 [ for overlay ] -->
-                                    <div class="tp-caption tp-shape tp-shapewrapper " 
-									id="slide-200-layer-1" 
-									data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-									data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
-									data-width="full"
-									data-height="full"
-									data-whitespace="nowrap"
-									data-type="shape" 
-									data-basealign="slide" 
-									data-responsive_offset="off" 
-									data-responsive="off"
-									data-frames='[{"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}]'
-									data-textAlign="['left','left','left','left']"
-									data-paddingtop="[0,0,0,0]"
-									data-paddingright="[0,0,0,0]"
-									data-paddingbottom="[0,0,0,0]"
-									data-paddingleft="[0,0,0,0]"
-									
-									style="z-index: 12;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);border-width:0px;"> </div>
-                                    <!-- LAYER NR. 2 [ for title ] -->
-									<div class="tp-caption tp-resizeme" 
-										id="slide-200-layer-2" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['150','110','110','70']" 
-										data-fontsize="['55','55','55','36']"
-										data-lineheight="['60','60','60','46']"
-										data-width="['800','800','800','800']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
-
-										data-type="text" 
-										data-responsive_offset="on" 
-										data-frames='[{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
-										data-textAlign="['left','left','left','left']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-
-										style="z-index: 13; white-space: normal; font-size: 60px; line-height: 60px; font-weight: 700; color: rgba(255, 255, 255, 1.00); border-width:0px;"> <span class="text-uppercase" style="font-family: 'Poppins',sans-serif;">FIND YOUR <br/> NEXT MATCH</span> 
+										style="z-index: 6; white-space: nowrap;text-transform:left;">CAR WASHING
 									</div>
 
-                                    <!-- LAYER NR. 3 [ for paragraph] -->
-                                    <div class="tp-caption tp-resizeme" 
-									id="slide-200-layer-3" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['300','250','250','190']" 
-										data-fontsize="['20','20','20','20']"
-										data-lineheight="['30','30','30','30']"
-										data-width="['800','800','700','420']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
+									<!-- LAYER NR. 3 -->
+									<div class="tp-caption BigBold-SubTitle  " 
+										id="slide-3042-layer-4" 
+										data-x="['left','left','left','left']" data-hoffset="['55','55','33','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['40','40','40','40']" 
+										data-fontsize="['15','15','15','13']"
+										data-lineheight="['24','24','24','20']"
+										data-width="['410','410','410','280']"
+										data-height="['60','100','100','100']"
+										data-whitespace="normal"
 										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]'
 										data-textAlign="['left','left','left','left']"
 										data-paddingtop="[0,0,0,0]"
 										data-paddingright="[0,0,0,0]"
 										data-paddingbottom="[0,0,0,0]"
 										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13; font-weight: 500; color: rgba(255, 255, 255, 0.85); border-width:0px;"> 
-										<span>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled </span> 
+										style="z-index: 7; min-width: 410px; max-width: 410px; max-width: 60px; max-width: 60px; white-space: normal; text-transform:left;">A Premium Revolution Slider Template for your Website Highlights & Multi-Media Content. 
 									</div>
-									
-                                    <!-- LAYER NR. 4 [ for readmore botton ] -->
-                                    <div class="tp-caption tp-resizeme" 	
-										id="slide-200-layer-4"						
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['420','370','370','370']" 
-										data-fontsize="['none','none','none','none']"
-										data-lineheight="['none','none','none','none']"
-										data-width="['700','700','700','700']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
-										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[ 
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+
+									<!-- LAYER NR. 4 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3042-layer-7" 
+										data-x="['left','left','left','left']" data-hoffset="['480','480','30','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']" 
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
 										data-textAlign="['left','left','left','left']"
-										data-paddingtop="[0,0,0,0]"
-										data-paddingright="[0,0,0,0]"
-										data-paddingbottom="[0,0,0,0]"
-										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13;"><a href="about-2.html" class="site-button  button-skew"><span>Read More</span><i class="fas fa-angle-right"></i></a> 
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[50,50,50,50]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[50,50,50,50]"
+										style="z-index: 8; white-space: nowrap; text-transform:left; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">READ MORE
+									</div>
+
+									<!-- LAYER NR. 5 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3042-layer-12" 
+										data-x="['left','left','left','left']" data-hoffset="['676','676','226','216']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']" 
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[20,20,20,20]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[20,20,20,20]"
+										style="z-index: 9; white-space: nowrap; text-transform:left; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">
+										<i class="fas fa-chevron-right"></i> 
 									</div>
 								</li>
-                                <!-- SLIDE 3 -->
-                                <li data-index="rs-3000" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slide3.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                                    <!-- MAIN IMAGE -->
-                                    <img src="images/main-slider/slide3.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina/>
-                                    <!-- LAYERS -->
-                                    <!-- LAYER NR. 1 [ for overlay ] -->
-                                    <div class="tp-caption tp-shape tp-shapewrapper " 
-									id="slide-300-layer-1" 
-									data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
-									data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','0']" 
-									data-width="full"
-									data-height="full"
-									data-whitespace="nowrap"
-									data-type="shape" 
-									data-basealign="slide" 
-									data-responsive_offset="off" 
-									data-responsive="off"
-									data-frames='[{"from":"opacity:0;","speed":1000,"to":"o:1;","delay":0,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"Power4.easeOut"}]'
-									data-textAlign="['left','left','left','left']"
-									data-paddingtop="[0,0,0,0]"
-									data-paddingright="[0,0,0,0]"
-									data-paddingbottom="[0,0,0,0]"
-									data-paddingleft="[0,0,0,0]"
-									
-									style="z-index: 12;background-color:rgba(0, 0, 0, 0.50);border-color:rgba(0, 0, 0, 0);border-width:0px;"> </div>
-                                    <!-- LAYER NR. 2 [ for title ] -->
-                                    <div class="tp-caption tp-resizeme" 
-										id="slide-300-layer-2" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['150','110','110','70']" 
-										data-fontsize="['55','55','55','36']"
-										data-lineheight="['60','60','60','46']"
-										data-width="['800','800','800','800']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
+								
+								<!-- SLIDE  -->
+								<li data-index="rs-3043" data-transition="fadeIn" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slide5.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+									<!-- MAIN IMAGE -->
+									<img src="{{asset('images/main-slider/slide5.jpg')}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+									<!-- LAYERS -->
 
-										data-type="text" 
-										data-responsive_offset="on" 
-										data-frames='[{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+									<!-- BACKGROUND VIDEO LAYER -->
+									<div class="rs-background-video-layer" 
+										data-forcerewind="on" 
+										data-volume="mute" 
+										data-videowidth="100%" 
+										data-videoheight="100%" 
+										data-videomp4="../../assets/videos/typing.mp4" 
+										data-videopreload="auto" 
+										data-videostartat="00:04" 
+										data-videoloop="loop" 
+										data-forceCover="1" 
+										data-aspectratio="16:9" 
+										data-autoplay="true" 
+										data-autoplayonlyfirsttime="false">
+									</div>
+								
+									<!-- LAYER NR. 6 -->
+									<div class="tp-caption tp-shape tp-shapewrapper  " 
+										id="slide-3043-layer-11" 
+										data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" 
+										data-width="full"
+										data-height="['400','400','400','550']"
+										data-whitespace="nowrap"
+										data-type="shape" 
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
 										data-textAlign="['left','left','left','left']"
 										data-paddingtop="[0,0,0,0]"
 										data-paddingright="[0,0,0,0]"
 										data-paddingbottom="[0,0,0,0]"
 										data-paddingleft="[0,0,0,0]"
-
-										style="z-index: 13; white-space: normal; font-size: 60px; line-height: 60px; font-weight: 700; color: rgba(255, 255, 255, 1.00); border-width:0px;"> <span class="text-uppercase" style="font-family: 'Poppins',sans-serif;">FIND YOUR <br/> DREAM CAR</span> 
+										style="z-index: 10; text-transform:left; background-color:rgba(0, 0, 0, 0.50); border-color:rgba(0, 0, 0, 0); border-width:0px; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%); cursor:default;"> 
 									</div>
 
-                                    <!-- LAYER NR. 3 [ for paragraph] -->
-                                    <div class="tp-caption tp-resizeme" 
-										id="slide-300-layer-3" 
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['300','250','250','190']" 
-										data-fontsize="['20','20','20','20']"
-										data-lineheight="['30','30','30','30']"
-										data-width="['800','800','700','420']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
+									<!-- LAYER NR. 7 -->
+									<div class="tp-caption BigBold-Title tp-resizeme" 
+										id="slide-3043-layer-1" 
+										data-x="['left','left','left','left']" data-hoffset="['50','50','30','17']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['110','110','150','140']" 
+										data-fontsize="['110','100','70','50']"
+										data-lineheight="['100','90','60','60']"
+										data-width="['none','none','none','400']"
+										data-height="none"
+										data-whitespace="['nowrap','nowrap','nowrap','normal']"
 										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[10,10,10,10]"
+										data-paddingright="[0,0,0,0]"
+										data-paddingbottom="[10,10,10,10]"
+										data-paddingleft="[0,0,0,0]"
+										style="z-index: 11; white-space: nowrap; text-transform:left;">GIVE YOUR CAR
+									</div>
+
+									<!-- LAYER NR. 8 -->
+									<div class="tp-caption BigBold-SubTitle"
+										id="slide-3043-layer-4" 
+										data-x="['left','left','left','left']" data-hoffset="['55','55','33','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['40','40','40','40']" 
+										data-fontsize="['15','15','15','13']"
+										data-lineheight="['24','24','24','20']"
+										data-width="['410','410','410','280']"
+										data-height="['60','100','100','100']"
+										data-whitespace="normal"
+										data-type="text" 
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]'
 										data-textAlign="['left','left','left','left']"
 										data-paddingtop="[0,0,0,0]"
 										data-paddingright="[0,0,0,0]"
 										data-paddingbottom="[0,0,0,0]"
 										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13; font-weight: 500; color: rgba(255, 255, 255, 0.85); border-width:0px;"> 
-										<span>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the  when an unknown printer took a galley of type and scrambled </span> 
+										style="z-index: 12; min-width: 410px; max-width: 410px; max-width: 60px; max-width: 60px; white-space: normal; text-transform:left;">You can Download this Premium Slider for Free if you Activate your Copy of Slider Revolution. 
 									</div>
-									
-                                    <!-- LAYER NR. 4 [ for readmore botton ] -->
-                                    <div class="tp-caption tp-resizeme" 	
-										id="slide-300-layer-4"						
-										data-x="['left','left','left','left']" data-hoffset="['30','30','30','30']" 
-										data-y="['top','top','top','top']" data-voffset="['420','370','370','370']" 
-										data-fontsize="['none','none','none','none']"
-										data-lineheight="['none','none','none','none']"
-										data-width="['700','700','700','700']"
-										data-height="['none','none','none','none']"
-										data-whitespace="['normal','normal','normal','normal']"
-										data-type="text" 
-										data-responsive_offset="on"
-										data-frames='[ 
-										{"from":"y:50px(R);opacity:0;","speed":1500,"to":"o:1;","delay":500,"ease":"Power4.easeOut"},
-										{"delay":"wait","speed":1000,"to":"y:-50px;opacity:0;","ease":"Power2.easeInOut"}]'
+
+									<!-- LAYER NR. 9 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3043-layer-7" 
+										data-x="['left','left','left','left']" data-hoffset="['480','480','30','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']" 
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[50,50,50,50]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[50,50,50,50]"
+										style="z-index: 13; white-space: nowrap; text-transform:left; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">READ MORE 
+									</div>
+
+									<!-- LAYER NR. 10 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3043-layer-12" 
+										data-x="['left','left','left','left']" data-hoffset="['676','676','226','216']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']" 
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[20,20,20,20]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[20,20,20,20]"
+										style="z-index: 14; white-space: nowrap; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">
+										<i class="fas fa-chevron-right"></i> 
+									</div>
+								</li>
+								<!-- SLIDE  -->
+								<li data-index="rs-3044" data-transition="fadeIn" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="images/main-slider/slide6.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+									<!-- MAIN IMAGE -->
+									<img src="{{asset('images/main-slider/slide6.jpg')}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+									<!-- LAYERS -->
+
+									<!-- LAYER NR. 11 -->
+									<div class="tp-caption tp-shape tp-shapewrapper" 
+										id="slide-3044-layer-11" 
+										data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']" 
+										data-width="full"
+										data-height="['400','400','400','550']"
+										data-whitespace="nowrap"
+										data-type="shape" 
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"opacity:0;","speed":1500,"to":"o:1;","delay":0,"ease":"Power2.easeInOut"},{"delay":"wait","speed":1000,"to":"opacity:0;","ease":"nothing"}]'
 										data-textAlign="['left','left','left','left']"
 										data-paddingtop="[0,0,0,0]"
 										data-paddingright="[0,0,0,0]"
 										data-paddingbottom="[0,0,0,0]"
 										data-paddingleft="[0,0,0,0]"
-										style="z-index: 13;"><a href="about-1.html" class="site-button   button-skew"><span>Read More</span><i class="fas fa-angle-right"></i></a> 
+										style="z-index: 15; background-color:rgba(0, 0, 0, 0.50); border-color:rgba(0, 0, 0, 0); border-width:0px; background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%); cursor:default;"> 
 									</div>
-                                </li>
-                            </ul>
-                            <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
-                        </div>
-                    </div>
-                    <!-- END REVOLUTION SLIDER -->
-                </div>
-            </div>
-        </div>
-        <!-- Slider END -->
-        <!-- meet & ask -->
-        <div class="section-full z-index100 meet-ask-outer bg-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 meet-ask-row p-tb30">
-                        <div class="row d-flex">
-                            <div class="col-lg-6">
-                                <div class="icon-bx-wraper clearfix text-white left">
-                                    <div class="icon-xl "> <span class=" icon-cell"><i class="ti-home"></i></span> </div>
-                                    <div class="icon-content">
-                                        <h3 class="dlab-tilte text-uppercase m-b10">Meet & Ask</h3>
-                                        <p>Lorem Ipsum is simply dummy text the printing and industry dummy Ipsum  </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 m-t20">
-								<a href="contact.html" class="site-button-secondry button-skew m-l10">
-								<span>Contact Us</span><i class="fas fa-angle-right"></i></a>
-								<a href="#" class="site-button-secondry button-skew m-l20">
-								<span>View more</span><i class="fas fa-angle-right"></i></a>
+
+									<!-- LAYER NR. 12 -->
+									<div class="tp-caption BigBold-Title tp-resizeme" 
+										id="slide-3044-layer-1" 
+										data-x="['left','left','left','left']" data-hoffset="['50','50','30','17']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['110','110','150','140']" 
+										data-fontsize="['110','100','70','50']"
+										data-lineheight="['100','90','60','60']"
+										data-width="['none','none','none','400']"
+										data-height="none"
+										data-whitespace="['nowrap','nowrap','nowrap','normal']"
+										data-type="text" 
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];","speed":1500,"to":"o:1;","delay":500,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:[100%];","mask":"x:inherit;y:inherit;","ease":"Power2.easeInOut"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[10,10,10,10]"
+										data-paddingright="[0,0,0,0]"
+										data-paddingbottom="[10,10,10,10]"
+										data-paddingleft="[0,0,0,0]"
+										style="z-index: 16; white-space: nowrap;">THE BEST TREAT
+									</div>
+
+									<!-- LAYER NR. 13 -->
+									<div class="tp-caption BigBold-SubTitle  " 
+										id="slide-3044-layer-4" 
+										data-x="['left','left','left','left']" data-hoffset="['55','55','33','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['40','40','40','40']" 
+										data-fontsize="['15','15','15','13']"
+										data-lineheight="['24','24','24','20']"
+										data-width="['410','410','410','280']"
+										data-height="['60','100','100','100']"
+										data-whitespace="normal"
+										data-type="text" 
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[0,0,0,0]"
+										data-paddingright="[0,0,0,0]"
+										data-paddingbottom="[0,0,0,0]"
+										data-paddingleft="[0,0,0,0]"
+										style="z-index: 17; min-width: 410px; max-width: 410px; max-width: 60px; max-width: 60px; white-space: normal;">This Premium Revolution Slider Template Features an Exclusive Scroll Effect. Get it Now! 
+									</div>
+
+									<!-- LAYER NR. 14 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3044-layer-7" 
+										data-x="['left','left','left','left']" data-hoffset="['480','480','30','20']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']"
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[50,50,50,50]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[50,50,50,50]"
+										style="z-index: 18; white-space: nowrap; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">READ MORE 
+									</div>
+
+									<!-- LAYER NR. 15 -->
+									<div class="tp-caption BigBold-Button rev-btn " 
+										id="slide-3044-layer-12" 
+										data-x="['left','left','left','left']" data-hoffset="['676','676','226','216']" 
+										data-y="['bottom','bottom','bottom','bottom']" data-voffset="['50','50','30','20']" 
+										data-width="none"
+										data-height="none"
+										data-whitespace="nowrap"
+										data-type="button" 
+										data-actions='[{"event":"click","action":"jumptoslide","slide":"next","delay":""}]'
+										data-basealign="slide" 
+										data-responsive_offset="off" 
+										data-responsive="off"
+										data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","speed":1500,"to":"o:1;","delay":650,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"y:50px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"300","ease":"Power1.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(255, 255, 255, 1.00);bc:rgba(255, 255, 255, 1.00);bw:1px 1px 1px 1px;"}]'
+										data-textAlign="['left','left','left','left']"
+										data-paddingtop="[15,15,15,15]"
+										data-paddingright="[20,20,20,20]"
+										data-paddingbottom="[15,15,15,15]"
+										data-paddingleft="[20,20,20,20]"
+										style="z-index: 19; white-space: nowrap; border-color:rgba(255, 255, 255, 0.25); outline:none; box-shadow:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; cursor:pointer;">
+										<i class="fas fa-chevron-right"></i> 
+									</div>
+								</li>
+							</ul>
+							<div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>	
+						</div>
+					</div>    
+				</div>        
+			</div>        
+		</div>        
+		<!-- Slider END -->
+        <!-- About Us -->
+        <div class="section-full about-us bg-white content-inner-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="dlab-tabs vertical">
+							<ul class="nav nav-tabs">
+								<li class="nav-item">
+									<a data-bs-toggle="tab" class="nav-link active" href="#about" aria-expanded="true">
+										<h4>About Us</h4>
+										<span>Company Overview</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a data-bs-toggle="tab" class="nav-link" href="#history" aria-expanded="false">
+										<h4>Car Washing</h4>
+										<span>Defening Milestones</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a data-bs-toggle="tab" class="nav-link" href="#processing" aria-expanded="false">
+										<h4>Exterior Cleaning</h4>
+										<span>Defening Milestones</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a data-bs-toggle="tab" class="nav-link" href="#technology" aria-expanded="false">
+										<h4>Car Polish</h4>
+										<span>Innovation & Adoption</span>
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="about" class="tab-pane active">
+									<div class="row">
+										<div class="col-lg-7 about-contant">
+											<div class="m-b20">
+												<h2 class="text-uppercase m-t0 m-b10">About <span class="text-primary">Us</span></h2>
+												<span class="text-secondry font-16">Company Overview</span>
+												<div class="clear"></div>
+											</div>
+											<p class="m-b30">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing..</p>
+											<div class="row">
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-user"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1800</span>+</h2>
+															<p>Engineers & Workers</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-home"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">620</span>+</h2>
+															<p>Factory In Worldwide</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-harddrives"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1527</span>+</h2>
+															<p>Projects Completed</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+											<a href="#" class="site-button">Read More</a>
+										</div>
+										<div class="col-lg-5 dlab-we-best ">
+											<div class="p-lr20 p-tb40 m-t30 dlab-appoinment-now-form tp-dark  clearfix bg-secondry border-1 text-black">
+												<form method="post" class="dzForm" action="https://autocare.dexignlab.com/xhtml/script/contact.php">
+													<input value="Appoinment" name="dzToDo" type="hidden">
+													<div class="row">
+														<div class="col-lg-12 text-center text-white m-b10">
+															<h2 class=" m-t0 m-b10 ">Make An Appoinment</h2>
+															<div class="dlab-separator-outer">
+																<div class="dlab-separator bg-primary"></div>
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<input name="dzName" class="form-control" placeholder="Name" type="text">
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<input name="dzEmail" class="form-control" placeholder="Email" type="text">
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<input name="dzOther[date]" class="form-control" placeholder="Select Date" type="text">
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<select class="bs-select-hidden" name="dzOther[service]">
+																	<option value="">Services</option>
+																	<option value="">Services 2</option>
+																	<option value="">Services 3</option>
+																	<option value="">Services 4</option>
+																</select>
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<div class="input-group">
+																	<textarea name="dzMessage" rows="4" class="form-control" required="" placeholder="Text messege..."></textarea>
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-12">
+															<div class="form-group">
+																<div class="input-group">
+																	<div class="g-recaptcha" data-theme="dark" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+																	<input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-12 text-center">
+															<div class="dzFormMsg "></div>
+															<button name="Reset" value="Reset" type="reset" class="site-button skew-secondry m-r10">
+																<span>Reset</span>
+															</button>
+															<button name="submit" type="submit" value="Submit" class="site-button skew-secondry">
+																<span>Submit</span>
+															</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="history" class="tab-pane">
+									<div class="row">
+										<div class="col-lg-5 about-img">
+											<img src="{{asset('images/img3.jpg')}}" alt=""/>
+										</div>
+										<div class="col-lg-7 about-contant">
+											<div class="m-b20">
+												<h2 class="text-uppercase m-t0 m-b10">Car <span class="text-primary"> Washing</span></h2>
+												<span class="text-secondry font-16">Defening Milestones</span>
+												<div class="clear"></div>
+											</div>
+											<p class="m-b30">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing..</p>
+											<div class="row">
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-user"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1800</span>+</h2>
+															<p>Engineers & Workers</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-home"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">620</span>+</h2>
+															<p>Factory In Worldwide</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-harddrives"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1527</span>+</h2>
+															<p>Projects Completed</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+											<a href="#" class="site-button">Read More</a>
+										</div>
+									</div>
+								</div>
+								<div id="processing" class="tab-pane">
+									<div class="row">
+										<div class="col-lg-7 about-contant">
+											<div class="m-b20">
+												<h2 class="text-uppercase m-t0 m-b10">Exterior<span class="text-primary"> Cleaning</span></h2>
+												<span class="text-secondry font-16">Processing System</span>
+												<div class="clear"></div>
+											</div>
+											<p class="m-b30">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing..</p>
+											<div class="row">
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-user"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1800</span>+</h2>
+															<p>Engineers & Workers</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-home"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">620</span>+</h2>
+															<p>Factory In Worldwide</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-harddrives"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1527</span>+</h2>
+															<p>Projects Completed</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+											<a href="#" class="site-button">Read More</a>
+										</div>
+										<div class="col-lg-5 about-img">
+											<img src="{{asset('images/img1.jpg')}}" alt=""/>
+										</div>
+									</div>
+								</div>
+								<div id="technology" class="tab-pane">
+									<div class="row">
+										<div class="col-lg-5 about-img">
+											<img src="{{asset('images/img2.jpg')}}" alt=""/>
+										</div>
+										<div class="col-lg-7 about-contant">
+											<div class="m-b20">
+												<h2 class="text-uppercase m-t0 m-b10">Car<span class="text-primary"> Polish</span></h2>
+												<span class="text-secondry font-16">Innovation & Adoption</span>
+												<div class="clear"></div>
+											</div>
+											<p class="m-b30">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing..</p>
+											<div class="row">
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-user"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1800</span>+</h2>
+															<p>Engineers & Workers</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-home"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">620</span>+</h2>
+															<p>Factory In Worldwide</p>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
+													<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
+														<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-harddrives"></i></a> </div>
+														<div class="icon-content">
+															<h2 class="text-primary m-t20 m-b10"><span class="counter">1527</span>+</h2>
+															<p>Projects Completed</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+											<a href="#" class="site-button">Read More</a>
+										</div>
+									</div>
+								</div>
 							</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- meet & ask END -->
-        <!-- About Company -->
-        <div class="section-full bg-white content-inner-1" style="background-image: url(images/bg-img.png); background-repeat: repeat-x; background-position: left bottom -37px;">
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- About Us END -->
+		<!-- Get A Quote -->
+		<div class="section-full bg-primary get-a-quote clearfix p-tb30" style="background-image: url(images/background/bg1.png); background-size: auto auto; background-repeat: no-repeat; background-position: right 5% center; background-attachment: fixed;">
             <div class="container">
 				<div class="row">
-					<div class="col-lg-7 about-contant">
-						<div class="m-b20">
-							<h2 class="text-uppercase m-t0 m-b10">Car<span class="text-primary"> Polish</span></h2>
-							<span class="text-secondry font-16">Innovation & Adoption</span>
-							<div class="clear"></div>
-						</div>
-						<p class="m-b30">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing..</p>
-						<div class="row">
-							<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
-								<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
-									<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-user"></i></a> </div>
-									<div class="icon-content">
-										<h2 class="text-primary m-t20 m-b10"><span class="counter">1800</span>+</h2>
-										<p>Engineers & Workers</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
-								<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
-									<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-home"></i></a> </div>
-									<div class="icon-content">
-										<h2 class="text-primary m-t20 m-b10"><span class="counter">620</span>+</h2>
-										<p>Factory In Worldwide</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 col-lg-4 col-sm-4 m-b15">
-								<div class="icon-bx-wraper bx-style-1 p-tb15 p-lr10 center">
-									<div class="icon-bx-sm radius bg-primary m-b5"> <a href="#" class="icon-cell"><i class="ti-harddrives"></i></a> </div>
-									<div class="icon-content">
-										<h2 class="text-primary m-t20 m-b10"><span class="counter">1527</span>+</h2>
-										<p>Projects Completed</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
-						<p class="m-b15">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
-						<a href="#" class="site-button">Read More</a>
+					<div class="col-lg-9">
+						<h2 class="pull-left m-b0 text-white m-t5">“Take care of your car in the garage, and the car will take care of you on the road.”</h2>
 					</div>
-					<div class="col-lg-5 about-img">
-						<img src="images/img2.jpg" alt=""/>
+					<div class="col-lg-3">
+						<div class="float-end text-black">
+							<a class="site-button white" href="">Get a quote <i class="far fa-arrow-alt-circle-right text-secondry "></i></a>
+						</div>
 					</div>
-                </div>
+				</div>
             </div>
         </div>
-        <!-- About Company END -->
-        <!-- Our Projects  -->
-        <div class="section-full bg-img-fix content-inner overlay-black-middle" style="background-image:url(images/background/bg1.jpg);">
-            <div class="container">
-                <div class="section-head  text-center text-white">
-                    <h2 class="text-uppercase">Our Projects</h2>
-                    <div class="dlab-separator-outer ">
-                        <div class="dlab-separator bg-white style-skew"></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
-                </div>
-                <div class="site-filters clearfix center  m-b40">
-                    <ul class="filters" data-bs-toggle="buttons">
-                        <li data-filter="" class="btn active">
-                            <input type="radio">
-                            <a href="#" class="site-button-secondry"><span>Show All</span></a> </li>
-                        <li data-filter="home" class="btn">
-                            <input type="radio" >
-                            <a href="#" class="site-button-secondry"><span>Brakes</span></a> </li>
-                        <li data-filter="office" class="btn">
-                            <input type="radio">
-                            <a href="#" class="site-button-secondry"><span>Suspension</span></a> </li>
-                        <li data-filter="commercial" class="btn">
-                            <input type="radio">
-                            <a href="#" class="site-button-secondry"><span>Wheels</span></a> </li>
-                        <li data-filter="window" class="btn">
-                            <input type="radio">
-                            <a href="#" class="site-button-secondry"><span>Steering	</span></a> </li>
-                    </ul>
-                </div>
-				<ul id="masonry" class="row dlab-gallery-listing gallery-grid-4 lightgallery gallery s m-b0">
-					<li class="home card-container col-lg-4 col-md-4 col-sm-6 col-6">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> <a href="javascript:void(0);"> <img src="images/our-work/pic1.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic1.jpg" data-src="images/our-work/pic1.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="office card-container col-lg-4 col-md-4 col-sm-6 col-6">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow dlab-img-effect zoom"> <a href="javascript:void(0);"> <img src="images/our-work/pic2.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic2.jpg" data-src="images/our-work/pic2.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="card-container col-lg-4 col-md-4 col-sm-6 col-6 commercial">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> <a href="javascript:void(0);"> <img src="images/our-work/pic3.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic3.jpg" data-src="images/our-work/pic3.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="commercial card-container col-lg-4 col-md-4 col-sm-6 col-6">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> <a href="javascript:void(0);"> <img src="images/our-work/pic4.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic4.jpg" data-src="images/our-work/pic4.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="window card-container col-lg-4 col-md-4 col-sm-6 col-6">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> <a href="javascript:void(0);"> <img src="images/our-work/pic5.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic5.jpg" data-src="images/our-work/pic5.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li class="window card-container col-lg-4 col-md-4 col-sm-6 col-6">
-						<div class="dlab-box dlab-gallery-box">
-							<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> <a href="javascript:void(0);"> <img src="images/our-work/pic6.jpg"  alt=""> </a>
-								<div class="overlay-bx">
-									<div class="overlay-icon"> 
-										<a href="portfolio-details.html"> <i class="fas fa-link icon-bx-xs"></i> </a> 
-										<span data-exthumbimage="images/our-work/thum/pic6.jpg" data-src="images/our-work/pic6.jpg" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
-            </div>
-        </div>
-        <!-- Our Projects END -->
-        <!-- OUR SERVICES -->
-        <div class="section-full bg-white content-inner">
-            <div class="container">
-                <div class="section-head text-center">
-                    <h2 class="text-uppercase"> OUR SERVICES</h2>
-                    <div class="dlab-separator-outer ">
-                        <div class="dlab-separator bg-secondry style-skew"></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b40">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-reload text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">AIR CONDITIONING</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b40">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-car text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">BRAKE REPAIR</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b40">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-thumb-up text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">LUBE, OIL AND FILTERS</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b40">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-cup text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">BELTS AND HOSES</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b40">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-settings text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">ENGINE DIAGNOSTICS</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="icon-bx-wraper center m-b10">
-                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-pie-chart text-primary"></i></span> </div>
-                            <div class="icon-content">
-                                <h5 class="dlab-tilte text-uppercase">TIRE AND WHEEL SERVICES</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- OUR SERVICES END-->
-        <!-- Company staus -->
-        <div class="section-full text-white bg-img-fix content-inner overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="dex-box text-primary border-2 counter-box m-b30">
-                            <h2 class="text-uppercase m-a0 p-a15 "><i class="ti-home m-r20"></i> <span class="counter">1035</span></h2>
-                            <h5 class="dlab-tilte  text-uppercase m-a0"><span class="dlab-tilte-inner skew-title bg-primary p-lr15 p-tb10">Active Experts</span></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="dex-box text-primary border-2 counter-box m-b30">
-                            <h2 class="text-uppercase m-a0 p-a15 "><i class="fas fa-users m-r20"></i> <span class="counter">1226</span></h2>
-                            <h5 class="dlab-tilte  text-uppercase m-a0"><span class="dlab-tilte-inner skew-title bg-primary p-lr15 p-tb10">Happy Client</span></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="dex-box text-primary border-2 counter-box m-b30">
-                            <h2 class="text-uppercase m-a0 p-a15 "><i class="fab fa-slideshare m-r20"></i> <span class="counter">1552</span></h2>
-                            <h5 class="dlab-tilte  text-uppercase m-a0"><span class="dlab-tilte-inner skew-title bg-primary p-lr15 p-tb10">Workers Hand</span></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="dex-box text-primary border-2 counter-box m-b10">
-                            <h2 class="text-uppercase m-a0 p-a15 "><i class="fas fa-home m-r20"></i> <span class="counter">1156</span></h2>
-                            <h5 class="dlab-tilte  text-uppercase m-a0"><span class="dlab-tilte-inner skew-title bg-primary p-lr15 p-tb10">Completed Project</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Company staus END -->
-        <!-- Team member -->
+		<!-- Get A Quote END -->
+		<!-- Services -->
         <div class="section-full bg-white content-inner">
             <div class="container">
                 <div class="section-head text-center ">
-                    <h2 class="text-uppercase"> Meet The Team</h2>
-                    <div class="dlab-separator-outer ">
-                        <div class="dlab-separator bg-secondry style-skew"></div>
-                    </div>
-                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
-                </div>
-                <div class="section-content text-center ">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dlab-box m-b30">
-                                <div class="dlab-media"> <a href="our-team.html"> <img width="358" height="460" alt="" src="images/our-team/pic1.jpg"> </a>
-                                    <div class="dlab-info-has skew-has  bg-primary">
-                                        <ul class="dlab-social-icon dez-border">
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-twitter" href="https://www.twitter.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="p-a10">
-                                    <h4 class="dlab-title text-uppercase m-b5">Nashid Martines</h4>
-                                    <span class="dlab-member-position">Director</span>
-								</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dlab-box m-b30">
-                                <div class="dlab-media"> <a href="our-team.html"> <img width="358" height="460" alt="" src="images/our-team/pic2.jpg"> </a>
-                                    <div class="dlab-info-has skew-has bg-primary">
-                                        <ul class="dlab-social-icon dez-border">
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-twitter" href="https://www.twitter.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="p-a10 bg-white">
-                                    <h4 class="dlab-title text-uppercase m-b5">konne Backfield</h4>
-                                    <span class="dlab-member-position">Designer</span>
-								</div>
-                            </div>
-                        </div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dlab-box m-b30">
-                                <div class="dlab-media"> <a href="our-team.html"> <img width="358" height="460" alt="" src="images/our-team/pic3.jpg"> </a>
-                                    <div class="dlab-info-has skew-has bg-primary">
-                                        <ul class="dlab-social-icon dez-border">
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-twitter" href="https://www.twitter.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="p-a10">
-                                    <h4 class="dlab-title text-uppercase m-b5">Hackson Willingham</h4>
-                                    <span class="dlab-member-position">Developer</span>
-								</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="dlab-box m-b10">
-                                <div class="dlab-media"> <a href="our-team.html"> <img width="358" height="460" alt="" src="images/our-team/pic4.jpg"> </a>
-                                    <div class="dlab-info-has skew-has bg-primary">
-                                        <ul class="dlab-social-icon dez-border">
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-twitter" href="https://www.twitter.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank"></a></li>
-                                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="p-a10">
-                                    <h4 class="dlab-title text-uppercase m-b5">konne Backfield</h4>
-                                    <span class="dlab-member-position">Manager</span>
-								</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team member END -->
-        <!-- Latest blog -->
-        <div class="section-full content-inner">
-            <div class="container">
-                <div class="section-head text-center">
-                    <h2 class="text-uppercase">Latest blog post</h2>
-                    <div class="dlab-separator-outer ">
-                        <div class="dlab-separator bg-secondry style-skew"></div>
-                    </div>
+                    <h2 class="text-uppercase">Our Best <span class="text-primary">Services</span></h2>
+					<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
                 </div>
                 <div class="section-content ">
-                    <div class="blog-carousel owl-carousel owl-none">
-                        <div class="item">
-                            <div class="blog-post latest-blog-1 date-style-3 skew-date">
-                                <div class="dlab-post-media dlab-img-effect zoom-slow"> <a href="blog-half-img.html"><img src="images/blog/latest-blog/pic1.jpg" alt=""></a> </div>
-                                <div class="dlab-post-info p-t20">
-                                    <div class="dlab-post-title ">
-                                        <h3 class="post-title"><a href="blog-half-img-sidebar.html">How Will Autocare Be In The Future</a></h3>
-                                    </div>
-                                    <div class="dlab-post-meta ">
-                                        <ul>
-                                            <li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-                                            <li class="post-author"><i class="fas fa-user"></i>By <a href="blog-half-img.html">demongo</a> </li>
-                                            <li class="post-comment"><i class="fas fa-comments"></i> <a href="blog-half-img.html">0 comment</a> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dlab-post-text">
-                                        <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6 m-b30">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic1.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Opti Coat</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 m-b30">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic2.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Car Detailing</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 m-b30">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic3.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Car Polish</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 m-b30">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic4.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Car Washing</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 m-b30">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic5.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Eco Friendly</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-6 m-b10">
+							<div class="dlab-box">
+								<div class="dlab-media"> <a href="#"><img src="{{asset('images/our-services/service-1/pic6.jpg')}}" alt=""></a> </div>
+								<div class="dlab-info p-a20 text-center bg-gray">
+									<div class="p-lr20">
+										<h4 class="m-a0 bg-primary service-head"><a href="#" class="text-white">Exterior Cleaning</a></h4>
+									</div>	
+									<p class="m-b0">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry..Lorem Ipsum is simply Ipsum is simply dummy text of the..</p>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!-- Services END -->
+        <!-- Our Project -->
+        <div class="section-full bg-img-fix overlay-black-middle dlab-our-project" style="background-image:url(images/background/bg5.jpg);">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 offset-lg-1 offset-md-1 col-sm-12 dlab-project-left p-t70">
+                        <h2 class="m-t0"><span class="text-white">LATEST PROJECTS</span></h2>
+						<p class="text-white p-r10">There are many variations of passages of Lorem Ipsum typesetting industry.</p>
+						<div class="text-center project-img">
+							<img src="{{asset('images/service-1.png')}}" alt=""/>
+						</div>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-12 p-t70 p-r0 dlab-service">
+                        <div class="service-carousel owl-theme owl-dots-none owl-carousel m-t80">
+                            <div class="item">
+                                <div class="ow-carousel-entry">
+                                    <div class="ow-entry-media dlab-img-effect zoom-slow"> 
+										<a href="#"><img src="{{asset('images/our-services/service-1/pic5.jpg')}}" alt=""></a> 
+									</div>
+                                    <div class="ow-entry-content">
+										<div class="date bg-primary ">10/07/2022</div>
+                                        <div class="ow-entry-title">
+											<h4 class="text-uppercase"><a href="#">Wheel Alignment</a></h4>
+										</div>
+                                        <div class="ow-entry-text">
+                                            <p>There are many variations of passages of Lorem Ipsum typesetting industry.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="blog-post latest-blog-1 date-style-3 skew-date">
-                                <div class="dlab-post-media dlab-img-effect zoom-slow"> <a href="blog-half-img.html"><img src="images/blog/latest-blog/pic2.jpg" alt=""></a> </div>
-                                <div class="dlab-post-info p-t20">
-                                    <div class="dlab-post-title ">
-                                        <h3 class="post-title"><a href="blog-half-img-sidebar.html">Seven fact about Had Gone Way</a></h3>
-                                    </div>
-                                    <div class="dlab-post-meta ">
-                                        <ul>
-                                            <li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-                                            <li class="post-author"><i class="fas fa-user"></i>By <a href="blog-half-img.html">demongo</a> </li>
-                                            <li class="post-comment"><i class="fas fa-comments"></i> <a href="blog-half-img.html">0 comment</a> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dlab-post-text">
-                                        <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
+                            <div class="item">
+                                <div class="ow-carousel-entry">
+                                    <div class="ow-entry-media dlab-img-effect zoom-slow"> 
+										<a href="#"><img src="{{asset('images/our-services/service-1/pic2.jpg')}}" alt=""></a> 
+									</div>
+                                    <div class="ow-entry-content">
+										<div class="date bg-primary ">10/07/2022</div>
+                                        <div class="ow-entry-title">
+											<h4 class="text-uppercase"><a href="#">Glossy glass</a></h4>
+										</div>
+                                        <div class="ow-entry-text">
+                                            <p>There are many variations of passages of Lorem Ipsum typesetting industry.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="blog-post latest-blog-1 date-style-3 skew-date">
-                                <div class="dlab-post-media dlab-img-effect zoom-slow"> <a href="blog-half-img.html"><img src="images/blog/latest-blog/pic3.jpg" alt=""></a> </div>
-                                <div class="dlab-post-info p-t20">
-                                    <div class="dlab-post-title ">
-                                        <h3 class="post-title"><a href="blog-half-img-sidebar.html">10 Things You Didn't Know About us</a></h3>
+							<div class="item">
+                                <div class="ow-carousel-entry">
+                                    <div class="ow-entry-media dlab-img-effect zoom-slow"> 
+										<a href="#"><img src="{{asset('images/our-services/service-1/pic6.jpg')}}" alt=""></a> 
+									</div>
+                                    <div class="ow-entry-content">
+										<div class="date bg-primary ">10/07/2022</div>
+                                        <div class="ow-entry-title">
+											<h4 class="text-uppercase"><a href="#">Complete Care</a></h4>
+										</div>
+                                        <div class="ow-entry-text">
+                                            <p>There are many variations of passages of Lorem Ipsum typesetting industry.</p>
+                                        </div>
                                     </div>
-                                    <div class="dlab-post-meta ">
-                                        <ul>
-                                            <li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-                                            <li class="post-author"><i class="fas fa-user"></i>By <a href="blog-half-img.html">demongo</a> </li>
-                                            <li class="post-comment"><i class="fas fa-comments"></i> <a href="blog-half-img.html">0 comment</a> </li>
-                                        </ul>
-                                    </div>
-                                    <div class="dlab-post-text">
-                                        <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
+                                </div>
+                            </div>
+							<div class="item">
+                                <div class="ow-carousel-entry">
+                                    <div class="ow-entry-media dlab-img-effect zoom-slow"> 
+										<a href="#"><img src="{{asset('images/our-services/service-1/pic4.jpg')}}" alt=""></a> 
+									</div>
+                                    <div class="ow-entry-content">
+										<div class="date bg-primary ">10/07/2022</div>
+                                        <div class="ow-entry-title">
+											<h4 class="text-uppercase"><a href="#">Quicker Service</a></h4>
+										</div>
+                                        <div class="ow-entry-text">
+                                            <p>There are many variations of passages of Lorem Ipsum typesetting industry.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+               </div>
             </div>
         </div>
-        <!-- Latest blog END -->
-        <!-- Testimonials blog -->
-        <div class="section-full overlay-black-middle bg-img-fix content-inner-1" style="background-image:url(images/background/bg2.jpg);">
+        <!-- Our Project END -->
+        <!-- Meet Our Team -->
+        <div class="section-full bg-white content-inner">
             <div class="container">
-                <div class="section-head text-white text-center">
-                    <h2 class="text-uppercase">What peolpe are saying</h2>
-                    <div class="dlab-separator-outer ">
-                        <div class="dlab-separator bg-white  style-skew"></div>
-                    </div>
+                <div class="section-head text-center">
+                    <h2 class="text-uppercase">Meet Our <span class="text-primary">Team</span></h2>
+                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
                 </div>
-                <div class="section-content">
-                    <div class="testimonial-four owl-carousel owl-none owl-theme owl-dots-white-full">
-                        <div class="item">
-                            <div class="testimonial-4 testimonial-bg">
-                                <div class="testimonial-pic"><img src="images/testimonials/pic1.jpg" width="100" height="100" alt=""></div>
-                                <div class="testimonial-text">
-                                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
-                                </div>
-                                <div class="testimonial-detail"> <strong class="testimonial-name">David Matin</strong> <span class="testimonial-position">Student</span> </div>
-                                <div class="quote-right"></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-4 testimonial-bg">
-                                <div class="testimonial-pic"><img src="images/testimonials/pic2.jpg" width="100" height="100" alt=""></div>
-                                <div class="testimonial-text">
-                                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
-                                </div>
-                                <div class="testimonial-detail"> <strong class="testimonial-name">Matin Salva</strong> <span class="testimonial-position">Student</span> </div>
-                                <div class="quote-right"></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-4 testimonial-bg">
-                                <div class="testimonial-pic"><img src="images/testimonials/pic3.jpg" width="100" height="100" alt=""></div>
-                                <div class="testimonial-text">
-                                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the standard dummy text ever since the when printer. </p>
-                                </div>
-                                <div class="testimonial-detail"> <strong class="testimonial-name">Jack Martin</strong> <span class="testimonial-position">Student</span> </div>
-                                <div class="quote-right"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="section-content ">
+                    <div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-6 dlab-team-1 left">
+							<div class="dlab-box m-b30 team-skew ">
+								<div class="dlab-media"> <a href="our-team.html"> <img src="{{asset('images/our-team/pic1.png')}}" alt="" width="358" height="460"> </a>
+									<div class="dlab-info-has">
+										<ul class="dlab-social-icon bg-primary">
+											<li><a class="fab fa-facebook-f" href="{{asset('https://www.facebook.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-twitter" href="{{asset('https://twitter.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-linkedin-in" href="{{asset('https://www.linkedin.com/')}}" target="blank" ></a></li>
+											<li><a class="fab fa-google-plus-g" href="{{asset('https://mail.google.com/')}}" target="blank" ></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="p-a20 bg-secondry text-center text-white team-info ">
+									<h4 class="dlab-title text-uppercase m-t0 m-b5">William Dames</h4>
+									<span class="dlab-member-position">Developer</span> 
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 dlab-team-1">
+							<div class="dlab-box m-b30 team-skew ">
+								<div class="dlab-media"> <a href="our-team.html"> <img src="{{asset('images/our-team/pic2.png')}}" alt="" width="358" height="460"> </a>
+									<div class="dlab-info-has">
+										<ul class="dlab-social-icon bg-primary">
+											<li><a class="fab fa-facebook-f" href="{{asset('https://www.facebook.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-twitter" href="{{asset('https://twitter.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-linkedin-in" href="{{asset('https://www.linkedin.com/')}}" target="blank" ></a></li>
+											<li><a class="fab fa-google-plus-g" href="{{asset('https://mail.google.com/')}}" target="blank" ></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="p-a20 bg-secondry text-center text-white team-info ">
+									<h4 class="dlab-title text-uppercase m-t0 m-b5">Hackson Willingham</h4>
+									<span class="dlab-member-position">Developer</span> 
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6 dlab-team-1 right">
+							<div class="dlab-box m-b30 team-skew ">
+								<div class="dlab-media"> <a href="our-team.html"> <img src="{{asset('images/our-team/pic3.png')}}" alt="" width="358" height="460"> </a>
+									<div class="dlab-info-has">
+										<ul class="dlab-social-icon bg-primary">
+											<li><a class="fab fa-facebook-f" href="{{asset('https://www.facebook.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-twitter" href="{{asset('https://twitter.com/')}}" target="blank"></a></li>
+											<li><a class="fab fa-linkedin-in" href="{{asset('https://www.linkedin.com/')}}" target="blank" ></a></li>
+											<li><a class="fab fa-google-plus-g" href="{{asset('https://mail.google.com/')}}" target="blank" ></a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="p-a20 bg-secondry text-center text-white team-info ">
+									<h4 class="dlab-title text-uppercase m-t0 m-b5">Jafe Brok</h4>
+									<span class="dlab-member-position">Developer</span> 
+								</div>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         </div>
-        <!-- Testimonials blog END -->
-        <!-- Client logo -->
-        <div class="section-full dlab-we-find bg-img-fix p-t50 p-b50 ">
+        <!-- Meet Our Team END -->
+        <!-- Testimonials -->
+        <!-- our trusted partners -->
+        <div class="section-full bg-gray testimonial-section p-t50 p-b20">
             <div class="container">
-                <div class="section-content">
-                    <div class="client-logo-carousel owl-carousel mfp-gallery gallery owl-btn-center-lr">
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"><a href="#"><img src="images/client-logo/logo1.jpg" alt=""></a></div>
-                            </div>
+                <div class="row">
+                    <div class="col-lg-6 p-lr30 text-left text-white m-b30">
+						<h2 class="">OUR TRUSTED <span class="text-primary">PARTNERS</span></h2>
+						<p>Lorem ipsum dolor sit amet, consectet adipi sed do eiusmod tempor incididunt modo labore et dolore magna aliqu...</p>
+						<div class="client-logo">
+							<ul class="clearfix">
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo1.jpg')}}" alt=""/></a></li>
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo2.jpg')}}" alt=""/></a></li>
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo3.jpg')}}" alt=""/></a></li>
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo4.jpg')}}" alt=""/></a></li>
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo5.jpg')}}" alt=""/></a></li>
+								<li><a href="#"><img src="{{asset('images/client-logo/logo/logo1.jpg')}}" alt=""/></a></li>
+							</ul>
+						</div>
+					</div>
+                    <div class="col-lg-6 p-lr30">
+						<h2 class="testimonial-title">WHAT CUSTOMERS <span class="text-primary">SAID</span></h2>
+						<p>Lorem ipsum dolor sit amet, consectet adipi sed do eiusmod tempor incididunt modo labore et dolore magna aliqu...</p>
+						<div class="testimonial-one owl-carousel owl-theme testimonial-7">
+                           <div class="item">
+								<div class="testimonial-7">
+									<div class="testimonial-text">
+										<p class="p-b20">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make </p>
+									</div>
+									<div class="testimonial-detail clearfix info">
+										<div class="testimonial-pic"><img src="{{asset('images/testimonials/pic1.jpg')}}" alt="" width="100" height="100"></div>
+										<p class=" m-b0 "><strong>David Matin</strong> <span>Student</span></p>
+									</div>
+								</div>
+							</div>	
+							<div class="item">
+								<div class="testimonial-7">
+									<div class="testimonial-text">
+										<p class="p-b20">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an printer took a galley of type and scrambled it to make </p>
+									</div>
+									<div class="testimonial-detail clearfix info">
+										<div class="testimonial-pic"><img src="{{asset('images/testimonials/pic2.jpg')}}" alt="" width="100" height="100"></div>
+										<p class=" m-b0"><strong>Luthar Mack</strong> <span>Businessman</span></p>
+									</div>
+								</div>
+							</div>	
                         </div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!-- our trusted partners END -->
+        <!-- Latest Blog -->
+		<div class="section-full bg-white content-inner-1">
+            <div class="container">
+                <div class="section-head text-center ">
+                    <h2 class="text-uppercase">Recent <span class="text-primary">Blog</span></h2>
+                    <p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+                </div>
+                <div class="section-content owl-none">
+                    <div class="blog-carousel owl-carousel">
                         <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/logo2.jpg" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/logo1.jpg" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/logo3.jpg" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/logo4.jpg" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/logo3.jpg" alt=""></a> </div>
-                            </div>
-                        </div>
+							<div class="dlab-box">
+								<div class="dlab-media"> 
+									<a href="#"><img src="{{asset('images/blog/latest-blog/pic1.jpg')}}" alt=""></a> 
+								</div>
+								<div class="dlab-info p-a20 border-1">
+									<ul class="blog-info text-primary">
+										<li>By <a href="#" title="Posts by demongo" rel="author">demongo</a> </li>
+										<li><a href="#" class="comments-link">1 Comment</a> </li>
+										<li><span>17 Mar 2022</span> </li>
+									</ul>
+									<h4 class="dlab-title m-t0"><a href="#">Qualtiy product with high efficiency and good liabilites </a></h4>
+									<p class="m-a0">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius </p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="dlab-box">
+								<div class="dlab-media"> 
+									<a href="#"><img src="{{asset('images/blog/latest-blog/pic2.jpg')}}" alt=""></a> 
+								</div>
+								<div class="dlab-info p-a20 border-1">
+									<ul class="blog-info text-primary">
+										<li>By <a href="#" title="Posts by demongo" rel="author">demongo</a> </li>
+										<li><a href="#" class="comments-link">1 Comment</a> </li>
+										<li><span>17 Mar 2022</span> </li>
+									</ul>
+									<h4 class="dlab-title m-t0"><a href="#">Provide qualtiy productivity with certified engineers</a></h4>
+									<p class="m-a0">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius </p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="dlab-box">
+								<div class="dlab-media"> 
+									<a href="#"><img src="{{asset('images/blog/latest-blog/pic3.jpg')}}" alt=""></a> 
+								</div>
+								<div class="dlab-info p-a20 border-1">
+									<ul class="blog-info text-primary">
+										<li>By <a href="#" title="Posts by demongo" rel="author">demongo</a> </li>
+										<li><a href="#" class="comments-link">1 Comment</a> </li>
+										<li><span>17 Mar 2022</span> </li>
+									</ul>
+									<h4 class="dlab-title m-t0"><a href="#">Productivity with better support and good service</a></h4>
+									<p class="m-a0">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius </p>
+								</div>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Client logo END -->
+        <!-- Latest Blog END -->
+        <!-- Content END-->
     </div>
     {% endblock %}	
-    <!-- Content END-->
     {% block footer %}
     <!-- Footer -->
     <footer class="site-footer">
-        <!-- newsletter part -->
-        <div class="bg-primary dlab-newsletter">
-            <div class="container equal-wraper">
-				<form class="dzSubscribe" action="https://autocare.dexignlab.com/xhtml/script/mailchamp.php" method="post">
-					<div class="row position-relative">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <div class="icon-bx-wraper equal-col p-t30 p-b20 left">
-                                <div class="icon-lg text-white radius">
-									<i class="ti-email"></i>
-								</div>
-                                <div class="icon-content"> <strong class="text-black text-uppercase font-18">Subscribe</strong>
-                                    <h2 class="dlab-tilte text-uppercase">Our Newsletter</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <div class="dzSubscribeMsg"></div>
-							<div class="input-group equal-col p-t40  p-b10">
-                                <input name="dzEmail" required placeholder="Email address" required="required" class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 offset-lg-1 offset-md-1">
-                            <div class="equal-col p-t40 p-b10 skew-subscribe">
-                                <button name="submit" value="Submit" type="submit" class="site-button-secondry button-skew z-index1"> <span>Subscribe</span><i class="fas fa-angle-right"></i> </button>
-                            </div>
-                        </div>
-					</div>
-				</form>
-            </div>
-        </div>
         <!-- footer top part -->
         <div class="footer-top">
             <div class="container">
@@ -1243,12 +1363,12 @@
                                 <div class="dlab-separator bg-white style-skew"></div>
                             </div>
                             <ul>
-                                <li><a href="engine-diagnostics.html">Engine Diagnostics</a></li>
-                                <li><a href="lube-oil-and-filters.html">Lube, Oil and Filters</a></li>
-                                <li><a href="belts-and-hoses.html">Belts and Hoses</a></li>
-                                <li><a href="air-conditioning.html">Air Conditioning</a></li>
-                                <li><a href="brake-repair.html">Brake Repair</a></li>
-                                <li><a href="tire-and-wheel-services.html">Tire And Wheel</a></li>
+                                <li><a href="services-2.html">Engine Diagnostics</a></li>
+                                <li><a href="services-2.html">Lube, Oil and Filters</a></li>
+                                <li><a href="services-2.html">Belts and Hoses</a></li>
+                                <li><a href="services-2.html">Air Conditioning</a></li>
+                                <li><a href="services-2.html">Brake Repair</a></li>
+                                <li><a href="services-2.html">Lube, Oil and Filters</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1273,13 +1393,13 @@
         <div class="footer-bottom footer-line">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 text-left"> 
+                    <div class="col-lg-4 col-md-4 text-left">
 						<span>© Copyright 2022</span>
 					</div>
-					<div class="col-lg-4 col-md-4 text-center"> 
-						<span> Design With <i class="ti-heart text-primary heart"></i> By<a href="https://www.dexignlab.com/" target="_blank">DexignLab</a> </span> 
+					<div class="col-lg-4 col-md-4 text-center">
+						<span> Design With <i class="ti-heart text-primary heart"></i> By<a href="{{asset('https://www.dexignlab.com/')}}" target="_blank">DexignLab</a> </span>
 					</div>
-					<div class="col-lg-4 col-md-4 text-right"> 
+					<div class="col-lg-4 col-md-4 text-right ">
 						<a href="about-1.html"> About Us</a>
 						<a href="faq-1.html"> FAQs</a>
 						<a href="contact.html"> Contact Us</a>
@@ -1289,10 +1409,10 @@
         </div>
     </footer>
     <!-- Footer END-->
-    {% endblock %}
     <!-- scroll top button -->
     <button class="scroltop fas fa-arrow-up style5" ></button>
 </div>
+{% endblock %}
 {% block js %}
 <!-- JavaScript  files ========================================= -->
 <script src="{{asset('js/jquery.min.js')}}"></script><!-- JQUERY.MIN JS -->
@@ -1306,9 +1426,10 @@
 <script src="{{asset('plugins/masonry/masonry-3.1.4.js')}}"></script><!-- MASONRY -->
 <script src="{{asset('plugins/masonry/masonry.filter.js')}}"></script><!-- MASONRY -->
 <script src="{{asset('plugins/owl-carousel/owl.carousel.js')}}"></script><!-- OWL SLIDER -->
-<script src="{{asset('js/custom.min.js')}}"></script><!-- CUSTOM FUCTIONS  -->
+<script src="{{asset('js/custom.js')}}"></script><!-- CUSTOM FUCTIONS  -->
 <script src="{{asset('js/dz.carousel.min.js')}}"></script><!-- SORTCODE FUCTIONS  -->
-<script src="{{asset('plugins/lightgallery/js/lightgallery-all.js')}}"></script><!-- LIGHT GALLERY -->
+<script src='../../www.google.com/recaptcha/api.js'></script> <!-- Google API For Recaptcha  -->
+
 <script src="{{asset('js/dz.ajax.js')}}"></script><!-- CONTACT JS -->
 <script src="{{asset('plugins/switcher/js/switcher.js')}}"></script><!-- SWITCHER -->
 <!-- REVOLUTION JS FILES -->
@@ -1328,11 +1449,11 @@
 <script>
 jQuery(document).ready(function() {
 	'use strict';
-	dz_rev_slider_1();
+	dz_rev_slider_2();
 });	/*ready*/
 </script>
 {% endblock %}
 </body>
 
-<!-- Mirrored from autocare.dexignlab.com/xhtml/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Mar 2023 22:22:16 GMT -->
+<!-- Mirrored from autocare.dexignlab.com/xhtml/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Mar 2023 22:22:34 GMT -->
 </html>

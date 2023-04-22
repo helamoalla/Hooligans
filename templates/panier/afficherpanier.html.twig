@@ -54,7 +54,8 @@
             <a class="site-button button-sm m-r15" href="{{path('moins1',{'id':p.getId()}) }}">-</a>
         </div></td>
         <td class="product-item-totle">{{p.getProduit().getPrixProd()*p.getQuantite()}} DT</td>
-        <td class="product-item-name"><a class="site-button m-r15" href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}"> Supprimer</a></td>
+        <td class="product-item-close"><a href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}" class="fas fa-times" {#data-bs-dismiss="alert" aria-label="close"#}></a></td>
+        {#<td class="product-item-name"><a class="site-button m-r15" href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}"> Supprimer</a></td>#}
         <tr {%  else  %}> <h1>Votre panier est vide </h1></tr>
     </tr {% endfor %}>
     <tr class="alert">
