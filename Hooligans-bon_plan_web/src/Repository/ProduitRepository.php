@@ -46,6 +46,21 @@ class ProduitRepository extends ServiceEntityRepository
                 ->getResult();
     }
 
+   
+
+    public function findByCategoryId($filters=null)
+    {
+        $qb = $this->createQueryBuilder('p');
+          // On filtre les données
+          if($filters != null){
+            $qb->andWhere('p.categorie IN(:cats)')
+                ->setParameter(':cats', array_values($filters));
+        }
+        
+
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
