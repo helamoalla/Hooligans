@@ -27,7 +27,7 @@ class AdminController extends AbstractController
     #[Route('/adminAllBonplan', name: 'admin_all_bonplan')]
     public function adminAllBonplan(BonplanRepository $bonplanRep ,UserRepository $userRep): Response
     {
-        $allBonplan = $bonplanRep->findAll();
+        $allBonplan = $bonplanRep->orderById();
         $admin=$userRep->find(22);
         return $this->render('admin/allBonplan.html.twig', [
             'allBonplan' => $allBonplan,
@@ -156,7 +156,7 @@ class AdminController extends AbstractController
     #[Route('/adminAllFeeds', name: 'admin_all_Feeds')]
     public function adminAllFeed(FeedbackRepository $feedRep,UserRepository $userRep): Response
     {
-        $allFeeds = $feedRep->findAll();
+        $allFeeds = $feedRep->orderById();
         $admin=$userRep->find(22);
         return $this->render('admin/allFeeds.html.twig', [
             'allFeeds' => $allFeeds,

@@ -38,6 +38,13 @@ class FeedbackRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
+    public function orderById() :array {
+        return $this->createQueryBuilder('p')
+                ->orderBy('p.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
 
     public function getFeedbackByBonPlan($bonplan){
         $entityManager=$this->getEntityManager();

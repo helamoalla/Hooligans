@@ -27,7 +27,7 @@ class BonplanController extends AbstractController
     #[Route('/allBonplan', name: 'all_bonplan')]
     public function allBonplan(BonplanRepository $bonplanRep, Request $request,PaginatorInterface $paginator ): Response
     {
-        $recentBonplan = $bonplanRep->getAllBonPlanWithFeedbacks();
+        $recentBonplan = $bonplanRep->getRecentWithFeedbacks();
 
         if ($request->isMethod("POST")) {
             $name = $request->get('search');
