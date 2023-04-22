@@ -109,11 +109,11 @@
 							<div class="widget">
 								<h4 class="widget-title">Search</h4>
 								<div class="search-bx">
-									<form role="search" method="post">
+									<form role="search" method="POST">
 										<div class="input-group">
-											<input name="text" type="text" class="form-control" placeholder="Write your text" id="search-input">
+											<input name="search" type="text" class="form-control" placeholder="Write your text" id="search" >
 											<span class="input-group-btn">
-												<button type="submit" class="site-button">
+												<button type="submit" value="search" class="site-button">
 													<i class="fas fa-search"></i>
 												</button>
 											</span>
@@ -171,34 +171,5 @@
 	<!-- Content END-->
 {% endblock %}
 {% block script %}
-	<script>
-		const searchBox = document.getElementById('search-input');
-const bonplanContainer = document.getElementById('masonry');
-const Url = new URL(window.location.href);
 
-searchBox.addEventListener('input', function (event) {
-const query = event.target.value.trim();
-
- // only search if the query has at least 3 characters
-fetch(Url.pathname + "?" + query.toString() + "&ajax=1", {
-headers: {
-"X-Requested-With": "XMLHttpRequest"
-}
-}).then(response => response.json())
-.then(function(data) {
-	const allBonplans=JSON.parse(data);
-	bonplanContainer.innerHTML = '';
-	allBonplans.forEach(item=>{
-	console.log(item);
-	
-});
-
-  
- 
-/*.catch(function(error) {
-                console.error('An error occurred while fetching search results:', error);
-            });*/
-})
-});
-	</script>
 {% endblock script %}

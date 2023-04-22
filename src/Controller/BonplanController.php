@@ -6,6 +6,7 @@ use App\Entity\Bonplan;
 use App\Entity\Feedback;
 use App\Form\BonplanFormType;
 use App\Form\FeedbackFormType;
+use App\Form\SearchType;
 use App\Repository\BonplanRepository;
 use App\Repository\FeedbackRepository;
 use App\Repository\UserRepository;
@@ -21,21 +22,17 @@ use Symfony\Component\Serializer\SerializerInterface;
 class BonplanController extends AbstractController
 {
     #[Route('/allBonplan', name: 'all_bonplan')]
-    public function allBonplan(BonplanRepository $bonplanRep,Request $request,SerializerInterface $serializer): Response
+    public function allBonplan(BonplanRepository $bonplanRep,Request $request,): Response
     {
-        $query = $request->get('query');
+       
+
+    if ($request->isMethod("POST")) {
+        $name=$request->get('search');
+        $allBonplan = $bonplanRep->search($name);
+    } else {
         $allBonplan = $bonplanRep->getAllBonPlanWithFeedbacks();
+    }
 
-        if ($request->get('ajax')) {
-             $allBonplan = $bonplanRep->findAll();
-             $view=$this->renderView('bonplan/search.html.twig', [
-                'allBonplan' => $allBonplan,
-             ]);
-
-             $response = new JsonResponse($serializer->serialize($allBonplan, 'json'));
-             $response->headers->set('Content-Type', 'application/json');
-             return $response;
-        }
         return $this->render('bonplan/allBonplan.html.twig', [
             'allBonplan' => $allBonplan,
         ]);

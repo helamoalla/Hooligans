@@ -39,7 +39,7 @@ class BonplanRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function Search($req){
+    public function search($req){
         $entityManager=$this->getEntityManager();
         $query=$entityManager
             ->createQuery("
@@ -48,10 +48,11 @@ class BonplanRepository extends ServiceEntityRepository
             LEFT JOIN App\Entity\Feedback f
             WITH b = f.bonplan
             WHERE b.etat ='accepté'
-            and b.nom_bonplan like ':req'
+            and b.nom_bonplan like :req
             GROUP BY b
-        ")->setParameter('null',NULL)
-        ->setParameter('req',$req)
+        ")
+        ->setParameter('null',NULL)
+        ->setParameter('req',$req.'%')
         ;
         return $query->getResult();
     }
