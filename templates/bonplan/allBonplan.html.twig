@@ -83,11 +83,15 @@
 										</div>
 									</div>
 								{% endfor %}
+								
 
 							</div>
 							<!-- blog grid END -->
 
 						</div>
+						<div class="pagination">
+								{{ knp_pagination_render(allBonplan) }}
+							</div>
 					</div>
 					<!-- left part END -->
 					<!-- Side bar start -->
@@ -111,7 +115,7 @@
 								<div class="search-bx">
 									<form role="search" method="POST">
 										<div class="input-group">
-											<input name="search" type="text" class="form-control" placeholder="Write your text" id="search" >
+											<input name="search" type="text" class="form-control" placeholder="Write your text" id="search">
 											<span class="input-group-btn">
 												<button type="submit" value="search" class="site-button">
 													<i class="fas fa-search"></i>
@@ -125,9 +129,9 @@
 							<div class="widget recent-posts-entry">
 								<h4 class="widget-title">Recent Posts</h4>
 								<div class="widget-post-bx">
-									{% if allBonplan|length >= 3 %}
-										{% for item in allBonplan %}
-											{% if loop.index > allBonplan|length - 3 %}
+									{% if recent|length >= 3 %}
+										{% for item in recent %}
+											{% if loop.index > recent|length - 3 %}
 												<div class="widget-post clearfix">
 													<div class="dlab-post-media">
 														<img style="height:72px" src="http://localhost/images/{{item.0.getImage()}}" width="200" height="143" alt="">
@@ -154,10 +158,12 @@
 
 										{% endfor %}
 
+
 									{% endif %}
 
 								</div>
 							</div>
+							
 
 
 						</aside>
@@ -170,6 +176,4 @@
 	<!-- Left & right section END -->
 	<!-- Content END-->
 {% endblock %}
-{% block script %}
-
-{% endblock script %}
+{% block script %}{% endblock script %}
