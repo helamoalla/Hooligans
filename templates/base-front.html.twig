@@ -17,7 +17,7 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
-	<link rel="icon" href="{{asset('images/favicon.ico"')}} type="image/x-icon" />
+	<link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon" />
 	<link rel="shortcut icon" type="image/x-icon" href="{{asset('images/favicon.png')}}" />
 	
 	<!-- PAGE TITLE HERE -->
@@ -54,7 +54,7 @@
 			<div class="container header-contant-block">
 				<div class="row">
 					<div class="col-lg-4">
-						<div class="logo-header logo-dark"><img src="{{asset('images/logo-black.png')}}" width="193" height="89" alt=""></a></div>
+						<div ><img src="{{asset('images/driftandrace.png')}}" width="150" height="89" alt=""></div>
 					</div>
 					<div class="col-lg-8">
 						<ul class="contact-info clearfix">
@@ -187,10 +187,7 @@
 										</li>
 									</ul>#}
 								</li>
-								<li> <a href="{{path('app_marketplace')}}">Boutique<i class="fas fa-chevron-down"></i></a>
-								</li>
-								<li> <a href="{{path('app_Affichepanier')}}">Panier<i class="fas fa-chevron-down"></i></a>
-									
+								
 								</li>
 								<li class="has-mega-menu "> <a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i></a>
 									{#<ul class="mega-menu">
@@ -240,6 +237,11 @@
 										<li><a href="contact-4.html">Contact us 4</a></li>
 									</ul>#}
 								</li>
+
+								<li> <a href="{{path('app_marketplace')}}">Boutique<i class="fas fa-chevron-down"></i></a>
+								</li>
+								<li> <a id="cart-icon" href="{{path('app_Affichepanier')}}"><img src="{{asset('images/carticon.png')}}" width="25" height="25" alt="">{#<i class="fas fa-chevron-down"></i>#}</a>
+									
 							</ul>
                         </div>
                     </div>
@@ -1446,6 +1448,7 @@
 <script src="{{asset('plugins/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script src="{{asset('plugins/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
 <script src="{{asset('js/rev.slider.js')}}"></script>
+<script src="{{asset('js/panier.js')}}"></script>
 <script>
 jQuery(document).ready(function() {
 	'use strict';

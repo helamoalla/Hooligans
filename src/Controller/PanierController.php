@@ -42,10 +42,8 @@ class PanierController extends AbstractController
         $user = $ur->find(22);
         $panier = $panierRep->findOneBy(['user' => $user]);
         $idPanier=$panier->getId();
-        $produits = $rep->findBy(['panier' => $idPanier]);
-        $totalremise=0; 
-        $total = 0;
-        $remise=0; 
+        $produits = $rep->findBy(['panier' => $idPanier]); 
+        $total = 0;      
         $nbp = 0;
         foreach ($produits as $lignePanier) {
             $quantite = $lignePanier->getQuantite();
@@ -54,35 +52,34 @@ class PanierController extends AbstractController
             $nbp += 1;
         }
 
-        if ($total>=100 && $total<=400 && $nbp ) 
-        {
-            $totalremise = $total*0.05;
-            $remise=5;
-            $this->addFlash('success', 'Article Created! Knowledge is power!');    
-        }
-        elseif ($total>400 && $total<=600)
-        {
-            $totalremise = $total*0.1;
-            $remise=10;
-            $this->addFlash('success', 'Article Created! Knowledge is power!'); 
-        }
-
-        elseif ($total>600 && $total<=900)
-        {
-            $totalremise = $total*0.15;
-            $this->addFlash('success', 'Article Created! Knowledge is power!'); 
-        }
+       
         
     return $this->render('panier/afficherpanier.html.twig', [
         'produits' => $produits,
         'total' => $total,
-        'totalremise' => $totalremise,
-        'remise' => $remise,
         'panier' => $panier
     ]);
     }
 
-    //Fonction quit met a jours la qantité +1 d'un produit dans un panier
+     //Fonction qui retourne le nombre de produits dans le panier d'un user
+     #[Route('/nbprod', name: 'app_nbprod')]
+     public function nbprod(PanierRepository $panierRep,UserRepository $ur,LignepanierRepository $rep):Response
+     {
+         $user = $ur->find(22);
+         $panier = $panierRep->findOneBy(['user' => $user]);
+         $idPanier=$panier->getId();
+         $produits = $rep->findBy(['panier' => $idPanier]);    
+         $nbp = 0;
+         foreach ($produits as $l) {
+             $nbp += 1;
+         }
+
+       // Retourner une réponse JSON avec le nombre de produits
+       return $this->json(['nbp' => $nbp]);
+     }
+
+
+    //Fonction qui met a jours la qantité +1 d'un produit dans un panier
     #[Route('/qtPlusUn/{id}', name: 'plus1')]
     public function updateLignePanierQuantitePlusUn(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep)
 {
@@ -93,16 +90,19 @@ class PanierController extends AbstractController
     $entityManager->persist($lignePanier);
     $entityManager->flush();
 
-    // Récupérer l'ID du panier
-    $idPanier = $lignePanier->getPanier()->getId();
+    // Rediriger vers la page d'affichage du panier
+    return $this->redirectToRoute("app_Affichepanier");
 
-    // Rediriger vers la page d'affichage du panier en passant l'ID du panier
-    return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
+       // Récupérer la nouvelle quantité
+       //$quantite = $lignePanier->getQuantite();
+
+       // Retourner une réponse JSON avec la nouvelle quantité
+      // return $this->json(['quantite' => $quantite]);
 }
 
 
     
-    //Fonction quit met a jours la qantité -1 d'un produit dans un panier
+    //Fonction qui met a jours la qantité -1 d'un produit dans un panier
     #[Route('/qtMoinsUn/{id}', name: 'moins1')]
     public function updateLignePanierQuantiteMoinsUn(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep)
 {
@@ -112,11 +112,18 @@ class PanierController extends AbstractController
 
     $entityManager->persist($lignePanier);
     $entityManager->flush();
-   // Récupérer l'ID du panier
-   $idPanier = $lignePanier->getPanier()->getId();
 
-   // Rediriger vers la page d'affichage du panier en passant l'ID du panier
-   return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
+   // Rediriger vers la page d'affichage du panier
+   return $this->redirectToRoute("app_Affichepanier");
+
+       // Récupérer la nouvelle quantité
+       $quantite = $lignePanier->getQuantite();
+       $prix = $lignePanier->getPrix();
+
+       // Retourner une réponse JSON avec la nouvelle quantité
+       //return $this->json(['quantite' => $quantite,
+       //'prix' => $prix
+    //]);
 }
 
    //Fonction qui supprime un produit du panier 
@@ -165,11 +172,13 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
     $publicPath = $this->getParameter('kernel.project_dir') . '/public';
     $pdfOptions = new Options();
     $pdfOptions->set('defaultFont', 'Arial');
+    $pdfOptions->set('isRemoteEnabled', true);
     $pdf = new Dompdf($pdfOptions);
 //Contenu du Pdf
     $html = '<html><body>';
     //$html .= '<h1>Facture</h1>';
-     $html .= '<img src="' . $publicPath . '/en_tete.png" />';
+    // $html .= '<img src="' . $publicPath . '/en_tete.png" />';
+    $html .= '<img src="public/images/en_tete.png" />';
     //$html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/en_tete.png')).'" />';
     $html .= '<p>Vendeur : Drift$Race</p>';
     $html .= '<p>________________________________________________</p>';
@@ -178,15 +187,16 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
     $html .= '<p>Date de facturation '.$commande->getDateCommande()->format('d/m/Y').'</p>';
     $html .= '<p>________________________________________________</p>';
     $html .= '<h3>Détails de la commande</h3>';
-    $html .= '<table border="0">';
-    $html .= '<tr><th>Produit</th><th>Description</th><th>Prix unitaire</th><th>Quantité</th><th>Sous Montant</th></tr>';
+    $html .= '<table border="1" cellspacing="0">';
+    $html .= '<tr><th>Image</th><th>Produit</th><th>Prix unitaire</th><th>Quantité</th><th>Sous Montant</th></tr>';
     foreach ($produits_par_panier as $p) {
-        $html .= '<tr><td>'.$p->getProduit()->getNomProd().'</td><td>'.$p->getProduit()->getDescriptionProd().'</td><td>'.$p->getProduit()->getPrixProd().' €</td><td>'.$p->getQuantite().'</td><td>'.$p->getProduit()->getPrixProd()*$p->getQuantite().' DT</td></tr>';
+        $html .= '<tr><td>'.$p->getProduit()->getImage().'</td><td>'.$p->getProduit()->getNomProd().'</td><td>'.$p->getProduit()->getPrixProd().' DT</td><td>'.$p->getQuantite().'</td><td>'.$p->getProduit()->getPrixProd()*$p->getQuantite().' DT</td></tr>';
     }
-    $html .= '<tr><td>Moontant Total à payer</td><td>'.$commande->getMontant().' DT</td></tr>';
+    $html .= '<tr><td colspan="4">Montant Total à payer</td><td>'.$commande->getMontant().' DT</td></tr>';
     $html .= '</table>';
    // $html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/bas_page.png')).'" />';
-    $html .= '<img src="' . $publicPath . '/bas_page.png" />';
+    //$html .= '<img src="' . $publicPath . '/bas_page.png" />';
+    $html .= '<img src="public/images/bas_page.png" />';
     $html .= '</body></html>';
     $pdf->loadHtml($html);
     $pdf->setPaper('A4', 'portrait');
@@ -196,13 +206,15 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
      // Retourner le pdf
      $output = $pdf->output();
      file_put_contents('downloads/facture.pdf', $output);
+     // Rendre la template Twig en HTML
+   $contenu = $this->renderView('mail.html.twig');
 
       // Créer l'email
     $email = (new Email())
     ->from('asma.choueibi@gmail.com')
     ->to('chouaibiasma15@gmail.com')
     ->subject('Facture')
-    ->text('Veuillez trouver ci-joint la facture en PDF.')
+    ->html($contenu)
     ->attach($output, 'facture.pdf','downloads/facture.pdf');
 
    // Envoyer l'email
