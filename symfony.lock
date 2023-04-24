@@ -38,6 +38,9 @@
             "./migrations/.gitignore"
         ]
     },
+    "ivory/google-map-bundle": {
+        "version": "3.0.8"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {

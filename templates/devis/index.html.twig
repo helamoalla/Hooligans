@@ -1,0 +1,15 @@
+{% set j = 0 %}
+{% for i in d %}
+    <h5>TAUX TAXE COMPRIS</h5>
+    {{ TTC[j] }}
+    <h5>SOMME APRES REDUCTION</h5>
+    {{ i.getTotal }}
+    {% set j = j + 1 %}
+     <h5> PANNES </h5>
+     {% if i.getMaintenance.isPanneMoteur %}
+      {{ i.getGarage.getPanneMoteur }}
+      {% endif %}
+       {% if i.getMaintenance.isVentilateur %}
+       {{ i.getGarage.getVentilateur }}
+        {% endif %}
+{% endfor %}

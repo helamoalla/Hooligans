@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86fab36cd7f841a50a9bdcfa1520d75a",
+    "content-hash": "64e4d6dec7b153b94f35631306cc5867",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1458,6 +1458,207 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "ivory/google-map",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bresam/ivory-google-map.git",
+                "reference": "ff007c5f6d20bf61ff43965568c7ca93ffec9c9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bresam/ivory-google-map/zipball/ff007c5f6d20bf61ff43965568c7ca93ffec9c9e",
+                "reference": "ff007c5f6d20bf61ff43965568c7ca93ffec9c9e",
+                "shasum": ""
+            },
+            "require": {
+                "ivory/json-builder": "^3.0",
+                "php": "^7.2 || ^8.0",
+                "symfony/event-dispatcher": "^5.0"
+            },
+            "replace": {
+                "egeloen/google-map": "^2.0.2"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "ivory/serializer": "^1.0",
+                "php-http/cache-plugin": "^1.4",
+                "php-http/guzzle6-adapter": "^2.0",
+                "phpunit/phpunit": "^8.0",
+                "phpunit/phpunit-selenium": "^8.0",
+                "symfony/cache": "^5.0",
+                "symfony/phpunit-bridge": "^5.0"
+            },
+            "suggest": {
+                "ivory/serializer": "Allows to use http services",
+                "php-http/client-implementation": "Allows to use http services",
+                "php-http/message": "Allows to use http services"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\GoogleMap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Breu",
+                    "email": "samuel.breu@bresam.ch",
+                    "role": "Developer/Maintainer"
+                },
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com",
+                    "role": "Creator/Inactive"
+                }
+            ],
+            "description": "Google Map API v3 integration for PHP ^7.0",
+            "keywords": [
+                "google",
+                "map"
+            ],
+            "support": {
+                "issues": "https://github.com/bresam/ivory-google-map/issues",
+                "source": "https://github.com/bresam/ivory-google-map/tree/3.2.0"
+            },
+            "time": "2021-10-13T12:19:23+00:00"
+        },
+        {
+            "name": "ivory/google-map-bundle",
+            "version": "3.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bresam/ivory-google-map-bundle.git",
+                "reference": "450abf7767a6d5383d2337391bc26443cd91bc9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bresam/ivory-google-map-bundle/zipball/450abf7767a6d5383d2337391bc26443cd91bc9c",
+                "reference": "450abf7767a6d5383d2337391bc26443cd91bc9c",
+                "shasum": ""
+            },
+            "require": {
+                "ivory/google-map": "^3.0",
+                "php": "^7.0 || ^8.0",
+                "symfony/framework-bundle": "^3.0 || ^4.0 || ^5.0"
+            },
+            "replace": {
+                "egeloen/google-map-bundle": "^3.0.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "ivory/serializer-bundle": "^1.0",
+                "php-http/cache-plugin": "^1.4",
+                "php-http/guzzle6-adapter": "^1.0",
+                "phpunit/phpunit": "^6.5",
+                "phpunit/phpunit-selenium": "^4.1.0",
+                "symfony/cache": "^3.2 || ^4.0",
+                "symfony/form": "^2.7 || ^3.0 || ^4.0",
+                "symfony/phpunit-bridge": "^2.7 || ^3.0 || ^4.0",
+                "symfony/templating": "^2.7 || ^3.0 || ^4.0",
+                "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
+                "twig/twig": "^2.7 || ^3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\GoogleMapBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Breu",
+                    "email": "samuel.breu@bresam.ch",
+                    "role": "Developer/Maintainer"
+                },
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com",
+                    "role": "Creator/Inactive"
+                }
+            ],
+            "description": "Provides a google map integration for Symfony",
+            "keywords": [
+                "google",
+                "map"
+            ],
+            "support": {
+                "issues": "https://github.com/bresam/ivory-google-map-bundle/issues",
+                "source": "https://github.com/bresam/ivory-google-map-bundle/tree/3.0.8"
+            },
+            "time": "2022-07-01T15:22:46+00:00"
+        },
+        {
+            "name": "ivory/json-builder",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bresam/ivory-json-builder.git",
+                "reference": "07931d086269d64b191c4e90f68c76c2f2997fb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bresam/ivory-json-builder/zipball/07931d086269d64b191c4e90f68c76c2f2997fb7",
+                "reference": "07931d086269d64b191c4e90f68c76c2f2997fb7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1 || ^8.0",
+                "symfony/property-access": "^3.0 || ^4.0 || ^5.0"
+            },
+            "replace": {
+                "egeloen/json-builder": "^3.0.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "symfony/phpunit-bridge": "^3.0 || ^4.0 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\JsonBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Breu",
+                    "email": "samuel.breu@bresam.ch",
+                    "role": "Developer/Maintainer"
+                },
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com",
+                    "role": "Creator/Inactive"
+                }
+            ],
+            "description": "JSON builder with escaping control for PHP 7.0+",
+            "keywords": [
+                "Escape",
+                "builder",
+                "json"
+            ],
+            "support": {
+                "issues": "https://github.com/bresam/ivory-json-builder/issues",
+                "source": "https://github.com/bresam/ivory-json-builder/tree/3.0.3"
+            },
+            "time": "2021-05-03T13:19:59+00:00"
         },
         {
             "name": "monolog/monolog",
