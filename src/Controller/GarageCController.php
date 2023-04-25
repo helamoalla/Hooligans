@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Garagec;
+use App\Entity\User;
 use App\Entity\Maintenance;
 use App\Form\GarageCFormType;
 use App\Repository\GaragecRepository;
 use App\Repository\MaintenanceRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -16,7 +18,7 @@ use Symfony\Component\Notifier\Bridge\Twilio\TwilioTransport;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Notifier\Message\SmsMessage;
 use Symfony\Component\Notifier\TexterInterface;
-
+use Symfony\Component\Validator\Constraints\Length;
 
 class GarageCController extends AbstractController
 {
@@ -27,6 +29,20 @@ class GarageCController extends AbstractController
             'controller_name' => 'GarageCController',
         ]);
     }
+    #[Route('/afficheG', name: 'afficheG')]
+    public function afficheG(Request $request,GaragecRepository $r)
+{ $garageC=$r->orderById();
+    $lat = $request->query->get('lat');
+    $lng = $request->query->get('lng');
+    $adresse = $request->query->get('adresse');
+
+    return $this->render('garage_c/afficheGC.html.twig', [
+        'lat' => $lat,
+        'lng' => $lng,
+        'g'=>$garageC,
+        'adresse' => $adresse
+    ]);
+}
     #[Route('/afficheGC', name: 'app_afficheGC')]
     public function afficheGC(GaragecRepository $r): Response
     {
@@ -69,10 +85,21 @@ class GarageCController extends AbstractController
         $garageC=new Garagec();
         $form=$this->createForm(GarageCFormType::class,$garageC);
         $form->handleRequest($request);
-        
+       
         if($form->isSubmitted() && $form->isValid()){
             $em =$doctrine->getManager() ;
             $imageFile = $form->get('image')->getData();
+            $adresse = $request->get('adresse');
+            if ($adresse=='') {
+                // Affichage d'une erreur
+           
+                $this->addFlash('error', 'Le champ adresse ne peut pas être vide.');
+        
+                // Redirection vers la page du formulaire
+                return $this->renderForm("garage_c/ajoutGarageC.html.twig",
+                array("f"=>$form,"g"=>$garageC));
+            }
+           $garageC->setAdresse($adresse);
             $numero= $form->get('numero')->getData();
             if ($imageFile) {
                 $imagesDirectory = 'C:/xampp/htdocs/images';
@@ -88,12 +115,22 @@ class GarageCController extends AbstractController
                 
                 $garageC->setImage($filenameWithoutSpaces);
                }
-               $sms = new SmsMessage('+216'.$numero,'Garage ajouter !');
-               $twilio->send($sms);
+               
                $em->persist($garageC);
                $em->flush();
-               
-               return $this->redirectToRoute('app_afficheGC',);
+               $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+               foreach($users as $user){
+                $numero = $user->getNumTel(); 
+                $nomg=$garageC->getNomGarage();
+                $nom = $user->getNom(); 
+                $prenom=$user->getPrenom();
+                $message = 'M/Mme '.$nom.' '.$prenom.', on a ajouté un nouveau garage : '.$nomg.' !';
+                    $sms = new SmsMessage('+216'.$numero, $message);
+                $twilio->send($sms);
+            }
+
+            
+               return $this->redirectToRoute('afficheG',);
          }
 
             
@@ -110,11 +147,23 @@ class GarageCController extends AbstractController
                
             $form=$this->createForm(GarageCFormType::class,$garageC);
              $form->handleRequest($request);
-           
+             
              
              if($form->isSubmitted() && $form->isValid()){
             $em =$doctrine->getManager() ;
             $imageFile = $form->get('image')->getData();
+            //$adresse=$garageC->getAdresse();
+            $adresse = $request->get('adresse');
+            if ($adresse=='') {
+                // Affichage d'une erreur
+           
+                $this->addFlash('error', 'Le champ adresse ne peut pas être vide.');
+        
+                // Redirection vers la page du formulaire
+                return $this->renderForm("garage_c/ajoutGarageC.html.twig",
+                array("f"=>$form,"g"=>$garageC));
+            }
+            $garageC->setAdresse($adresse);
             if ($imageFile) {
                 $imagesDirectory = 'C:/xampp/htdocs/images';
                 $originalFilename = $imageFile->getClientOriginalName();
@@ -126,9 +175,11 @@ class GarageCController extends AbstractController
                 } catch (FileException $e) {
                     // Handle exception
                 }
-                
+              
+           
                 $garageC->setImage($filenameWithoutSpaces);
                 }
+          
                 $em->flush();
                 return $this->redirectToRoute("app_afficheGC");
             }

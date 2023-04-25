@@ -19,7 +19,7 @@ class Garagec
     private ?string $nom_garage = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:'ce champ est obligatoire')]
+    //#[Assert\NotBlank(message:'ce champ est obligatoire veuillez selectionner un endoirt dans la map')]
     private ?string $adresse = null;
 
     #[ORM\Column]

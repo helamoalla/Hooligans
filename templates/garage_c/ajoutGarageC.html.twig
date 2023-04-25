@@ -1,6 +1,20 @@
  {% extends 'index.html.twig' %}
 {% block body %}
 
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <style> 
+     #maCarte {
+  height: 500px; 
+  width: 800px;
+  margin: auto;
+}
+     </style>
+
+<div id="maCarte"></div>
+
  <!-- New Product Add Start -->
                 <div class="container-fluid">
                     <div class="row">
@@ -36,15 +50,89 @@
                                                <div class="mb-4 row align-items-center">
                                                     <label class="form-label-title col-sm-3 mb-0">
                                                       adresse du garage</label>
-                                                    <div class="col-sm-9">
-                                                       {{ form_widget(f.adresse, {'attr': {'class': 'form-control', 'placeholder': 'adresse'}}) }} 
-                                                     
-                       {% if form_errors(f.adresse) %}
-  <div class="alert alert-warning">
+
+ <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+      // Initialisation de la carte
+      var carte = L.map('maCarte').setView([36.8065, 10.1815], 13);
+
+      // Chargement des tuiles ou layers
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Il est toujours bien de laisser le lien vers la source des données
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        minZoom: 1,
+        maxZoom: 20
+      }).addTo(carte);
+
+ 
+
+// Création d'une liste pour stocker les marqueurs
+var markersList = [];
+
+function onMapClick(e) {
+    // Suppression des anciens marqueurs
+    markersList.forEach(marker => carte.removeLayer(marker));
     
-    <strong><i class="fas fa-exclamation-triangle"></i> Warning!</strong>{{ form_errors(f.adresse) }} 
-  </div>
-{% endif %}                                                 
+    // Ajout d'un nouveau marqueur
+    var marker = L.marker(e.latlng).addTo(carte);
+    
+    // Stockage du nouveau marqueur dans la liste
+    markersList.push(marker);
+    
+    var champAdresse = document.getElementById("adresse");
+   
+    // Appel à l'API de géocodage inversé de OpenStreetMap pour récupérer le nom de l'endroit
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e.latlng.lat}&lon=${e.latlng.lng}`)
+      .then(response => response.json())
+      .then(data => {
+        // Récupération du nom de l'endroit
+        adresse = data.display_name;
+      
+        // Affichage du nom de l'endroit dans la popup du marqueur
+        marker.bindPopup("<p>" + data.display_name + "</p>").openPopup();
+        
+        // Affichage du nom de l'endroit dans le champ texte
+        champAdresse.value = adresse;
+       
+      })
+      .catch(error => console.log(error));
+}
+
+carte.on('click', onMapClick);
+       
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+                                                    <div class="col-sm-9">
+
+
+<!-- L'input pour l'adresse visible -->
+
+{% if g %}
+      
+        <input type="text" class="form-control" id="adresse" name="adresse" value="{{ g.getAdresse }}" >
+        {{ form_widget(f.adresse,{'value': g.getAdresse(), 'attr': {'style': 'display:none;'}})}}
+    </div>
+{% else %}
+   
+     <input type="text" class="form-control" id="adresse" name="adresse"  >
+   
+{% endif %}
+ 
+                  
+                     
+ 
+                                             
                                                     </div>
                                                 </div>
  
@@ -313,8 +401,8 @@
                                                 </tbody>
                                             </table>
 
-                                                {{ form_widget(f.ajouter, {'attr': {'class': 'btn btn-solid'}}) }} 
-                                                          
+                                              {{ form_widget(f.ajouter, {'attr': {'class': 'btn btn-solid'}}) }}
+                                                
                                             </form>
                                         </div>
                                     </div>
@@ -331,4 +419,12 @@
         {{ form_end(f) }}
         
                 <!-- New Product Add End -->
+
+                 <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+     
+
                   {% endblock %}

@@ -1,6 +1,17 @@
 {% extends 'index.html.twig' %}
 {% block body %}
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <style> 
+     #maCarte {
+  height: 500px; 
+  width: 800px;
+  margin: auto;
+}
+     </style>
 <!-- Container-fluid starts-->
+<div id="maCarte"></div>
             <div class="page-body">
                 <div class="container-fluid">
                     <div class="row">
@@ -23,26 +34,12 @@
                                             <table class="table all-package theme-table table-product" id="table_id">
                                                 <thead>
                                                     <tr>
+                                                     <th>Option </th>
                                                         <th>GARAGE Image</th>
                                                         <th>GARAGE Name</th>
-                                                        <th>Adresse</th>
                                                         <th>Numero</th>
-                                                        <th>Panne moteur</th>
-                                                        <th>Pompe A Eau</th>
-                                                            <th>patin</th>
-            <th>essuie_glace</th>
-            <th>radiateur</th>
-            <th>ventilateur</th>
-            <th>duride</th>
-            <th>fuite_d_huile</th>
-            <th>vidange</th>
-            <th>filtre</th>
-            <th>batterie</th>
-            <th>amortisseur</th>
-            <th>frein_main</th>
-           <th>feu_d_eclairage</th>
-           <th>taux_de_reduction</th>
-                                                        <th>Option </th>
+                                                        <th>taux_de_reduction</th>
+                                                        <th>Adresse</th>
                                                     </tr>
                                                 </thead>
 
@@ -51,55 +48,7 @@
                                                     <tr>
                                                    
                                                   
-                                                       <td>
-                                                            <div class="table-image">
-                                                                <img src="http://localhost/images/{{i.getImage}}" class="img-fluid" alt="">
-                                                                   
-                                                            </div>
-                                                        </td>
-                                                     
-                                                        
-
-        <!--<td>{{i.getImage}}</td>-->
-         <td>{{i.getNomGarage}}</td>
-            <td>{{i.getAdresse}}</td>
-            <td>{{i.getNumero}}</td>
-            <td>
-                {{i.getPanneMoteur}}
-            </td>
-            <td>
-                {{i.getPompeAEau}}
-            </td>
-            <td>{{i.getPatin}}</td>
-            <td>{{i.getEssuieGlace}}</td>
-            <td>{{i.getRadiateur}}</td>
-            <td>
-                {{i.getVentilateur}}
-            </td>
-            <td>
-                {{i.getDuride}}
-            </td>
-            <td>
-                {{i.getFuiteDHuile}}
-            </td>
-            <td>{{i.getVidange}}</td>
-            <td>{{i.getFiltre}}</td>
-            <td>{{i.getBatterie}}</td>
-            <td>
-                {{i.getAmortisseur}}
-            </td>
-            <td>
-                {{i.getFreinMain}}
-            </td>
-          <td>
-                {{i.getFeuDEclairage}}
-            </td>
-            <td>{{i.getTauxDeReduction}}</td>
-            
-       
-   
- 
-
+                                                       
                                                         <td>
                                                             <ul>
                                                                 <li>
@@ -121,7 +70,23 @@
                                                                 </a>
                                                                 </li>
                                                             </ul>
+                                                        </td>           
+                                                        
+<td>
+                                                            <div class="table-image">
+                                                                <img src="http://localhost/images/{{i.getImage}}" class="img-fluid" alt="">
+                                                                   
+                                                            </div>
                                                         </td>
+         <td>{{i.getNomGarage}}</td>
+           
+            <td>{{i.getNumero}}</td>
+            
+            <td>{{i.getTauxDeReduction}}</td>
+
+             <td>{{i.getAdresse}}</td>
+            
+       
                                                     </tr>
 
 
@@ -191,4 +156,43 @@
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
+                 <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
+<script> 
+ // Initialisation de la carte
+      var carte = L.map('maCarte').setView([36.8065, 10.1815], 13);
+
+      // Chargement des tuiles ou layers
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Il est toujours bien de laisser le lien vers la source des données
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        minZoom: 1,
+        maxZoom: 20
+      }).addTo(carte);
+
+// Recherche de l'endroit
+{% for i in g %}
+var nomEndroit = "{{i.getAdresse}}";
+
+fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${nomEndroit}`)
+  .then(response => response.json())
+  .then(data => {
+    // Récupération des coordonnées de l'endroit
+    var latlng = [data[0].lat, data[0].lon];
+    
+    // Ajout du marqueur sur la carte
+    var marker = L.marker(latlng).addTo(carte);
+    marker.bindPopup("<p>"+"{{i.getNomGarage}}"+"</p>");
+    
+    // Centrage de la carte sur le marqueur
+    carte.setView(latlng, 13);
+  })   
+  .catch(error => console.log(error));
+{% endfor %}
+</script>
+
+  
                 {% endblock %}

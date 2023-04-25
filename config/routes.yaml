@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+afficheG:
+    path: /afficheG
+    controller: App\Controller\GarageCController::afficheG

@@ -17,7 +17,7 @@ class GarageCFormType extends AbstractType
     {
         $builder
             ->add('nom_garage')
-            ->add('adresse')
+           ->add('adresse')
             ->add('numero')
             ->add('panne_moteur')
             ->add('pompe_a_eau')
