@@ -98,7 +98,7 @@ class BonplanController extends AbstractController
                         ->from('hajjem1920@gmail.com')
                         ->to($bonplanReported->getUser()->getEmail())
                         ->subject('Be careful !')
-                        ->text('you bonplan has been deleted due to mutliple reports  !');
+                        ->text("Your bonplan ". $bonplanReported->getNomBonplan() ." has been deleted due to mutliple reports  !");
                         //->html('<p>See Twig integration for better HTML integration!</p>');
 
                     $mailer->send($email);

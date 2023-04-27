@@ -33,65 +33,75 @@
 							class="clearfix">
 							<!-- blog grid -->
 							<div id="masonry" class="row dlab-blog-grid-3">
-								{% for item in allBonplan %}
-									<div class="post card-container col-lg-4 col-md-6 col-sm-12">
-										<div class="blog-post blog-grid date-style-2">
-											<div class="dlab-post-media dlab-img-effect zoom-slow">
-												<a href="#"><img style="height:197.14px " src="http://localhost/images/{{item.0.getImage()}}" alt=""></a>
-											</div>
-											<div class="dlab-post-info">
-												<div class="dlab-post-title ">
-													<h3 class="post-title">
-														<a href="#">{{item.0.getNomBonplan()}}</a>
-													</h3>
+								{% if allBonplan|length != 0 %}
+									{% for item in allBonplan %}
+										<div class="post card-container col-lg-4 col-md-6 col-sm-12">
+											<div class="blog-post blog-grid date-style-2">
+												<div class="dlab-post-media dlab-img-effect zoom-slow">
+													<a href="#"><img style="height:197.14px " src="http://localhost/images/{{item.0.getImage()}}" alt=""></a>
 												</div>
-												<div class="dlab-post-meta ">
-													<ul>
-														<li class="post-author">
-															<i class="fas fa-user"></i>By
-															<a href="#">{{item.0.getUser().getNom()}}
-																{{item.0.getUser().getPrenom()}}</a>
-														</li>
-														<li class="post-comment">
-															<i class="fas fa-comments"></i>
-															<a href="#">{{item.count_feeds}}</a>
-														</li>
-														<li class="post-comment">
-															<i class="fa-sharp fa-solid fa-pen" style="color: #ff0000;"></i>
-															<a href="{{path('updateBonplanUser',{'id':item.0.getId()}) }}">update</a>
-														</li>
-														<li class="post-comment">
-															<i class="fa-solid fa-trash-can" style="color: #ff0000;"></i>
-															<a href="{{path('delete_Bonplan',{'id':item.0.getId()}) }}">delete</a>
-														</li>
-													</ul>
-												</div>
-												<div class="dlab-post-text">
-													<p>{{item.0.getDescription()}}</p>
-												</div>
-												<div class="dlab-post-text" style="text-align:center">
-													<p>{{item.avg_rating|rating }}
-														{{item.avg_rating|number_format(1, '.', '')}}
-													</p>
-												</div>
-												<div class="dlab-post-readmore">
-													<a href="{{path('detail_bonplan',{'id':item.0.getId()}) }}" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i>
-													</a>
-												</div>
+												<div class="dlab-post-info">
+													<div class="dlab-post-title ">
+														<h3 class="post-title">
+															<a href="#">{{item.0.getNomBonplan()}}</a>
+														</h3>
+													</div>
+													<div class="dlab-post-meta ">
+														<ul>
+															<li class="post-author">
+																<i class="fas fa-user"></i>By
+																<a href="#">{{item.0.getUser().getNom()}}
+																	{{item.0.getUser().getPrenom()}}</a>
+															</li>
+															<li class="post-comment">
+																<i class="fas fa-comments"></i>
+																<a href="#">{{item.count_feeds}}</a>
+															</li>
+															<li class="post-comment">
+																<i class="fa-sharp fa-solid fa-pen" style="color: #ff0000;"></i>
+																<a href="{{path('updateBonplanUser',{'id':item.0.getId()}) }}">update</a>
+															</li>
+															<li class="post-comment">
+																<i class="fa-solid fa-trash-can" style="color: #ff0000;"></i>
+																<a href="{{path('delete_Bonplan',{'id':item.0.getId()}) }}">delete</a>
+															</li>
+														</ul>
+													</div>
+													<div class="dlab-post-text">
+														<p>{{item.0.getDescription()}}</p>
+													</div>
+													<div class="dlab-post-text" style="text-align:center">
+														<p>{{item.avg_rating|rating }}
+															{{item.avg_rating|number_format(1, '.', '')}}
+														</p>
+													</div>
+													<div class="dlab-post-readmore">
+														<a href="{{path('detail_bonplan',{'id':item.0.getId()}) }}" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i>
+														</a>
+													</div>
 
+												</div>
 											</div>
 										</div>
-									</div>
-								{% endfor %}
-								
+									{% endfor %}
+
+								{% else %}
+									<h1 style="
+									 top: 80%;
+									left: 25%;
+									position: absolute;">
+									<i class="fa-solid fa-circle-exclamation"></i>   	Not found
+									</h1>
+								{% endif %}
+
 
 							</div>
 							<!-- blog grid END -->
 
 						</div>
-						<div class="pagination">
-								{{ knp_pagination_render(allBonplan) }}
-							</div>
+						<div class=" pagination">
+							{{ knp_pagination_render(allBonplan) }}
+						</div>
 					</div>
 					<!-- left part END -->
 					<!-- Side bar start -->
@@ -163,7 +173,6 @@
 
 								</div>
 							</div>
-							
 
 
 						</aside>

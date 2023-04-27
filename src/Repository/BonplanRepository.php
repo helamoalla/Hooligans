@@ -52,7 +52,7 @@ class BonplanRepository extends ServiceEntityRepository
             GROUP BY b
         ")
         ->setParameter('null',NULL)
-        ->setParameter('req',$req.'%')
+        ->setParameter('req','%'.$req.'%')
         ;
         return $query->getResult();
     }
