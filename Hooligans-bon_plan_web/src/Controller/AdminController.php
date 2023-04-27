@@ -18,7 +18,9 @@ use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart ;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart ;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BareChart ;
 use CMEN\GoogleChartsBundle\GoogleCharts;
-
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+use Symfony\Component\Mime\Email;
 
 class AdminController extends AbstractController
 {
@@ -98,17 +100,64 @@ foreach ($result1 as $result) {
 
 
 //////3EME CHART/////
-$query2 = $em->createQuery('SELECT c.id, COUNT(p.id) AS nb_produits FROM App\Entity\Categorie c , App\Entity\Produit p Where c.id=p.id GROUP BY c.id');
+$query2 = $em->createQuery('SELECT c.nom_categorie, SUM(p.quantite_prod) as total_quantite FROM App\Entity\Produit p JOIN p.categorie c GROUP BY p.categorie');
 $result2 = $query2->getResult();
 
-// Convertir les données en un format de données pris en charge par PieChart
+// Convertir les données en un format de données pris en charge par BarChart
 $data2 = [['Categorie', 'Nbre produit']];
 foreach ($result2 as $result) {
-    $data2[] = (int)[$result['id_categorie'], (int) $result['nb_produits']];}
-  
-    $bar = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
-    $bar->getData()->setArrayToDataTable($data2);
-    $bar->getOptions()->setTitle('Population of Largest U.S. Cities');
+    $data2[] = [$result['nom_categorie'], (int) $result['total_quantite']];
+}
+
+$bar = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
+
+
+$bar->getData()->setArrayToDataTable($data2);
+$bar = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
+
+$bar->getData()->setArrayToDataTable($data2);
+$bar->getOptions()
+    ->setTitle('Quantité de produits par catégorie')
+    ->setColors(['#4AA3A2'])// Change the colors here
+    ->setBackgroundColor('#f5f5f5')
+    ->setHeight(400)
+    ->setWidth(600)
+    ->getLegend()
+      ->setPosition('none');
+     
+////4eme chart
+$query3 = $em->createQuery('SELECT c.type_categorie, SUM(p.prix_prod) as total_quantite FROM App\Entity\Produit p JOIN p.categorie c GROUP BY c.type_categorie');
+$results3 = $query3->getResult();
+
+// Convertir les données en un format de données pris en charge par PieChart
+$data3 = [['Product', 'Quantity']];
+foreach ($results3 as $result) {
+    $data3[] = [$result['type_categorie'], (float) $result['total_quantite']];
+}
+
+        $pieChart1 = new PieChart();
+        $pieChart1->getData()->setArrayToDataTable($data3);
+        $pieChart1->getOptions()->setTitle('');
+        $pieChart1->getOptions()->setHeight(400);
+        $pieChart1->getOptions()->setWidth(700);
+        $pieChart1->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart1->getOptions()->getTitleTextStyle()->setColor('#bde0ff');
+        $pieChart1->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart1->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart1->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart1->getOptions()->setColors(['#bde0ff', '#c8f4d5', '#e3f1cb', '#d4e9da', '#d7ffe4', '#dde3e3','#d7e5db','#afeeee','#e6f6c6','#fdf1b8']);
+        $pieChart1->getOptions()->setIs3D(true);
+        $pieChart1->getOptions()->getLegend()->getTextStyle()->setFontName('Arial');
+        $pieChart1->getOptions()->getLegend()->getTextStyle()->setFontSize(14);
+        $pieChart1->getOptions()->getLegend()->getTextStyle()->setColor('#666666');
+        $pieChart1->getOptions()->getPieSliceTextStyle()->setFontName('Arial');
+        $pieChart1->getOptions()->getPieSliceTextStyle()->setFontSize(14);
+        $pieChart1->getOptions()->setBackgroundColor('#f5f5f5');
+        $pieChart1->getOptions()->getLegend()->setPosition('left');
+        $pieChart1->getOptions()->setPieSliceText('label');
+        $pieChart1->getOptions()->setPieSliceText('value');
+
+ 
 
     
         return $this->render('homeadmin.html.twig', [
@@ -118,8 +167,8 @@ foreach ($result2 as $result) {
            // 'charts'=>$chart ,
             'pieCharts'=>$pieChart ,
             'lines'=>$line,
-            'bars'=>$bar ,
-          
+            'bars'=>$bar,
+            'pieCharts1'=>$pieChart1,
         ]);
     }
     
@@ -134,7 +183,7 @@ foreach ($result2 as $result) {
                 $Categorie= new Categorie();
                 $form=$this->createForm(CategoryFormType::class,$Categorie);
                     $form->handleRequest($request);
-                    if($form->isSubmitted()){
+                    if($form->isSubmitted()&& $form->isValid()){
                         $em =$doctrine->getManager() ;
                         $em->persist($Categorie);
                         $em->flush();
@@ -206,7 +255,7 @@ foreach ($result2 as $result) {
         //Ajouter produit
 
         #[Route('/adminaddproduit', name: 'addproduit')]
-        public function addProduit(ManagerRegistry $doctrine,Request $request)
+        public function addProduit(ManagerRegistry $doctrine,Request $request, TransportInterface $mailer)
                 {
                 $Produit= new Produit();
                 $form=$this->createForm(ProduitFormType::class,$Produit);
@@ -221,6 +270,7 @@ foreach ($result2 as $result) {
               
                   ]);
                   $nomprod = $form->get('nom_prod')->getData();
+                  $quantprod = $form->get('quantite_prod')->getData();
                   if ($existingProduit) {
                     // Si le produit existe déjà, mettre à jour la quantité
                     $existingProduit->setQuantiteProd($existingProduit->getQuantiteProd() + $Produit->getQuantiteProd());
@@ -249,14 +299,28 @@ foreach ($result2 as $result) {
                         $em->persist($Produit);
                        
                         $this->addFlash('error', 'Le produit '. $nomprod .' est ajoutée avec succes.');
+                                        
+                    //     // Créer l'email
+                    // $contenu = $this->renderView('produit/mailProduit.html.twig', [
+                    //     'p'=>$Produit  ,
+                    //     ]);
+                    //     $email = (new Email())
+                    //     ->from('nadiakarboul24@gmail.com')
+                    //     ->to('chouaibiasma15@gmail.com')
+                    //     ->subject('Produit Ajoutée avec succes !')
+                    //     ->html($contenu);
+                    // // Envoyer l'email
+                    // $mailer->send($email);
                 }
                         $em->flush();
+
+      
                       
                         return $this->redirectToRoute('afficheproduit');}
             
                        return $this->renderForm("produit/addProduitAdmin.html.twig",
                        
-                        array("f"=>$form));
+                        array("f"=>$form),);
                     }
         
                  

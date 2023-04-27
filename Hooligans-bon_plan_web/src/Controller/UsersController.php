@@ -39,7 +39,7 @@ class UsersController extends AbstractController
             $Produit, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
 
-            12/*limit per page*/,
+            8/*limit per page*/,
            
         );
        

@@ -237,7 +237,7 @@
                                 <li class="back-btn"></li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                    <a class="sidebar-link sidebar-title link-nav" href="admin">
                                         <i class="ri-home-line"></i>
                                         <span>Dashboard</span>
                                     </a>
@@ -576,7 +576,7 @@
                             <div class="card o-hidden card-hover">
                                 <div class="card-header border-0 pb-1">
                                     <div class="card-header-title">
-                                        <h4>Revenue Report</h4>
+                                        <h4>Quantité en stock</h4>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -615,7 +615,7 @@
                                 <div class="card o-hidden card-hover">
                                     <div class="card-header border-0 mb-0">
                                         <div class="card-header-title">
-                                            <h4>Earning</h4>
+                                            <h4>Prix des Produits</h4>
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
@@ -636,7 +636,7 @@
                                 <div class="card o-hidden card-hover">
                                     <div class="card-header border-0 mb-0">
                                         <div class="card-header-title">
-                                            <h4>Earning</h4>
+                                            <h4>Nombre de produit par catégorie</h4>
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
@@ -650,6 +650,23 @@
                                 </div>
                             </div>
                             <!-- Earning chart end-->
+                                       <!-- Earning chart star-->
+                         <div class="col-xl-6">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title">
+                                        <h4>Quantité en stock</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                   
+                                    <div id="div_chartt"></div>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(pieCharts1, 'div_chartt') }}
+    </script>
+                            
 
                                  <!-- Recent orders start-->
                         <div class="col-xl-6">

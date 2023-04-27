@@ -14,9 +14,11 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
+
     public ?string $nom_categorie = null;
 
     #[ORM\Column(length: 100)]
+   
     public ?string $description_categorie = null;
 
     #[ORM\Column(length: 30)]
