@@ -1,0 +1,39 @@
+.notification {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+  }
+  
+  .notification img {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .notification h3 {
+    margin: 0;
+  }
+  
+  .notification p {
+    margin: 0;
+  }
+  
+  /* Styles pour la notification personnalisée */
+  .notification.show {
+    background-color: #009688;
+    color: #fff;
+  }
+  
+  .notification.show img {
+    border-radius: 50%;
+  }
+  
+  .notification.show h3 {
+    color: #fff;
+  }
+  
+  .notification.show p {
+    color: #fff;
+  }

@@ -98,6 +98,7 @@ class MarketplaceController extends AbstractController
                   $lignePanier->setImage($produit->getImage());
                   $em->persist($lignePanier);
                   $em->flush();
+                  $this->addFlash('error', 'le produit '.$produit->getNomProd().' a été ajouté au panier avec succès');
                     // Rediriger vers la page d'affichage des produits 
                   return $this->redirectToRoute("app_marketplace");
                   } 

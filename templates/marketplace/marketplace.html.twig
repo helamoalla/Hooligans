@@ -27,6 +27,10 @@
 </div>
 
 <div class="row justify-content-center">
+    
+    {% for message in app.flashes('error') %}
+    <div class="alert alert-success"> <strong><i class="far fa-thumbs-up"></i> Succès!</strong> {{ message }} </div>
+    {% endfor %}
     <div class="col-lg-7 align-self-center">
         <div class="section-title text-center">
             <h6 class="sub-title double-line"><span></span>  Produits</h6>

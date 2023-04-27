@@ -172,31 +172,41 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
     $publicPath = $this->getParameter('kernel.project_dir') . '/public';
     $pdfOptions = new Options();
     $pdfOptions->set('defaultFont', 'Arial');
-    $pdfOptions->set('isRemoteEnabled', true);
+    //$pdfOptions->set('isRemoteEnabled', true);
     $pdf = new Dompdf($pdfOptions);
-//Contenu du Pdf
+    //$pdf->loadHtml($aData['html']);
+    $pdf->set_option('isRemoteEnabled', TRUE);
+    //Contenu du Pdf
     $html = '<html><body>';
-    //$html .= '<h1>Facture</h1>';
+    $html .= ' <div style="background-color: red; height: 50px; display: flex; justify-content: center; align-items: center;">
+  <span style="color: white; font-size: 24px; text-align:center">Drift&Race</span>
+</div>';
+    $html .= '<h1>Facture</h1>';
     // $html .= '<img src="' . $publicPath . '/en_tete.png" />';
-    $html .= '<img src="public/images/en_tete.png" />';
+    //$html .= '<img src="public/images/en_tete.png" />';
     //$html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/en_tete.png')).'" />';
     $html .= '<p>Vendeur : Drift$Race</p>';
-    $html .= '<p>________________________________________________</p>';
+    $html .= '<p>_________________________________________________________________________</p>';
     $html .= '<p>Client : '.$user->getNom().' '.$user->getPrenom().'</p>';
     $html .= '<p>Commande n°'.$commande->getId().'</p>';
-    $html .= '<p>Date de facturation '.$commande->getDateCommande()->format('d/m/Y').'</p>';
-    $html .= '<p>________________________________________________</p>';
+    $html .= '<p>Date de facturation : '.$commande->getDateCommande()->format('d/m/Y').'</p>';
+    $html .= '<p>Adresse de livraison : '.$commande->getRue().' '.$commande->getVille().' '.$commande->getGouvernorat().', '.$commande->getCodePostal().'</p>';
+    $html .= '<p>________________________________________________________________________</p>';
     $html .= '<h3>Détails de la commande</h3>';
-    $html .= '<table border="1" cellspacing="0">';
-    $html .= '<tr><th>Image</th><th>Produit</th><th>Prix unitaire</th><th>Quantité</th><th>Sous Montant</th></tr>';
+    $html .= '<table border="1" cellspacing="0" style="width: 100%; text-align: center;">';
+    $html .= '<tr style="background-color: black; color: white; font-weight: bold;"><th>Référence du Paroduit</th><th>Produit</th><th>Prix unitaire</th><th>Quantité</th><th>Sous Montant</th></tr>';
     foreach ($produits_par_panier as $p) {
-        $html .= '<tr><td>'.$p->getProduit()->getImage().'</td><td>'.$p->getProduit()->getNomProd().'</td><td>'.$p->getProduit()->getPrixProd().' DT</td><td>'.$p->getQuantite().'</td><td>'.$p->getProduit()->getPrixProd()*$p->getQuantite().' DT</td></tr>';
+        $html .= '<tr><td>'.$p->getId().'</td><td>'.$p->getProduit()->getNomProd().'</td><td>'.$p->getProduit()->getPrixProd().' DT</td><td>'.$p->getQuantite().'</td><td>'.$p->getProduit()->getPrixProd()*$p->getQuantite().' DT</td></tr>';
     }
     $html .= '<tr><td colspan="4">Montant Total à payer</td><td>'.$commande->getMontant().' DT</td></tr>';
     $html .= '</table>';
    // $html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/bas_page.png')).'" />';
     //$html .= '<img src="' . $publicPath . '/bas_page.png" />';
-    $html .= '<img src="public/images/bas_page.png" />';
+    //$html .= '<img src="public/images/bas_page.png" />';
+
+    $html .= ' <div style="position:absolute; bottom:0; width:100%; height:30px; background-color:red;">
+    <p style="color:white; font-weight:bold; margin:0 0 0 20px; line-height:30px;">Drift&Race</p>
+  </div>';
     $html .= '</body></html>';
     $pdf->loadHtml($html);
     $pdf->setPaper('A4', 'portrait');
@@ -209,10 +219,10 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
      // Rendre la template Twig en HTML
    $contenu = $this->renderView('mail.html.twig');
 
-      // Créer l'email
+    // Créer l'email
     $email = (new Email())
     ->from('asma.choueibi@gmail.com')
-    ->to('chouaibiasma15@gmail.com')
+    ->to('asma.choueibi@gmail.com')
     ->subject('Facture')
     ->html($contenu)
     ->attach($output, 'facture.pdf','downloads/facture.pdf');
@@ -220,7 +230,9 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
    // Envoyer l'email
    $mailer->send($email);
 
-     return $this->redirectToRoute("vider_panier", ['id' => $id]);
+    return $this->redirectToRoute("vider_panier", ['id' => $id]);
+
+    //return $this->redirectToRoute("app_Affichepanier");
 }
 
 
@@ -246,8 +258,9 @@ public function passerCommande(int $idPanier, float $total,ManagerRegistry $doct
         $entityManager = $doctrine->getManager() ;
         $entityManager->persist($commande);
         $entityManager->flush();
+        //nrecuperi l commande li tsan3et jdida
         $idCommande = $commande->getId();
-
+        //redirection lel route mtaa l facture w naatih l id commande li tsan3et jdida
         return $this->redirectToRoute("app_facture", ['idCommande' => $idCommande]);
     }
 

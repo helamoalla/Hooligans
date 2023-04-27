@@ -1,6 +1,6 @@
 
 
-function createNotification(title, content) {
+function createNotification1(title, content) {
     if (Notification.permission === 'granted') {
       var notification = new Notification(title, {
         body: content
@@ -12,6 +12,35 @@ function createNotification(title, content) {
           var notification = new Notification(title, {
             body: content
           });
+        }
+      });
+    }
+  }
+
+
+  function showNotification(title, content) {
+    if (Notification.permission === "granted") {
+      var notification = new Notification(title, {
+        body: content
+      });
+
+      // Ajouter une classe pour la personnalisation
+      notification.addEventListener("show", function() {
+        document.querySelectorAll(".notification").forEach(function(item) {
+          item.classList.add("show");
+        });
+      });
+      
+      // Supprimer la classe pour cacher la notification
+      notification.addEventListener("click", function() {
+        document.querySelectorAll(".notification").forEach(function(item) {
+          item.classList.remove("show");
+        });
+      });
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function(permission) {
+        if (permission === "granted") {
+          showNotification();
         }
       });
     }
