@@ -12,9 +12,14 @@ use App\Entity\Garagec;
 use App\Entity\Maintenance;
 use App\Entity\User;
 use App\Repository\MaintenanceRepository;
+use App\Repository\DevisRepository;
 use App\Repository\GaragecRepository;
 use App\Repository\UserRepository;
-use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Mime\Email;
+use Dompdf\Options;
+use Dompdf\Dompdf;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+
 
 class DevisController extends AbstractController
 {
@@ -25,7 +30,110 @@ class DevisController extends AbstractController
             'controller_name' => 'DevisController',
         ]);
     }
-    
+
+    #[Route('/email/{id}', name: 'email')]
+    public function sendEmail($id,TransportInterface $mailer,UserRepository $ur,DevisRepository $r1,): Response
+    {$user = $ur->find(22);
+        $devis=$r1->find($id);
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set('isRemoteEnabled', true);
+        $pdf = new Dompdf($pdfOptions);
+       
+        //Contenu du Pdf
+        $html = '<html><body>';
+       // $html = '<img src="data:image/png;base64,' . base64_encode(file_get_contents('C:\xampp\htdocs\Hooligans-bon_plan_web\Hooligans-bon_plan_web\public\tete.png')) . '" alt="Image PNG">';
+        $html .= '<p>Vendeur : Drift$Race</p>';
+        $html .= '<p>________________________________________________</p>';
+        $html .= '<p>Client : '.$user->getNom().' '.$user->getPrenom().'</p>';
+        $html .= '<p>________________________________________________</p>';
+        $html .= '<h3>Détails du devis</h3>';
+        $html .= '<table border="1" cellspacing="0">';
+        $html .= '<tr><th>Pannes</th><th>Prix</th></tr>';
+       if($devis->getMaintenance()->isPanneMoteur()){
+            $html .= '<tr><td>Panne Moteur</td><td>'.$devis->getGarage()->getPanneMoteur().'DT</td>';
+       }
+       if($devis->getMaintenance()->isFeuDEclairage()){
+        $html .= '<tr><td>Feu D Eclairage</td><td>'.$devis->getGarage()->getFeuDEclairage().'DT</td>';
+   }
+   if($devis->getMaintenance()->isAmortisseur()){
+    $html .= '<tr><td>Amortisseur</td><td>'.$devis->getGarage()->getAmortisseur().'DT</td>';
+}
+if($devis->getMaintenance()->isBatterie()){
+    $html .= '<tr><td>Batterie</td><td>'.$devis->getGarage()->getBatterie().'DT</td>';
+}
+if($devis->getMaintenance()->isDuride()){
+    $html .= '<tr><td>Duride</td><td>'.$devis->getGarage()->getDuride().'DT</td>';
+}
+if($devis->getMaintenance()->isEssuieGlace()){
+    $html .= '<tr><td>EssuieGlace</td><td>'.$devis->getGarage()->getEssuieGlace().'DT</td>';
+}
+if($devis->getMaintenance()->isFiltre()){
+    $html .= '<tr><td>Filtre</td><td>'.$devis->getGarage()->getFiltre().'DT</td>';
+}
+if($devis->getMaintenance()->isFreinMain()){
+    $html .= '<tr><td>FreinMain</td><td>'.$devis->getGarage()->getFreinMain().'DT</td>';
+}
+if($devis->getMaintenance()->isFuiteDHuile()){
+    $html .= '<tr><td>FuiteDHuile</td><td>'.$devis->getGarage()->getFuiteDHuile().'DT</td>';
+}
+if($devis->getMaintenance()->isPatin()){
+    $html .= '<tr><td>Patin</td><td>'.$devis->getGarage()->getPatin().'DT</td>';
+}
+if($devis->getMaintenance()->isPompeAEau()){
+    $html .= '<tr><td>PompeAEau</td><td>'.$devis->getGarage()->getPompeAEau().'DT</td>';
+}
+if($devis->getMaintenance()->isRadiateur()){
+    $html .= '<tr><td>Radiateur</td><td>'.$devis->getGarage()->getRadiateur().'DT</td>';
+}
+if($devis->getMaintenance()->isVentilateur()){
+    $html .= '<tr><td>Ventilateur</td><td>'.$devis->getGarage()->getVentilateur().'DT</td>';
+}
+if($devis->getMaintenance()->isVidange()){
+    $html .= '<tr><td>Vidange</td><td>'.$devis->getGarage()->getVidange().'DT</td>';
+}
+
+     
+        $html .= '</table>';
+        $html .= '<p>Arretez la presente Piece apres une reduction de '.$devis->getGarage()->getTauxDeReduction().' % a la somme de : '.$devis->getTotal().'DT</p>';
+        $html .= '<p>________________________________________________</p>';
+        $html .= '</body></html>';
+        
+        $pdf->loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        
+        // Render the PDF as a string
+        $pdf->render();
+        // Retourner le pdf
+        $output = $pdf->output();
+        file_put_contents('C:\Users\helam\Desktop\helapdf\pdf.pdf', $output);
+        
+        // Rendre la template Twig en HTML
+        $contenu = $this->renderView('devis/test.html.twig');
+        
+        // Créer l'email
+        $email = (new Email())
+            ->from('helamoalla91@gmail.com')
+            ->to('helamoalla91@gmail.com')
+            ->subject('DEVIS')
+            ->html($contenu)
+            ->attachFromPath('C:\Users\helam\Desktop\helapdf\pdf.pdf', 'pdf.pdf');
+        
+        // Envoyer l'email
+        $mailer->send($email);
+
+
+//$email = (new Email())
+   // ->from('helamoalla91@gmail.com')
+   // ->to('asma.choueibi@gmail.com')
+   // ->subject('Objet de l\'email')
+   // ->text('Contenu de l\'email');
+    //->attachFromPath('C:\Users\helam\Desktop\helapdf\pdf.pdf', 'pdf.pdf', 'application/pdf');
+    //$mailer->send($email);
+      //  return new Response('Email sent!');
+     
+      return $this->redirectToRoute('app_maintenance',);
+    }
     #[Route('/deviss/{id}', name: 'deviss')]
     public function devis($id,MaintenanceRepository $r,GaragecRepository $r1,ManagerRegistry $doctrine,Request $request): Response
     {  
@@ -96,7 +204,7 @@ class DevisController extends AbstractController
         $em->flush();
     }
         return $this->render('devis/index.html.twig', [
-            'd' => $devis,'TTC' => $TTC,
+            'd' => $devis,'TTC' => $TTC , 'g'=>$g,
         ]);
     }
 }

@@ -1,6 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-afficheG:
-    path: /afficheG
-    controller: App\Controller\GarageCController::afficheG
+pdf:
+    path: /pdf
+    controller: Dompdf:DevisController:pdf

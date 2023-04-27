@@ -86,9 +86,12 @@ class MaintenanceController extends AbstractController
             $user=$this->getDoctrine()->getRepository(User::class)->find(25);
             $maintenance->setUser($user);
             $maintenance->setDateMaintenance(new \DateTime('now'));
+            if($form->get('panne_moteur')->getData() || $form->get('pompe_a_eau')->getData() || $form->get('patin')->getData() || $form->get('essuie_glace')->getData() || $form->get('radiateur')->getData() || $form->get('ventilateur')->getData() || $form->get('duride')->getData() || $form->get('fuite_d_huile')->getData() || $form->get('vidange')->getData() || $form->get('filtre')->getData() || $form->get('batterie')->getData() || $form->get('amortisseur')->getData() || $form->get('frein_main')->getData() || $form->get('feu_d_eclairage')->getData()){
             $em->persist($maintenance);
             $em->flush();
-            return $this->redirectToRoute('app_afficheMU',);}
+            return $this->redirectToRoute('deviss', ['id' => $maintenance->getId()]);} }
+
+           // return $this->redirectToRoute('app_afficheMU',);
             
            return $this->renderForm("maintenance/ajoutMaintenance.html.twig",
             array("f"=>$form));
