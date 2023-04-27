@@ -1,0 +1,119 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Publication index{% endblock %}
+
+{% block body %}
+    <h1>Liste des Publications</h1>
+
+<div class="row">
+
+<form id="searchForm" action="{{ path('recSearch') }}" method="GET">
+    <select id="searchType" name="searchType" >
+        <option value="description">Description</option>
+        <option value="idpost">ID</option>
+        <option value="nblikes">Likes</option>
+    </select>
+    <input id="searchValue" type="text" name="searchValue"  />
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idpost</th>
+                <th>Description</th>
+                <th>Nblikes</th>
+                <th>Nbdislike</th>
+                <th>Nbcomments</th>
+                <th>IdUser</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody id="searchResults">
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.idpost }}</td>
+                <td>{{ publication.description }}</td>
+                <td>{{ publication.nblikes }}</td>
+                <td>{{ publication.nbdislike }}</td>
+                <td>{{ publication.nbcomments }}</td>
+                <td>{{ publication.idUser.nom }}</td>
+                                <td>{{ publication.date ? publication.date|date('Y-m-d') : '' }}</td>
+
+                <td>
+                    <a href="{{ path('app_publication_show', {'idpost': publication.idpost}) }}"><button class="site-button m-r15">show</button></a>
+                    <a href="{{ path('app_publication_edit', {'idpost': publication.idpost}) }}"><button class="site-button-secondry">edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_new') }}"><button class="site-button m-r15">Create New </button></a>
+
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+
+<script>
+// AJAX call for search form submission
+jQuery('#searchForm').on('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Get the form data
+    var searchType = $('#searchType').val();
+    var searchValue = $('#searchValue').val();
+
+    // Make the AJAX call
+    jQuery.ajax({
+        url: $(this).attr('action'),
+        type: $(this).attr('method'),
+        data: {
+            'searchType': searchType,
+            'searchValue': searchValue
+        },
+        success: function(data) {
+            // Clear existing search results
+            jQuery('#searchResults').empty();
+
+            // Check if events data is available
+            if (data.hasOwnProperty('publications')) {
+                console.log(data);
+                // Iterate through the retrieved events and append them to the searchResults div
+                
+                data.publications.forEach(function(publication) {
+                    var evenementHtml = `
+                         <tr>
+                <td>${ publication.idpost }</td>
+                <td>${ publication.description }</td>
+                <td>${ publication.nblikes }</td>
+                <td>${ publication.nbdislike }</td>
+                <td>${ publication.nbcomments }</td>
+                <td>${ publication.idUser }</td>
+                <td>
+                    <a href="/${publication.idpost}"><button class="site-button m-r15">show</button></a>
+                    <a href="/${publication.idpost}/edit"><button class="site-button-secondry">edit</button></a>
+                </td>
+            </tr>
+                    `;
+                    console.log(evenementHtml);
+                    jQuery('#searchResults').append(evenementHtml);
+                });
+            } else {
+                // If no events found, append a message to the searchResults div
+                jQuery('#searchResults').append('<div>no events found</div>');
+            }
+
+            jQuery('#searchResults').show(); // Show the search results
+            
+        }
+    });
+});
+</script>
+
+{% endblock %}

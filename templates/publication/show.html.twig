@@ -1,0 +1,42 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>Publication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idpost</th>
+                <td>{{ publication.idpost }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ publication.description }}</td>
+            </tr>
+            <tr>
+                <th>Nblikes</th>
+                <td>{{ publication.nblikes }}</td>
+            </tr>
+            <tr>
+                <th>Nbdislike</th>
+                <td>{{ publication.nbdislike }}</td>
+            </tr>
+            <tr>
+                <th>Nbcomments</th>
+                <td>{{ publication.nbcomments }}</td>
+            </tr>
+            <tr>
+                <th>IdUser</th>
+                <td>{{ publication.idUser.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_index') }}">back to list</a>
+
+    <a href="{{ path('app_publication_edit', {'idpost': publication.idpost}) }}"><button class="site-button m-r15">edit</button></a>
+
+    {{ include('publication/_delete_form.html.twig') }}
+{% endblock %}

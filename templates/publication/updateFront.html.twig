@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Publication{% endblock %}
+
+{% block body %}
+    <h1>Update Publication</h1>
+  {{ include('publication/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

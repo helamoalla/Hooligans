@@ -1,0 +1,14 @@
+{{form_start(formRep,{'attr':{'class':'form-horizontal',novalidate:'novalidate'}})}}
+<table class="table">
+              
+                  <tr>
+                    <td>{{form_label(formRep.message,"Reply")}}</td>
+<td>{{form_widget(formRep.message,{ 'attr': {'class': 'form-control col-4 my-2'} })}}</td>                   
+                    <td>{{form_errors(formRep.message)}}</td>
+                  </tr>
+    {{ form_widget(form.idCommentaire, { 'value': commentaire.idCommentaire }) }}
+
+              
+              </table>
+    <button class="site-button m-r15">{{ button_label|default('Create') }}</button>
+{{ form_end(form) }}

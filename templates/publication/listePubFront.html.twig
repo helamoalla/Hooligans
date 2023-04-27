@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil des Publication{% endblock %}
+
+{% block body %}
+    <h1>Accueil des Publication</h1>
+
+            <div class="row">
+               {% for publication in publications %}
+                    <div class="col-lg-12 col-md-6 col-sm-6">
+                        <div class="icon-bx-wraper center m-b40">
+                        <div class="d-flex justify-content-end align-items-end">
+                        <form method="post" action="{{ path('app_publication_delete', {'idpost': publication.idpost}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ publication.idpost) }}">
+    <button class="btn btn-danger">X</button>
+</form>
+</div>
+                            <div class="icon-bx-sm bg-secondry m-b20"> <span class="icon-cell"><i class="ti-reload text-primary"></i></span> </div>
+                            <div class="icon-content">
+                                <h5 class="dlab-tilte text-uppercase">
+                {{ publication.idUser.nom }}</h5>
+                                <p>{{ publication.description }} </p>
+                                <div>
+                                <a href="{{ path('likepub', {'idpost': publication.idpost}) }}"><button class="site-button m-r15">{{ publication.nblikes }} Likes</button></a>
+                    <a href="{{ path('dislike', {'idpost': publication.idpost}) }}"><button class="site-button-secondry">{{ publication.nbdislike }} dislike</button></a>
+                                <a href="{{ path('pubComFront', {'id': publication.idpost}) }}"><button class="site-button m-r15">Details</button></a>
+                               
+                                </div>
+                                
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   
+                      {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+                </div>
+                <div class="row d-flex justify-content-center">
+                <div class="offset-lg-2 col-3 ">
+                <a href="{{ path('app_publication_new') }}"><button class="site-button m-r15">Create</button></a>
+                </div>
+                </div>
+                {% endblock %}

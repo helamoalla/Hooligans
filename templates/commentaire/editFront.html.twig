@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Publication{% endblock %}
+
+{% block body %}
+    <h1>Update Publication</h1>
+  <h1>Edit Commentaire</h1>
+
+    {{ include('commentaire/updateForm.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('listPub') }}">back to list</a>
+
+{% endblock %}
