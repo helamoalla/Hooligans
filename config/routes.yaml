@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+download_ticket_pdf:
+    path: /ticket/{id}/download/pdf
+    controller: App\Controller\HomeController::downloadTicketPdf

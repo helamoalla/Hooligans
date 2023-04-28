@@ -101,6 +101,13 @@
             </div>
         </div>
         <!-- Breadcrumb row END -->
+
+
+
+         
+
+
+
         <div class="content-area">
             <div class="container">
                 <div class="clearfix">
@@ -112,12 +119,13 @@
                         <div class="post card-container col-lg-4 col-md-6 col-sm-6">
                             <div class="widget bg-white p-a20 recent-posts-entry">
                                 <h4 class="widget-title">{{ i.getEvent.getNomEvent() }}</h4>
-                               
                                 <div class="widget-post-bx">
                                    
                                    
                                     <div class="widget-post clearfix">
-                                        <div class="dlab-post-media"> <img src="images/blog/recent-blog/codeqr.png" width="200" height="160" alt=""> </div>
+                                                                   <img src="http://localhost/images/{{i.getImageQr}}" />
+
+                                        <div class="dlab-post-media"> <src="http://localhost/images/{{i.getImageQr}}" width="200" height="160" alt=""> </div>
                                         <div class="dlab-post-info">
                                             <div class="dlab-post-header">
                                                 <h6 class="post-title">Nom :{{ i.getUser.getNom() }}</h6>
@@ -127,6 +135,22 @@
                                                     <li class="post-author">Date Debut : {{ i.getEvent.getDateDebut()|date("d/m/Y") }} </li>
                                                     <li class="post-author">Date Fin : {{ i.getEvent.getDateFin()|date("d/m/Y") }} </li>
                                                     <li class="post-author">Lieu Event : {{ i.getEvent.getLieuEvent() }} </li>
+                                                    
+
+<div class="widget">
+							
+							<div class="download-file">
+								
+								
+									
+										<a href="{{ path('download_ticket_pdf', {'id': i.id}) }}" target="_blank">
+											<span><i class="far fa-file-pdf"></i></span>
+											
+											
+										</a>
+									
+							</div>
+						</div>
                                                     
                                                 </ul>
                                             </div>
