@@ -1,7 +1,11 @@
 {% extends 'front.html.twig' %}
 {% block body %}
-
+	 <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+   {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
     <!-- Content -->
+   
     <div class="page-content bg-white">
         <!-- inner page banner -->
         <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">

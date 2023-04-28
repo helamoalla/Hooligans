@@ -51,6 +51,14 @@ class MaintenanceRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
+    public function findLastMaintenanceByIdUser($id)
+{
+    $entityManager = $this->getEntityManager();
+    $query = $entityManager->createQuery("SELECT m FROM App\Entity\Maintenance m WHERE m.user = :id ORDER BY m.id DESC");
+    $query->setParameter('id', $id);
+    $query->setMaxResults(1); // limiter à une seule entité
+    return $query->getResult();
+}
 //    /**
 //     * @return Maintenance[] Returns an array of Maintenance objects
 //     */

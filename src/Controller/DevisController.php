@@ -18,6 +18,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\Mime\Email;
 use Dompdf\Options;
 use Dompdf\Dompdf;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 
 
@@ -32,7 +33,7 @@ class DevisController extends AbstractController
     }
 
     #[Route('/email/{id}', name: 'email')]
-    public function sendEmail($id,TransportInterface $mailer,UserRepository $ur,DevisRepository $r1,): Response
+    public function sendEmail($id,TransportInterface $mailer,FlashyNotifier $flashy,UserRepository $ur,DevisRepository $r1,): Response
     {$user = $ur->find(22);
         $devis=$r1->find($id);
         $pdfOptions = new Options();
@@ -42,14 +43,20 @@ class DevisController extends AbstractController
        
         //Contenu du Pdf
         $html = '<html><body>';
+        $html .= ' <div style="background-color: red; height: 50px; display: flex; justify-content: center; align-items: center;">
+        <span style="color: white; font-size: 24px; text-align:center">Drift&Race</span>
+      </div>';
        // $html = '<img src="data:image/png;base64,' . base64_encode(file_get_contents('C:\xampp\htdocs\Hooligans-bon_plan_web\Hooligans-bon_plan_web\public\tete.png')) . '" alt="Image PNG">';
-        $html .= '<p>Vendeur : Drift$Race</p>';
+       $html .= '<h1>Devis</h1>';
+       $html .= '<p>Vendeur : Drift$Race</p>';
         $html .= '<p>________________________________________________</p>';
         $html .= '<p>Client : '.$user->getNom().' '.$user->getPrenom().'</p>';
         $html .= '<p>________________________________________________</p>';
         $html .= '<h3>Détails du devis</h3>';
-        $html .= '<table border="1" cellspacing="0">';
-        $html .= '<tr><th>Pannes</th><th>Prix</th></tr>';
+        $html .= '<table border="1" cellspacing="0" style="width: 100%; text-align: center;">';
+        $html .= '<tr style="background-color: black; color: white; font-weight: bold;"><th>Pannes</th><th>Prix</th></tr>';
+        //$html .= '<table border="1" cellspacing="0">';
+       // $html .= '<tr><th>Pannes</th><th>Prix</th></tr>';
        if($devis->getMaintenance()->isPanneMoteur()){
             $html .= '<tr><td>Panne Moteur</td><td>'.$devis->getGarage()->getPanneMoteur().'DT</td>';
        }
@@ -97,6 +104,9 @@ if($devis->getMaintenance()->isVidange()){
         $html .= '</table>';
         $html .= '<p>Arretez la presente Piece apres une reduction de '.$devis->getGarage()->getTauxDeReduction().' % a la somme de : '.$devis->getTotal().'DT</p>';
         $html .= '<p>________________________________________________</p>';
+        $html .= ' <div style="position:absolute; bottom:0; width:100%; height:30px; background-color:red;">
+        <p style="color:white; font-weight:bold; margin:0 0 0 20px; line-height:30px;">Drift&Race</p>
+      </div>';
         $html .= '</body></html>';
         
         $pdf->loadHtml($html);
@@ -114,26 +124,20 @@ if($devis->getMaintenance()->isVidange()){
         // Créer l'email
         $email = (new Email())
             ->from('helamoalla91@gmail.com')
-            ->to('helamoalla91@gmail.com')
+            ->to($user->getEmail())
             ->subject('DEVIS')
             ->html($contenu)
             ->attachFromPath('C:\Users\helam\Desktop\helapdf\pdf.pdf', 'pdf.pdf');
         
         // Envoyer l'email
         $mailer->send($email);
-
-
-//$email = (new Email())
-   // ->from('helamoalla91@gmail.com')
-   // ->to('asma.choueibi@gmail.com')
-   // ->subject('Objet de l\'email')
-   // ->text('Contenu de l\'email');
-    //->attachFromPath('C:\Users\helam\Desktop\helapdf\pdf.pdf', 'pdf.pdf', 'application/pdf');
-    //$mailer->send($email);
-      //  return new Response('Email sent!');
-     
+        $flashy->success('email envoyer!', 'http://your-awesome-link.com');
+       
       return $this->redirectToRoute('app_maintenance',);
+     
     }
+
+
     #[Route('/deviss/{id}', name: 'deviss')]
     public function devis($id,MaintenanceRepository $r,GaragecRepository $r1,ManagerRegistry $doctrine,Request $request): Response
     {  

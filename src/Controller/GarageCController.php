@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Notifier\Message\SmsMessage;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Validator\Constraints\Length;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 class GarageCController extends AbstractController
 {
@@ -80,12 +81,12 @@ class GarageCController extends AbstractController
     }
 
     #[Route('/ajouterGC', name: 'ajouterGC')]
-    public function ajouterGC(ManagerRegistry $doctrine,Request $request,TwilioTransport $twilio): Response
+    public function ajouterGC(ManagerRegistry $doctrine,Request $request,TwilioTransport $twilio,FlashyNotifier $flashy): Response
     { 
         $garageC=new Garagec();
         $form=$this->createForm(GarageCFormType::class,$garageC);
         $form->handleRequest($request);
-       
+        $flashy->error('cocher un endroit sur la map', 'http://your-awesome-link.com');
         if($form->isSubmitted() && $form->isValid()){
             $em =$doctrine->getManager() ;
             $imageFile = $form->get('image')->getData();
@@ -93,8 +94,7 @@ class GarageCController extends AbstractController
             if ($adresse=='') {
                 // Affichage d'une erreur
            
-                $this->addFlash('error', 'Le champ adresse ne peut pas être vide.');
-        
+                $flashy->error('cocher un endroit sur la map', 'http://your-awesome-link.com');
                 // Redirection vers la page du formulaire
                 return $this->renderForm("garage_c/ajoutGarageC.html.twig",
                 array("f"=>$form,"g"=>$garageC));
