@@ -24,7 +24,7 @@ class MaintenanceController extends AbstractController
     #[Route('/maintenance', name: 'app_maintenance')]
     public function index(MaintenanceRepository $r,FlashyNotifier $flashy, ManagerRegistry $doctrine,GaragecRepository $r1): Response
     {
-        $maintenances = $r->findMaintenanceByIdUser(26);
+        $maintenances = $r->findMaintenanceByIdUser(25);
         $test = false;
         $dateAujourdhui = new DateTime();
         $garageC = $r1->orderById();
@@ -100,7 +100,7 @@ class MaintenanceController extends AbstractController
        // $flashy->error('cocher au moins une case', 'http://your-awesome-link.com');
         if($form->isSubmitted() && $form->isValid ()){
             $em =$doctrine->getManager() ;
-            $user=$this->getDoctrine()->getRepository(User::class)->find(26);
+            $user=$this->getDoctrine()->getRepository(User::class)->find(25);
             $maintenance->setUser($user);
             $maintenance->setDateMaintenance(new \DateTime('now'));
             if($form->get('panne_moteur')->getData() || $form->get('pompe_a_eau')->getData() || $form->get('patin')->getData() || $form->get('essuie_glace')->getData() || $form->get('radiateur')->getData() || $form->get('ventilateur')->getData() || $form->get('duride')->getData() || $form->get('fuite_d_huile')->getData() || $form->get('vidange')->getData() || $form->get('filtre')->getData() || $form->get('batterie')->getData() || $form->get('amortisseur')->getData() || $form->get('frein_main')->getData() || $form->get('feu_d_eclairage')->getData()){

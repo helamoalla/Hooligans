@@ -128,7 +128,7 @@ class GarageCController extends AbstractController
                     $sms = new SmsMessage('+216'.$numero, $message);
                 $twilio->send($sms);
             }
-
+ 
             
                return $this->redirectToRoute('afficheG',);
          }
