@@ -143,7 +143,7 @@
                             <div class="media profile-media">
                                 <img class="user-profile rounded-circle" src="{{asset('assets/images/logo/dr.png')}}" alt="">
                                 <div class="user-name-hide media-body">
-                                    <span>Hela Moalla</span>
+                                    <span>{{user.nom}}</span>
                                     <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
                                 </div>
                             </div>
@@ -173,8 +173,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="javascript:void(0)">
+                                    <a  data-bs-target="#staticBackdrop"
+                                       href="{{ path('app_logout') }}">
                                         <i data-feather="log-out"></i>
                                         <span>Log out</span>
                                     </a>
@@ -267,11 +267,9 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="#">All users</a>
+                                            <a href="/admin/users_list">All users</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Add new user</a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
 

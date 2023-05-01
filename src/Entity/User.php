@@ -4,49 +4,142 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
+
+
+/**
+ * User
+ *
+ */
+#[ORM\Table(name: 'user')]
+#[ORM\Index(name: 'id_role_idx', columns: ['id_role'])]
+#[ORM\UniqueConstraint(name: 'email_UNIQUE', columns: ['email'])]
+#[ORM\UniqueConstraint(name: 'id_user_UNIQUE', columns: ['id_user'])]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface,PasswordAuthenticatedUserInterface
 {
+    /**
+     * @var int
+     *
+     */
+    #[ORM\Column(name: 'id_user', type: 'integer', nullable: false)]
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id_user;
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    private $idUser;
 
-    #[ORM\Column(length: 50)]
-    private ?string $nom ;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'nom', type: 'string', length: 45, nullable: false)]
+    private $nom;
 
-    #[ORM\Column(length: 50)]
-    private ?string $prenom ;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'prenom', type: 'string', length: 45, nullable: false)]
+    private $prenom;
 
-    #[ORM\Column(length: 100)]
-    private ?string $mdp ;
+    /**
+     * @var int
+     *
+     */
+    #[ORM\Column(name: 'num_tel', type: 'integer', nullable: false)]
+    private $numTel;
 
-    #[ORM\Column(length: 100)]
-    private ?string $email ;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'adresse', type: 'string', length: 45, nullable: false)]
+    private $adresse;
 
-    #[ORM\Column]
-    private ?int $num_tel ;
+    /**
+     * @var string|null
+     *
+     */
+    #[ORM\Column(name: 'centre_intere', type: 'string', length: 45, nullable: true)]
+    private $centreIntere;
 
-    #[ORM\Column]
-    private ?int $cin ;
+    /**
+     * @var string|null
+     *
+     */
+    #[ORM\Column(name: 'adresse_entreprise', type: 'string', length: 45, nullable: true)]
+    private $adresseEntreprise;
 
-    #[ORM\Column]
-    private ?float $quota ;
+    /**
+     * @var string|null
+     *
+     */
+    #[ORM\Column(name: 'nom_entreprise', type: 'string', length: 45, nullable: true)]
+    private $nomEntreprise;
 
-    #[ORM\Column(length: 255)]
-    private ?string $img ;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'email', type: 'string', length: 45, nullable: false)]
+    private $email;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false,name:"id_role",referencedColumnName:"id_role")]
-    private ?Role $id_role ;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'mdp', type: 'string', length: 250, nullable: false)]
+    private $mdp;
 
-    #[ORM\Column]
-    private ?int $etat ;
+    /**
+     * @var string|null
+     *
+     */
+    #[ORM\Column(name: 'cv', type: 'string', length: 500, nullable: true)]
+    private $cv;
+
+    /**
+     * @var int|null
+     *
+     */
+    #[ORM\Column(name: 'etat_user', type: 'integer', nullable: true)]
+    private $etatUser;
+
+    /**
+     * @var int
+     *
+     */
+    #[ORM\Column(name: 'age', type: 'integer', nullable: false)]
+    private $age;
+
+    /**
+     * @var int|null
+     *
+     */
+    #[ORM\Column(name: 'note', type: 'integer', nullable: true)]
+    private $note;
+
+    /**
+     * @var float|null
+     *
+     */
+    #[ORM\Column(name: 'rating', type: 'float', precision: 10, scale: 0, nullable: true)]
+    private $rating;
+
+    /**
+     * @var \Role
+     *
+     */
+    #[ORM\JoinColumn(name: 'id_role', referencedColumnName: 'id_role')]
+    #[ORM\ManyToOne(targetEntity: 'Role')]
+    private $idRole;
 
     public function getIdUser(): ?int
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
     public function getNom(): ?string
@@ -73,14 +166,62 @@ class User
         return $this;
     }
 
-    public function getMdp(): ?string
+    public function getNumTel(): ?int
     {
-        return $this->mdp;
+        return $this->numTel;
     }
 
-    public function setMdp(string $mdp): self
+    public function setNumTel(int $numTel): self
     {
-        $this->mdp = $mdp;
+        $this->numTel = $numTel;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCentreIntere(): ?string
+    {
+        return $this->centreIntere;
+    }
+
+    public function setCentreIntere(?string $centreIntere): self
+    {
+        $this->centreIntere = $centreIntere;
+
+        return $this;
+    }
+
+    public function getAdresseEntreprise(): ?string
+    {
+        return $this->adresseEntreprise;
+    }
+
+    public function setAdresseEntreprise(?string $adresseEntreprise): self
+    {
+        $this->adresseEntreprise = $adresseEntreprise;
+
+        return $this;
+    }
+
+    public function getNomEntreprise(): ?string
+    {
+        return $this->nomEntreprise;
+    }
+
+    public function setNomEntreprise(?string $nomEntreprise): self
+    {
+        $this->nomEntreprise = $nomEntreprise;
 
         return $this;
     }
@@ -97,75 +238,169 @@ class User
         return $this;
     }
 
-    public function getNumTel(): ?int
+    public function getMdp(): ?string
     {
-        return $this->num_tel;
+        return $this->mdp;
     }
 
-    public function setNumTel(int $num_tel): self
+    public function setMdp(string $mdp): self
     {
-        $this->num_tel = $num_tel;
+        $this->mdp = $mdp;
 
         return $this;
     }
 
-    public function getCin(): ?int
+    public function getCv(): ?string
     {
-        return $this->cin;
+        return $this->cv;
     }
 
-    public function setCin(int $cin): self
+    public function setCv(?string $cv): self
     {
-        $this->cin = $cin;
+        $this->cv = $cv;
 
         return $this;
     }
 
-    public function getQuota(): ?float
+    public function getEtatUser(): ?int
     {
-        return $this->quota;
+        return $this->etatUser;
     }
 
-    public function setQuota(float $quota): self
+    public function setEtatUser(?int $etatUser): self
     {
-        $this->quota = $quota;
+        $this->etatUser = $etatUser;
 
         return $this;
     }
 
-    public function getImg(): ?string
+    public function getAge(): ?int
     {
-        return $this->img;
+        return $this->age;
     }
 
-    public function setImg(string $img): self
+    public function setAge(int $age): self
     {
-        $this->img = $img;
+        $this->age = $age;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(?int $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getRating(): ?float
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?float $rating): self
+    {
+        $this->rating = $rating;
 
         return $this;
     }
 
     public function getIdRole(): ?Role
     {
-        return $this->id_role;
+        return $this->idRole;
     }
 
-    public function setIdRole(?Role $id_role): self
+    public function setIdRole(?Role $idRole): self
     {
-        $this->id_role = $id_role;
+        $this->idRole = $idRole;
+
+        return $this;
+    }
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = [];
+
+        // Add the role associated with the $idRole attribute to the roles array
+        if ($this->idRole !== null) {
+            $r=$this->idRole->getTypeRole();
+            if($r == 'recruteur')
+                $roles[] = 'ROLE_RECRUTEUR';
+            else if ($r == 'admin') {
+                $roles[] = 'ROLE_RECRUTEUR';
+                $roles[] = 'ROLE_ADMIN';
+            }
+
+        }
+
+        // Guarantee every user has at least ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getEtat(): ?int
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->etat;
+        return $this->mdp;
     }
 
-    public function setEtat(int $etat): self
+    public function setPassword(string $password): self
     {
-        $this->etat = $etat;
+        $this->mdp = $password;
 
         return $this;
+    }
+
+    /**
+     * Returning a salt is only needed if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+
+    public function getUsername()
+    {
+        return $this->email;
     }
 }

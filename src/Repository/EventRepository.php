@@ -38,6 +38,12 @@ class EventRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function orderById() :array {
+        return $this->createQueryBuilder('e')
+                ->orderBy('e.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
 
 //    /**
 //     * @return Event[] Returns an array of Event objects

@@ -34,7 +34,8 @@ class DevisController extends AbstractController
 
     #[Route('/email/{id}', name: 'email')]
     public function sendEmail($id,TransportInterface $mailer,FlashyNotifier $flashy,UserRepository $ur,DevisRepository $r1,): Response
-    {$user = $ur->find(22);
+    {$userr=$this->getUser();
+        $user = $ur->find($userr);
         $devis=$r1->find($id);
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -193,10 +194,10 @@ if($devis->getMaintenance()->isVidange()){
             if ($m->isVidange()) {
                 $somme = $somme + $g[$i]->getVidange();
             }
-            
+            $user=$this->getUser();
             $devis[$i]->setGarage($g[$i]);
             $devis[$i]->setMaintenance($m);
-            $devis[$i]->setUser($m->getUser());  
+            $devis[$i]->setUser($user);  
             $devis[$i]->setTVA($TVA);
             $T = ($somme * $TVA) / 100;
             $TTC[$i] = ($T + $somme);

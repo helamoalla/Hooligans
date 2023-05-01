@@ -2,34 +2,58 @@
 
 namespace App\Entity;
 
-use App\Repository\RoleRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RoleRepository::class)]
+/**
+ * Role
+ *
+ */
+#[ORM\Table(name: 'role')]
+#[ORM\Entity]
 class Role
 {
+    /**
+     * @var int
+     *
+     */
+    #[ORM\Column(name: 'id_role', type: 'integer', nullable: false)]
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id_role ;
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    private $idRole;
 
-    #[ORM\Column(length: 50)]
-    private ?string $type = null;
+    /**
+     * @var string
+     *
+     */
+    #[ORM\Column(name: 'type_role', type: 'string', length: 45, nullable: false)]
+    private $typeRole;
 
     public function getIdRole(): ?int
     {
-        return $this->id_role;
+        return $this->idRole;
     }
 
-    public function getType(): ?string
+    /**
+     * @param int $idRole
+     */
+    public function setIdRole(int $idRole): void
     {
-        return $this->type;
+        $this->idRole = $idRole;
+    }
+    public function getTypeRole(): ?string
+    {
+        return $this->typeRole;
     }
 
-    public function setType(string $type): self
+    public function setTypeRole(string $typeRole): self
     {
-        $this->type = $type;
+        $this->typeRole = $typeRole;
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getIdRole(); // Replace this with the appropriate property or method that returns the string representation of the Role object
+    }
+
 }
