@@ -32,6 +32,8 @@ use Endroid\QrCode\Label\Font\NotoSans;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -144,6 +146,13 @@ public function index(): Response
             'e'=>$Event,
         ]);
     }
+    #[Route('/getjson', name: 'app_getjson')]
+    public function affichejson(EventRepository $r,NormalizerInterface $Normalizer): Response
+        {
+        $Event=$r->orderById();
+        $jsonContent = $Normalizer->normalize($Event,'json',['groups'=>'event']);
+return new Response(json_encode($jsonContent));
+    }
     #[Route('/resume', name: 'resume')]
     public function resume(): Response
     {
@@ -161,7 +170,17 @@ public function index(): Response
         $em->flush(); ////////flush()
         return $this->redirectToRoute('app_get',);
     }
-
+    #[Route('/supprimerjson/{id}', name: 'supprimerjson')]
+    public function supprimerjson($id,EventRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+    {   ///////recuperer la classroom a supp//////////
+         $Event=$r->find($id);
+         ////////supprimer/////////
+        $em=$doctrine->getManager();/////persist()
+        $em->remove($Event);/////remove()
+        $em->flush(); ////////flush()
+        $jsonContent = $Normalizer->normalize($Event,'json',['groups'=>'event']);
+        return new Response("event Supprimé avec succès".json_encode($jsonContent));
+    }
     #[Route('/modifier/{id}', name: 'modifier')]
         public function modifier($id,EventRepository $r,ManagerRegistry $doctrine,Request $request,TransportInterface $mailer,UserRepository $ur,TicketRepository $tr )
                 
@@ -233,6 +252,13 @@ public function index(): Response
                                     'e'=>$Event,
                                 ]);
                             }
+                            #[Route('/getUjson', name: 'app_getUjson')]
+                            public function afficheUjson(EventRepository $r,NormalizerInterface $Normalizer): Response
+                                {
+                                    $Event=$r->orderById();
+                                    $jsonContent = $Normalizer->normalize($Event,'json',['groups'=>'event']);
+                                    return new Response(json_encode($jsonContent));
+                            }
                             #[Route('/detailE/{id}', name: 'app_detail')]
                             public function detailE($id,Request $request,ManagerRegistry $doctrine): Response
                                 {
@@ -294,7 +320,68 @@ $ticket->setImageQr($nomImage);
                                 return $this->renderForm("Event/detailEvent.html.twig",
                                 array("f"=>$form,"e"=>$Event));
                             }
+                            #[Route('/detailEjson/{id}', name: 'app_detailjson')]
+                            public function detailEjson($id,Request $request,ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+                                {
+                                    $form=$this->createForm(QuantiteType::class);
+                                    $form->handleRequest($request);
+                                $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
+                                if($form->isSubmitted() && $form->isValid()){
+                                   
+                                    $quantite= $form->get('quantity')->getData();
                         
+                                    for ($i = 0; $i < $quantite; $i++) {
+                                        $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
+                                        $ticket=new Ticket();
+                                        $userr=$this->getUser();
+                                        $user=$this->getDoctrine()->getRepository(User::class)->find($userr);
+                                        $ticket->setUser($user);
+                                        $ticket->setEvent($Event);
+                                        $ticket->setNumTicket(123);
+                                        $writer = new PngWriter();
+                                       
+                                        $qrCode = QrCode::create( $Event->getNomEvent())
+                                            ->setEncoding(new Encoding('UTF-8'))
+                                            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+                                            ->setSize(120)
+                                            ->setMargin(0)
+                                            ->setForegroundColor(new Color(0, 0, 0))
+                                            ->setBackgroundColor(new Color(255, 255, 255));
+                                 
+                                        
+                                 
+                                        $qrCodes = [];
+                                      
+                                        $qrCodes['simple'] = $writer->write(
+                                                                $qrCode,
+                                                                null,
+                                                          
+                                                            )->getDataUri();
+                                       
+                                    
+                                        $chemin ='C:/xampp/htdocs/images/';
+
+//Générer un nom unique pour l'image
+$nomImage = uniqid('qr_', true) . '.png';
+
+//Enregistrer l'image sur le disque
+file_put_contents($chemin . $nomImage, base64_decode(substr($qrCodes['simple'], strpos($qrCodes['simple'], ',') + 1)));
+
+//Enregistrer le nom de l'image dans la base de données
+$ticket->setImageQr($nomImage);
+                                        $em =$doctrine->getManager() ;
+
+                                          $em->persist($ticket);
+                                          
+                                          $em->flush();
+                              }
+                                        
+                              return $this->redirectToRoute("app_getTjson");}
+
+                                
+                                $jsonContent = $Normalizer->normalize($Event,'json',['groups'=>'event']);
+                                return new Response(json_encode($jsonContent));
+                            }
                             #[Route('/getT', name: 'app_getT')]
                             public function afficheT(TicketRepository $r): Response
                                 {
@@ -304,6 +391,14 @@ $ticket->setImageQr($nomImage);
                                     't'=>$Ticket,
                                 ]);
                             }
+                            #[Route('/getTjson', name: 'app_getTjson')]
+                            public function afficheTjson(TicketRepository $r,NormalizerInterface $Normalizer): Response
+                                {
+                                $user=$this->getUser();
+                                $Ticket = $r->findBy(['id_spectateur' => $user->getIdUser()]);
+                                $jsonContent = $Normalizer->normalize($Ticket,'json',['groups'=>'ticket']);
+                                return new Response(json_encode($jsonContent));
+                            }
                             #[Route('/getTA', name: 'app_getTA')]
                             public function afficheTA(TicketRepository $r): Response
                                 {
@@ -311,6 +406,13 @@ $ticket->setImageQr($nomImage);
                                 return $this->render('ticket/getallticketAdmin.html.twig', [
                                     't'=>$Ticket,
                                 ]);
+                            }
+                            #[Route('/getTAjson', name: 'app_getTAjson')]
+                            public function afficheTAjson(TicketRepository $r,NormalizerInterface $Normalizer): Response
+                                {
+                                $Ticket=$r->findAll();
+                                $jsonContent = $Normalizer->normalize($Ticket,'json',['groups'=>'ticket']);
+                                return new Response(json_encode($jsonContent));
                             }
                             #[Route('/supprimerTA/{id}', name: 'supprimerTA')]
                             public function supprimerTA($id,TicketRepository $r, ManagerRegistry $doctrine): Response
@@ -322,7 +424,17 @@ $ticket->setImageQr($nomImage);
                                 $em->flush(); ////////flush()
                                 return $this->redirectToRoute('app_getTA',);
                             }
-                        
+                            #[Route('/supprimerTAjson/{id}', name: 'supprimerTAjson')]
+                            public function supprimerTAjson($id,TicketRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+                            {   ///////recuperer la classroom a supp//////////
+                                 $Ticket=$r->find($id);
+                                 ////////supprimer/////////
+                                $em=$doctrine->getManager();/////persist()
+                                $em->remove($Ticket);/////remove()
+                                $em->flush(); ////////flush()
+                                $jsonContent = $Normalizer->normalize($Ticket,'json',['groups'=>'ticket']);
+                                return new Response("ticket Supprimé avec succès".json_encode($jsonContent));
+                            }
                             #[Route('/agenda', name: 'agenda')]
 
                             public function Agenda(EventRepository $r): Response

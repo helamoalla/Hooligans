@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
@@ -29,6 +29,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
     #[ORM\Column(name: 'id_user', type: 'integer', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    #[Groups("user")]
     private $idUser;
 
     /**
@@ -36,6 +37,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'nom', type: 'string', length: 45, nullable: false)]
+    #[Groups("user")]
     private $nom;
 
     /**
@@ -43,6 +45,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'prenom', type: 'string', length: 45, nullable: false)]
+    #[Groups("user")]
     private $prenom;
 
     /**
@@ -50,6 +53,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'num_tel', type: 'integer', nullable: false)]
+    #[Groups("user")]
     private $numTel;
 
     /**
@@ -57,6 +61,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'adresse', type: 'string', length: 45, nullable: false)]
+    #[Groups("user")]
     private $adresse;
 
     /**
@@ -85,6 +90,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'email', type: 'string', length: 45, nullable: false)]
+    #[Groups("user")]
     private $email;
 
     /**
@@ -106,6 +112,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'etat_user', type: 'integer', nullable: true)]
+    #[Groups("user")]
     private $etatUser;
 
     /**
@@ -113,6 +120,7 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
      *
      */
     #[ORM\Column(name: 'age', type: 'integer', nullable: false)]
+    #[Groups("user")]
     private $age;
 
     /**

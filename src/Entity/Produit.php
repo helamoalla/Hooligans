@@ -1,36 +1,43 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_prod")]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $nom_prod = null;
+    #[Assert\NotBlank(message:'ce champ est obligatoire')]
+    public ?string $nom_prod = null;
+
 
     #[ORM\Column]
-    private ?float $prix_prod = null;
+    #[Assert\NotBlank(message:'ce champ est obligatoire')]
+    #[Assert\Positive(message:'le prix doit etre positive')]
+    public ?float $prix_prod = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $description_prod = null;
+    #[Assert\NotBlank(message:'ce champ est obligatoire')]
+   public ?string $description_prod = null;
 
     #[ORM\Column]
-    private ?int $quantite_prod = null;
+    #[Assert\NotBlank(message:'ce champ est obligatoire')]
+    #[Assert\Positive(message:'la quantite doit etre positive ')]
+    public ?int $quantite_prod = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    
+    public ?string $image = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,name:"id_categorie",referencedColumnName:"id_categorie")]
-    private ?Categorie $categorie = null;
+    public ?Categorie $categorie = null;
 
     public function getId(): ?int
     {

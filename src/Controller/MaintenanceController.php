@@ -68,9 +68,9 @@ class MaintenanceController extends AbstractController
     }
     #[Route('/afficheMU', name: 'app_afficheMU')]
     public function afficheMU(MaintenanceRepository $r, ManagerRegistry $doctrine): Response
-    {   
+    {   $user=$this->getUser();
        // $maintenances=$r->findMaintenanceByIdUser(26)->getlastmod;
-       $maintenance = $r->findLastMaintenanceByIdUser(25);
+       $maintenance = $r->findLastMaintenanceByIdUser($user);
        // if (count($maintenances) > 0) {
         //    $maintenance = $maintenances[0];
        // } else {

@@ -10,8 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
 
 #[Route('/user')]
 class UserController extends AbstractController {
@@ -51,6 +51,23 @@ public function index(EntityManagerInterface $entityManager): Response
     }
  
 
+
+
+    #[Route('/json/{idUser}', name: 'app_user_showjson', methods: ['GET'])]
+    public function showjson(User $user ,NormalizerInterface $Normalizer): Response
+    {
+        
+        
+        $jsonContent = $Normalizer->normalize($user,'json',['groups'=>'user']);
+        return new Response(json_encode($jsonContent));
+
+    }
+ 
+
+
+
+
+
     #[Route('/{idUser}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
@@ -79,6 +96,26 @@ public function index(EntityManagerInterface $entityManager): Response
         return $this->render('user/test.html.twig', [
             'user' => $user,
         ]);
+
+
+        
+    }
+
+
+
+
+    #[Route('/{idUser}/testjson', name: 'testjson', methods: ['GET'])]
+    public function show1json(NormalizerInterface $Normalizer): Response
+    {
+        $user = $this->getUser();
+     
+    
+       
+
+
+        $jsonContent = $Normalizer->normalize($user,'json',['groups'=>'user']);
+        return new Response(json_encode($jsonContent));
+
     }
 
 

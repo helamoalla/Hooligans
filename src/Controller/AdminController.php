@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 class AdminController extends AbstractController
@@ -59,6 +61,27 @@ class AdminController extends AbstractController
         ]);
 
     }
+
+
+
+
+    #[Route('/admin/user/delete/{idUser}', name: 'app_user_deletejson')]
+    public function deleteUserjson(User $user ,NormalizerInterface $Normalizer): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $jsonContent = $Normalizer->normalize($user,'json',['groups'=>'user']);
+        return new Response("user Supprimé avec succès".json_encode($jsonContent));
+    }
+    
+    
+
+
+
+
     #[Route('/admin/users_list', name: 'app_admin_gererusers')]
     public function gererUsers(EntityManagerInterface $entityManager, Request $request)
     {
@@ -93,4 +116,49 @@ class AdminController extends AbstractController
             'user'=>$user
         ]);
     }
+
+
+
+
+
+    #[Route('/admin/users_listjson', name: 'app_admin_gererusersjson')]
+    public function gererUsersjson(EntityManagerInterface $entityManager, Request $request , NormalizerInterface $Normalizer)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $users = $entityManager->getRepository(User::class)->findAll();
+        
+        $form = $this->createFormBuilder($users)
+            ->add('idRole', ChoiceType::class, [
+                'choices' => [
+                    'Admin' => 1,
+                    'User' => 2,
+                    'Recruteur' => 3
+                ],
+                'expanded' => true,
+                'multiple' => false,
+                'label' => 'Role'
+            ])
+            ->add('Modifier', SubmitType::class)
+            ->getForm();
+    
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $users->setIdUser($form->get("idRole")->getData());
+            $entityManager->flush();
+            return $this->redirectToRoute('app_admin_gererusersjson');
+        }
+    
+        $jsonContent = $Normalizer->normalize($users,'json',['groups'=>'user']);
+        return new Response(json_encode($jsonContent));
+    }
+
+
+
+
+
+
+    /////////////////naadiiiaaaaa////////////////
+
+   
 }    

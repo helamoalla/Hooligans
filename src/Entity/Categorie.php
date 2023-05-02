@@ -14,13 +14,15 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $nom_categorie = null;
+
+    public ?string $nom_categorie = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $description_categorie = null;
+   
+    public ?string $description_categorie = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $type_categorie = null;
+    public ?string $type_categorie = null;
 
     public function getId(): ?int
     {

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Role
  *
@@ -19,6 +19,7 @@ class Role
     #[ORM\Column(name: 'id_role', type: 'integer', nullable: false)]
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    #[Groups("user")]
     private $idRole;
 
     /**
@@ -26,6 +27,7 @@ class Role
      *
      */
     #[ORM\Column(name: 'type_role', type: 'string', length: 45, nullable: false)]
+    #[Groups("user")]
     private $typeRole;
 
     public function getIdRole(): ?int

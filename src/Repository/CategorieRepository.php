@@ -38,6 +38,13 @@ class CategorieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function orderById() :array {
+        return $this->createQueryBuilder('c')
+                ->orderBy('c.id','DESC')
+                ->getQuery()
+                ->getResult();
+    }
+
 
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects

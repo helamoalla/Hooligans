@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -12,27 +14,43 @@ class Event
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_e")]
+    #[Groups("event")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champs est obligatoire")]
+    #[Groups("event")]
     private ?string $nom_event = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message:"Ce champs est obligatoire")]
+    #[Assert\GreaterThan('today',message:"La date Debut doit etre postérieur a la date d'aujourd'hui")]
+    #[Groups("event")]
     private ?\DateTimeInterface $date_debut = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Expression("this.getDateDebut() < this.getDateFin()",message:"La date fin doit etre postérieur a la date debut")  ]
+    #[Groups("event")]
     private ?\DateTimeInterface $date_fin = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champs est obligatoire")]
+    #[Groups("event")]
     private ?string $lieu_event = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Ce champs est obligatoire")]
+    #[Groups("event")]
     private ?string $type_event = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image_event = null;
+    #[Groups("event")]
+        private ?string $image_event = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Ce champs est obligatoire")]
+    #[Assert\Positive(message:'le prix doit etre positive')]
+    #[Groups("event")]
     private ?float $prix_event = null;
 
     public function getId(): ?int

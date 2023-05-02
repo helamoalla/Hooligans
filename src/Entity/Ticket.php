@@ -4,27 +4,32 @@ namespace App\Entity;
 
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
 class Ticket
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_ticket")]
+    #[Groups("ticket")]
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups("ticket")]
     private ?int $num_ticket = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,referencedColumnName:"id_user",name:"id_spectateur")]
-    private ?User $id_spectateur = null;
+    #[Groups("ticket")]
+    public ?User $id_spectateur = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,name:"id_e",referencedColumnName:"id_e")]
+    #[Groups("ticket")]
     private ?Event $event = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("ticket")]
     private ?string $image_qr = null;
 
     public function getId(): ?int

@@ -1,4 +1,7 @@
 {
+    "cmen/google-charts-bundle": {
+        "version": "5.0.1"
+    },
     "doctrine/annotations": {
         "version": "2.0",
         "recipe": {
@@ -43,6 +46,9 @@
     },
     "ivory/google-map-bundle": {
         "version": "3.0.8"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v5.9.0"
     },
     "mercuryseries/flashy-bundle": {
         "version": "v5.1.0"
