@@ -22,6 +22,8 @@ use Dompdf\Options;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Attachment;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 
@@ -61,6 +63,23 @@ class PanierController extends AbstractController
     ]);
     }
 
+
+    
+    //Fonction qui retourne les produits du panier d'un user sous format json 
+    #[Route('/affichepanierJSON', name: 'app_AffichepanierJSON')]
+    public function ProduitsParPanierJson(PanierRepository $panierRep,UserRepository $ur,LignepanierRepository $rep, NormalizerInterface $Normalizer):Response
+    {
+        $user = $ur->find(22);
+        $panier = $panierRep->findOneBy(['user' => $user]);
+        $idPanier=$panier->getId();
+        $produits = $rep->findBy(['panier' => $idPanier]); 
+
+       
+        $jsonContent = $Normalizer->normalize($produits,'json',['groups'=>'lignepanier']);
+        return new Response(json_encode($jsonContent));
+    }
+
+
      //Fonction qui retourne le nombre de produits dans le panier d'un user
      #[Route('/nbprod', name: 'app_nbprod')]
      public function nbprod(PanierRepository $panierRep,UserRepository $ur,LignepanierRepository $rep):Response
@@ -92,14 +111,21 @@ class PanierController extends AbstractController
 
     // Rediriger vers la page d'affichage du panier
     return $this->redirectToRoute("app_Affichepanier");
-
-       // Récupérer la nouvelle quantité
-       //$quantite = $lignePanier->getQuantite();
-
-       // Retourner une réponse JSON avec la nouvelle quantité
-      // return $this->json(['quantite' => $quantite]);
 }
 
+    #[Route('/qtPlusUnJSON/{id}', name: 'plus1JSON')]
+    public function updateLignePanierQuantitePlusUnJSON(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep,NormalizerInterface $Normalizer)
+{
+    $entityManager = $doctrine->getManager();
+    $lignePanier = $rep->find($id);
+    $lignePanier->setQuantite($lignePanier->getQuantite() + 1);
+
+    $entityManager->persist($lignePanier);
+    $entityManager->flush();
+
+    $jsonContent = $Normalizer->normalize($lignePanier,'json',['groups'=>'Lignepanier']);
+    return new Response("Quantité mise à jour avec succès".json_encode($jsonContent));
+ }
 
     
     //Fonction qui met a jours la qantité -1 d'un produit dans un panier
@@ -119,12 +145,23 @@ class PanierController extends AbstractController
        // Récupérer la nouvelle quantité
        $quantite = $lignePanier->getQuantite();
        $prix = $lignePanier->getPrix();
-
-       // Retourner une réponse JSON avec la nouvelle quantité
-       //return $this->json(['quantite' => $quantite,
-       //'prix' => $prix
-    //]);
 }
+
+    #[Route('/qtMoinsUnJSON/{id}', name: 'moins1JSON')]
+    public function updateLignePanierQuantiteMoinsUnJSON(int $id, ManagerRegistry $doctrine,LignepanierRepository $rep,NormalizerInterface $Normalizer)
+{
+    $entityManager = $doctrine->getManager();
+    $lignePanier = $rep->find($id);
+    $lignePanier->setQuantite($lignePanier->getQuantite() - 1);
+
+    $entityManager->persist($lignePanier);
+    $entityManager->flush();
+    $jsonContent = $Normalizer->normalize($lignePanier,'json',['groups'=>'Lignepanier']);
+    return new Response("Quantité mise à jour avec succès".json_encode($jsonContent));
+
+
+}
+
 
    //Fonction qui supprime un produit du panier 
    #[Route('SupprimerProduit/{id}', name: 'supprimer_ligne_panier')]
@@ -139,6 +176,20 @@ class PanierController extends AbstractController
     $entityManager->flush();
    // Rediriger vers la page d'affichage du panier en passant l'ID du panier
    return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
+}
+
+   //Fonction qui supprime un produit du panier 
+   #[Route('SupprimerProduitJSON/{id}', name: 'supprimer_ligne_panierJSON')]
+   public function deleteLignePanierJSON(int $id,ManagerRegistry $doctrine,LignepanierRepository $rep,NormalizerInterface $Normalizer): Response
+{
+    $entityManager = $doctrine->getManager();
+    $lignePanier = $rep->find($id);
+    //Supprimer la ligne panier
+    $entityManager->remove($lignePanier);
+    $entityManager->flush();
+    $jsonContent = $Normalizer->normalize($lignePanier,'json',['groups'=>'Lignepanier']);
+    return new Response("LignePAnier Supprimé avec succès".json_encode($jsonContent));
+    
 }
 
   //Fonction qui vide le panier d'un user 
@@ -158,6 +209,23 @@ class PanierController extends AbstractController
     $entityManager->flush();
    // Rediriger vers la page d'affichage du panier en passant l'ID du panier
    return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
+}
+
+  //Fonction qui vide le panier d'un user 
+  #[Route('/ViderPanierJSON/{id}', name: 'vider_panierJSON')]
+  public function ViderPanierJSON(int $id,ManagerRegistry $doctrine,LignepanierRepository $rep,NormalizerInterface $Normalizer): Response
+{
+    $entityManager = $doctrine->getManager();
+    $lignesPanier = $rep->findBy(['panier' => $id]);
+        
+
+    foreach ($lignesPanier as $lignePanier) {
+        $entityManager->remove($lignePanier);
+    }
+
+    $entityManager->flush();
+    $jsonContent = $Normalizer->normalize($lignePanier,'json',['groups'=>'Lignepanier']);
+    return new Response("Panier Vidé avec succès".json_encode($jsonContent));
 }
 
 

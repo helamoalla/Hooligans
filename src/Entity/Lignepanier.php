@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\LignepanierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: LignepanierRepository::class)]
 class Lignepanier
@@ -13,30 +13,38 @@ class Lignepanier
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_ligne")]
+    #[Groups("lignepanier")]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,referencedColumnName:"id_prod",name:"id_produit")]
+    #[Groups("lignepanier")]
     private ?Produit $produit = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,name:"id_panier",referencedColumnName:"id_panier")]
+    #[Groups("lignepanier")]
     private ?Panier $panier = null;
 
     #[ORM\Column]
+    #[Groups("lignepanier")]
     private ?int $quantite = null;
  
 
     #[ORM\Column]
+    #[Groups("lignepanier")]
     private ?float $prix = null;
 
     #[ORM\Column(length: 30)]
+    #[Groups("lignepanier")]
     private ?string $nom_produit = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups("lignepanier")]
     private ?string $description_prod = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("lignepanier")]
     private ?string $image = null;
 
     public function getId(): ?int

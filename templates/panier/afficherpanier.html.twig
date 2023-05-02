@@ -50,13 +50,13 @@
         <td class="product-item-quantity" id="quantite">{{p.getQuantite()}} </td>
         <td class="product-item-quantity"><div class="form-group">
             {#<a class="site-button button-sm m-r15" onclick="updateQuantitePlusUn({{p.getId()}})">+</a>#}
-            <a class="site-button button-sm m-r15" onclick="createNotification('Mise à jour', 'La qantité a été mise à jour avec succès')" href="{{path('plus1',{'id':p.getId()}) }}">+</a>
+            <a class="site-button button-sm m-r15" onclick="showNotification('Mise à jour', 'La qantité a été mise à jour avec succès')" href="{{path('plus1',{'id':p.getId()}) }}">+</a>
         </div><div class="form-group">
             {#  <a class="site-button button-sm m-r15" onclick="updateQuantiteMoinsUn({{p.getId()}})">-</a>#}
-           <a class="site-button button-sm m-r15" onclick="createNotification('Mise à jour', 'La qantité a été mise à jour avec succès')" href="{{path('moins1',{'id':p.getId()}) }}">-</a>
+           <a class="site-button button-sm m-r15" onclick="showNotification('Mise à jour', 'La qantité a été mise à jour avec succès')" href="{{path('moins1',{'id':p.getId()}) }}">-</a>
         </div></td>
         <td class="product-item-totle" id="sous_total" >{{p.getProduit().getPrixProd()*p.getQuantite()}} DT</td>
-        <td class="product-item-close"><a id="remove-from-cart-btn" onclick="createNotification('Supprimer', 'Produit supprimé du panier avec succès')" href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}" class="fas fa-times" ></a></td>
+        <td class="product-item-close"><a id="remove-from-cart-btn" onclick="showNotification('Supprimer', 'Produit supprimé du panier avec succès')" href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}" class="fas fa-times" ></a></td>
         {#<td class="product-item-name"><a class="site-button m-r15" href="{{path('supprimer_ligne_panier',{'id':p.getId()}) }}"> Supprimer</a></td>#}
         <tr {%  else  %}> <h1>Votre panier est vide </h1></tr>
     </tr {% endfor %}>
