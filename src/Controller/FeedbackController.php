@@ -39,7 +39,7 @@ class FeedbackController extends AbstractController
     public function updateFeedback($id, FeedbackRepository $feedRep,UserRepository $userRep, Request $request,BonplanRepository $bonplanRep, ManagerRegistry $doctrine): Response
     {
         $feedback = $feedRep->find($id);
-        $user=$userRep->find(22);
+        $user=$userRep->find(26);
         $bonplan = $bonplanRep->getBonPlanWithFeedbacks($feedback->getBonplan()->getId());
         $bp = $bonplanRep->find($feedback->getBonplan()->getId());
 
@@ -77,6 +77,7 @@ class FeedbackController extends AbstractController
         return $this->renderForm("bonplan/detailBonplan.html.twig",["f" => $form,
         'bonplan' => $bonplan,
         'feeds'=>$feeds,
+        'user'=>$user,
         ]);
     }
     
