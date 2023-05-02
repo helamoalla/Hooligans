@@ -20,6 +20,8 @@ use Symfony\Component\Notifier\Message\SmsMessage;
 use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use MercurySeries\FlashyBundle\FlashyNotifier;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class GarageCController extends AbstractController
 {
@@ -44,6 +46,16 @@ class GarageCController extends AbstractController
         'adresse' => $adresse
     ]);
 }
+#[Route('/afficheGjson', name: 'afficheGjson')]
+public function afficheGjson(Request $request,GaragecRepository $r,NormalizerInterface $Normalizer)
+{ $garageC=$r->orderById();
+$lat = $request->query->get('lat');
+$lng = $request->query->get('lng');
+$adresse = $request->query->get('adresse');
+
+$jsonContent = $Normalizer->normalize($garageC,'json',['groups'=>'garagec']);
+return new Response(json_encode($jsonContent));
+}
     #[Route('/afficheGC', name: 'app_afficheGC')]
     public function afficheGC(GaragecRepository $r): Response
     {
@@ -52,6 +64,13 @@ class GarageCController extends AbstractController
             'g'=>$garageC,
         ]);
     }
+    #[Route('/afficheGCjson', name: 'app_afficheGCjson')]
+    public function afficheGCjson(GaragecRepository $r,NormalizerInterface $Normalizer): Response
+    {
+        $garageC=$r->orderById();
+        $jsonContent = $Normalizer->normalize($garageC,'json',['groups'=>'garagec']);
+        return new Response(json_encode($jsonContent));
+    }
     #[Route('/detailGC/{id}', name: 'detailGC')]
     public function detailGC($id): Response
     {
@@ -59,6 +78,13 @@ class GarageCController extends AbstractController
         return $this->render('garage_c/detailGC.html.twig', [
             'g'=>$garageC,
         ]);
+    }
+    #[Route('/detailGCjson/{id}', name: 'detailGCjson')]
+    public function detailGCjson($id,NormalizerInterface $Normalizer): Response
+    {
+        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->find($id);
+        $jsonContent = $Normalizer->normalize($garageC,'json',['groups'=>'garagec']);
+        return new Response(json_encode($jsonContent));
     }
     #[Route('/index', name: 'app_index')]
     public function afficheGCA(GaragecRepository $r,MaintenanceRepository $r1): Response
@@ -79,7 +105,17 @@ class GarageCController extends AbstractController
         $em->flush(); ////////flush()
         return $this->redirectToRoute('app_afficheGC',);
     }
-
+    #[Route('/supprimerGCjson/{id}', name: 'supprimerGCjson')]
+    public function supprimerGCjson($id,GaragecRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+    {   ///////recuperer garage//////////
+         $garageC=$r->find($id);
+         ////////supprimer/////////
+        $em=$doctrine->getManager();/////persist()
+        $em->remove($garageC);/////remove()
+        $em->flush(); ////////flush()
+        $jsonContent = $Normalizer->normalize($garageC,'json',['groups'=>'garagec']);
+        return new Response("garage Supprimé avec succès".json_encode($jsonContent));
+    }
     #[Route('/ajouterGC', name: 'ajouterGC')]
     public function ajouterGC(ManagerRegistry $doctrine,Request $request,TwilioTransport $twilio,FlashyNotifier $flashy): Response
     { 

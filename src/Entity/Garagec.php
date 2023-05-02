@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GaragecRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GaragecRepository::class)]
 class Garagec
@@ -12,13 +13,16 @@ class Garagec
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_garage")]
+    #[Groups("garagec")]
     public ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'ce champ est obligatoire')]
+    #[Groups("garagec")]
     private ?string $nom_garage = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("garagec")]
     //#[Assert\NotBlank(message:'ce champ est obligatoire veuillez selectionner un endoirt dans la map')]
     private ?string $adresse = null;
 
@@ -29,84 +33,101 @@ class Garagec
         minMessage: 'Your number name must be at least {{ limit }} characters long',
         maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
     )]
+    #[Groups("garagec")]
     private ?int $numero = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $panne_moteur = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $pompe_a_eau = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $patin = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $essuie_glace = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $radiateur = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $ventilateur = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $duride = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $fuite_d_huile = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $vidange = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $filtre = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $batterie = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $amortisseur = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $frein_main = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $feu_d_eclairage = null;
 
     #[ORM\Column]
     #[Assert\Positive(message:'le prix doit etre positive')]
     #[Assert\NotNull(message:'le champ ne doit pas etre vide')]
+    #[Groups("garagec")]
     private ?int $taux_de_reduction = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("garagec")]
     private ?string $image = null;
 
     public function getId(): ?int

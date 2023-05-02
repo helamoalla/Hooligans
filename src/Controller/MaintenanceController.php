@@ -18,13 +18,16 @@ use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use MercurySeries\FlashyBundle\FlashyNotifier;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 class MaintenanceController extends AbstractController
 {
     #[Route('/maintenance', name: 'app_maintenance')]
     public function index(MaintenanceRepository $r,FlashyNotifier $flashy, ManagerRegistry $doctrine,GaragecRepository $r1): Response
     {
-        $maintenances = $r->findMaintenanceByIdUser(25);
+        $maintenances = $r->findMaintenanceByIdUser(28);
         $test = false;
         $dateAujourdhui = new DateTime();
         $garageC = $r1->orderById();
@@ -58,6 +61,13 @@ class MaintenanceController extends AbstractController
             'm'=>$maintenance,
         ]);
     }
+    #[Route('/afficheMjson', name: 'app_afficheMjson')]
+    public function afficheMjson(MaintenanceRepository $r, NormalizerInterface $Normalizer): Response
+    {
+        $maintenance=$r->orderById();
+        $jsonContent = $Normalizer->normalize($maintenance,'json',['groups'=>'maintenance']);
+        return new Response(json_encode($jsonContent));
+    }
     #[Route('/detailGCU/{id}', name: 'detailGCU')]
     public function detailGCU($id): Response
     {
@@ -66,11 +76,18 @@ class MaintenanceController extends AbstractController
             'g'=>$garageC,
         ]);
     }
+    #[Route('/detailGCUjson/{id}', name: 'detailGCUjson')]
+    public function detailGCUjson($id,NormalizerInterface $Normalizer): Response
+    {
+        $garageC=$this->getDoctrine()->getRepository(Garagec::class)->find($id);
+        $jsonContent = $Normalizer->normalize($garageC,'json',['groups'=>'maintenance']);
+        return new Response(json_encode($jsonContent));
+    }
     #[Route('/afficheMU', name: 'app_afficheMU')]
     public function afficheMU(MaintenanceRepository $r, ManagerRegistry $doctrine): Response
     {   
        // $maintenances=$r->findMaintenanceByIdUser(26)->getlastmod;
-       $maintenance = $r->findLastMaintenanceByIdUser(25);
+       $maintenance = $r->findLastMaintenanceByIdUser(28);
        // if (count($maintenances) > 0) {
         //    $maintenance = $maintenances[0];
        // } else {
@@ -80,6 +97,20 @@ class MaintenanceController extends AbstractController
         return $this->render('maintenance/afficheMU.html.twig', [
             'm'=>$maintenance,
         ]);
+    }
+    #[Route('/afficheMUjson', name: 'app_afficheMUjson')]
+    public function afficheMUjson(MaintenanceRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+    {   
+       // $maintenances=$r->findMaintenanceByIdUser(26)->getlastmod;
+       $maintenance = $r->findLastMaintenanceByIdUser(28);
+       // if (count($maintenances) > 0) {
+        //    $maintenance = $maintenances[0];
+       // } else {
+          //  $maintenance = null;
+       // }
+        //$maintenance=$maintenances[0];
+        $jsonContent = $Normalizer->normalize($maintenance,'json',['groups'=>'maintenance']);
+        return new Response(json_encode($jsonContent));
     }
     #[Route('/supprimerM/{id}', name: 'supprimerM')]
     public function supprimerM($id,MaintenanceRepository $r, ManagerRegistry $doctrine): Response
@@ -91,6 +122,17 @@ class MaintenanceController extends AbstractController
         $em->flush(); ////////flush()
         return $this->redirectToRoute('app_afficheM',);
     }
+    #[Route('/supprimerMjson/{id}', name: 'supprimerMjson')]
+    public function supprimerMjson($id,MaintenanceRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+    {   ///////recuperer la classroom a supp//////////
+        $maintenance=$r->find($id);
+         ////////supprimer/////////
+        $em=$doctrine->getManager();/////persist()
+        $em->remove($maintenance);/////remove()
+        $em->flush(); ////////flush()
+        $jsonContent = $Normalizer->normalize($maintenance,'json',['groups'=>'maintenance']);
+        return new Response("maintenance Supprimé avec succès".json_encode($jsonContent));
+    }
     #[Route('/ajouterM', name: 'ajouterM')]
     public function ajouterM(ManagerRegistry $doctrine,Request $request,FlashyNotifier $flashy): Response
     {
@@ -100,7 +142,7 @@ class MaintenanceController extends AbstractController
        // $flashy->error('cocher au moins une case', 'http://your-awesome-link.com');
         if($form->isSubmitted() && $form->isValid ()){
             $em =$doctrine->getManager() ;
-            $user=$this->getDoctrine()->getRepository(User::class)->find(25);
+            $user=$this->getDoctrine()->getRepository(User::class)->find(28);
             $maintenance->setUser($user);
             $maintenance->setDateMaintenance(new \DateTime('now'));
             if($form->get('panne_moteur')->getData() || $form->get('pompe_a_eau')->getData() || $form->get('patin')->getData() || $form->get('essuie_glace')->getData() || $form->get('radiateur')->getData() || $form->get('ventilateur')->getData() || $form->get('duride')->getData() || $form->get('fuite_d_huile')->getData() || $form->get('vidange')->getData() || $form->get('filtre')->getData() || $form->get('batterie')->getData() || $form->get('amortisseur')->getData() || $form->get('frein_main')->getData() || $form->get('feu_d_eclairage')->getData()){

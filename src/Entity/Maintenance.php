@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MaintenanceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MaintenanceRepository::class)]
 class Maintenance
@@ -12,55 +13,72 @@ class Maintenance
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_maintenance")]
+    #[Groups("maintenance")]
     private ?int $id = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,name:"id_user",referencedColumnName:"id_user")]
+    #[Groups("maintenance")]
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups("maintenance")]
     private ?\DateTimeInterface $date_maintenance = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $panne_moteur = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $pompe_a_eau = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $patin = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $essuie_glace = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $radiateur = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $ventilateur = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $duride = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $fuite_d_huile = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $vidange = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $filtre = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $batterie = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $amortisseur = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $frein_main = null;
 
     #[ORM\Column]
+    #[Groups("maintenance")]
     private ?bool $feu_d_eclairage = null;
 
     #[ORM\Column(length:255,nullable:true)]
