@@ -25,8 +25,9 @@ use Symfony\Component\Mime\Attachment;
 class BonplanController extends AbstractController
 {
     #[Route('/allBonplan', name: 'all_bonplan')]
-    public function allBonplan(BonplanRepository $bonplanRep, Request $request,PaginatorInterface $paginator ): Response
+    public function allBonplan(BonplanRepository $bonplanRep, Request $request,PaginatorInterface $paginator,UserRepository $userRep ): Response
     {
+        $user=$userRep->find(26);
         $recentBonplan = $bonplanRep->getRecentWithFeedbacks();
 
         if ($request->isMethod("POST")) {
@@ -50,6 +51,7 @@ class BonplanController extends AbstractController
             'allBonplan' => $allBonplan,
             'recent'=>$recentBonplan,
             'pagenum'=>$pageNumber ,
+            'user'=>$user
         ]);
     }
     #[Route('/bonplan/{id}', name: 'detail_bonplan')]
@@ -115,6 +117,7 @@ class BonplanController extends AbstractController
             "f" => $form,
             'bonplan' => $bonplanDetail,
             'feeds' => $feeds,
+            'user'=>$user
         ]);
     }
 

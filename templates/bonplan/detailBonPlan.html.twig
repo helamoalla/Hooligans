@@ -44,7 +44,7 @@
 														{{bonplan.0[0].getNomBonplan()}}
 													</h4>
 													<h4 class="dlab-title m-t0">
-														Average   :  
+														Average   :
 														{{bonplan.0.avg_rating|number_format(1, '.', '')}}
 
 
@@ -145,14 +145,14 @@
 										<div
 											class="star-rating">
 											{# {% for i in range(0,4) %}
-																							{% if i < item.getRate() %}
-																								<i class="fas fa-star" data-alt="1" title="regular"></i>
-																							{% else %}
-																								<i class="far fa-star" data-alt="3" title="regular"></i>
-											
-																							{% endif %}
-											
-																						{% endfor %} #}
+																																		{% if i < item.getRate() %}
+																																			<i class="fas fa-star" data-alt="1" title="regular"></i>
+																																		{% else %}
+																																			<i class="far fa-star" data-alt="3" title="regular"></i>
+																						
+																																		{% endif %}
+																						
+																																	{% endfor %} #}
 											{% if item.getRate() >= 0 %}
 												{{item.getRate()|rating }}
 											{% endif %}
@@ -162,27 +162,20 @@
 										<p>
 											{{item.getCommentaire()}}
 										</p>
-										<div style="position: absolute;
-																																				    top: 50px;
-																																				    right: 30px;
-																																				    margin-top: -5px;
-																																				    color: #213454;
-																																				    font-weight: 600;">
+										{% if item.getUser().getIdUser() == user.getIdUser() %}
+										<div style="position: absolute;top: 50px;right: 30px;margin-top: -5px;color: #213454;font-weight: 600;">
 
 											<a href="{{path('update_feedback',{'id':item.getId()}) }}">
 												<i class="fas fa-pencil" style="color:red;"></i>Update</a>
 										</div>
-										<div style="position: absolute;
-																																				    top: 80px;
-																																				    right: 30px;
-																																				    margin-top: -5px;
-																																				    color: var(--primary);
-																																				    font-weight: 600;">
+										<div style="position: absolute;top: 80px;right: 30px;margin-top: -5px;color: var(--primary);font-weight: 600;">
 
 											<a href="{{path('delete_feedback',{'id':item.getId()}) }}">
 												<i class="fa-solid fa-trash-can" style="color: red;"></i>
 												Delete</a>
 										</div>
+										{% endif %}
+										
 									</div>
 								</li>
 							{% endfor %}

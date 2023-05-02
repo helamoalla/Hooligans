@@ -40,7 +40,9 @@ class FeedbackController extends AbstractController
     {
         $feedback = $feedRep->find($id);
         $user=$userRep->find(22);
-        $bonplan = $bonplanRep->find($feedback->getBonplan()->getId());
+        $bonplan = $bonplanRep->getBonPlanWithFeedbacks($feedback->getBonplan()->getId());
+        $bp = $bonplanRep->find($feedback->getBonplan()->getId());
+
         $feeds=$feedRep->getFeedbackByBonPlan($bonplan);
         
         $form = $this->createForm(FeedbackFormType::class, $feedback);
@@ -69,7 +71,7 @@ class FeedbackController extends AbstractController
             
             $em->flush();
 
-            return $this->redirectToRoute('detail_bonplan',["id"=>$bonplan->getId()]);
+            return $this->redirectToRoute('detail_bonplan',["id"=>$bp->getId()]);
         }
 
         return $this->renderForm("bonplan/detailBonplan.html.twig",["f" => $form,
