@@ -21,11 +21,17 @@ class Panier
         return $this->id;
     }
 
+
     public function getUser(): ?User
     {
         return $this->user;
     }
+public function setId(?int $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function setUser(?User $user): self
     {
         $this->user = $user;

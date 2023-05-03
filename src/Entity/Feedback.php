@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\FeedbackRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: FeedbackRepository::class)]
 class Feedback
@@ -14,9 +16,23 @@ class Feedback
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Type(
+        type: 'integer',
+        message: "the value {{ value }} is not a valid {{ type }}.",
+    )]
+    #[Assert\GreaterThanOrEqual(
+        value: 0,
+        message: 'the rate must be positive',
+    )]
+    #[Assert\LessThanOrEqual(
+        value: 5,
+        message: 'the rate must be less than or equal to 5.',
+    )]
+    #[Assert\NotBlank(message:"The rate is mandatory !")]
     private ?int $rate = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message:"The comment is mandatory !")]
     private ?string $commentaire = null;
 
     #[ORM\Column]

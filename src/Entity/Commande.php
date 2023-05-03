@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -25,15 +26,21 @@ class Commande
     private ?string $etat_commande = null;
 
     #[ORM\Column(length: 200)]
+    #[Assert\NotBlank(message:"Le nom du gouvernorat est obligatoire !")]
     private ?string $gouvernorat = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message:"Le nom de la ville est obligatoire !")]
     private ?string $ville = null;
 
     #[ORM\Column(length: 200)]
+    #[Assert\NotBlank(message:"Le nom de la rue est obligatoire !")]
     private ?string $rue = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Le code postal est obligatoire !")]
+    #[Assert\Positive(message:"Le code postal doit etre un nombre positif !")]
+    #[Assert\Length(exactly: 4, exactMessage : "Le code postal doit etre un nombre de quatre chiffres")]
     private ?int $code_postal = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

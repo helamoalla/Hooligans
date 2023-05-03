@@ -1,26 +1,26 @@
 {% extends "indexA.html.twig" %}
 {% block body %}
 	<div style="background-image:linear-gradient(rgba(0, 0, 0, 0.8),
-									                       rgba(0, 0, 0, 0.8)), url(images/background/bg4.jpg);  padding: 50px;">
+                       rgba(0, 0, 0, 0.8)), url(../images/background/bg4.jpg);  padding: 50px;">
+			   
 		<div class="login-form  tp-login-white text-white">
 			<div class="tab-content nav">
 				<div id="login" class="tab-pane active text-center">
-					{{form_start(f,{'attr': {'novalidate': 'novalidate', 'class': 'p-a30 dlab-form text-center text-center','style': 'width:400px;'}})}}
+					{{form_start(f,{'attr': {'novalidate': 'novalidate', 'class': 'p-a30 dlab-form text-center text-center','style': 'width:400px'}})}}
 
-					<h3 class="form-title m-t0">Suggest your own
-					</h3>
+					<h3 class="form-title m-t0">Update</h3>
 					<div class="dlab-separator-outer m-b5">
 						<div class="dlab-separator bg-primary style-liner"></div>
 					</div>
 					<p>Provide your bonplan details below:
 					</p>
 					{% if form_errors(f.nom_bonplan) %}
-						<div class="alert alert-danger no-radius" >
-							<strong>Danger!</strong>
-							{{ form_errors(f.nom_bonplan) }}</div>
-					{% endif %}
+							<div class="alert alert-danger no-radius">
+								<strong>Danger!</strong>
+								{{ form_errors(f.nom_bonplan) }}</div>
+						{% endif %}
 					<div class="form-group">
-
+						
 						{{ form_widget(f.nom_bonplan,{'attr':{'class':'form-control' } }) }}
 					</div>
 					<div class="form-group">
@@ -67,8 +67,9 @@
 					<div class="form-group">
 						{{ form_widget(f.imageFile,{'attr':{'class':'form-control','onchange': 'previewImage(this)' } }) }}
 					</div>
-					<div class="form-group" style="display: flex;justify-content: center;">
-						<img id="imagePrev" src="#" alt="Selected Image" style="display: none; width: 150px; height:150px">
+					<div class="form-group" style="display: flex;
+							    justify-content: center;">
+						<img id="imagePrev" src="http://localhost/images/{{b.getImage()}}" alt="Selected Image"style=" width: 200px; height:200px" >
 					</div>
 
 					<div class="form-group text-left ">
@@ -88,23 +89,20 @@
 {% block script %}
 	<script>
 		function previewImage(input) {
-console.log("hello");
+
 if (input.files && input.files[0]) {
-console.log("hello");
+
 var reader = new FileReader();
 
 reader.onload = function (e) {
-console.log("chbiik");
 var img = document.getElementById('imagePrev');
 img.src = e.target.result;
 img.style.display = 'block';
-console.log(img.src);
-console.log(img.style.display);
+
 };
 
 reader.readAsDataURL(input.files[0]);
 }
 }
 	</script>
-
 {% endblock %}

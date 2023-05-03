@@ -145,6 +145,20 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: 'Role')]
     private $idRole;
 
+    #[ORM\Column(length: 255)]
+    private ?string $img ;
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
+    }
     public function getIdUser(): ?int
     {
         return $this->idUser;

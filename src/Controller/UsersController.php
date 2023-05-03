@@ -78,7 +78,7 @@ class UsersController extends AbstractController
     }
 
     //Afficherdetail
-    #[Route('/useraffichedetailproduit/{id}', name: 'affichedetail')]
+    #[Route('/useraffichedetailproduitN/{id}', name: 'affichedetailN')]
     public function affichedetail(ProduitRepository $Rep, int $id ): Response
     { $Produit=$Rep->find($id);
      $Produits=$Rep->findAll();

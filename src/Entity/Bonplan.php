@@ -15,33 +15,51 @@ class Bonplan
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\NotBlank(message:"Le nom du bon plan est obligatoire !")]
-    private ?string $nom_bonplan = null;
+    #[Assert\NotBlank(message:"The name of the Bonplan is mandatory !")]
+    #[Assert\Regex(
+        pattern: '/^[A-Za-z]+$/',
+        message: 'The name of the Bonplan must contain only letters.',
+    )]
+    private ?string $nom_bonplan ;
 
     #[ORM\Column(length: 50)]
-    private ?string $gouvernorat = null;
+    #[Assert\NotBlank(message:"The governorate is mandatory !")]
+    #[Assert\Regex(
+        pattern: '/^[A-Za-z]+$/',
+        message: 'The name of the governorate must contain only letters.',
+    )]
+    private ?string $gouvernorat ;
 
     #[ORM\Column(length: 50)]
-    private ?string $ville = null;
+    #[Assert\NotBlank(message:"The city is mandatory !")]
+    #[Assert\Regex(
+        pattern: '/^[A-Za-z]+$/',
+        message: 'The name of the city must contain only letters.',
+    )]
+    private ?string $ville ;
 
     #[ORM\Column(length: 255)]
-    private ?string $rue = null;
+    #[Assert\NotBlank(message:"The street is mandatory !")]
+    private ?string $rue ;
 
     #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    #[Assert\NotBlank(message:"The description is mandatory !")]
+    private ?string $description ;
 
     #[ORM\Column(length: 50)]
-    private ?string $type = null;
+    #[Assert\NotBlank(message:"The type is mandatory !")]
+    private ?string $type ;
 
     #[ORM\Column(length: 20)]
-    private ?string $etat = null;
+    private ?string $etat ;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    // #[Assert\NotBlank(message:"L'image est obligatoire !")]
+    private ?string $image ;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false,name:"id_user",referencedColumnName:"id_user")]
-    private ?User $user = null;
+    private ?User $user ;
 
     public function getId(): ?int
     {

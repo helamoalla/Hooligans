@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Panier;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -26,10 +27,11 @@ class RegistrationController extends AbstractController
 
 
         $user = new User();
+        $panier= new Panier();
         $userRole = $entityManager->getRepository(Role::class)->find($idrole);
         $user ->setIdRole($userRole);
         $user->setEtatUser(0);
-
+        
 
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -57,8 +59,12 @@ class RegistrationController extends AbstractController
         
                 $user->setCv($newFilename);
             }
+            $panier->setUser($user);
+            $panier->setId(2);
             $entityManager->persist($user);
+            $entityManager->persist($panier);
             $entityManager->flush();
+           
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
