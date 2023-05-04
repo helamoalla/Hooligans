@@ -44,7 +44,7 @@
 	{% endblock %}	
 </head>
 <body id="bg"><div id="loading-area" class="loader1"></div>
-    {% block header%}
+    {% block header %}
 <div class="page-wraper">
     <!-- header -->
     <header class="site-header header header-style-1 mo-left">
@@ -75,7 +75,7 @@
             <div class="main-bar clearfix ">
                 <div class="container clearfix">
                     <!-- website logo -->
-                    <div class="logo-header mostion logo-dark"><img src="images/logo-black.png" width="193" height="89" alt=""></div>
+                    <div class="logo-header mostion logo-dark"><a href="/home"><img src="{{asset('images/dr.png')}}" width="193" height="89" alt=""></a></div>
                     <!-- nav toggle button -->
 					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span></span>
@@ -83,11 +83,7 @@
 						<span></span>
 					</button>
                     <!-- extra nav -->
-                    <div class="extra-nav">
-                        <div class="extra-cell">
-                            <button id="quik-search-btn" type="button" class="site-button"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
+                    
                     <!-- Quik search -->
                     <div class="dlab-quik-search bg-primary">
                         <form action="#">
@@ -98,9 +94,9 @@
                     <!-- main nav -->
                     <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
 						<ul class="nav navbar-nav">
-							<li class="active"> <a href="{{path('resume')}}">Accueil<i class="fas fa-chevron-down"></i></a>
+							<li class="active"> <a href="{{path('app_home')}}">Accueil<i class="fas fa-chevron-down"></i></a>
 							</li>
-							<li> <a href="">Évènements<i class="fas fa-chevron-down"></i></a>
+							<li> <a href="/getU">Évènements<i class="fas fa-chevron-down"></i></a>
 								{#<ul class="sub-menu">
 									<li> <a href="javascript:;">Header <i class="fas fa-angle-right"></i></a>
 										<ul class="sub-menu">
@@ -120,7 +116,18 @@
 									</li>
 								</ul>#}
 							</li>
-							<li class="has-mega-menu "> <a href="javascript:;">Bon Plans<i class="fas fa-chevron-down"></i></a>
+							<li>
+										<a href="javascript:;">Bonplan<i class="fas fa-chevron-down"></i>
+										</a>
+										<ul class="sub-menu">
+											<li>
+												<a href="{{ path('all_bonplan') }}">All bonplan </a>
+											</li>
+											<li>
+												<a href="{{ path('addBonplan') }}">Suggest bonplan</a>
+											</li>
+										</ul>
+									
 								{#<ul class="mega-menu">
 									<li> <a href="javascript:;">Pages</a>
 										<ul>
@@ -180,7 +187,18 @@
 							</li>
 							
 							</li>
-							<li class="has-mega-menu "> <a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i></a>
+
+							<li>
+										<a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i>
+										</a>
+										<ul class="sub-menu">
+											<li>
+												<a href="/afficheMU">Ma demande </a>
+											</li>
+											<li>
+												<a href="/ajouterM">demander maintenance</a>
+											</li>
+										</ul>
 								{#<ul class="mega-menu">
 									<li> <a href="javascript:;">Shortcodes</a>
 										<ul>
@@ -220,7 +238,7 @@
 									</li>
 								</ul>#}
 							</li>
-							<li> <a href="javascript:;">Blog <i class="fas fa-chevron-down"></i></a>
+							<li> <a href="getT">Ticket <i class="fas fa-chevron-down"></i></a>
 								{#<ul class="sub-menu">
 									<li><a href="contact.html">Contact us 1</a></li>
 									<li><a href="contact-2.html">Contact us 2</a></li>
@@ -229,11 +247,16 @@
 								</ul>#}
 							</li>
 
-							<li> <a href="{{path('app_marketplace')}}">Boutique<i class="fas fa-chevron-down"></i></a>
+							<li> <a href="/userafficheproduit">Boutique<i class="fas fa-chevron-down"></i></a>
 							</li>
-							<li> <a id="cart-icon" href="{{path('app_Affichepanier')}}"><img src="{{asset('images/cart2.png')}}" width="25" height="25" alt="">{#<i class="fas fa-chevron-down"></i>#}</a>
-					
 							
+							<li> <a id="cart-icon" href="{{path('app_Affichepanier')}}"><img src="{{asset('images/cart2.png')}}" width="25" height="25" alt="">{#<i class="fas fa-chevron-down"></i>#}</a>
+					          {% if not app.user %}
+							 <li> <a  href="{{ path('app_login') }}">se connecter<i class="fas fa-chevron-down"></i></a></li>
+							  {% else %}
+							  <li> <a href="{{ path('app_user_show', {'idUser': app.user.idUser}) }}">profile<i class="fas fa-chevron-down"></i></a></li>
+							  <li> <a href="{{ path('app_logout') }}">se deconnecter<i class="fas fa-chevron-down"></i></a></li>
+							  {% endif %}
 						</ul>
                     </div>
                 </div>
@@ -252,7 +275,7 @@
 			<!-- START REVOLUTION SLIDER 5.4.6.3 fullwidth mode -->
 			<div id="rev_slider_265_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.6.3">
 				<ul>  <!-- SLIDE  -->
-					<li data-index="rs-100" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="{{asset('images/main-slider/slide9.jpg')}}" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+					<li data-index="rs-100" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="{{asset('./images/main-slider/slide9.jpg')}}" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 						<!-- MAIN IMAGE -->
 						<img src="{{asset('images/main-slider/slide9.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 						 <div class="tp-caption tp-shape tp-shapewrapper " 
@@ -375,7 +398,7 @@
 					</li>
 					<li data-index="rs-200" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="images/main-slider/slide10.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 						<!-- MAIN IMAGE -->
-						<img src="{{asset('images/main-slider/slide10.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
+						<img src="{{asset('./images/main-slider/slide10.jpg')}}" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-no-retina>
 						 <div class="tp-caption tp-shape tp-shapewrapper " 
 							id="slide-200-layer-1" 
 							data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 

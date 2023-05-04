@@ -187,8 +187,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="javascript:void(0)">
+                                    <a
+                                        href="/logout">
                                         <i data-feather="log-out"></i>
                                         <span>Log out</span>
                                     </a>
@@ -278,18 +278,52 @@
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-settings-line"></i>
-                                        <span>Attributes</span>
+                                        <span>Garages</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="attributes.html">Attributes</a>
+                                            <a href="/afficheGC">les Garages</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-attributes.html">Add Attributes</a>
+                                            <a href="/ajouterGC">Ajouter Garage</a>
                                         </li>
                                     </ul>
                                 </li>
+                              <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Maintenance</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="/afficheM">les demandes</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                               <li class="sidebar-list">
+										<a class="sidebar-link sidebar-title" href="javascript:void(0)">
+											<i class="ri-archive-line"></i>
+											<span>BonPlan</span>
+										</a>
+										<ul class="sidebar-submenu">
+											<li>
+												<a href="{{ path('admin_all_bonplan') }}">All Bonplan</a>
+											</li>
+											<li>
+												<a href="{{ path('admin_add_Bonplan') }}">Add Bonplan</a>
+											</li>
+										</ul>
+								</li>
+
+									
+									<li class="sidebar-list">
+										<a class="sidebar-link sidebar-title link-nav" href="{{ path('admin_all_Feeds') }}">
+											<i class="ri-star-line"></i>
+											<span>Feedbacks</span>
+										</a>
+									</li>
 
                                 <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title" href="javascript:void(0)">
@@ -298,132 +332,44 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="all-users.html">All users</a>
+                                            <a href="/admin/users_list">All Users</a>
                                         </li>
-                                        <li>
-                                            <a href="add-new-user.html">Add new user</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                        <span>Roles</span>
+                               <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Events</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="role.html">All roles</a>
+                                            <a href="/get">les Events</a>
                                         </li>
-                                        <li>
-                                            <a href="create-role.html">Create Role</a>
-                                        </li>
-                                    </ul>
-                                </li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="media.html">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Media</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-archive-line"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="order-list.html">Order List</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-detail.html">Order Detail</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-tracking.html">Order Tracking</a>
+                                            <a href="/add">Ajouter Event</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-focus-3-line"></i>
-                                        <span>Localization</span>
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Tickets</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="translation.html">Translation</a>
+                                            <a href="/getTA">les Tickets</a>
                                         </li>
 
-                                        <li>
-                                            <a href="currency-rates.html">Currency Rates</a>
-                                        </li>
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
-                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Coupons</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="coupon-list.html">Coupon List</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="create-coupon.html">Create Coupon</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Tax</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
-                                        <i class="ri-star-line"></i>
-                                        <span>Product Review</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
-                                        <i class="ri-phone-line"></i>
-                                        <span>Support Ticket</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-settings-line"></i>
-                                        <span>Settings</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="profile-setting.html">Profile Setting</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
-                                        <i class="ri-file-chart-line"></i>
-                                        <span>Reports</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
-                                        <i class="ri-list-check"></i>
-                                        <span>List Page</span>
-                                    </a>
-                                </li>
+                               
+                                <br>
+                                <br>
                             </ul>
                         </div>
 
@@ -531,7 +477,7 @@
                                         <div>
                                             
                                             <div class="dashboard-category">
-                                                <a href="adminaffichecategorie" >
+                                                <a href="admaffichecategorie" >
 
                                                     {% if i.type_categorie == 'mode' %}
                                                     <img src="{{asset('admin/assets/images/veste.jpg')}}" class="img-fluid" alt="">
@@ -650,220 +596,7 @@
                                 </div>
                             </div>
                             <!-- Earning chart end-->
-                                       <!-- Earning chart star-->
-                         <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0 pb-1">
-                                    <div class="card-header-title">
-                                        <h4>Quantité en stock</h4>
-                                    </div>
-                                </div>
-                                <div class="card-body p-0">
-                                   
-                                    <div id="div_chartt"></div>
-    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        {{ gc_draw(pieCharts1, 'div_chartt') }}
-    </script>
-                            
-
-                                 <!-- Recent orders start-->
-                        <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
-                                    <div class="card-header-title">
-                                        <h4>Recent Orders</h4>
-                                    </div>
-
-                                    <div class="best-selling-box d-sm-flex d-none">
-                                        <span>Short By:</span>
-                                        <div class="dropdown">
-                                            <button class="btn p-0 dropdown-toggle" type="button"
-                                                id="dropdownMenuButton2" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="true">Today</button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table table border-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>#64548</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="text-danger">Unpaid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="best-product-box">
-                                                                <div class="product-name">
-                                                                    <h5>Aata Buscuit</h5>
-                                                                    <h6>26-08-2022</h6>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Date Placed</h6>
-                                                                <h5>5/1/22</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Price</h6>
-                                                                <h5>$250.00</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Order Status</h6>
-                                                                <h5>Completed</h5>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="product-detail-box">
-                                                                <h6>Payment</h6>
-                                                                <h5 class="theme-color">Paid</h5>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Recent orders end-->
-
-                        <!-- Best Selling Product Start -->
+                             <!-- Best Selling Product Start -->
                         <div class="col-xl-6 col-md-12">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header card-header-top card-header--2 px-0 pt-0">
@@ -945,204 +678,339 @@
                         </div>
                         <!-- Best Selling Product End -->
 
+                        <!-- start aziz-->
+<div class="col-xl-6 col-md-12">
+									<div class="card o-hidden card-hover">
+										<div class="card-header card-header-top card-header--2 px-0 pt-0">
+											<div class="card-header-title">
+												<h4>Our recent bonplan</h4>
+											</div>
+										</div>
 
-               
+										<div class="card-body p-0">
+											<div>
+												<div class="table-responsive">
+													<table class="best-selling-table w-image w-image w-image table border-0">
+														<tbody>
 
-                        <!-- Earning chart star-->
+									 {% if allBonplan|length >= 3 %}
+										{% for item in allBonplan %}
+											{% if loop.index > allBonplan|length - 3 %}
+												<tr>
+																<td>
+																	<div class="best-product-box">
+																		<div class="product-image">
+																			<img src="http://localhost/images/{{item.0.getImage()}}" class="img-fluid" alt="Product">
+																		</div>
+																		<div class="product-name">
+																			<h5>{{item.0.getNomBonplan()}}</h5>
+																			
+																		</div>
+																	</div>
+																</td>
+
+																<td>
+																	<div class="product-detail-box">
+																		<h6>Type</h6>
+																		<h5>{{item.0.getType()}}</h5>
+																	</div>
+																</td>
+
+																<td>
+																	<div class="product-detail-box">
+																		<h6>Feeds</h6>
+																		<h5>{{item.count_feeds}}</h5>
+																	</div>
+																</td>
+
+
+																<td>
+																	<div class="product-detail-box">
+																		<h6>By</h6>
+																		<h5>{{item.0.getUser().getNom()}}</h5>
+																	</div>
+																</td>
+															</tr>
+											{% endif %}
+
+										{% endfor %}
+
+
+									{% endif %}
+															
+
+															
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+                                <!-- end aziz-->
+                        <!-- Recent orders start-->
                         <div class="col-xl-6">
                             <div class="card o-hidden card-hover">
-                                <div class="card-header border-0 mb-0">
+                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
-                                        <h4>Earning</h4>
+                                        <h4>NOS DEMANDES DE MAINTENANCE</h4>
                                     </div>
+
+                                     <div class="col-4">
+                                    
+                                                    <a href="afficheM"  class="btn btn-primary w-100 h-100">afficher</a>
+                                                </div>
                                 </div>
+
                                 <div class="card-body p-0">
-                                    <div id="bar-chart-earning"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Earning chart end-->
-
-
-                        <!-- Transactions start-->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0">
-                                    <div class="card-header-title">
-                                        <h4>Transactions</h4>
-                                    </div>
-                                </div>
-
-                                <div class="card-body pt-0">
                                     <div>
                                         <div class="table-responsive">
-                                            <table class="user-table transactions-table table border-0">
+                                            <table class="best-selling-table table border-0">
+                                            {% for i in m %}
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-shield-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Wallets</h6>
-                                                                <p>Starbucks</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="lost">-$74</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-1">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-check-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Bank Transfer</h6>
-                                                                <p>Add Money</p>
+                                                            <div class="best-product-box">
+                                                                <div class="product-name">
+                                                                    <h5>Id USER</h5>
+                                                                    {{i.getUser.getIdUser}}
+                                                                </div>
                                                             </div>
                                                         </td>
 
-                                                        <td class="success">+$125</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-2">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-exchange-dollar-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Paypal</h6>
-                                                                <p>Add Money</p>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Date</h6>
+                                                               {{i.getDateMaintenance|date("m/d/Y")}}
                                                             </div>
                                                         </td>
 
-                                                        <td class="lost">-$50</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-3">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-bank-card-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Mastercard</h6>
-                                                                <p>Ordered Food</p>
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="lost">-$40</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-color-4 pb-0">
-                                                            <div class="transactions-icon">
-                                                                <i class="ri-bar-chart-grouped-line"></i>
-                                                            </div>
-                                                            <div class="transactions-name">
-                                                                <h6>Transfer</h6>
-                                                                <p>Refund</p>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Pannes</h6>
+                                                               {% if i.isPanneMoteur =='1' %}panne_moteur|{% endif %}
+                                                         {% if i.isPompeAEau =='1' %}Pompe A Eau|{% endif %}
+                                                          {% if i.isPatin =='1' %}Patin|{% endif %}
+                                                           {% if i.isEssuieGlace =='1' %}Essuie Glace|{% endif %}
+                                                            {% if i.isRadiateur =='1' %}Radiateur|{% endif %}
+                                                             {% if i.isVentilateur =='1' %}Ventilateur|{% endif %}
+                                                              {% if i.isDuride =='1' %}Duride|{% endif %}
+                                                               {% if i.isFuiteDHuile =='1' %}Fuite D'Huile|{% endif %}
+                                                                {% if i.isVidange =='1' %}Vidange|{% endif %}
+                                                                 {% if i.isFiltre =='1' %}Filtre|{% endif %}
+                                                                  {% if i.isBatterie =='1' %}Batterie|{% endif %}
+                                                                  {% if i.isAmortisseur =='1' %}Amortisseur|{% endif %}
+                                                                  {% if i.isFreinMain =='1' %}Frein Main|{% endif %}
+                                                                  {% if i.isFeuDEclairage =='1' %}Feu D'Eclairage|{% endif %}
+                                                              
                                                             </div>
                                                         </td>
 
-                                                        <td class="success pb-0">+$90</td>
+                                                        
+
+                                                      
                                                     </tr>
+
+                                                    
+
+                                                   
+
+                                                   
                                                 </tbody>
+                                            {% endfor %}
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Transactions end-->
-
-                        <!-- visitors chart start-->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="h-100">
-                                <div class="card o-hidden card-hover">
-                                    <div class="card-header border-0">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="card-header-title">
-                                                <h4>Visitors</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="pie-chart">
-                                            <div id="pie-chart-visitors"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- visitors chart end-->
-
-
-                        <!-- To Do List start-->
-                        <div class="col-xxl-4 col-md-6">
+                        <!-- Recent orders end-->
+                            <!-- Best Selling Product Start -->
+                        <div class="col-xl-6 col-md-12">
                             <div class="card o-hidden card-hover">
-                                <div class="card-header border-0">
+                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
                                     <div class="card-header-title">
-                                        <h4>To Do List</h4>
+                                        <h4>NOS GARAGES CONVENTIONNES</h4>
                                     </div>
+                                            <div class="col-4">
+                                    
+                                                    <a href="afficheGC"  class="btn btn-primary w-100 h-100">afficher</a>
+                                                </div>
+                                    
                                 </div>
 
-                                <div class="card-body pt-0">
-                                    <ul class="to-do-list">
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Pick up kids from school</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault1">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Prepare or presentation.</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault2">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Create invoice</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
-                                        <li class="to-do-item">
-                                            <div class="form-check user-checkbox">
-                                                <input class="checkbox_animated check-it" type="checkbox" value=""
-                                                    id="flexCheckDefault3">
-                                            </div>
-                                            <div class="to-do-list-name">
-                                                <strong>Meeting with Alisa</strong>
-                                                <p>8 Hours</p>
-                                            </div>
-                                        </li>
+                                <div class="card-body p-0">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="best-selling-table w-image
+                                            w-image
+                                            w-image table border-0">
+                                            {% for i in g %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-image">
+                                                                   <img src="http://localhost/images/{{i.getImage}}" class="img-fluid" alt="">
+                                                                </div>
+                                                                <div class="product-name">
+                                                                   {{i.getNomGarage}}
+                                                                </div>
+                                                            </div>
+                                                        </td>
 
-                                        <li class="to-do-item">
-                                            <form class="row g-2">
-                                                <div class="col-8">
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="Enter Task Name">
-                                                </div>
-                                                <div class="col-4">
-                                                    <button type="submit" class="btn btn-primary w-100 h-100">Add
-                                                        task</button>
-                                                </div>
-                                            </form>
-                                        </li>
-                                    </ul>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Adresse</h6>
+                                                                 {{i.getAdresse}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Numero</h6>
+                                                                {{i.getNumero}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Panne moteur</h6>
+                                                                {{i.getPanneMoteur}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Pompe A Eau</h6>
+                                                                 {{i.getPompeAEau}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Patin</h6>
+                                                                {{i.getPatin}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Essuie Glace</h6>
+                                                                 {{i.getEssuieGlace}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Radiateur</h6>
+                                                                 {{i.getRadiateur}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Ventilateur</h6>
+                                                                {{i.getVentilateur}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Duride</h6>
+                                                                {{i.getDuride}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Fuite D'Huile</h6>
+                                                               {{i.getFuiteDHuile}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Vidange</h6>
+                                                               {{i.getVidange}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Filtre</h6>
+                                                                {{i.getFiltre}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Batterie</h6>
+                                                               {{i.getBatterie}}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Amortisseur</h6>
+                                                                {{i.getAmortisseur}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Frein Main</h6>
+                                                                 {{i.getFreinMain}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Feu D'Eclairage</h6>
+                                                                {{i.getFeuDEclairage}}
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Taux De Reduction</h6>
+                                                              {{i.getTauxDeReduction}}
+                                                            </div>
+                                                        </td>
+
+                                                        
+                                                    </tr>
+
+                                                    
+                                                  
+                                                    
+                                                </tbody>
+                                            {% endfor %}
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- To Do List end-->
+                        <!-- Best Selling Product End -->
+                                       <!-- Earning chart star-->
+                         <div class="col-xl-6">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title">
+                                        <h4>Quantité en stock</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                   
+                                    <div id="div_chartt"></div>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(pieCharts1, 'div_chartt') }}
+    </script>
+                            
+
 
 
                     </div>

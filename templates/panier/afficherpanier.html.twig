@@ -67,17 +67,17 @@
         <tr class="alert">
         <td class="product-item-quantity" colspan="2" style="text-align: center;">
         <div class="form-group">
-            <a class="site-button m-r15" href="{{path('vider_panier',{'id':panier.getId()}) }}">Vider Panier</a>
+            <a class="site-button m-r15" href="{{path('vider_panier',{'id':user.getIdUser()}) }}">Vider Panier</a>
         </div>
     </td>
     <td class="product-item-quantity" colspan="2" style="text-align: center;">
         <div class="form-group">
-            <a  class="site-button m-r15" href="{{path('passer_commande',{'idPanier':panier.getId(),'total':total})}}">Passer Commande</a>
+            <a  class="site-button m-r15" href="{{path('passer_commande',{'idPanier':user.getIdUser(),'total':total})}}">Passer Commande</a>
         </div>
     </td>
     <td class="product-item-quantity" colspan="2" style="text-align: center;">
         <div class="form-group">
-            <a  class="site-button m-r15" href="{{path('afficher_commandes',{'idPanier':panier.getId()})}}">Consulter Commandes</a>
+            <a  class="site-button m-r15" href="{{path('afficher_commandes',{'idPanier':user.getIdUser()})}}">Consulter Commandes</a>
         </div>
     </td>
 </tr>

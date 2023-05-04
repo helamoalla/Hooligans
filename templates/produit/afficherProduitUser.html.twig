@@ -1,10 +1,13 @@
-{% extends 'homeuser.html.twig' %}
+{% extends 'base-front.html.twig' %}
 
 {# On crée des variables personnalisées #}
 {% set queryParams = app.request.query.all %}
 {% set queryString = queryParams|filter((v,k)=>k != "page")|url_encode %}
 
-{% block content %}
+
+
+
+{% block body %}
 
 <!-- Content -->
 <div class="page-content bg-white"  >
@@ -16,21 +19,10 @@
             </div>
         </div>
     </div>
-    <!-- inner page banner END -->
-    <!-- Breadcrumb row -->
-    <div class="breadcrumb-row">
-        <div class="container">
-            <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li>Shop</li>
-            </ul>
-        </div>
-    </div>
+    
+   
     <!-- Breadcrumb row END -->
 </div>
-{% endblock %}
-
-{% block body %}
 
 <div class="row justify-content-center" >
     <h2 class="title">Filtrer par Categorie</h2>

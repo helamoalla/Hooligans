@@ -23,7 +23,11 @@ use CMEN\GoogleChartsBundle\GoogleCharts;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
-
+use App\Entity\Garagec;
+use App\Repository\GaragecRepository;
+use App\Repository\MaintenanceRepository;
+use App\Repository\BonplanRepository;
+use App\Entity\Maintenance;
 
 class UsersController extends AbstractController
 {
@@ -95,9 +99,14 @@ class UsersController extends AbstractController
 
 //////////////admin//////////
 #[Route('/adm', name: 'app_admin')]
-public function index(CategorieRepository $Rep, ProduitRepository $Rep1): Response
+public function index(CategorieRepository $Rep,BonplanRepository $bonplanRep, ProduitRepository $Rep1,GaragecRepository $r,MaintenanceRepository $r1): Response
 {  $Categorie=$Rep->findAll();
  $Produit=$Rep1->findAll();
+
+
+ $garageC=$r->orderById();
+ $maintenance=$r1->orderById();
+
 //    $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart();
 //     $chart->getData()->setArrayToDataTable([
 //         ['Year', 'Sales', 'Expenses'],
@@ -228,7 +237,7 @@ $data3[] = [$result['type_categorie'], (float) $result['total_quantite']];
     $pieChart1->getOptions()->setPieSliceText('value');
 
 
-
+    $allBonplan = $bonplanRep->getRecentWithFeedbacks();
 
     return $this->render('homeadmin.html.twig', [
         'controller_name' => 'AdminController',
@@ -239,6 +248,9 @@ $data3[] = [$result['type_categorie'], (float) $result['total_quantite']];
         'lines'=>$line,
         'bars'=>$bar,
         'pieCharts1'=>$pieChart1,
+        'g'=>$garageC, 
+        'm'=> $maintenance,
+        'allBonplan'=>$allBonplan,
     ]);
 }
 
@@ -371,16 +383,16 @@ public function modifierCategorie(ManagerRegistry $doctrine,Request $request,$id
                     $this->addFlash('error', 'Le produit '. $nomprod .' est ajoutée avec succes.');
                                     
                 //     // Créer l'email
-                // $contenu = $this->renderView('produit/mailProduit.html.twig', [
-                //     'p'=>$Produit  ,
-                //     ]);
-                //     $email = (new Email())
-                //     ->from('nadiakarboul24@gmail.com')
-                //     ->to('chouaibiasma15@gmail.com')
-                //     ->subject('Produit Ajoutée avec succes !')
-                //     ->html($contenu);
-                // // Envoyer l'email
-                // $mailer->send($email);
+                 $contenu = $this->renderView('produit/mailProduit.html.twig', [
+                   'p'=>$Produit  ,
+                     ]);
+                   $email = (new Email())
+                    ->from('helamoalla91@gmail.com')
+                    ->to('nadiakarboul24@gmail.com')
+                    ->subject('Produit Ajoutée avec succes !')
+                    ->html($contenu);
+                //// Envoyer l'email
+                 $mailer->send($email);
             }
                     $em->flush();
 

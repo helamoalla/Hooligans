@@ -36,6 +36,7 @@ $qrCode=$qrCodeGenerator->createQrCode($request);
     {
         // vide la session
         $this->get('session')->invalidate();
+        
         // redirection vers la page de connexion
         return $this->redirectToRoute('app_login');
     }

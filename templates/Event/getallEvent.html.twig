@@ -194,13 +194,13 @@
 
         <!-- Page Body Start-->
         <div class="page-body-wrapper">
-           <!-- Page Sidebar Start-->
+          <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div id="sidebarEffect"></div>
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
-                        <a href="/index" data-bs-original-title="" title="">
-                            <img class="img-fluid for-white" src="{{asset('assets/images/logo/dr.png')}}" alt="logo">
+                        <a href="index.html" data-bs-original-title="" title="">
+                            <img class="img-fluid for-white" src="{{asset('admin/assets/images/logo/logo1.png')}}" alt="logo">
                         </a>
                         <div class="back-btn">
                             <i class="fa fa-angle-left"></i>
@@ -211,8 +211,8 @@
                     </div>
                     <div class="logo-icon-wrapper">
                         <a href="index.html">
-                            <img class="img-fluid main-logo main-white" src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
-                            <img class="img-fluid main-logo main-dark" src="{{asset('assets/images/logo/logo-white.png')}}"
+                            <img class="img-fluid main-logo main-white" src="{{asset('admin/assets/images/logo/logo.png')}}" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="{{asset('admin/assets/images/logo/logo-white.png')}}"
                                 alt="logo">
                         </a>
                     </div>
@@ -223,18 +223,113 @@
 
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
-                            <br>
-                            <br>
+                                <br>
+                                <br>
                                 <li class="back-btn"></li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="/index">
+                                    <a class="sidebar-link sidebar-title link-nav" href="adm">
                                         <i class="ri-home-line"></i>
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
 
                                 <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Product</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="admafficheproduit">Prodcts</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="admaddproduit">Add New Products</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Category</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="admaffichecategorie">Category List</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="admaddcategory">Add New Category</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Garages</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="/afficheGC">les Garages</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/ajouterGC">Ajouter Garage</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                              <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Maintenance</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="/afficheM">les demandes</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                               <li class="sidebar-list">
+										<a class="sidebar-link sidebar-title" href="javascript:void(0)">
+											<i class="ri-archive-line"></i>
+											<span>BonPlan</span>
+										</a>
+										<ul class="sidebar-submenu">
+											<li>
+												<a href="{{ path('admin_all_bonplan') }}">All Bonplan</a>
+											</li>
+											<li>
+												<a href="{{ path('admin_add_Bonplan') }}">Add Bonplan</a>
+											</li>
+										</ul>
+								</li>
+
+									
+									<li class="sidebar-list">
+										<a class="sidebar-link sidebar-title link-nav" href="{{ path('admin_all_Feeds') }}">
+											<i class="ri-star-line"></i>
+											<span>Feedbacks</span>
+										</a>
+									</li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-user-3-line"></i>
+                                        <span>Users</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="/admin/users_list">All Users</a>
+                                        </li>
+                                       
+                                    </ul>
+                                </li>
+
+                               <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-store-3-line"></i>
                                         <span>Events</span>
@@ -264,9 +359,12 @@
                                 </li>
 
                                
-
-                               
-
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                        <i class="ri-list-check"></i>
+                                        <span>List Page</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 

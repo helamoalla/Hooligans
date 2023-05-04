@@ -60,7 +60,7 @@ class RegistrationController extends AbstractController
                 $user->setCv($newFilename);
             }
             $panier->setUser($user);
-            $panier->setId(2);
+            $panier->$user->getIdUser();
             $entityManager->persist($user);
             $entityManager->persist($panier);
             $entityManager->flush();

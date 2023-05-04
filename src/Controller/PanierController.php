@@ -44,7 +44,7 @@ class PanierController extends AbstractController
     {
         $user=$this->getUser();
         $panier = $panierRep->findOneBy(['user' => $user]);
-        $idPanier=$panier->getId();
+        $idPanier=$user->getIdUser();
         $produits = $rep->findBy(['panier' => $idPanier]); 
         $total = 0;      
         $nbp = 0;
@@ -60,7 +60,8 @@ class PanierController extends AbstractController
     return $this->render('panier/afficherpanier.html.twig', [
         'produits' => $produits,
         'total' => $total,
-        'panier' => $panier
+        'panier' => $panier,
+        'user'=>$user,
     ]);
     }
 
