@@ -385,18 +385,22 @@ public function modifierCategorie(ManagerRegistry $doctrine,Request $request,$id
                     $em->persist($Produit);
                    
                     $this->addFlash('error', 'Le produit '. $nomprod .' est ajoutée avec succes.');
-                                    
+                    $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+                    foreach($users as $user){
+                     $mail = $user->getEmail(); 
+                     $contenu = $this->renderView('produit/mailProduit.html.twig', [
+                        'p'=>$Produit  ,
+                          ]);
+                        $email = (new Email())
+                         ->from('helamoalla91@gmail.com')
+                         ->to($mail)
+                         ->subject('Un nouveau Produit Ajouté avec succes !')
+                         ->html($contenu);
+                     //// Envoyer l'email
+                      $mailer->send($email);
+                 }             
                 //     // Créer l'email
-                 $contenu = $this->renderView('produit/mailProduit.html.twig', [
-                   'p'=>$Produit  ,
-                     ]);
-                   $email = (new Email())
-                    ->from('helamoalla91@gmail.com')
-                    ->to('nadiakarboul24@gmail.com')
-                    ->subject('Produit Ajoutée avec succes !')
-                    ->html($contenu);
-                //// Envoyer l'email
-                 $mailer->send($email);
+                 
             }
                     $em->flush();
 

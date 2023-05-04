@@ -43,15 +43,18 @@ use MercurySeries\FlashyBundle\FlashyNotifier;
 class HomeController extends AbstractController
 { ////////////////haaajjj///////////
     #[Route('/home', name: 'app_home')]
-    public function indexx(GaragecRepository $r1,FlashyNotifier $flashy,BonplanRepository $bonplanRep,FeedbackRepository $feedRep): Response
+    public function indexx(GaragecRepository $r1,FlashyNotifier $flashy,EventRepository $eventRep,BonplanRepository $bonplanRep,FeedbackRepository $feedRep): Response
     {  $garageC = $r1->orderById();
         $allBonplan = $bonplanRep->getAllBonPlanWithFeedbacks();
         $allFeeds=$feedRep->findAll();
+        $allEvents=$eventRep->findAll();
+
        // $flashy->error('vous avez deja une maintenance . veuillez la modifier pour un nouveau devis!', 'http://your-awesome-link.com');
         return $this->render('base.html.twig', [
             'controller_name' => 'HomeController',
             'allBonplan'=>$allBonplan,
             'allFeeds'=>$allFeeds,
+            'allEvents'=>$allEvents,
             'g'=>$garageC
         ]);
     }

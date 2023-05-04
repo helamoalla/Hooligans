@@ -530,68 +530,7 @@
 		</div>  
         <!-- Main Slider -->
 		 
-		<!-- Our Services -->
-		<div class="section-full content-inner car-services" style="background-image:url(images/background/bg11.jpg); background-repeat:no-repeat; background-position:bottom;">
-			<div class="container">
-				<div class="row m-b40">
-                  
-					<div class="col-lg-6 col-md-6 col-sm-12 section-head align-self-center">
-						 <h2 class="text-uppercase">Welcome To <span class="text-primary">DRIFT AND RACE</span></h2>
-						<h5 class="font-weight-400">Everything you need to build an amazing dealership website. </h5>
-						<p class="m-b0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use..</p>
-					</div>
-                   
-					<div class="col-lg-6 col-md-6 col-sm-12 align-self-center">
-						<img src="images/car.png" alt=""/>
-					</div>
-                     
-                      
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-lg-3 m-b30">
-						<div class="tp-caption tp-resizeme d-lg-block d-none" 
-							id="slide-200-layer-5" 
-							data-x="380" 
-							data-y="485" 
-							data-width="['auto']"
-							data-height="['auto']"
-							data-type="button" 
-							data-actions=''
-							data-responsive_offset="on" 
-							data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"300","ease":"Power0.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,1);bs:solid;bw:0 0 0 0;"}]'
-							data-textAlign="['inherit','inherit','inherit','inherit']"
-							data-paddingtop="[0]"
-							data-paddingright="[0]"
-							data-paddingbottom="[0]"
-							data-paddingleft="[0]"
-							style="z-index: 6; white-space: nowrap; font-size: 16px; line-height: 30px; font-weight: 600; font-family:'Poppins',sans-serif;border-radius:3px 3px 3px 3px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;text-decoration: none;">	
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3 m-b30">
-						<div class="tp-caption tp-resizeme d-lg-block d-none" 
-							id="slide-200-layer-6" 
-							data-x="530" 
-							data-y="485" 
-							data-width="['auto']"
-							data-height="['auto']"
-							data-type="button" 
-							data-actions=''
-							data-responsive_offset="on" 
-							data-frames='[{"delay":2500,"speed":1500,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"300","ease":"Power0.easeInOut","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgba(0,0,0,1);bg:rgba(255,255,255,1);bs:solid;bw:0 0 0 0;"}]'
-							data-textAlign="['inherit','inherit','inherit','inherit']"
-							data-paddingtop="[0]"
-							data-paddingright="[0]"
-							data-paddingbottom="[0]"
-							data-paddingleft="[0]"
-							style="z-index: 11; white-space: nowrap; font-size: 16px; line-height: 30px; font-weight: 600; font-family:'Poppins',sans-serif;border-radius:3px 3px 3px 3px;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;text-decoration: none;">	
-						</div>
-					</div>
-					
-					
-				</div>
-			</div>
-		</div>
-	    <!-- Our Services END-->
+
 		<!-- Latest Blog -->
 						<div class="section-full bg-gray content-inner-1" id="blog"> <div class="container">
 							<div class="section-head text-center head-style-2">
@@ -646,227 +585,111 @@
 						</div>
 					</div>
 					<!-- Latest Blog END -->
-        <!-- Services -->
-        <div class="section-full bg-img-fix content-inner-1 overlay-primary-dark" style="background-image:url(images/background/bg5.jpg); margin-top:-1px">
-            <div class="container">
-                <div class="section-head text-center text-white">
-                    <h2 class="text-uppercase">latest news </h2>
-					<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+					<!-- Services -->
+					<div class="section-full bg-img-fix content-inner-1 overlay-primary-dark" style="background-image:url(images/background/bg5.jpg); margin-top:-1px">
+						<div class="container">
+							<div class="section-head text-center text-white">
+								<h2 class="text-uppercase">Our events
+								</h2>
+								<p>There are many variations of passages of Lorem Ipsum typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+							</div>
+							<div class="section-content">
+								<div class="latest-news owl-carousel owl-theme owl-dots-white-full owl-loaded owl-drag owl-btn-3 btn-white owl-btn-center-lr">
+									{% for item in allEvents %}
+										<div class="item">
+											<div class="ow-carousel-entry">
+												<div class="ow-entry-media dlab-img-effect zoom-slow">
+													<a href="#"><img src="http://localhost/images/{{item.getImageEvent()}}" alt=""></a>
+												</div>
+												<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
+													<div class="dlab-post-title ">
+														<h3 class="m-t0 m-b5">
+															<a href="#">{{ item.getNomEvent() }}</a>
+														</h3>
+													</div>
+													<div class="dlab-post-meta ">
+														<ul>
+															<li class="post-date">
+																<i class="ti-calendar"></i>
+																<strong>{{item.getDateDebut|date("d/m/Y")}}
+																</strong>
+															</li>
+															<li class="post-date">
+																<i class="ti-money"></i>
+																<strong>{{item.getPrixEvent()}}K
+																</strong>
+															</li>
+
+														</ul>
+													
+											</div>
+											{# <div class="dlab-post-text">
+												<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
+											</div> #}
+											<div class="dlab-post-readmore">
+												<a href="{{path('app_detail',{'id':item.getId()}) }}" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Services End -->
+        
+
+		<!-- Latest Blog -->
+						<div class="section-full bg-gray content-inner-1" id="blog"> <div class="container">
+							<div class="section-head text-center ">
+                    <h2 class="text-uppercase">NOS GARAGES <span class="text-primary"> CONVENTIONNES </span></h2>
                 </div>
-                <div class="section-content">
-					<div class="latest-news owl-carousel owl-theme owl-dots-white-full owl-loaded owl-drag owl-btn-3 btn-white owl-btn-center-lr">
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic1.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Title of first blog post</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic2.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Title of first blog post</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic3.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">First blog post Autocare</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic1.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Five thing make easy</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic2.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Title of first blog post</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic3.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Autocare workshop</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic1.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Title of first blog post</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic2.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Five thing make easy</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="ow-carousel-entry">
-								<div class="ow-entry-media dlab-img-effect zoom-slow"> <a href="#"><img src="images/blog/grid/pic3.jpg" alt=""></a> </div>
-								<div class="dlab-post-info p-lr20 p-b10 p-t20 bg-white">
-									<div class="dlab-post-title ">
-										<h3 class="m-t0 m-b5"><a href="#">Five thing make easy</a></h3>
-									</div>
-									<div class="dlab-post-meta ">
-										<ul>
-											<li class="post-date"> <i class="ti-calendar"></i><strong>10 Aug</strong> <span> 2022</span> </li>
-											<li class="post-author"><i class="fas fa-user"></i>By <a href="#">demongo</a> </li>
-											<li class="post-comment"><i class="fas fa-comments"></i> <a href="#">10K</a> </li>
-										</ul>
-									</div>
-									<div class="dlab-post-text">
-										<p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the standard dummy..</p>
-									</div>
-									<div class="dlab-post-readmore"> 
-										<a href="#" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i></a> 
-									</div>
+							<div class="section-content owl-none">
+								<div class="blog-carousel owl-carousel">
+									{% for i in g %}
+										<div class="item">
+											<div class="blog-post post-style-1 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s" style="width:372px ; height:422.56px ">
+												<div class="dlab-post-media dlab-img-effect">
+													<a href="#">
+														<img style="width:372px ; height:232.76px " src="http://localhost/images/{{i.getImage}}" alt="">
+													</a>
+												</div>
+												<div class="dlab-post-info">
+													<div class="dlab-post-meta">
+														<ul>
+															<li class="post-author">
+																<i class="fas fa-user"></i>By
+																<a href="#">{{i.getNumero}}
+																	</a>
+															</li>
+															
+														</ul>
+													</div>
+													<div class="dlab-post-title " style='margin-bottom:30px'>
+														<h3 class="post-title" style="text-align:center">
+															<a href="#">{{i.getNomGarage()}}</a>
+														</h3>
+													</div>
+													<div class="dlab-post-readmore">
+													
+														<a href="{{ url('detailGCU' , { 'id' : i.getId }) }}" title="READ MORE" rel="bookmark" class="site-button-link">READ MORE<i class="fas fa-angle-double-right"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+									{% endfor %}
+
 								</div>
 							</div>
 						</div>
 					</div>
-                </div>
-            </div>
-        </div>
-        <!-- Services End -->
+					<!-- Latest Blog END -->
 		
        <!-- Testimoniyal -->
 					<div class="section-full bg-img-fix content-inner overlay-white-dark" style="background-image:url(images/background/bg5.jpg); margin-top:-1px">
@@ -902,57 +725,7 @@
 						</div>
 					</div>
 					<!-- Testimoniyal End -->
-					<!-- Meet Our Team -->
-        <div class="section-full bg-white content-inner recent-vehicle">
-            <div class="container">
-                <div class="section-head text-center ">
-                    <h2 class="text-uppercase">NOS GARAGES <span class="text-primary"> CONVENTIONNES </span></h2>
-                </div>
-                <div class="section-content ">
-                    <div class="row">
-                        
-						<div class="col-lg-9 col-md-9">
-							<ul id="masonry" class="row dlab-gallery-listing gallery-grid-4 gallery lightgallery m-b0">
-							{% for i in g %}
-								<li class="home card-container col-lg-6 col-xl-4 col-md-6 col-sm-6 col-12">
-									<div class="dlab-box dlab-gallery-box">
-										<div class="dlab-media dlab-img-overlay1 dlab-img-effect zoom-slow"> 
-											<a href="javascript:void(0);"><img src="http://localhost/images/{{i.getImage}}" class="img-fluid" alt=""></a>
-											<div class="overlay-bx">
-												<div class="overlay-icon"> 
-													<a href="javascript:void(0);">
-														<i class="fas fa-link icon-bx-xs"></i> 
-													</a> 
-													<span data-exthumbimage="http://localhost/images/{{i.getImage}}" data-src="http://localhost/images/{{i.getImage}}" class="far fa-image icon-bx-xs check-km" title="Light Gallery Grid 1"></span>
-												</div>
-											</div>
-										</div>
-										<div class="ow-entry-content text-center">
-											<h4 class="font-weight-600 m-b15"><a href="{{ url('detailGCU' , { 'id' : i.getId }) }}">{{i.getNomGarage}}</a></h4>
-											
-											<div class="car-part-list m-b15">
-												<ul class="list-inline">
-												
-													<li>Reduction : {{i.getTauxDeReduction}} %</li>
-												</ul>
-											</div>
-											<div class="ow-entry-text m-b15">
-												<p>Adresse : {{i.getAdresse}}</p>
-												<p>Numero : {{i.getNumero}}</p>
-											</div>
-											
-										</div>								
-									</div>
-								</li>
-								 {% endfor %}
-								
-							</ul>
-						</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Meet Our Team END -->
+					
         <!-- Client logo -->
         <div class="section-full dlab-we-find bg-img-fix p-t50 p-b50 ">
             <div class="container">

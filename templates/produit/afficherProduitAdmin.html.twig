@@ -59,20 +59,20 @@
 
     <!-- page-wrapper Start-->
     <div class="page-wrapper compact-wrapper" id="pageWrapper">
-        <!-- Page Header Start-->
+         <!-- Page Header Start-->
         <div class="page-header">
             <div class="header-wrapper m-0">
                 <div class="header-logo-wrapper p-0">
                     <div class="logo-wrapper">
                         <a href="index.html">
-                            <img class="img-fluid main-logo" src="admin/assets/images/logo/logo1.png" alt="logo">
-                            <img class="img-fluid white-logo" src="admin/assets/images/logo/1-white.png" alt="logo">
+                            <img class="img-fluid main-logo" src="{{asset('admin/assets/images/logo/1.png')}}" alt="logo">
+                            <img class="img-fluid white-logo" src="{{asset('admin/assets/images/logo/1-white.png')}}" alt="logo">
                         </a>
                     </div>
                     <div class="toggle-sidebar">
                         <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
                         <a href="index.html">
-                            <img src="admin/assets/images/logo/1.png" class="img-fluid" alt="">
+                            <img src="{{asset('admin/assets/images/logo/1.png')}}" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         <div class="Typeahead Typeahead--twitterUsers">
                             <div class="u-posRelative">
                                 <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                                    placeholder="Search Fastkart .." name="q" title="" autofocus>
+                                    placeholder="Search D&R .." name="q" title="" autofocus>
                                 <i class="close-search" data-feather="x"></i>
                                 <div class="spinner-border Typeahead-spinner" role="status">
                                     <span class="sr-only">Loading...</span>
@@ -146,40 +146,17 @@
                         </li>
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
                             <div class="media profile-media">
-                                <img class="user-profile rounded-circle" src="admin/assets/images/users/4.jpg" alt="">
+                                <img class="user-profile rounded-circle" src="{{asset('admin/assets/images/users/4.jpg')}}" alt="">
                                 <div class="user-name-hide media-body">
-                                    <span>Emay Walter</span>
+                                    <span>{{app.user.getNom}}</span>
                                     <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
+                                
                                 <li>
-                                    <a href="all-users.html">
-                                        <i data-feather="users"></i>
-                                        <span>Users</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="order-list.html">
-                                        <i data-feather="archive"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="support-ticket.html">
-                                        <i data-feather="phone"></i>
-                                        <span>Spports Tickets</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="profile-setting.html">
-                                        <i data-feather="settings"></i>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="javascript:void(0)">
+                                    <a
+                                        href="/logout">
                                         <i data-feather="log-out"></i>
                                         <span>Log out</span>
                                     </a>
@@ -194,13 +171,13 @@
 
         <!-- Page Body Start-->
         <div class="page-body-wrapper">
-            <!-- Page Sidebar Start-->
+              <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div id="sidebarEffect"></div>
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
                         <a href="index.html" data-bs-original-title="" title="">
-                            <img class="img-fluid for-white" src="admin/assets/images/logo/logo1.png" alt="logo">
+                            <img class="img-fluid for-white" src="{{asset('admin/assets/images/logo/logo1.png')}}" alt="logo">
                         </a>
                         <div class="back-btn">
                             <i class="fa fa-angle-left"></i>
@@ -211,8 +188,8 @@
                     </div>
                     <div class="logo-icon-wrapper">
                         <a href="index.html">
-                            <img class="img-fluid main-logo main-white" src="admin/assets/images/logo/1-white.png" alt="logo">
-                            <img class="img-fluid main-logo main-dark" src="admin/assets/images/logo/logo-white.png"
+                            <img class="img-fluid main-logo main-white" src="{{asset('admin/assets/images/logo/logo.png')}}" alt="logo">
+                            <img class="img-fluid main-logo main-dark" src="{{asset('admin/assets/images/logo/logo-white.png')}}"
                                 alt="logo">
                         </a>
                     </div>
@@ -269,18 +246,52 @@
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-settings-line"></i>
-                                        <span>Attributes</span>
+                                        <span>Garages</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="attributes.html">Attributes</a>
+                                            <a href="/afficheGC">les Garages</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-attributes.html">Add Attributes</a>
+                                            <a href="/ajouterGC">Ajouter Garage</a>
                                         </li>
                                     </ul>
                                 </li>
+                              <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-list-settings-line"></i>
+                                        <span>Maintenance</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="/afficheM">les demandes</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                               <li class="sidebar-list">
+										<a class="sidebar-link sidebar-title" href="javascript:void(0)">
+											<i class="ri-archive-line"></i>
+											<span>BonPlan</span>
+										</a>
+										<ul class="sidebar-submenu">
+											<li>
+												<a href="{{ path('admin_all_bonplan') }}">All Bonplan</a>
+											</li>
+											<li>
+												<a href="{{ path('admin_add_Bonplan') }}">Add Bonplan</a>
+											</li>
+										</ul>
+								</li>
+
+									
+									<li class="sidebar-list">
+										<a class="sidebar-link sidebar-title link-nav" href="{{ path('admin_all_Feeds') }}">
+											<i class="ri-star-line"></i>
+											<span>Feedbacks</span>
+										</a>
+									</li>
 
                                 <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title" href="javascript:void(0)">
@@ -289,132 +300,44 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="all-users.html">All users</a>
+                                            <a href="/admin/users_list">All Users</a>
                                         </li>
-                                        <li>
-                                            <a href="add-new-user.html">Add new user</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-user-3-line"></i>
-                                        <span>Roles</span>
+                               <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                        <i class="ri-store-3-line"></i>
+                                        <span>Events</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="role.html">All roles</a>
+                                            <a href="/get">les Events</a>
                                         </li>
-                                        <li>
-                                            <a href="create-role.html">Create Role</a>
-                                        </li>
-                                    </ul>
-                                </li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="media.html">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Media</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-archive-line"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="order-list.html">Order List</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-detail.html">Order Detail</a>
-                                        </li>
-                                        <li>
-                                            <a href="order-tracking.html">Order Tracking</a>
+                                            <a href="/add">Ajouter Event</a>
                                         </li>
                                     </ul>
                                 </li>
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-focus-3-line"></i>
-                                        <span>Localization</span>
+                                        <i class="ri-list-check-2"></i>
+                                        <span>Tickets</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="translation.html">Translation</a>
+                                            <a href="/getTA">les Tickets</a>
                                         </li>
 
-                                        <li>
-                                            <a href="currency-rates.html">Currency Rates</a>
-                                        </li>
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
-                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Coupons</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="coupon-list.html">Coupon List</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="create-coupon.html">Create Coupon</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
-                                        <i class="ri-price-tag-3-line"></i>
-                                        <span>Tax</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
-                                        <i class="ri-star-line"></i>
-                                        <span>Product Review</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
-                                        <i class="ri-phone-line"></i>
-                                        <span>Support Ticket</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-settings-line"></i>
-                                        <span>Settings</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="profile-setting.html">Profile Setting</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="reports.html">
-                                        <i class="ri-file-chart-line"></i>
-                                        <span>Reports</span>
-                                    </a>
-                                </li>
-
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
-                                        <i class="ri-list-check"></i>
-                                        <span>List Page</span>
-                                    </a>
-                                </li>
+                               
+                                <br>
+                                <br>
                             </ul>
                         </div>
 
