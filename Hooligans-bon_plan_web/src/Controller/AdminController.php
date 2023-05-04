@@ -21,6 +21,12 @@ use CMEN\GoogleChartsBundle\GoogleCharts;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
+use Stripe\Charge;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 class AdminController extends AbstractController
 {
@@ -183,7 +189,7 @@ foreach ($results3 as $result) {
                 $Categorie= new Categorie();
                 $form=$this->createForm(CategoryFormType::class,$Categorie);
                     $form->handleRequest($request);
-                    if($form->isSubmitted()&& $form->isValid()){
+                    if($form->isSubmitted()){
                         $em =$doctrine->getManager() ;
                         $em->persist($Categorie);
                         $em->flush();
@@ -205,6 +211,15 @@ foreach ($results3 as $result) {
         }
       
 
+         //Afficher Categorie Json
+         #[Route('/adminaffichecategoriejson', name: 'affichecategoriejson')]
+         public function afficheCategoriejson(CategorieRepository $Rep,NormalizerInterface $Normalizer): Response
+         { $Categorie=$Rep->findAll();
+            $jsonContent = $Normalizer->normalize($Categorie,'json',['groups'=>'categorie']);
+            return new Response(json_encode($jsonContent));
+         }
+       
+
     
 
     //Supprimer Categorie
@@ -218,6 +233,19 @@ foreach ($results3 as $result) {
         $em->flush();
         return $this->redirectToRoute('affichecategorie',); 
     }
+
+   //Supprimer Categorie Json
+   #[Route('/adminsupprimecategoriejson/{id}', name: 'supprimecjson')]
+   public function supprimecjson($id,CategorieRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+   {   //recuperer la categorie a supprimer
+       $Categorie=$r->find($id);
+       //action supprmer
+       $em=$doctrine->getManager();
+       $em->remove($Categorie);
+       $em->flush();
+       $jsonContent = $Normalizer->normalize($Categorie,'json',['groups'=>'categorie']);
+       return new Response("Categorie Supprimé avec succès".json_encode($jsonContent));
+   }
 
     //Update Categorie
 
@@ -250,6 +278,16 @@ foreach ($results3 as $result) {
 
             ]);
         }   
+
+        //Fonction qui retourne les produits r sous format json 
+    #[Route('/adminafficheproduitJSON', name: 'app_AfficheproduitJSON')]
+    public function afficheProduitjson(ProduitRepository $Rep,NormalizerInterface $Normalizer): Response
+    { $Produit=$Rep->orderById();
+    
+        $jsonContent = $Normalizer->normalize($Produit,'json',['groups'=>'produit']);
+        return new Response(json_encode($jsonContent));
+    }
+
 
     
         //Ajouter produit
@@ -300,17 +338,17 @@ foreach ($results3 as $result) {
                        
                         $this->addFlash('error', 'Le produit '. $nomprod .' est ajoutée avec succes.');
                                         
-                    //     // Créer l'email
-                    // $contenu = $this->renderView('produit/mailProduit.html.twig', [
-                    //     'p'=>$Produit  ,
-                    //     ]);
-                    //     $email = (new Email())
-                    //     ->from('nadiakarboul24@gmail.com')
-                    //     ->to('chouaibiasma15@gmail.com')
-                    //     ->subject('Produit Ajoutée avec succes !')
-                    //     ->html($contenu);
-                    // // Envoyer l'email
-                    // $mailer->send($email);
+                        // Créer l'email
+                    $contenu = $this->renderView('produit/mailProduit.html.twig', [
+                        'p'=>$Produit  ,
+                        ]);
+                        $email = (new Email())
+                        ->from('nadiakarboul24@gmail.com')
+                        ->to('chouaibiasma15@gmail.com')
+                        ->subject('Produit Ajoutée avec succes !')
+                        ->html($contenu);
+                    // Envoyer l'email
+                    $mailer->send($email);
                 }
                         $em->flush();
 
@@ -324,6 +362,9 @@ foreach ($results3 as $result) {
                     }
         
                  
+             
+                    
+
                     
 
    //Supprimer Produit
@@ -337,10 +378,23 @@ foreach ($results3 as $result) {
        $em->flush();
        return $this->redirectToRoute('afficheproduit',); 
    }
+
+    //Supprimer Produitjson
+    #[Route('/adminsupprimeproduitjson/{id}', name: 'supprimep')]
+    public function supprimepjson($id,ProduitRepository $r, ManagerRegistry $doctrine,NormalizerInterface $Normalizer): Response
+    {   //recuperer le produit a supprimer
+        $Produit=$r->find($id);
+        //action supprimer
+        $em=$doctrine->getManager();
+        $em->remove($Produit);
+        $em->flush();
+        $jsonContent = $Normalizer->normalize($Produit,'json',['groups'=>'produit']);
+        return new Response("ProduitSupprimé avec succès".json_encode($jsonContent));
+    }
      
    
    //UpdateProduit
-
+ 
    #[Route('/adminupdateproduit/{id}', name: 'updatep')]
    public function modifierProduit(ManagerRegistry $doctrine,Request $request,$id,ProduitRepository $r)
                           {
@@ -392,6 +446,52 @@ foreach ($results3 as $result) {
    
            ]);
    }
+ 
+   // ...
+   #[Route('/payement', name: 'payement')]
+ 
    
+   // ...
+   
+   public function processPayment(Request $request)
+   {
+       // Configurer la clé secrète Stripe
+       Stripe::setApiKey('sk_test_51MidOiDi4uLa1UR4QzBVLHTMxTOlUHa9RnQRtqkFmwxWciJlPRdoI6BWkRj0C9wXfXSCanlbW3vGha3JIp08N2kc00EvGQ49ci');
+   
+       try {
+           // Créer une charge avec le token de paiement
+           $charge = Charge::create([
+               'amount' => $request->request->get('amount'),
+
+               'currency' => 'USD',
+               'source' => $request->request->get('stripeToken'),
+           ]);
+   
+           // La charge a été réussie
+           return $this->redirectToRoute('affichecategorie');
+       } catch (\Stripe\Exception\CardException $e) {
+           // La carte a été refusée
+           $errorMessage = $e->getError()->message;
+           dump($errorMessage);
+           return $this->redirectToRoute('affichep', ['error' => $errorMessage]);
+       } catch (\Stripe\Exception\InvalidRequestException $e) {
+           // La requête était malformée
+           $errorMessage = $e->getError()->message;
+           dump($errorMessage);
+           return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+       } catch (\Stripe\Exception\ApiErrorException $e) {
+           // Une erreur s'est produite avec Stripe
+           $errorMessage = $e->getError()->message;
+           dump($errorMessage);
+           return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+       }
+   }
+   
+   
+
+   #[Route('/payement1', name: 'payement1')]
+   public function processPayment1(Request $request){
+    return $this->Renderform('payement.html.twig');
+   }
 
 }

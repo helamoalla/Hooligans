@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+process_payment:
+  path: /payment/process
+  controller: App\Controller\AdminController::processPayment
+  methods: [POST]

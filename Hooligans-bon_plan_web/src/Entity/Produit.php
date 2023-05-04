@@ -3,6 +3,8 @@
 namespace App\Entity;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -10,32 +12,38 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name:"id_prod")]
+    #[Groups("produit")]
     public ?int $id = null;
 
     #[ORM\Column(length: 30)]
+    #[Groups("produit")]
     #[Assert\NotBlank(message:'ce champ est obligatoire')]
     public ?string $nom_prod = null;
 
 
     #[ORM\Column]
+    #[Groups("produit")]
     #[Assert\NotBlank(message:'ce champ est obligatoire')]
     #[Assert\Positive(message:'le prix doit etre positive')]
     public ?float $prix_prod = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups("produit")]
     #[Assert\NotBlank(message:'ce champ est obligatoire')]
    public ?string $description_prod = null;
 
     #[ORM\Column]
+    #[Groups("produit")]
     #[Assert\NotBlank(message:'ce champ est obligatoire')]
     #[Assert\Positive(message:'la quantite doit etre positive ')]
     public ?int $quantite_prod = null;
 
     #[ORM\Column(length: 255)]
-    
+    #[Groups("produit")]
     public ?string $image = null;
 
     #[ORM\ManyToOne]
+    #[Groups("produit")]
     #[ORM\JoinColumn(nullable: false,name:"id_categorie",referencedColumnName:"id_categorie")]
     public ?Categorie $categorie = null;
 

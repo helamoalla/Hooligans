@@ -1,0 +1,3 @@
+parameters:
+    stripe_secret_key: "sk_test_51MidOiDi4uLa1UR4QzBVLHTMxTOlUHa9RnQRtqkFmwxWciJlPRdoI6BWkRj0C9wXfXSCanlbW3vGha3JIp08N2kc00EvGQ49ci"
+    stripe_public_key: "pk_test_51MidOiDi4uLa1UR4RpQkgZL5nvCFeY3bobigYa63HhDQpFyxzW6MGejqi7u9AJkz0xLXW2FyurA8pNshzjubSSEg001mIXZghJ"
