@@ -26,7 +26,7 @@ use Symfony\Component\Mime\Attachment;
 use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
-
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 class PanierController extends AbstractController
 {
@@ -310,7 +310,7 @@ public function imprimerFacture(int $idCommande,LignepanierRepository $lr,Panier
 
 
 #[Route('/passercommande/{idPanier}/{total}', name: 'passer_commande')]
-public function passerCommande(int $idPanier, float $total,ManagerRegistry $doctrine,Request $request): Response
+public function passerCommande(int $idPanier,FlashyNotifier $flashy, float $total,ManagerRegistry $doctrine,Request $request): Response
 {
     // Récupérer le panier
     $entityManager = $doctrine->getManager();
@@ -328,14 +328,21 @@ public function passerCommande(int $idPanier, float $total,ManagerRegistry $doct
         $commande->setEtatCommande("En cours de traitement");
         $commande->setDateCommande($dateCommande);
         $entityManager = $doctrine->getManager() ;
+        $user=$this->getUser();
+        if($total<$user->getQuota()){
+
+$user->setQuota($user->getQuota()-$total);
         $entityManager->persist($commande);
         $entityManager->flush();
+     
         //nrecuperi l commande li tsan3et jdida
         $idCommande = $commande->getId();
         //redirection lel route mtaa l facture w naatih l id commande li tsan3et jdida
-        return $this->redirectToRoute("app_facture", ['idCommande' => $idCommande]);
+        return $this->redirectToRoute("app_facture", ['idCommande' => $idCommande]);}
+      
     }
-
+    $this->addFlash('error1', 'solde insuffisant');
+    $flashy->error('votre solde est insuffisant', 'http://your-awesome-link.com');
     return $this->renderForm("commande/passercommande.html.twig",
         array("f"=>$form));
 }

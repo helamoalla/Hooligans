@@ -19,7 +19,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
-
+use Symfony\Component\Mime\Email;
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
 {
@@ -158,16 +158,18 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('khadamni12@gmail.com', 'Khadamni'))
-            ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('reset_password/email.html.twig')
-            ->context([
-                'resetToken' => $resetToken,
-            ])
-        ;
+           ->from('hooligans.pidev@gmail.com')
+           ->to($user->getEmail())
+           ->subject('Your password reset request')
+           ->htmlTemplate('reset_password/email.html.twig')
+           ->context([
+             'resetToken' => $resetToken,
+          ])
+       ;
 
-        $mailer->send($email);
+       $mailer->send($email);
+  
+      
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);

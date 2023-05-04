@@ -11,3 +11,7 @@ pdf:
     path: /pdf
     controller: Dompdf:DevisController:pdf
 
+process_payment:
+  path: /payment/process
+  controller: App\Controller\AdminController::processPayment
+  methods: [POST]

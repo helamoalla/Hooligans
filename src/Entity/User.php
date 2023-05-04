@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Expr\Cast\Double;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -145,8 +146,12 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: 'Role')]
     private $idRole;
 
+
     #[ORM\Column(length: 255)]
     private ?string $img ;
+
+    #[ORM\Column]
+    private ?float $quota ;
 
     public function getImg(): ?string
     {
@@ -400,6 +405,8 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
         return $this;
     }
 
+  
+
     /**
      * Returning a salt is only needed if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
@@ -424,5 +431,16 @@ class User implements UserInterface,PasswordAuthenticatedUserInterface
     public function getUsername()
     {
         return $this->email;
+    }
+    public function getQuota(): ?float
+    {
+        return $this->quota;
+    }
+
+    public function setQuota(float $quota): self
+    {
+        $this->quota = $quota;
+
+        return $this;
     }
 }

@@ -28,6 +28,9 @@ use App\Repository\GaragecRepository;
 use App\Repository\MaintenanceRepository;
 use App\Repository\BonplanRepository;
 use App\Entity\Maintenance;
+use App\Repository\UserRepository;
+use App\Entity\User;
+
 
 class UsersController extends AbstractController
 {
@@ -44,7 +47,7 @@ class UsersController extends AbstractController
     #[Route('/userafficheproduit', name: 'affichep')]
     public function affichep(ProduitRepository $Rep,CategorieRepository $Rep1,PaginatorInterface $paginator , Request $request): Response
     { 
-       
+        $user=$this->getUser();
         $Categorie=$Rep1->findAll();
         //on recupere le filtre
         $filters= $request->get("categories");
@@ -67,6 +70,7 @@ class UsersController extends AbstractController
                     'p'=>$Produit  ,
                     'c'=>$Categorie  ,
                     'pagenum'=>$pageNumber ,
+                    'user'=>$user
             
                     ])
             ]);

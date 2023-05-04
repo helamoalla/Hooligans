@@ -40,7 +40,7 @@
 <body id="bg"><div id="loading-area"></div>
 <div class="page-wraper">
     
-    <header class="site-header header header-style-1 mo-left">
+      <header class="site-header header header-style-1 mo-left">
         <!-- top bar -->
         <div class="top-bar no-skew">
             <div class="container">
@@ -55,8 +55,7 @@
                         <ul class="social-bx list-inline float-end">
                             <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
                             <li><a class="fab fa-twitter" href="https://twitter.com/" target="blank"></a></li>
-                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank" ></a></li>
-                            <li><a class="fab fa-google-plus-g" href="https://mail.google.com/" target="blank" ></a></li>
+                            <li>{{app.user.getQuota }} DT<i class="fas fa-chevron-down"></i>
                         </ul>
                     </div>
                 </div>
@@ -68,7 +67,7 @@
             <div class="main-bar clearfix ">
                 <div class="container clearfix">
                     <!-- website logo -->
-                    <div class="logo-header mostion logo-dark"><img src="images/logo-black.png" width="193" height="89" alt=""></div>
+                    <div class="logo-header mostion logo-dark"><a href="/home"><img src="{{asset('images/dr.png')}}" width="193" height="89" alt=""></a></div>
                     <!-- nav toggle button -->
 					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span></span>
@@ -87,6 +86,7 @@
                     <!-- main nav -->
                     <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
 						<ul class="nav navbar-nav">
+						 {% if  app.user %}
 							<li class="active"> <a href="{{path('app_home')}}">Accueil<i class="fas fa-chevron-down"></i></a>
 							</li>
 							<li> <a href="/getU">Évènements<i class="fas fa-chevron-down"></i></a>
@@ -180,7 +180,7 @@
 							</li>
 							
 							</li>
-
+                            
 							<li>
 										<a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i>
 										</a>
@@ -188,9 +188,11 @@
 											<li>
 												<a href="/afficheMU">Ma demande </a>
 											</li>
+											
 											<li>
 												<a href="/ajouterM">demander maintenance</a>
 											</li>
+											
 										</ul>
 								{#<ul class="mega-menu">
 									<li> <a href="javascript:;">Shortcodes</a>
@@ -231,7 +233,7 @@
 									</li>
 								</ul>#}
 							</li>
-							<li> <a href="getT">Ticket <i class="fas fa-chevron-down"></i></a>
+							<li> <a href="/getT">Ticket <i class="fas fa-chevron-down"></i></a>
 								{#<ul class="sub-menu">
 									<li><a href="contact.html">Contact us 1</a></li>
 									<li><a href="contact-2.html">Contact us 2</a></li>
@@ -242,13 +244,15 @@
 
 							<li> <a href="/userafficheproduit">Boutique<i class="fas fa-chevron-down"></i></a>
 							</li>
-							
+							{% endif %}
 							<li> <a id="cart-icon" href="{{path('app_Affichepanier')}}"><img src="{{asset('images/cart2.png')}}" width="25" height="25" alt="">{#<i class="fas fa-chevron-down"></i>#}</a>
+								
 					          {% if not app.user %}
 							 <li> <a  href="{{ path('app_login') }}">se connecter<i class="fas fa-chevron-down"></i></a></li>
 							  {% else %}
 							  <li> <a href="{{ path('app_user_show', {'idUser': app.user.idUser}) }}">profile<i class="fas fa-chevron-down"></i></a></li>
 							  <li> <a href="{{ path('app_logout') }}">se deconnecter<i class="fas fa-chevron-down"></i></a></li>
+
 							  {% endif %}
 						</ul>
                     </div>
@@ -380,12 +384,17 @@
                         <div class="col-lg-3 col-md-3 col-sm-12 offset-lg-1 offset-md-1">
                           <div class="p-tb30">
                             
-							
+							 <p>Prix : {{e.getPrixEvent}}</p>
                                 {{ form_widget(f.reserver, {'attr': {'class': 'site-button-secondry button-skew m-b10 m-l20'}}) }}
 
 						</div>
                         </div>
-                        
+                      
+                        {% for message in app.flashes('error1') %}
+                                    
+                                    <div class="alert alert-danger"> <strong><i class="far fa-thumbs-up"></i> ATTENTION!</strong> {{ message }}  </div>
+                               
+                                      {% endfor %}
                        
 					</div>
 				</form>
@@ -401,9 +410,7 @@
     </div>
     <!-- Content END-->
     <!-- Footer -->
-    <footer class="site-footer">
-       
-        </div>
+     <footer class="site-footer ">
         <!-- footer top part -->
         <div class="footer-top">
             <div class="container">
@@ -420,58 +427,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 footer-col-4">
-                        <div class="widget recent-posts-entry">
-                            <h4 class="m-b15 text-uppercase">Recent Post</h4>
-                            <div class="dlab-separator-outer m-b10">
-                                <div class="dlab-separator bg-white style-skew"></div>
-                            </div>
-                            <div class="widget-post-bx">
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="{{asset('images/blog/recent-blog/pic1.jpg')}}" alt="" width="200" height="143"> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title text-uppercase"><a href="blog-single.html">How Will Autocare</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-author">By <a href="#">Admin</a></li>
-                                                <li class="post-comment"><i class="fas fa-comments"></i> 28</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="{{asset('images/blog/recent-blog/pic2.jpg')}}" alt="" width="200" height="160"> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title text-uppercase"><a href="blog-single.html">Seven fact about</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-author">By <a href="#">Admin</a></li>
-                                                <li class="post-comment"><i class="fas fa-comments"></i> 28</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-post clearfix">
-                                    <div class="dlab-post-media"> <img src="{{asset('images/blog/recent-blog/pic3.jpg')}}" alt="" width="200" height="160"> </div>
-                                    <div class="dlab-post-info">
-                                        <div class="dlab-post-header">
-                                            <h6 class="post-title  text-uppercase"><a href="blog-single.html">10 Things You</a></h6>
-                                        </div>
-                                        <div class="dlab-post-meta">
-                                            <ul>
-                                                <li class="post-author">By <a href="#">Admin</a></li>
-                                                <li class="post-comment"><i class="fas fa-comments"></i> 28</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-col-4">
                         <div class="widget widget_services">
                             <h4 class="m-b15 text-uppercase">Our services</h4>
@@ -479,12 +435,12 @@
                                 <div class="dlab-separator bg-white style-skew"></div>
                             </div>
                             <ul>
-                                <li><a href="engine-diagnostics.html">Engine Diagnostics</a></li>
-                                <li><a href="lube-oil-and-filters.html">Lube, Oil and Filters</a></li>
-                                <li><a href="belts-and-hoses.html">Belts and Hoses</a></li>
-                                <li><a href="air-conditioning.html">Air Conditioning</a></li>
-                                <li><a href="brake-repair.html">Brake Repair</a></li>
-                                <li><a href="tire-and-wheel-services.html">Tire And Wheel</a></li>
+                                <li><a href="/getU">Evénements</a></li>
+                                <li><a href="{{ path('all_bonplan') }}">Bon plan</a></li>
+                                <li><a href="/afficheMU">Maintenance</a></li>
+                                <li><a href="/getT">Ticket</a></li>
+                                <li><a href="/userafficheproduit">Boutique</a></li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -506,7 +462,7 @@
             </div>
         </div>
         <!-- footer bottom part -->
-        <div class="footer-bottom footer-line">
+        <div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 text-left"> 

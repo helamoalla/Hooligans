@@ -398,8 +398,9 @@
                                                         <th>Num Ticket</th>
                                                         <th>Id user</th>
                                                         <th>Id Event </th>
-                                                        
-          
+                                                        <th>Nom Event </th>
+             <th>date debut Event </th>
+                <th>date fin Event </th>
                                                         <th>Option</th>
                                                     </tr>
                                                 </thead>
@@ -421,8 +422,10 @@
             <td>{{i.getNumTicket }}</td>
             <td>{{i.getUser.getIdUser}}</td>
             <td>
-                {{i.getEvent.getId }}
+                {{i.getEvent.getNomEvent }}
             </td>
+            <td>{{i.getEvent.getDateDebut|date("d/m/Y")}}</td>
+            <td>{{i.getEvent.getDateFin|date("d/m/Y")}}</td>
             
            
             

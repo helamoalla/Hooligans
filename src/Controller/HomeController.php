@@ -30,20 +30,29 @@ use Endroid\QrCode\Logo\Logo;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Label\Font\NotoSans;
 use App\Repository\UserRepository;
+use App\Repository\BonplanRepository;
+use App\Repository\GaragecRepository;
+use App\Repository\FeedbackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 
 class HomeController extends AbstractController
 { ////////////////haaajjj///////////
     #[Route('/home', name: 'app_home')]
-    public function indexx(): Response
-    {
-
+    public function indexx(GaragecRepository $r1,FlashyNotifier $flashy,BonplanRepository $bonplanRep,FeedbackRepository $feedRep): Response
+    {  $garageC = $r1->orderById();
+        $allBonplan = $bonplanRep->getAllBonPlanWithFeedbacks();
+        $allFeeds=$feedRep->findAll();
+       // $flashy->error('vous avez deja une maintenance . veuillez la modifier pour un nouveau devis!', 'http://your-awesome-link.com');
         return $this->render('base.html.twig', [
             'controller_name' => 'HomeController',
+            'allBonplan'=>$allBonplan,
+            'allFeeds'=>$allFeeds,
+            'g'=>$garageC
         ]);
     }
 //////////////////ayouuuubbb//////////
@@ -266,9 +275,10 @@ return new Response(json_encode($jsonContent));
                                     $form->handleRequest($request);
                                 $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
                                 if($form->isSubmitted() && $form->isValid()){
-                                   
+                                    $user=$this->getUser();
                                     $quantite= $form->get('quantity')->getData();
-                        
+                                    $montant=$quantite*($Event->getPrixEvent());
+                                    if($montant<=$user->getQuota()){
                                     for ($i = 0; $i < $quantite; $i++) {
                                         $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
                                         $ticket=new Ticket();
@@ -309,14 +319,19 @@ file_put_contents($chemin . $nomImage, base64_decode(substr($qrCodes['simple'], 
 //Enregistrer le nom de l'image dans la base de données
 $ticket->setImageQr($nomImage);
                                         $em =$doctrine->getManager() ;
+                                      
 
+
+
+$user->setQuota($user->getQuota()-$montant);
                                           $em->persist($ticket);
                                           
                                           $em->flush();
                               }
                                         
-                              return $this->redirectToRoute("app_getT");}
-
+                              return $this->redirectToRoute("app_getT");}}
+                              $this->addFlash('error1', 'solde insuffisant');
+                            
                                 return $this->renderForm("Event/detailEvent.html.twig",
                                 array("f"=>$form,"e"=>$Event));
                             }

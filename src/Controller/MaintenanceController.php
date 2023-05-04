@@ -92,8 +92,32 @@ class MaintenanceController extends AbstractController
         return $this->redirectToRoute('app_afficheM',);
     }
     #[Route('/ajouterM', name: 'ajouterM')]
-    public function ajouterM(ManagerRegistry $doctrine,Request $request,FlashyNotifier $flashy): Response
+    public function ajouterM(MaintenanceRepository $r,FlashyNotifier $flashy,GaragecRepository $r1,ManagerRegistry $doctrine,Request $request): Response
     { 
+        $user=$this->getUser();
+        $maintenances = $r->findMaintenanceByIdUser($user);
+        $test = false;
+        $dateAujourdhui = new DateTime();
+        $garageC = $r1->orderById();
+        
+        if ($maintenances) {
+            foreach ($maintenances as $maintenance) {
+                $diff = $dateAujourdhui->diff($maintenance->getDateMaintenance())->days;
+                if ($diff <= 2) {
+                    $test = true;
+                   
+                    break; // sortir de la boucle si une maintenance a été effectuée il y a moins de deux jours
+                }
+            }
+        }
+        
+        if ($test) {
+            // une maintenance a été effectuée il y a moins de deux jours
+            $flashy->error('vous avez deja une maintenance . veuillez la modifier pour un nouveau devis!', 'http://your-awesome-link.com');
+                return $this->redirectToRoute("app_home");
+           
+            } 
+
         $maintenance=new Maintenance();
         $form=$this->createForm(MaintenanceFormType::class,$maintenance);
         $form->handleRequest($request);

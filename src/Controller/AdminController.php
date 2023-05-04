@@ -6,6 +6,7 @@ use App\Entity\Formation;
 use App\Entity\User;
 use App\Entity\Role;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,9 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-
+use Stripe\Charge;
+use Stripe\Stripe;
+use Stripe\Customer;
 
 class AdminController extends AbstractController
 {
@@ -159,6 +162,49 @@ class AdminController extends AbstractController
 
 
     /////////////////naadiiiaaaaa////////////////
-
+    #[Route('/payement', name: 'payement')]
+ 
    
+    // ...
+    
+    public function processPayment(Request $request,ManagerRegistry $doctrine)
+    {
+        // Configurer la clé secrète Stripe
+        Stripe::setApiKey('sk_test_51MidOiDi4uLa1UR4QzBVLHTMxTOlUHa9RnQRtqkFmwxWciJlPRdoI6BWkRj0C9wXfXSCanlbW3vGha3JIp08N2kc00EvGQ49ci');
+    
+        try {
+            // Créer une charge avec le token de paiement
+            $charge = Charge::create([
+                'amount' => $request->request->get('amount'),
+ 
+                'currency' => 'USD',
+                'source' => $request->request->get('stripeToken'),
+            ]);
+    $user=$this->getUser();
+    $user->setQuota($request->request->get('amount'));
+    $em =$doctrine->getManager() ;
+    $em->flush();
+            // La charge a été réussie
+            return $this->redirectToRoute('affichecategorie');
+        } catch (\Stripe\Exception\CardException $e) {
+            // La carte a été refusée
+            $errorMessage = $e->getError()->message;
+            dump($errorMessage);
+            return $this->redirectToRoute('affichep', ['error' => $errorMessage]);
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
+            // La requête était malformée
+            $errorMessage = $e->getError()->message;
+            dump($errorMessage);
+            return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            // Une erreur s'est produite avec Stripe
+            $errorMessage = $e->getError()->message;
+            dump($errorMessage);
+            return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+        }
+    }
+    #[Route('/payement1', name: 'payement1')]
+   public function processPayment1(Request $request){
+    return $this->Renderform('payement.html.twig');
+   }
 }    

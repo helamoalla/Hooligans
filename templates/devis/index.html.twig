@@ -140,7 +140,7 @@
                                                <h6>TAUX TAXE COMPRIS :  {{ TTC[j] }}</h6>
                                          
                                          <h6>SOMME APRES REDUCTION : {{ i.getTotal }}</h6>
-                                              
+                                               <h6>NOM DU GARAGES : {{i.getGarage.getNomGarage}}</h6>
                                             {% set j = j + 1 %}
                                             <a>
                     <form action="{{path('email',{'id':i.getId})}}"> <button>CONFIRMER</button> </form>

@@ -53,6 +53,9 @@ class DevisController extends AbstractController
         $html .= '<p>________________________________________________</p>';
         $html .= '<p>Client : '.$user->getNom().' '.$user->getPrenom().'</p>';
         $html .= '<p>________________________________________________</p>';
+        $html .= '<p>________________________________________________</p>';
+        $html .= '<p>Garage : '.$devis->getGarage()->getNomGarage().'</p>';
+        $html .= '<p>________________________________________________</p>';
         $html .= '<h3>Détails du devis</h3>';
         $html .= '<table border="1" cellspacing="0" style="width: 100%; text-align: center;">';
         $html .= '<tr style="background-color: black; color: white; font-weight: bold;"><th>Pannes</th><th>Prix</th></tr>';
@@ -132,9 +135,9 @@ if($devis->getMaintenance()->isVidange()){
         
         // Envoyer l'email
         $mailer->send($email);
-        $flashy->success('email envoyer!', 'http://your-awesome-link.com');
+        $flashy->success('email envoyé', 'http://your-awesome-link.com');
        
-      return $this->redirectToRoute('app_maintenance',);
+      return $this->redirectToRoute('app_home',);
      
     }
 

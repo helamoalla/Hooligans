@@ -48,13 +48,34 @@
 <div class="page-wraper">
     <!-- header -->
     <header class="site-header header header-style-1 mo-left">
-        
+        <!-- top bar -->
+        <div class="top-bar no-skew">
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <div class="dlab-topbar-left">
+                        <ul class="social-bx list-inline  pull-left">
+                            <li><a href="javascript:void(0);" ><i class="ti-mobile"></i> +141 231 564 8970</a></li>
+                            <li><a href="javascript:void(0);" class="ti-email"></a> info@example.com</li>
+                        </ul>
+                    </div>
+                    <div class="dlab-topbar-right d-flex">
+                        <ul class="social-bx list-inline float-end">
+                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
+                            <li><a class="fab fa-twitter" href="https://twitter.com/" target="blank"></a></li>
+                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank" ></a></li>
+                            <li><a class="fab fa-google-plus-g" href="https://mail.google.com/" target="blank" ></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- top bar END-->
         <!-- main header -->
         <div class="sticky-header main-bar-wraper navbar-expand-lg">
             <div class="main-bar clearfix ">
                 <div class="container clearfix">
                     <!-- website logo -->
-                    <div class="logo-header mostion logo-dark"><a href="/maintenance"><img src="{{asset('images/dr.png')}}" width="193" height="89" alt=""></a></div>
+                    <div class="logo-header mostion logo-dark"><a href="/home"><img src="{{asset('images/dr.png')}}" width="193" height="89" alt=""></a></div>
                     <!-- nav toggle button -->
 					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span></span>
@@ -62,7 +83,7 @@
 						<span></span>
 					</button>
                     <!-- extra nav -->
-                   
+                    
                     <!-- Quik search -->
                     <div class="dlab-quik-search bg-primary">
                         <form action="#">
@@ -72,31 +93,172 @@
                     </div>
                     <!-- main nav -->
                     <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-                        <ul class="nav navbar-nav">
-                            <li > <a href="/maintenance">Home<i class="fas fa-chevron-down"></i></a>
-                              
-                            </li>
-                            <li> <a href="javascript:;">Produits<i class="fas fa-chevron-down"></i></a>
-                                
-                            </li>
-							<li class="has-mega-menu "> <a href="javascript:;">Pages<i class="fas fa-chevron-down"></i></a>
-                                
-                            </li>
-                            {% if not app.user %}
-							<button class="bg-blue-400 text-white font-bold py-2 px-4  border-2 border-blue-500 rounded hover:bg-blue-500 hover-border-blue-600">
-								<a href="{{ path('app_login') }}" class="fas fa-chevron-down">Se Connecter</a>
-							</button>
-						  {% else %}
-						  <li> <a href="{{ path('app_user_show', {'idUser': app.user.idUser}) }}">profile<i class="fas fa-chevron-down"></i></a>
-                               
-                            </li>
+						<ul class="nav navbar-nav">
+						 {% if  app.user %}
+							<li class="active"> <a href="{{path('app_home')}}">Accueil<i class="fas fa-chevron-down"></i></a>
+							</li>
+							<li> <a href="/getU">Évènements<i class="fas fa-chevron-down"></i></a>
+								{#<ul class="sub-menu">
+									<li> <a href="javascript:;">Header <i class="fas fa-angle-right"></i></a>
+										<ul class="sub-menu">
+											<li><a href="header-style-1.html">Header 1</a></li>
+											<li><a href="header-style-2.html">Header 2</a></li>
+											<li><a href="header-style-3.html">Header 3</a></li>
+											<li><a href="header-style-4.html">Header 4</a></li>
+											<li><a href="header-style-5.html">Header 5</a></li>
+											<li><a href="header-style-6.html">Header 6</a></li>
+											<li><a href="header-style-7.html">Header 7</a></li>
+										</ul>
+									</li>
+									<li> <a href="">Footer <i class="fas fa-angle-right"></i></a>
+										<ul class="sub-menu">
+											<li><a href="footer-fixed.html">Footer Fixed</a></li>
+										</ul>
+									</li>
+								</ul>#}
+							</li>
 							<li>
-							<a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Se déconnecter</a>
-                            </li>
+										<a href="javascript:;">Bonplan<i class="fas fa-chevron-down"></i>
+										</a>
+										<ul class="sub-menu">
+											<li>
+												<a href="{{ path('all_bonplan') }}">All bonplan </a>
+											</li>
+											<li>
+												<a href="{{ path('addBonplan') }}">Suggest bonplan</a>
+											</li>
+										</ul>
+									
+								{#<ul class="mega-menu">
+									<li> <a href="javascript:;">Pages</a>
+										<ul>
+											<li><a href="about-1.html">About us 1</a></li>
+											<li><a href="about-2.html">About us 2</a></li>
+											<li><a href="faq-1.html">FAQ 1</a></li>
+											<li><a href="faq-2.html">FAQ 2</a></li>
+											<li><a href="our-team.html">Our Team</a></li>
+											<li><a href="testimonials.html">testimonials</a></li>
+											<li><a href="career.html">Career</a></li>
+											<li><a href="who-we-are.html">Who we are</a></li>
+											<li><a href="project.html">Project</a></li>
+											<li><a href="project-details.html">Project Details</a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Pages</a>
+										<ul>
+											<li><a href="all-service.html">All Service </a></li>
+											<li><a href="engine-diagnostics.html">Engine Diagnostics</a>  </li>
+											<li><a href="lube-oil-and-filters.html">Lube Oil And Filters</a>  </li>
+											<li><a href="belts-and-hoses.html">Belts And Hoses</a>  </li>
+											<li><a href="air-conditioning.html">Air Conditioning</a> </li>
+											<li><a href="brake-repair.html">Brake Repair</a> </li>
+											<li><a href="tire-and-wheel-services.html">Tire And Wheel Services</a> </li>
+											<li><a href="service-car-cleaning.html">Car Cleaning</a></li>
+											<li><a href="service-car-services.html">Car Services</a></li>
+											<li><a href="service-car-wrapping.html">Car Wrapping</a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Pages</a>
+										<ul>
+											<li><a href="service-dent-paint.html">Car Dent Paint</a></li>
+											<li><a href="services-1.html">Services 1 </a></li>
+											<li><a href="services-2.html">Services 2</a></li>
+											<li><a href="services-3.html">Services 3</a></li>
+											<li><a href="portfolio-1.html">Portfolio 1</a></li>
+											<li><a href="portfolio-2.html">Portfolio 2</a></li>
+											<li><a href="portfolio-3.html">Portfolio 3</a></li>
+											<li><a href="portfolio-details.html">Portfolio Details</a></li>
+											<li><a href="full-page-gallery-dark.html">Gallery Full Page Style 1</a></li>
+											<li><a href="full-page-gallery-light.html">Gallery Full Page Style 2</a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Pages</a>
+										<ul>
+											<li><a href="gallery-grid-2.html">Gallery Grid 2</a></li>
+											<li><a href="gallery-grid-3.html">Gallery Grid 3</a></li>
+											<li><a href="gallery-grid-4.html">Gallery Grid 4</a></li>
+											<li><a href="error-404.html">Error 404</a></li>
+											<li><a href="coming-soon-1.html">Coming Soon 1</a></li>
+											<li><a href="coming-soon-2.html">Coming Soon 2</a></li>
+											<li><a href="login-1.html">Login 1</a></li>
+											<li><a href="login-2.html">Login 2</a></li>
+										</ul>
+									</li>
+								</ul>#}
+							</li>
 							
-                            {% endif %}
-                            
-                        </ul>
+							</li>
+
+							<li>
+										<a href="javascript:;">Maintenance<i class="fas fa-chevron-down"></i>
+										</a>
+										<ul class="sub-menu">
+											<li>
+												<a href="/afficheMU">Ma demande </a>
+											</li>
+											<li>
+												<a href="/ajouterM">demander maintenance</a>
+											</li>
+										</ul>
+								{#<ul class="mega-menu">
+									<li> <a href="javascript:;">Shortcodes</a>
+										<ul>
+											<li><a href="shortcode-buttons.html">Buttons </a></li>
+											<li><a href="shortcode-icon-box-styles.html">Icon box styles</a></li>
+											<li><a href="shortcode-pricing-table.html">Pricing table</a></li>
+											<li><a href="shortcode-toggles.html">Toggles</a></li>
+											<li><a href="shortcode-team.html">Team </a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Shortcodes</a>
+										<ul>
+											<li><a href="shortcode-carousel-sliders.html">Carousel sliders</a></li>
+											<li><a href="shortcode-image-box-content.html">Image box content</a></li>
+											<li><a href="shortcode-tabs.html">Tabs</a></li>
+											<li><a href="shortcode-counters.html">Counters</a></li>
+											<li><a href="shortcode-magnific-popup.html">Magnific Gallery </a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Shortcodes</a>
+										<ul>
+											<li><a href="shortcode-accordians.html">Accordians</a></li>
+											<li><a href="shortcode-dividers.html">Dividers</a></li>
+											<li><a href="shortcode-images-effects.html">Images effects</a></li>
+											<li><a href="shortcode-testimonials.html">Testimonials </a></li>
+											<li><a href="shortcode-light-box.html">Light Gallery </a></li>
+										</ul>
+									</li>
+									<li> <a href="javascript:;">Shortcodes</a>
+										<ul>
+											<li><a href="shortcode-alert-box.html">Alert box</a></li>
+											<li><a href="shortcode-icon-box.html">Icon-box</a></li>
+											<li><a href="shortcode-list-group.html">List group</a></li>
+											<li><a href="shortcode-title-separators.html">title-separators</a></li>
+											<li><a href="shortcode-all-widgets.html">Widgets</a></li>
+										</ul>
+									</li>
+								</ul>#}
+							</li>
+							<li> <a href="getT">Ticket <i class="fas fa-chevron-down"></i></a>
+								{#<ul class="sub-menu">
+									<li><a href="contact.html">Contact us 1</a></li>
+									<li><a href="contact-2.html">Contact us 2</a></li>
+									<li><a href="contact-3.html">Contact us 3</a></li>
+									<li><a href="contact-4.html">Contact us 4</a></li>
+								</ul>#}
+							</li>
+
+							<li> <a href="/userafficheproduit">Boutique<i class="fas fa-chevron-down"></i></a>
+							</li>
+							{% endif %}
+							<li> <a id="cart-icon" href="{{path('app_Affichepanier')}}"><img src="{{asset('images/cart2.png')}}" width="25" height="25" alt="">{#<i class="fas fa-chevron-down"></i>#}</a>
+					          {% if not app.user %}
+							 <li> <a  href="{{ path('app_login') }}">se connecter<i class="fas fa-chevron-down"></i></a></li>
+							  {% else %}
+							  <li> <a href="{{ path('app_user_show', {'idUser': app.user.idUser}) }}">profile<i class="fas fa-chevron-down"></i></a></li>
+							  <li> <a href="{{ path('app_logout') }}">se deconnecter<i class="fas fa-chevron-down"></i></a></li>
+							  {% endif %}
+						</ul>
                     </div>
                 </div>
             </div>
@@ -105,15 +267,16 @@
     </header>
     <!-- header END -->
  {% block body %}
-  <!-- flash message -->
-<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
-   {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
 
 	<!-- Content -->
     <div class="page-content bg-white">	
 		<!-- Main Slider -->
+		  <!-- flash message -->
+<link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+   {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
         <div class="rev-slider">
 			<div id="rev_slider_265_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container errow-style-1" data-alias="" data-source="gallery" style="margin:0px auto;background:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
 			<!-- START REVOLUTION SLIDER 5.4.6.3 fullwidth mode -->
