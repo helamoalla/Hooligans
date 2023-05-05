@@ -276,12 +276,15 @@ return new Response(json_encode($jsonContent));
                                 {
                                     $form=$this->createForm(QuantiteType::class);
                                     $form->handleRequest($request);
+                                  
                                 $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
                                 if($form->isSubmitted() && $form->isValid()){
                                     $user=$this->getUser();
                                     $quantite= $form->get('quantity')->getData();
                                     $montant=$quantite*($Event->getPrixEvent());
-                                    if($montant<=$user->getQuota()){
+                                    if($montant>$user->getQuota())
+                             {$this->addFlash('error1', 'solde insuffisant');}
+                                    if($montant<$user->getQuota()){
                                     for ($i = 0; $i < $quantite; $i++) {
                                         $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
                                         $ticket=new Ticket();
@@ -292,7 +295,7 @@ return new Response(json_encode($jsonContent));
                                         $ticket->setNumTicket(123);
                                         $writer = new PngWriter();
                                        
-                                        $qrCode = QrCode::create( $Event->getNomEvent())
+                                        $qrCode = QrCode::create( "nom evenement : ".$Event->getNomEvent().", lieu : ".$Event->getLieuEvent())
                                             ->setEncoding(new Encoding('UTF-8'))
                                             ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
                                             ->setSize(120)
@@ -332,8 +335,65 @@ $user->setQuota($user->getQuota()-$montant);
                                           $em->flush();
                               }
                                         
-                              return $this->redirectToRoute("app_getT");}}
-                              $this->addFlash('error1', 'solde insuffisant');
+                              return $this->redirectToRoute("app_getT");}
+                            else if($montant==$user->getQuota()){
+                                for ($i = 0; $i < $quantite; $i++) {
+                                    $Event=$this->getDoctrine()->getRepository(Event::class)->find($id);
+                                    $ticket=new Ticket();
+                                    $userr=$this->getUser();
+                                    $user=$this->getDoctrine()->getRepository(User::class)->find($userr);
+                                    $ticket->setUser($user);
+                                    $ticket->setEvent($Event);
+                                    $ticket->setNumTicket(123);
+                                    $writer = new PngWriter();
+                                   
+                                    $qrCode = QrCode::create( $Event->getNomEvent())
+                                        ->setEncoding(new Encoding('UTF-8'))
+                                        ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+                                        ->setSize(120)
+                                        ->setMargin(0)
+                                        ->setForegroundColor(new Color(0, 0, 0))
+                                        ->setBackgroundColor(new Color(255, 255, 255));
+                             
+                                    
+                             
+                                    $qrCodes = [];
+                                  
+                                    $qrCodes['simple'] = $writer->write(
+                                                            $qrCode,
+                                                            null,
+                                                      
+                                                        )->getDataUri();
+                                   
+                                
+                                    $chemin ='C:/xampp/htdocs/images/';
+
+//Générer un nom unique pour l'image
+$nomImage = uniqid('qr_', true) . '.png';
+
+//Enregistrer l'image sur le disque
+file_put_contents($chemin . $nomImage, base64_decode(substr($qrCodes['simple'], strpos($qrCodes['simple'], ',') + 1)));
+
+//Enregistrer le nom de l'image dans la base de données
+$ticket->setImageQr($nomImage);
+                                    $em =$doctrine->getManager() ;
+                                  
+
+
+
+$user->setQuota(0);
+                                      $em->persist($ticket);
+                                      
+                                      $em->flush();
+                          }
+                                    
+                          return $this->redirectToRoute("app_getT");
+
+                            }
+                            
+                            }
+                             
+                              
                             
                                 return $this->renderForm("Event/detailEvent.html.twig",
                                 array("f"=>$form,"e"=>$Event));
@@ -404,7 +464,7 @@ $ticket->setImageQr($nomImage);
                             public function afficheT(TicketRepository $r): Response
                                 {
                                 $user=$this->getUser();
-                                $Ticket = $r->findBy(['id_spectateur' => $user->getIdUser()]);
+                                $Ticket = $r-> findByIdUser($user->getIdUser());
                                 return $this->render('ticket/getallticket.html.twig', [
                                     't'=>$Ticket,
                                 ]);
@@ -420,7 +480,7 @@ $ticket->setImageQr($nomImage);
                             #[Route('/getTA', name: 'app_getTA')]
                             public function afficheTA(TicketRepository $r): Response
                                 {
-                                $Ticket=$r->findAll();
+                                $Ticket=$r->orderById();
                                 return $this->render('ticket/getallticketAdmin.html.twig', [
                                     't'=>$Ticket,
                                 ]);

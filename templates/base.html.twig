@@ -48,22 +48,21 @@
 <div class="page-wraper">
     <!-- header -->
      <header class="site-header header header-style-1 mo-left">
-        <!-- top bar -->
+          <!-- top bar -->
         <div class="top-bar no-skew">
             <div class="container">
                 <div class="d-flex justify-content-between">
                     <div class="dlab-topbar-left">
                         <ul class="social-bx list-inline  pull-left">
                             <li><a href="javascript:void(0);" ><i class="ti-mobile"></i> +141 231 564 8970</a></li>
-                            <li><a href="javascript:void(0);" class="ti-email"></a> info@example.com</li>
+                            <li><a href="javascript:void(0);" class="ti-email"></a> hooligans.pidev@gmail.com</li>
                         </ul>
                     </div>
                     <div class="dlab-topbar-right d-flex">
                         <ul class="social-bx list-inline float-end">
-                            <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" target="blank"></a></li>
-                            <li><a class="fab fa-twitter" href="https://twitter.com/" target="blank"></a></li>
-                            <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/" target="blank" ></a></li>
-                            <li><a class="fab fa-google-plus-g" href="https://mail.google.com/" target="blank" ></a></li>
+                          	{% if  app.user %}
+                            <li>{{app.user.getQuota }} DT<i class="fas fa-chevron-down"></i>
+								{% endif %}
                         </ul>
                     </div>
                 </div>

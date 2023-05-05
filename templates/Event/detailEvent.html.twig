@@ -298,7 +298,7 @@
                             </div>
                             <div class="clear"></div>
                             <p><strong>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong></p>
-                            <p class="m-b50">There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the with the release of Letraset sheets containing Lorem Ipsum </p>
+                           
                             <div class="row">
                                 <div class="col-md-6 col-lg-6 col-sm-6">
                                     <div class="icon-bx-wraper left m-b30">
@@ -390,15 +390,16 @@
 						</div>
                         </div>
                       
-                        {% for message in app.flashes('error1') %}
-                                    
-                                    <div class="alert alert-danger"> <strong><i class="far fa-thumbs-up"></i> ATTENTION!</strong> {{ message }}  </div>
-                               
-                                      {% endfor %}
+                      
                        
 					</div>
 				</form>
                  {{ form_end(f) }}
+                   {% for message in app.flashes('error1') %}
+                                    
+                                    <div class="alert alert-danger"> <strong><i class="far fa-thumbs-up"></i> ATTENTION!</strong> {{ message }}  </div>
+                               
+                                      {% endfor %}
             </div>
             </div>
             <!-- About Company END -->

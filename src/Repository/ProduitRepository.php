@@ -54,8 +54,12 @@ class ProduitRepository extends ServiceEntityRepository
           // On filtre les données
           if($filters != null){
             $qb->andWhere('p.categorie IN(:cats)')
-                ->setParameter(':cats', array_values($filters));
+                ->setParameter(':cats', array_values($filters))
+                ;
         }
+        $qb->orderBy('p.id','DESC')
+        ->getQuery()
+        ->getResult();
         
 
         return $qb->getQuery()->getResult();

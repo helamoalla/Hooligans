@@ -32,21 +32,17 @@
 	<link rel="stylesheet" type="text/css" href="css/templete.min.css">
 </head>
 
-<div class="page-wrapers" >
-<div class="login-form">
-    <div class="page-content dlab-login bg-secondry">
-		<div class="top-head logo-white text-center logo-header">
-			<a href="index.html">
-				<img src="images/logo.png" alt=""/>
-			</a>
-		</div>
-    
-    <h3 class="form-title m-t0">Alimenter compte</h3>
-    <div class="dlab-separator-outer m-b5">
-        <div class="dlab-separator bg-primary style-liner"></div>
-    </div>
-    <p style="color:aliceblue">Enter your card details below: </p>
-   
+
+
+<div style="text-align: center;">
+    <div class="page-wrapers">
+        <div class="login-form">
+            <h3 class="form-title m-t0">Alimenter compte</h3>
+            <div class="dlab-separator-outer m-b5">
+                <div class="dlab-separator bg-primary style-liner"></div>
+            </div>
+            <p>Enter your card details below:</p>
+
 <form id="payment-form" action="{{ path('process_payment') }}" method="POST">
     <div class="form-group">
     <input class="form-control" type="number" name="amount" placeholder="Montant en euros" required>

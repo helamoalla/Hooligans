@@ -185,22 +185,22 @@ class AdminController extends AbstractController
     $em =$doctrine->getManager() ;
     $em->flush();
             // La charge a été réussie
-            return $this->redirectToRoute('affichecategorie');
+            return $this->redirectToRoute('app_home');
         } catch (\Stripe\Exception\CardException $e) {
             // La carte a été refusée
             $errorMessage = $e->getError()->message;
             dump($errorMessage);
-            return $this->redirectToRoute('affichep', ['error' => $errorMessage]);
+            return $this->redirectToRoute('payement1', ['error' => $errorMessage]);
         } catch (\Stripe\Exception\InvalidRequestException $e) {
             // La requête était malformée
             $errorMessage = $e->getError()->message;
             dump($errorMessage);
-            return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+            return $this->redirectToRoute('payement1', ['error' => $errorMessage]);
         } catch (\Stripe\Exception\ApiErrorException $e) {
             // Une erreur s'est produite avec Stripe
             $errorMessage = $e->getError()->message;
             dump($errorMessage);
-            return $this->redirectToRoute('afficheproduit', ['error' => $errorMessage]);
+            return $this->redirectToRoute('payement1', ['error' => $errorMessage]);
         }
     }
     #[Route('/payement1', name: 'payement1')]
