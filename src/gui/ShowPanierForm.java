@@ -19,6 +19,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Label;
 import com.codename1.ui.Form;
@@ -55,7 +56,7 @@ public class ShowPanierForm extends BaseForm {
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Newsfeed");
+        setTitle("Panier");
         getContentPane().setScrollVisible(false);
         
         super.addSideMenu(res);
@@ -65,8 +66,7 @@ public class ShowPanierForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
-        addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
+        addTab(swipe, res.getImage("back.jpg"), spacer1, "", "", "Votre Panier");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -138,68 +138,68 @@ public class ShowPanierForm extends BaseForm {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
         
-        addButton(res.getImage("news-item-1.jpg"), "Morbi per tincidunt tellus sit of amet eros laoreet.", false, 26, 32);
-        addButton(res.getImage("news-item-2.jpg"), "Fusce ornare cursus masspretium tortor integer placera.", true, 15, 21);
-        addButton(res.getImage("news-item-3.jpg"), "Maecenas eu risus blanscelerisque massa non amcorpe.", false, 36, 15);
-        addButton(res.getImage("news-item-4.jpg"), "Pellentesque non lorem diam. Proin at ex sollicia.", false, 11, 9);
-     PanierService ps = PanierService.getInstance();
+        PanierService ps = PanierService.getInstance();
      List<Lignepanier> list = ps.fetchProduitsParPanier();
-       for (Lignepanier l : list) {
-    Container produitContainer = new Container(new BorderLayout());
-    Container infosContainer = new Container(BoxLayout.y());
-           
-    // Récupération de l'image à partir de l'URL
-    String imageUrl = "http://localhost/images/" + l.getImage();
-    EncodedImage encodedImage = EncodedImage.createFromImage(Image.createImage(50, 50), false);
-    URLImage urlImage = URLImage.createToStorage(encodedImage, l.getImage(), imageUrl);
+          for (Lignepanier l : list) {
+        addButton(l.getImage(),l.getNom_produit(), l.getPrix(), l.getQuantite(), l.getPrix()*l.getQuantite(), l.getId());
+          }
 
-    // Affichage de l'image dans une image viewer
-    ImageViewer produitImageViewer = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
-
-    Label nomProduitLabel = new Label("Nom du produit: " + l.getNom_produit());
-    Label prixLabel = new Label("Prix: " + l.getPrix()+" DT");
-    Label quantiteLabel = new Label("Quantité: " +  (int)l.getQuantite());
-    Label SousMoantantLabel = new Label("Sous monatant: " +  l.getQuantite()*l.getPrix()+" DT");
-
-    infosContainer.add(nomProduitLabel);
-    infosContainer.add(prixLabel);
-    infosContainer.add(quantiteLabel);
-     infosContainer.add(SousMoantantLabel);
-            
-    Button deleteButton = new Button("Supprimer");
-    Button plusButton = new Button("+");
-    Button moinsButton = new Button("-");
-    Container buttonsContainer = new Container(BoxLayout.x());
-    buttonsContainer.addAll(deleteButton, plusButton, moinsButton);
-    infosContainer.add(buttonsContainer);
-
-    deleteButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.SuppLignePanier(id);
-        Dialog.show("Succès", "Produit supprimé du panier avec succès", "OK", null);
-        this.refreshTheme();   
-    } );
-
-    plusButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.QuantitePLusUN(id);
-        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
-        this.refreshTheme();   
-    } );
-
-    moinsButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.QuantiteMoinsUN(id);
-        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
-        this.refreshTheme();   
-    } );
-            
-    produitContainer.add(BorderLayout.WEST, produitImageViewer);
-    produitContainer.add(BorderLayout.CENTER, infosContainer);
-
-
-    this.add(produitContainer);
-}
+//       for (Lignepanier l : list) {
+//    Container produitContainer = new Container(new BorderLayout());
+//    Container infosContainer = new Container(BoxLayout.y());
+//           
+//    // Récupération de l'image à partir de l'URL
+//    String imageUrl = "http://localhost/images/" + l.getImage();
+//    EncodedImage encodedImage = EncodedImage.createFromImage(Image.createImage(50, 50), false);
+//    URLImage urlImage = URLImage.createToStorage(encodedImage, l.getImage(), imageUrl);
+//
+//    // Affichage de l'image dans une image viewer
+//    ImageViewer produitImageViewer = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
+//
+//    Label nomProduitLabel = new Label("Nom du produit: " + l.getNom_produit());
+//    Label prixLabel = new Label("Prix: " + l.getPrix()+" DT");
+//    Label quantiteLabel = new Label("Quantité: " +  (int)l.getQuantite());
+//    Label SousMoantantLabel = new Label("Sous monatant: " +  l.getQuantite()*l.getPrix()+" DT");
+//
+//    infosContainer.add(nomProduitLabel);
+//    infosContainer.add(prixLabel);
+//    infosContainer.add(quantiteLabel);
+//     infosContainer.add(SousMoantantLabel);
+//            
+//    Button deleteButton = new Button("Supprimer");
+//    Button plusButton = new Button("+");
+//    Button moinsButton = new Button("-");
+//    Container buttonsContainer = new Container(BoxLayout.x());
+//    buttonsContainer.addAll(deleteButton, plusButton, moinsButton);
+//    infosContainer.add(buttonsContainer);
+//
+//    deleteButton.addActionListener(e -> { 
+//        int id = (int) l.getId();
+//        ps.SuppLignePanier(id);
+//        Dialog.show("Succès", "Produit supprimé du panier avec succès", "OK", null);
+//        this.refreshTheme();   
+//    } );
+//
+//    plusButton.addActionListener(e -> { 
+//        int id = (int) l.getId();
+//        ps.QuantitePLusUN(id);
+//        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+//        this.refreshTheme();   
+//    } );
+//
+//    moinsButton.addActionListener(e -> { 
+//        int id = (int) l.getId();
+//        ps.QuantiteMoinsUN(id);
+//        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+//        this.refreshTheme();   
+//    } );
+//            
+//    produitContainer.add(BorderLayout.WEST, produitImageViewer);
+//    produitContainer.add(BorderLayout.CENTER, infosContainer);
+//
+//
+//    this.add(produitContainer);
+//}
    }
    
        private void updateArrowPosition(Button b, Label arrow) {
@@ -247,40 +247,90 @@ public class ShowPanierForm extends BaseForm {
         swipe.addTab("", page1);
     }
     
-   private void addButton(Image img, String title, boolean liked, int likeCount, int commentCount) {
+       private void addButton(String img, String title, double prix, Double quantite, Double sousmontant, Double id) {
+       String imageUrl = "http://localhost/images/" +img;
+       EncodedImage encodedImage = EncodedImage.createFromImage(Image.createImage(50, 50), false);
+            URLImage urlImage = URLImage.createToStorage(encodedImage, img, imageUrl);
        int height = Display.getInstance().convertToPixels(11.5f);
        int width = Display.getInstance().convertToPixels(14f);
-       Button image = new Button(img.fill(width, height));
+      ImageViewer image1 = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
+
+       Button image = new Button(urlImage.fill(width, height));
        image.setUIID("Label");
        Container cnt = BorderLayout.west(image);
        cnt.setLeadComponent(image);
-       TextArea ta = new TextArea(title);
-       ta.setUIID("NewsTopLine");
+       
+       TextArea ta = new TextArea("Nom du produit "+title);
+       ta.setUIID("NewsTopLine1");
        ta.setEditable(false);
+       Font fontta = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       ta.getUnselectedStyle().setFont(fontta);
+       
+       TextArea p = new TextArea("Prix du produit "+String.valueOf(prix)+" DT");
+       p.setUIID("NewsSecond");
+       p.setEditable(false);
+       Font fontp = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       p.getUnselectedStyle().setFont(fontp);
+       double quantiteDouble = quantite; 
+       int quantiteInt = (int) quantiteDouble;
+       // Convertir l'entier en une chaîne de caractères
+       String quantiteStr = Integer.toString(quantiteInt);
+       TextArea qt = new TextArea("Quantité : "+quantiteStr);
+       qt.setUIID("Newsthird");
+       qt.setEditable(false);
+       Font fontqt= Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       qt.getUnselectedStyle().setFont(fontqt);
+       
+       TextArea sm = new TextArea("Sous montant "+String.valueOf(sousmontant)+" DT");
+       sm.setUIID("Newsfourth");
+       sm.setEditable(false);
+       Font fontsm= Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       sm.getUnselectedStyle().setFont(fontsm); 
+       PanierService ps = PanierService.getInstance();
+    Button deleteButton = new Button();
+     Image icon = FontImage.createMaterial(FontImage.MATERIAL_DELETE, deleteButton.getUnselectedStyle()).scaled(80, 80);
+    deleteButton.setIcon(icon); 
+           deleteButton.addActionListener(e -> { 
+        int myInt2 = Double.valueOf(id).intValue(); 
+        ps.SuppLignePanier(myInt2);
+        Dialog.show("Succès", "Produit supprimé du panier avec succès", "OK", null);
+        this.refreshTheme();   
+    } );
 
-       Label likes = new Label(likeCount + " Likes  ", "NewsBottomLine");
-       likes.setTextPosition(RIGHT);
-       if(!liked) {
-           FontImage.setMaterialIcon(likes, FontImage.MATERIAL_FAVORITE);
-       } else {
-           Style s = new Style(likes.getUnselectedStyle());
-           s.setFgColor(0xff2d55);
-           FontImage heartImage = FontImage.createMaterial(FontImage.MATERIAL_FAVORITE, s);
-           likes.setIcon(heartImage);
-       }
-       Label comments = new Label(commentCount + " Comments", "NewsBottomLine");
-       FontImage.setMaterialIcon(likes, FontImage.MATERIAL_CHAT);
-       
-       
+    Button plusButton = new Button();
+    Image icon1 = FontImage.createMaterial(FontImage.MATERIAL_ADD_CIRCLE, plusButton.getUnselectedStyle()).scaled(80, 80);
+    plusButton.setIcon(icon1); 
+    
+   plusButton.addActionListener(e -> { 
+   int myInt2 = Double.valueOf(id).intValue(); 
+   ps.QuantitePLusUN(myInt2);
+   Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+   this.refreshTheme();   
+    } );
+
+    
+    Button moinsButton = new Button();
+     Image icon2 = FontImage.createMaterial(FontImage.MATERIAL_REMOVE_CIRCLE, moinsButton.getUnselectedStyle()).scaled(80, 80);
+    moinsButton.setIcon(icon2); 
+    
+    moinsButton.addActionListener(e -> { 
+    int myInt2 = Double.valueOf(id).intValue();
+    ps.QuantiteMoinsUN(myInt2);
+    Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+    this.refreshTheme();   
+    } );
+    
        cnt.add(BorderLayout.CENTER, 
                BoxLayout.encloseY(
-                       ta,
-                       BoxLayout.encloseX(likes, comments)
+                       ta,p,qt,sm,
+                       BoxLayout.encloseX(deleteButton, plusButton,moinsButton)
                ));
        add(cnt);
        image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
+        
+
    }
-    
+       
     private void bindButtonSelection(Button b, Label arrow) {
         b.addActionListener(e -> {
             if(b.isSelected()) {
