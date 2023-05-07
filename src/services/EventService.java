@@ -35,7 +35,7 @@ public class EventService {
     List<Event> p = new ArrayList<>();
 
     //Constructor
-    private EventService() {
+    public EventService() {
         req = new ConnectionRequest();
     }
 
@@ -199,4 +199,34 @@ lp.setPrix((double) item.get("prix_event"));
         return resultOK;
     }
     
+         //payer
+    public boolean payer(double id ) {
+           //1
+        String addURL = Statics.BASE_URL + "/payerJSON";
+
+        //2
+        req.setUrl(addURL);
+
+        //3
+    req.setPost(false);
+
+        //4
+        req.addArgument("id_event",String.valueOf(id));
+        
+
+        //5
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        return resultOK;
+    }
+    
+        
 }

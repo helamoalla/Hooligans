@@ -39,8 +39,10 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.BaseForm;
 import java.util.List;
+import models.BonPlan;
 import models.Lignepanier;
 import models.Produit;
+import services.BonPlanService;
 import services.PanierService;
 import services.ProduitService;
 
@@ -48,13 +50,13 @@ import services.ProduitService;
  *
  * @author Nadia
  */
-public class ShowProduitForm extends BaseForm {
-      public ShowProduitForm(Resources res) {    
+public class ShowBonPlan extends BaseForm {
+      public ShowBonPlan(Resources res) {    
       super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("MarketPlace");
+        setTitle("BonPlan");
         getContentPane().setScrollVisible(false);
         
         super.addSideMenu(res);
@@ -64,7 +66,7 @@ public class ShowProduitForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-         addTab(swipe, res.getImage("profile-background.jpg"), spacer1, " ", "", "D&R MarketPlace ");
+         addTab(swipe, res.getImage("profile-background.jpg"), spacer1, " ", "", "D&R BonPlans ");
         addTab(swipe, res.getImage("profile-background.jpg"), spacer2, "  ", "", "");
         
         swipe.setUIID("Container");
@@ -148,11 +150,11 @@ public class ShowProduitForm extends BaseForm {
         
         
         
-        ProduitService ps = ProduitService.getInstance();
+          BonPlanService ps = BonPlanService.getInstance();
      
      
-     List<Produit> list = ps.fetchProduits();
-       for (Produit p : list) {
+     List<BonPlan> list = ps.fetchBonPlan();
+       for (BonPlan p : list) {
     Container produitContainer = new Container(new BorderLayout());
     Container infosContainer = new Container(BoxLayout.y());
            
@@ -164,32 +166,46 @@ public class ShowProduitForm extends BaseForm {
     // Affichage de l'image dans une image viewer
     ImageViewer produitImageViewer = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
 
-    Label nomProduitLabel = new Label("Nom du produit: " + p.getNom_prod());
-     Font fontta = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
-       nomProduitLabel.getUnselectedStyle().setFont(fontta);
-    Label prixLabel = new Label("Prix: " + p.getPrix_prod()+" DT");
-    Label quantiteLabel = new Label("Quantité: " +  (int)p.getQuantite_prod());
-    
-    
-   Label descLabel = new Label("Description: " + p.getDescription_prod());
- 
+    Label nombonplanLabel = new Label("Nom BonPlan : " + p.getNom_bonplan());  
+      Label gouvernouratbonplanLabel = new Label("Gouvernorat : " + p.getGouvernorat());
+      
+              
+       Label ruebonplanLabel = new Label("Rue : " + p.getRue());
+       Label ville = new Label("Ville : " + p.getVille());
+//       Label typebonplanLabel = new Label("Type " + p.getType()); 
+//          Label etatbonplanLabel = new Label("Etat : " + p.getEtat()); 
+//           
+   Label descrbonplanLabel = new Label("Description  : " + p.getDescription()); 
 
    
    
-    infosContainer.add(nomProduitLabel);
-    infosContainer.add(prixLabel);
-    infosContainer.add(quantiteLabel);
-     infosContainer.add(descLabel);
+    infosContainer.add(nombonplanLabel);
+        infosContainer.add(gouvernouratbonplanLabel);
+
+    infosContainer.add(ruebonplanLabel);
+        infosContainer.add(ville);
+
+   // infosContainer.add(typebonplanLabel);
+     infosContainer.add(descrbonplanLabel);
 
             
     Button AffichedetailButton = new Button("Afficher Detail");
         AffichedetailButton.addActionListener(e -> { 
-        new ShowDetailProduit(res,p).show();
+        new ShowDetailBonPlan(res,p).show();
     } );
-    Button plusButton = new Button("+");
-    Button moinsButton = new Button("-");
+        
+           Button deleteButton = new Button("delete");
+      
+        
+          deleteButton.addActionListener(e -> { 
+        int id = (int) p.getId_bonplan();
+        ps.supprimer(id);
+        Dialog.show("Succès", "Produit supprimé du panier avec succès", "OK", null);
+        this.refreshTheme();   
+    } );
+   
     Container buttonsContainer = new Container(BoxLayout.x());
-    buttonsContainer.addAll(AffichedetailButton, plusButton, moinsButton);
+    buttonsContainer.addAll(AffichedetailButton,deleteButton);
     infosContainer.add(buttonsContainer);
 
     

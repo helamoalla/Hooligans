@@ -20,6 +20,7 @@
 package com.mycompany.myapp;
 
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.l10n.ParseException;
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
 import com.codename1.ui.FontImage;
@@ -32,9 +33,12 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import gui.ShowBonPlan;
 import gui.ShowEventForm;
 import gui.ShowPanierForm;
 import gui.ShowProduitForm;
+
+import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
 /**
  * Base class for the forms with common functionality
@@ -89,8 +93,16 @@ public class BaseForm extends Form {
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Produit", FontImage.MATERIAL_STOREFRONT, e -> new ShowProduitForm(res).show());
         tb.addMaterialCommandToSideMenu("Panier", FontImage.MATERIAL_SHOPPING_BAG, e -> new ShowPanierForm(res).show());
-        tb.addMaterialCommandToSideMenu("Evénements", FontImage.MATERIAL_EVENT, e -> new ShowEventForm(res).show());
-        tb.addMaterialCommandToSideMenu("Bon Plans", FontImage.MATERIAL_FAVORITE, e -> new ProfileForm(res).show());
+        
+        tb.addMaterialCommandToSideMenu("Evénements", FontImage.MATERIAL_EVENT, e -> {
+            try {
+                new ShowEventForm(res).show();
+            } catch (ParseException ex) {
+                 printStackTrace(ex);
+            }
+        });
+        
+        tb.addMaterialCommandToSideMenu("Bon Plans", FontImage.MATERIAL_FAVORITE, e -> new ShowBonPlan(res).show());
         tb.addMaterialCommandToSideMenu("Maintenance", FontImage.MATERIAL_BUILD, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_FORUM, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Se déconnecter", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
