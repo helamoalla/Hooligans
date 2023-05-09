@@ -35,8 +35,12 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import gui.ShowBonPlan;
 import gui.ShowEventForm;
+import gui.ShowGarageForm;
+import gui.ShowMaintenanceForm;
 import gui.ShowPanierForm;
 import gui.ShowProduitForm;
+import gui.ShowTicket;
+
 
 import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
@@ -89,7 +93,7 @@ public class BaseForm extends Form {
                         new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
         ));
         
-        tb.addMaterialCommandToSideMenu("Accueil", FontImage.MATERIAL_HOME, e -> new NewsfeedForm(res).show());
+      //  tb.addMaterialCommandToSideMenu("Accueil", FontImage.MATERIAL_HOME, e -> new NewsfeedForm(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Produit", FontImage.MATERIAL_STOREFRONT, e -> new ShowProduitForm(res).show());
         tb.addMaterialCommandToSideMenu("Panier", FontImage.MATERIAL_SHOPPING_BAG, e -> new ShowPanierForm(res).show());
@@ -103,8 +107,21 @@ public class BaseForm extends Form {
         });
         
         tb.addMaterialCommandToSideMenu("Bon Plans", FontImage.MATERIAL_FAVORITE, e -> new ShowBonPlan(res).show());
-        tb.addMaterialCommandToSideMenu("Maintenance", FontImage.MATERIAL_BUILD, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_FORUM, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Se déconnecter", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+      tb.addMaterialCommandToSideMenu("Maintenance", FontImage.MATERIAL_BUILD, e -> {
+            try {
+                new ShowMaintenanceForm(res).show();
+            } catch (ParseException ex) {
+               printStackTrace(ex);
+            }
+        });
+        tb.addMaterialCommandToSideMenu("Garages conventinnes ", FontImage.MATERIAL_FAVORITE, e -> new ShowGarageForm(res).show());
+        tb.addMaterialCommandToSideMenu("mes ticket", FontImage.MATERIAL_FORUM, e -> {
+            try {
+                new ShowTicket(res).show();
+            } catch (ParseException ex) {
+                printStackTrace(ex);
+            }
+        });
+        tb.addMaterialCommandToSideMenu("Se déconnecter", FontImage.MATERIAL_EXIT_TO_APP, e -> new SignInForm(res).show());
     }
 }

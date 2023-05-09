@@ -46,6 +46,7 @@ import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.BaseForm;
 import java.util.Date;
 
+
 import static jdk.nashorn.internal.objects.NativeError.printStackTrace;
 
 import models.Event;
@@ -178,10 +179,15 @@ addStringValue("Type", type);
        Button PayerButton = new Button("payer");
       
   PayerButton.addActionListener(e -> { 
-        double id =  p.getId_e();
-       es.payer(id);
-        Dialog.show("Succès", "Payement effectue avec succes", "OK", null);
-        this.refreshTheme();   
+            try {
+                double id =  p.getId_e();
+                es.payer(id);
+                Dialog.show("Succès", "Payement effectue avec succes", "OK", null);
+                this.refreshTheme();
+                new ShowTicket(res).show();
+            } catch (ParseException ex) {
+                printStackTrace(ex);
+            }
     } );
        
  

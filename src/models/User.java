@@ -5,139 +5,167 @@
  */
 package models;
 
-/**
- *
- * @author choua
- */
-public class User {
-    private int id_user, cin, num_tel, etat;
-    private String nom, prenom, mdp, email, img; 
-    private float quota; 
-    private Role role; 
 
+public class User {
+    private double id_user ;  
+    private String nom ;
+    private String prenom ;
+    private double num_tel ;
+    private String adresse ;
+    private String centre_intere ;
+    private String adresse_entreprise ;
+    private String nom_entreprise ;
+    private double id_role ;
+    private String email ;
+    private String mdp ;
+    private String cv;
+    private double etat_user;
+    private double age;
+    private int note;
     public User() {
     }
 
-    public User(int id_user, int cin, int num_tel, int etat, String nom, String prenom, String mdp, String email, String img, float quota, Role role) {
-        this.id_user = id_user;
-        this.cin = cin;
-        this.num_tel = num_tel;
-        this.etat = etat;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mdp = mdp;
-        this.email = email;
-        this.img = img;
-        this.quota = quota;
-        this.role = role;
-    }
-
-    public User(int cin, int num_tel, int etat, String nom, String prenom, String mdp, String email, String img, float quota, Role role) {
-        this.cin = cin;
-        this.num_tel = num_tel;
-        this.etat = etat;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mdp = mdp;
-        this.email = email;
-        this.img = img;
-        this.quota = quota;
-        this.role = role;
-    }
-
-    public int getId_user() {
+    public double getId_user() {
         return id_user;
     }
 
-    public int getCin() {
-        return cin;
-    }
-
-    public int getNum_tel() {
-        return num_tel;
-    }
-
-    public int getEtat() {
-        return etat;
+    public void setId_user(double id_user) {
+        this.id_user = id_user;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public float getQuota() {
-        return quota;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
-
-    public void setCin(int cin) {
-        this.cin = cin;
-    }
-
-    public void setNum_tel(int num_tel) {
-        this.num_tel = num_tel;
-    }
-
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
     }
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public double getNum_tel() {
+        return num_tel;
+    }
+
+    public void setNum_tel(double num_tel) {
+        this.num_tel = num_tel;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getCentre_intere() {
+        return centre_intere;
+    }
+
+    public void setCentre_intere(String centre_intere) {
+        this.centre_intere = centre_intere;
+    }
+
+    public String getAdresse_entreprise() {
+        return adresse_entreprise;
+    }
+
+    public void setAdresse_entreprise(String adresse_entreprise) {
+        this.adresse_entreprise = adresse_entreprise;
+    }
+
+    public String getNom_entreprise() {
+        return nom_entreprise;
+    }
+
+    public void setNom_entreprise(String nom_entreprise) {
+        this.nom_entreprise = nom_entreprise;
+    }
+
+    public double getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(double id_role) {
+        this.id_role = id_role;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public String getMdp() {
+        return mdp;
     }
 
-    public void setQuota(float quota) {
-        this.quota = quota;
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public String getCv() {
+        return cv;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "id_user=" + id_user + ", cin=" + cin + ", num_tel=" + num_tel + ", etat=" + etat + ", nom=" + nom + ", prenom=" + prenom + ", mdp=" + mdp + ", email=" + email + ", img=" + img + ", quota=" + quota + ", role=" + role + '}';
+    public void setCv(String cv) {
+        this.cv = cv;
+    }
+
+    public double getEtat_user() {
+        return etat_user;
+    }
+
+    public void setEtat_user(double etat_user) {
+        this.etat_user = etat_user;
+    }
+
+    public double getAge() {
+        return age;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
+    }
+
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
+    }
+
+    public User(String nom, String prenom, double num_tel, String adresse, String email, String mdp, double age) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.num_tel = num_tel;
+        this.adresse = adresse;
+        this.email = email;
+        this.mdp = mdp;
+        this.age = age;
+    }
+
+    public User(double id_user, double id_role, String email, String mdp, double etat_user) {
+        this.id_user = id_user;
+        this.id_role = id_role;
+        this.email = email;
+        this.mdp = mdp;
+        this.etat_user = etat_user;
     }
     
     
-    
+
 }
+  
+
+   

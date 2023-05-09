@@ -13,16 +13,16 @@ import java.util.Date;
  */
 public class Commande {
     
-    private int id, code_postal; 
+    private Double id, code_postal; 
     private Panier panier; 
-    private float montant; 
+    private double montant; 
     private String etat_commande, gouvernorat, ville, rue;
-    private Date date_commande; 
+    private String date_commande; 
 
     public Commande() {
     }
 
-    public Commande(int id, int code_postal, Panier panier, float montant, String etat_commande, String gouvernorat, String ville, String rue, Date date_commande) {
+    public Commande(Double id, Double code_postal, Panier panier, double montant, String etat_commande, String gouvernorat, String ville, String rue, String date_commande) {
         this.id = id;
         this.code_postal = code_postal;
         this.panier = panier;
@@ -34,7 +34,7 @@ public class Commande {
         this.date_commande = date_commande;
     }
 
-    public Commande(int code_postal, Panier panier, float montant, String etat_commande, String gouvernorat, String ville, String rue, Date date_commande) {
+    public Commande(Double code_postal, Panier panier, double montant, String etat_commande, String gouvernorat, String ville, String rue, String date_commande) {
         this.code_postal = code_postal;
         this.panier = panier;
         this.montant = montant;
@@ -45,11 +45,20 @@ public class Commande {
         this.date_commande = date_commande;
     }
 
-    public int getId() {
+    public Commande(Double code_postal, String gouvernorat, String ville, String rue) {
+        this.code_postal = code_postal;
+        this.gouvernorat = gouvernorat;
+        this.ville = ville;
+        this.rue = rue;
+    }
+    
+    
+
+    public Double getId() {
         return id;
     }
 
-    public int getCode_postal() {
+    public Double getCode_postal() {
         return code_postal;
     }
 
@@ -57,7 +66,7 @@ public class Commande {
         return panier;
     }
 
-    public float getMontant() {
+    public double getMontant() {
         return montant;
     }
 
@@ -77,15 +86,15 @@ public class Commande {
         return rue;
     }
 
-    public Date getDate_commande() {
+    public String getDate_commande() {
         return date_commande;
     }
 
-    public void setId(int id) {
+    public void setId(Double id) {
         this.id = id;
     }
 
-    public void setCode_postal(int code_postal) {
+    public void setCode_postal(Double code_postal) {
         this.code_postal = code_postal;
     }
 
@@ -93,7 +102,7 @@ public class Commande {
         this.panier = panier;
     }
 
-    public void setMontant(float montant) {
+    public void setMontant(double montant) {
         this.montant = montant;
     }
 
@@ -113,9 +122,14 @@ public class Commande {
         this.rue = rue;
     }
 
-    public void setDate_commande(Date date_commande) {
+    public void setDate_commande(String date_commande) {
         this.date_commande = date_commande;
     }
+
+   
+    
+
+    
 
     @Override
     public String toString() {

@@ -22,6 +22,7 @@ package com.mycompany.myapp;
 import com.codename1.components.FloatingHint;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -31,6 +32,8 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import models.User;
+import services.UserService;
 
 /**
  * Signup UI
@@ -40,48 +43,51 @@ import com.codename1.ui.util.Resources;
 public class SignUpForm extends BaseForm {
 
     public SignUpForm(Resources res) {
-        super(new BorderLayout());
-        Toolbar tb = new Toolbar(true);
-        setToolbar(tb);
-        tb.setUIID("Container");
-        getTitleArea().setUIID("Container");
-        Form previous = Display.getInstance().getCurrent();
-        tb.setBackCommand("", e -> previous.showBack());
-        setUIID("SignIn");
-                
-        TextField username = new TextField("", "Username", 20, TextField.ANY);
-        TextField email = new TextField("", "E-Mail", 20, TextField.EMAILADDR);
-        TextField password = new TextField("", "Password", 20, TextField.PASSWORD);
-        TextField confirmPassword = new TextField("", "Confirm Password", 20, TextField.PASSWORD);
-        username.setSingleLineTextArea(false);
-        email.setSingleLineTextArea(false);
-        password.setSingleLineTextArea(false);
-        confirmPassword.setSingleLineTextArea(false);
-        Button next = new Button("Next");
-        Button signIn = new Button("Sign In");
-        signIn.addActionListener(e -> previous.showBack());
-        signIn.setUIID("Link");
-        Label alreadHaveAnAccount = new Label("Already have an account?");
-        
-        Container content = BoxLayout.encloseY(
-                new Label("Sign Up", "LogoLabel"),
-                new FloatingHint(username),
-                createLineSeparator(),
-                new FloatingHint(email),
-                createLineSeparator(),
-                new FloatingHint(password),
-                createLineSeparator(),
-                new FloatingHint(confirmPassword),
-                createLineSeparator()
-        );
-        content.setScrollableY(true);
-        add(BorderLayout.CENTER, content);
-        add(BorderLayout.SOUTH, BoxLayout.encloseY(
-                next,
-                FlowLayout.encloseCenter(alreadHaveAnAccount, signIn)
-        ));
-        next.requestFocus();
-        next.addActionListener(e -> new ActivateForm(res).show());
-    }
+   // super(new BorderLayout());
+    Toolbar tb = new Toolbar(true);
+    setToolbar(tb);
+    tb.setUIID("Container");
+    getTitleArea().setUIID("Container");
+    Form previous = Display.getInstance().getCurrent();
+    tb.setBackCommand("", e -> previous.showBack());
+    setUIID("SignIn");
+
+    TextField username = new TextField("", "nom", 20, TextField.ANY);
+    TextField userprenom = new TextField("", "prenom", 20, TextField.ANY);
+    TextField numteluser = new TextField("", "numTel", 20, TextField.ANY);
+    TextField adresseuser = new TextField("", "adresse", 20, TextField.ANY);
+    TextField emailuser = new TextField("", "email", 20, TextField.EMAILADDR);
+    TextField mdpuser = new TextField("", "mdp", 20, TextField.PASSWORD);
+    TextField ageuser = new TextField("", "age", 20, TextField.ANY);
+    Button submitBtn = new Button("Submit");
+
+    username.setSingleLineTextArea(false);
+    userprenom.setSingleLineTextArea(false);
+    numteluser.setSingleLineTextArea(false);
+    adresseuser.setSingleLineTextArea(false);
+    emailuser.setSingleLineTextArea(false);
+    mdpuser.setSingleLineTextArea(false);
+    ageuser.setSingleLineTextArea(false);
+
+    Button next = new Button("Next");
+    Button signIn = new Button("Sign In");
+    signIn.addActionListener(e -> previous.showBack());
+    signIn.setUIID("Link");
+    Label alreadHaveAnAccount = new Label("Already have an account?");
+
+    UserService us = new UserService();
+    submitBtn.addActionListener((evt) -> {
+
+
+        if (us.addTask(new User(username.getText(),userprenom.getText(), Double.parseDouble(numteluser.getText()), adresseuser.getText(), emailuser.getText(), mdpuser.getText(), Double.parseDouble(ageuser.getText())))) {
+            Dialog.show("Success", "User inserted successfully", "OK", null);
+        } else {
+            Dialog.show("Error", "Something went wrong. Please try again later.", "OK", null);
+        }
+    });
+
+    this.addAll(username, userprenom, numteluser, adresseuser, emailuser, mdpuser, ageuser, submitBtn);
+}
+
     
 }

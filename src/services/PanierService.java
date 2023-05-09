@@ -14,6 +14,7 @@ import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
+import com.mycompany.myapp.SessionManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,11 +58,12 @@ public class PanierService {
         req = new ConnectionRequest();
         
         //1
-        String fetchURL = Statics.BASE_URL + "/affichepanierJSON";
+        String fetchURL = Statics.BASE_URL + "/affichepanierJSON?id_user="+String.valueOf(SessionManager.getId());
         
         //2
         req.setUrl(fetchURL);
-        
+             //  req.addArgument("id_user",String.valueOf(SessionManager.getId()));
+
         //3
         req.setPost(false);
         
@@ -121,7 +123,7 @@ public class PanierService {
     
     //Supprimer Ligne Panier(Produit du panier)
     public boolean SuppLignePanier(int id ) {
-        String url = Statics.BASE_URL +"/SupprimerProduitJSON?id="+(int)id;
+        String url = Statics.BASE_URL +"/SupprimerProduitJSON/"+(int)id;
         
         req.setUrl(url);
         
@@ -139,7 +141,7 @@ public class PanierService {
     
     //Vider la panier
     public boolean ViderPanier(int id ) {
-        String url = Statics.BASE_URL +"/ViderPanierJSON?id="+(int)id; 
+        String url = Statics.BASE_URL +"/ViderPanierJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -156,7 +158,7 @@ public class PanierService {
     
     //Mettre à jour la quantite +1 d'un produit dans le panier
     public boolean QuantitePLusUN(int id ) {
-        String url = Statics.BASE_URL +"/tPlusUn?id="+(int)id; 
+        String url = Statics.BASE_URL +"/qtPlusUnJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -173,7 +175,7 @@ public class PanierService {
     
      //Mettre à jour la quantite -1 d'un produit dans le panier
     public boolean QuantiteMoinsUN(int id ) {
-        String url = Statics.BASE_URL +"/qtMoinsUnJSON?id="+(int)id; 
+        String url = Statics.BASE_URL +"/qtMoinsUnJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {

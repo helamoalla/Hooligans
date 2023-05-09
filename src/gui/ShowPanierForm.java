@@ -5,6 +5,7 @@
  */
 package gui;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
@@ -19,6 +20,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Label;
 import com.codename1.ui.Form;
@@ -55,7 +57,7 @@ public class ShowPanierForm extends BaseForm {
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Newsfeed");
+        setTitle("Panier");
         getContentPane().setScrollVisible(false);
         
         super.addSideMenu(res);
@@ -65,8 +67,7 @@ public class ShowPanierForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        addTab(swipe, res.getImage("news-item.jpg"), spacer1, "15 Likes  ", "85 Comments", "Integer ut placerat purued non dignissim neque. ");
-        addTab(swipe, res.getImage("dog.jpg"), spacer2, "100 Likes  ", "66 Comments", "Dogs are cute: story at 11");
+        addTab(swipe, res.getImage("back.jpg"), spacer1, "", "", "Votre Panier");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -107,18 +108,18 @@ public class ShowPanierForm extends BaseForm {
         add(LayeredLayout.encloseIn(swipe, radioContainer));
         
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton all = RadioButton.createToggle("All", barGroup);
+        RadioButton all = RadioButton.createToggle("Panier", barGroup);
         all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Featured", barGroup);
-        featured.setUIID("SelectBar");
-        RadioButton popular = RadioButton.createToggle("Popular", barGroup);
-        popular.setUIID("SelectBar");
-        RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
+        RadioButton showcommandes = RadioButton.createToggle("Commandes", barGroup);
+        showcommandes.setUIID("SelectBar");
+        RadioButton addcommande = RadioButton.createToggle("Commander", barGroup);
+        addcommande.setUIID("SelectBar");
+        RadioButton myFavorite = RadioButton.createToggle("", barGroup);
         myFavorite.setUIID("SelectBar");
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
         
         add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(4, all, featured, popular, myFavorite),
+                GridLayout.encloseIn(4, all, showcommandes, addcommande,myFavorite),
                 FlowLayout.encloseBottom(arrow)
         ));
         
@@ -129,85 +130,149 @@ public class ShowPanierForm extends BaseForm {
             updateArrowPosition(all, arrow);
         });
         bindButtonSelection(all, arrow);
-        bindButtonSelection(featured, arrow);
-        bindButtonSelection(popular, arrow);
+        bindButtonSelection(showcommandes, arrow);
+        bindButtonSelection(addcommande, arrow);
         bindButtonSelection(myFavorite, arrow);
         
         // special case for rotation
         addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
+      //Montrer le panier  
+         all.addActionListener(e -> { 
+         new ShowPanierForm(res).show();
+    } );
+         
+            showcommandes.addActionListener(e -> { 
+         new ShowCommandesForm(res).show();
+    } );
+            
+         addcommande.addActionListener(e -> { 
+         new PasserCommandeForm(res).show();
+    } );
+
+
         
-        addButton(res.getImage("news-item-1.jpg"), "Morbi per tincidunt tellus sit of amet eros laoreet.", false, 26, 32);
-        addButton(res.getImage("news-item-2.jpg"), "Fusce ornare cursus masspretium tortor integer placera.", true, 15, 21);
-        addButton(res.getImage("news-item-3.jpg"), "Maecenas eu risus blanscelerisque massa non amcorpe.", false, 36, 15);
-        addButton(res.getImage("news-item-4.jpg"), "Pellentesque non lorem diam. Proin at ex sollicia.", false, 11, 9);
-     PanierService ps = PanierService.getInstance();
+        PanierService ps = PanierService.getInstance();
      List<Lignepanier> list = ps.fetchProduitsParPanier();
-       for (Lignepanier l : list) {
-    Container produitContainer = new Container(new BorderLayout());
-    Container infosContainer = new Container(BoxLayout.y());
-           
-    // Récupération de l'image à partir de l'URL
-    String imageUrl = "http://localhost/images/" + l.getImage();
-    EncodedImage encodedImage = EncodedImage.createFromImage(Image.createImage(50, 50), false);
-    URLImage urlImage = URLImage.createToStorage(encodedImage, l.getImage(), imageUrl);
-
-    // Affichage de l'image dans une image viewer
-    ImageViewer produitImageViewer = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
-
-    Label nomProduitLabel = new Label("Nom du produit: " + l.getNom_produit());
-    Label prixLabel = new Label("Prix: " + l.getPrix()+" DT");
-    Label quantiteLabel = new Label("Quantité: " +  (int)l.getQuantite());
-    Label SousMoantantLabel = new Label("Sous monatant: " +  l.getQuantite()*l.getPrix()+" DT");
-
-    infosContainer.add(nomProduitLabel);
-    infosContainer.add(prixLabel);
-    infosContainer.add(quantiteLabel);
-     infosContainer.add(SousMoantantLabel);
-            
-    Button deleteButton = new Button("Supprimer");
-    Button plusButton = new Button("+");
-    Button moinsButton = new Button("-");
-    Container buttonsContainer = new Container(BoxLayout.x());
-    buttonsContainer.addAll(deleteButton, plusButton, moinsButton);
-    infosContainer.add(buttonsContainer);
-
-    deleteButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.SuppLignePanier(id);
+     double montantTot =0; 
+          for (Lignepanier l : list) {
+           montantTot+= l.getPrix()*l.getQuantite();
+        addButton(l.getImage(),l.getNom_produit(), l.getPrix(), l.getQuantite(), l.getPrix()*l.getQuantite(), l.getId()); 
+       Container buttonsContainer = new Container(BoxLayout.x());
+      
+         Button deleteButton = new Button();
+     Image icon = FontImage.createMaterial(FontImage.MATERIAL_DELETE, deleteButton.getUnselectedStyle()).scaled(80, 80);
+    deleteButton.setIcon(icon); 
+           deleteButton.addActionListener(e -> { 
+        int myInt2 = Double.valueOf(l.getId()).intValue(); 
+        ps.SuppLignePanier(myInt2);
         Dialog.show("Succès", "Produit supprimé du panier avec succès", "OK", null);
-        this.refreshTheme();   
+        //this.refreshTheme();   
+        new ShowPanierForm(res).show();
     } );
 
-    plusButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.QuantitePLusUN(id);
-        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
-        this.refreshTheme();   
+    Button plusButton = new Button();
+    Image icon1 = FontImage.createMaterial(FontImage.MATERIAL_ADD_CIRCLE, plusButton.getUnselectedStyle()).scaled(80, 80);
+    plusButton.setIcon(icon1); 
+    
+   plusButton.addActionListener(e -> { 
+   int myInt2 = Double.valueOf(l.getId()).intValue(); 
+   ps.QuantitePLusUN(myInt2);
+   Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+   //this.refreshTheme();   
+   new ShowPanierForm(res).show();
     } );
 
+    
+    Button moinsButton = new Button();
+     Image icon2 = FontImage.createMaterial(FontImage.MATERIAL_REMOVE_CIRCLE, moinsButton.getUnselectedStyle()).scaled(80, 80);
+    moinsButton.setIcon(icon2); 
+    
     moinsButton.addActionListener(e -> { 
-        int id = (int) l.getId();
-        ps.QuantiteMoinsUN(id);
-        Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
-        this.refreshTheme();   
+    int myInt2 = Double.valueOf(l.getId()).intValue();
+    ps.QuantiteMoinsUN(myInt2);
+    Dialog.show("Succès", "Quantité mise à jour avec succès", "OK", null);
+    //this.refreshTheme();   
+        new ShowPanierForm(res).show();
     } );
-            
-    produitContainer.add(BorderLayout.WEST, produitImageViewer);
-    produitContainer.add(BorderLayout.CENTER, infosContainer);
+    
+    buttonsContainer.add(deleteButton);
+    buttonsContainer.add(plusButton);
+    buttonsContainer.add(moinsButton);
+    this.add(buttonsContainer);
+    
+          } 
+    Label montant = new Label("Monatant Total de votre Panier "+ montantTot+" DT");
+    montant.setUIID("lbm");
+    montant.getStyle().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL));
+  //montant.getAllStyles().setBgColor(ColorUtil.red(TOP)); // rouge
+  montant.getAllStyles().setFgColor(ColorUtil.BLACK); // définir la couleur de premier plan sur noir
 
-
-    this.add(produitContainer);
-}
+    this.add(montant);
    }
    
-       private void updateArrowPosition(Button b, Label arrow) {
+
+private void addButton(String img, String title, double prix, Double quantite, Double sousmontant, Double id) {
+       String imageUrl = "http://localhost/images/" +img;
+       EncodedImage encodedImage = EncodedImage.createFromImage(Image.createImage(50, 50), false);
+       URLImage urlImage = URLImage.createToStorage(encodedImage, img, imageUrl);
+       int height = Display.getInstance().convertToPixels(11.5f);
+       int width = Display.getInstance().convertToPixels(14f);
+      ImageViewer image1 = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
+
+       Button image = new Button(urlImage.fill(width, height));
+       image.setUIID("Label");
+       Container cnt = BorderLayout.west(image);
+       cnt.setLeadComponent(image);
+       
+       TextArea ta = new TextArea("Nom du produit "+title);
+       ta.setUIID("NewsTopLine1");
+       ta.setEditable(false);
+       Font fontta = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       ta.getUnselectedStyle().setFont(fontta);
+       
+       TextArea p = new TextArea("Prix du produit "+String.valueOf(prix)+" DT");
+       p.setUIID("NewsSecond");
+       p.setEditable(false);
+       Font fontp = Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       p.getUnselectedStyle().setFont(fontp);
+       double quantiteDouble = quantite; 
+       int quantiteInt = (int) quantiteDouble;
+       // Convertir l'entier en une chaîne de caractères
+       String quantiteStr = Integer.toString(quantiteInt);
+       TextArea qt = new TextArea("Quantité : "+quantiteStr);
+       qt.setUIID("Newsthird");
+       qt.setEditable(false);
+       Font fontqt= Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       qt.getUnselectedStyle().setFont(fontqt);
+       
+       TextArea sm = new TextArea("Sous montant "+String.valueOf(sousmontant)+" DT");
+       sm.setUIID("Newsfourth");
+       sm.setEditable(false);
+       Font fontsm= Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+       sm.getUnselectedStyle().setFont(fontsm); 
+       PanierService ps = PanierService.getInstance();
+
+    
+       cnt.add(BorderLayout.CENTER, 
+               BoxLayout.encloseY(
+                       ta,p,qt,sm
+               ));
+       add(cnt);
+
+        
+
+   }
+   
+    private void updateArrowPosition(Button b, Label arrow) {
         arrow.getUnselectedStyle().setMargin(LEFT, b.getX() + b.getWidth() / 2 - arrow.getWidth() / 2);
         arrow.getParent().repaint();
         
         
     }
+       
+   
     
     private void addTab(Tabs swipe, Image img, Label spacer, String likesStr, String commentsStr, String text) {
         int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
@@ -247,40 +312,8 @@ public class ShowPanierForm extends BaseForm {
         swipe.addTab("", page1);
     }
     
-   private void addButton(Image img, String title, boolean liked, int likeCount, int commentCount) {
-       int height = Display.getInstance().convertToPixels(11.5f);
-       int width = Display.getInstance().convertToPixels(14f);
-       Button image = new Button(img.fill(width, height));
-       image.setUIID("Label");
-       Container cnt = BorderLayout.west(image);
-       cnt.setLeadComponent(image);
-       TextArea ta = new TextArea(title);
-       ta.setUIID("NewsTopLine");
-       ta.setEditable(false);
-
-       Label likes = new Label(likeCount + " Likes  ", "NewsBottomLine");
-       likes.setTextPosition(RIGHT);
-       if(!liked) {
-           FontImage.setMaterialIcon(likes, FontImage.MATERIAL_FAVORITE);
-       } else {
-           Style s = new Style(likes.getUnselectedStyle());
-           s.setFgColor(0xff2d55);
-           FontImage heartImage = FontImage.createMaterial(FontImage.MATERIAL_FAVORITE, s);
-           likes.setIcon(heartImage);
-       }
-       Label comments = new Label(commentCount + " Comments", "NewsBottomLine");
-       FontImage.setMaterialIcon(likes, FontImage.MATERIAL_CHAT);
+  
        
-       
-       cnt.add(BorderLayout.CENTER, 
-               BoxLayout.encloseY(
-                       ta,
-                       BoxLayout.encloseX(likes, comments)
-               ));
-       add(cnt);
-       image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
-   }
-    
     private void bindButtonSelection(Button b, Label arrow) {
         b.addActionListener(e -> {
             if(b.isSelected()) {

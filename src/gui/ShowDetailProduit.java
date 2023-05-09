@@ -21,10 +21,14 @@ package gui;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.location.GeofenceListener;
+import com.codename1.notifications.LocalNotification;
+import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.BOTTOM;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Image;
@@ -41,13 +45,15 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.BaseForm;
 import models.Produit;
+import services.ProduitService;
 
 /**
  * The user profile form
  *
  * @author Shai Almog
  */
-public class ShowDetailProduit extends BaseForm {
+public class ShowDetailProduit extends BaseForm implements GeofenceListener
+{
 
     public ShowDetailProduit(Resources res, Produit p) {
         super("Newsfeed", BoxLayout.y());
@@ -111,7 +117,32 @@ add(LayeredLayout.encloseIn(
         quantite.setUIID("TextFieldBlack");
         addStringValue("Quantité", quantite);
         
-
+ Button AjouterauPanier = new Button("Ajouter au panier");
+        ProduitService ps= new ProduitService();
+  AjouterauPanier.addActionListener(e -> { 
+        double id =  p.getId();
+       ps.ajouterproduit(id);
+        
+        this.refreshTheme();   
+        
+      if(!Display.getInstance().isMinimized()) {
+        Display.getInstance().callSerially(() -> {
+            Dialog.show(p.getNom_prod(), "ajoutee au panier", "OK", null);
+        });
+    } else {
+        LocalNotification ln = new LocalNotification();
+        ln.setId("LnMessage");
+        ln.setAlertTitle("Welcome");
+        ln.setAlertBody(p.getNom_prod()+"ajoutee au panier");
+        Display.getInstance().scheduleLocalNotification(ln, System.currentTimeMillis() + 10, LocalNotification.REPEAT_NONE);
+    }   
+    } );
+       
+ 
+    Container buttonsContainer = new Container(BoxLayout.x());
+    buttonsContainer.addAll(AjouterauPanier);
+   
+    add(buttonsContainer) ;
 
        
     }
@@ -121,4 +152,24 @@ add(LayeredLayout.encloseIn(
                 add(BorderLayout.CENTER, v));
         add(createLineSeparator(0xeeeeee));
     }
+
+      @Override
+    public void onExit(String id) {
+    }
+
+    @Override
+    public void onEntered(String id) {
+        if(!Display.getInstance().isMinimized()) {
+            Display.getInstance().callSerially(() -> {
+                Dialog.show("Welcome", "Thanks for arriving", "OK", null);
+            });
+        } else {
+            LocalNotification ln = new LocalNotification();
+            ln.setId("LnMessage");
+            ln.setAlertTitle("Succes");
+            ln.setAlertBody("Produit ajouté au panier ");
+            Display.getInstance().scheduleLocalNotification(ln, System.currentTimeMillis() + 10, LocalNotification.REPEAT_NONE);
+        }
+    }
+    
 }

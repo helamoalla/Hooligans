@@ -29,12 +29,9 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import services.UserService;
 
-/**
- * Sign in UI
- *
- * @author Shai Almog
- */
+
 public class SignInForm extends BaseForm {
 
     public SignInForm(Resources res) {
@@ -48,7 +45,7 @@ public class SignInForm extends BaseForm {
         getTitleArea().setUIID("Container");
         setUIID("SignIn");
         
-        add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
+        add(BorderLayout.NORTH, new Label(res.getImage("dr.png"), "LogoLabel"));
         
         TextField username = new TextField("", "Username", 20, TextField.ANY);
         TextField password = new TextField("", "Password", 20, TextField.PASSWORD);
@@ -71,7 +68,14 @@ public class SignInForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
-        signIn.addActionListener(e -> new NewsfeedForm(res).show());
+        UserService uService = new UserService();
+signIn.addActionListener(e -> {
+    boolean success = uService.signIn(username, password);
+    
+    if (success == true) {
+        
+        new ProfileForm(res).show();
     }
+});}
     
 }

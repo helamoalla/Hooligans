@@ -15,6 +15,7 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.util.Resources;
+import com.mycompany.myapp.SessionManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -178,11 +179,11 @@ lp.setPrix((double) item.get("prix_event"));
         //4
         req.addArgument("nom_event", t.getNom_event());
         req.addArgument("date_debut", t.getDate_debut());
-            req.addArgument("date_fin", t.getDate_fin());
+        req.addArgument("date_fin", t.getDate_fin());
         req.addArgument("lieu_event", t.getLieu_event());
-            req.addArgument("type_event", t.getType_event());
+        req.addArgument("type_event", t.getType_event());
         req.addArgument("image_event", t.getImage());
-            req.addArgument("prix_event", t.getPrix().toString());
+        req.addArgument("prix_event", t.getPrix().toString());
 
 
         //5
@@ -202,7 +203,7 @@ lp.setPrix((double) item.get("prix_event"));
          //payer
     public boolean payer(double id ) {
            //1
-        String addURL = Statics.BASE_URL + "/payerJSON";
+        String addURL = Statics.BASE_URL + "/ayoubJSON";
 
         //2
         req.setUrl(addURL);
@@ -212,9 +213,11 @@ lp.setPrix((double) item.get("prix_event"));
 
         //4
         req.addArgument("id_event",String.valueOf(id));
+         req.addArgument("id_user",String.valueOf(SessionManager.getId()));
+        
         
 
-        //5
+       //5
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -225,8 +228,7 @@ lp.setPrix((double) item.get("prix_event"));
 
         NetworkManager.getInstance().addToQueueAndWait(req);
 
-        return resultOK;
-    }
+        return resultOK;    }
     
         
 }

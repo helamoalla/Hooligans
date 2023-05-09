@@ -9,6 +9,8 @@ import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
 import com.codename1.components.ToastBar;
+import com.codename1.location.GeofenceListener;
+import com.codename1.notifications.LocalNotification;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -50,7 +52,7 @@ import services.ProduitService;
  *
  * @author Nadia
  */
-public class ShowBonPlan extends BaseForm {
+public class ShowBonPlan extends BaseForm implements GeofenceListener{
       public ShowBonPlan(Resources res) {    
       super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
@@ -166,33 +168,51 @@ public class ShowBonPlan extends BaseForm {
     // Affichage de l'image dans une image viewer
     ImageViewer produitImageViewer = new ImageViewer(urlImage.scaledWidth(Math.round(Display.getInstance().getDisplayWidth() * 0.2f)));
 
-    Label nombonplanLabel = new Label("Nom BonPlan : " + p.getNom_bonplan());  
-      Label gouvernouratbonplanLabel = new Label("Gouvernorat : " + p.getGouvernorat());
+    Label nombonplanLabel = new Label(p.getNom_bonplan());  
+      //Label gouvernouratbonplanLabel = new Label("Gouvernorat : " + p.getGouvernorat());
       
               
-       Label ruebonplanLabel = new Label("Rue : " + p.getRue());
-       Label ville = new Label("Ville : " + p.getVille());
+       //Label ruebonplanLabel = new Label("Rue : " + p.getRue());
+      // Label ville = new Label("Ville : " + p.getVille());
 //       Label typebonplanLabel = new Label("Type " + p.getType()); 
 //          Label etatbonplanLabel = new Label("Etat : " + p.getEtat()); 
 //           
-   Label descrbonplanLabel = new Label("Description  : " + p.getDescription()); 
+   //Label descrbonplanLabel = new Label("Description  : " + p.getDescription()); 
 
    
    
-    infosContainer.add(nombonplanLabel);
-        infosContainer.add(gouvernouratbonplanLabel);
-
-    infosContainer.add(ruebonplanLabel);
-        infosContainer.add(ville);
+  infosContainer.add(nombonplanLabel);
+//        infosContainer.add(gouvernouratbonplanLabel);
+//
+//    infosContainer.add(ruebonplanLabel);
+//        infosContainer.add(ville);
 
    // infosContainer.add(typebonplanLabel);
-     infosContainer.add(descrbonplanLabel);
+//     infosContainer.add(descrbonplanLabel);
 
             
     Button AffichedetailButton = new Button("Afficher Detail");
         AffichedetailButton.addActionListener(e -> { 
         new ShowDetailBonPlan(res,p).show();
     } );
+//nadiaa
+//Button AffichedetailButton = new Button("Afficher Detail");
+//AffichedetailButton.addActionListener(e -> { 
+//    new ShowDetailBonPlan(res, p).show();
+//
+//    if(!Display.getInstance().isMinimized()) {
+//        Display.getInstance().callSerially(() -> {
+//            Dialog.show(p.getNom_bonplan(), "ajoutee aau panier", "OK", null);
+//        });
+//    } else {
+//        LocalNotification ln = new LocalNotification();
+//        ln.setId("LnMessage");
+//        ln.setAlertTitle("Welcome");
+//        ln.setAlertBody(p.getNom_bonplan()+"ajoutee a");
+//        Display.getInstance().scheduleLocalNotification(ln, System.currentTimeMillis() + 10, LocalNotification.REPEAT_NONE);
+//    }
+//});
+
         
            Button deleteButton = new Button("delete");
       
@@ -205,7 +225,7 @@ public class ShowBonPlan extends BaseForm {
     } );
    
     Container buttonsContainer = new Container(BoxLayout.x());
-    buttonsContainer.addAll(AffichedetailButton,deleteButton);
+    buttonsContainer.addAll(AffichedetailButton);
     infosContainer.add(buttonsContainer);
 
     
@@ -305,7 +325,25 @@ public class ShowBonPlan extends BaseForm {
             }
         });
     }
-    
+      @Override
+    public void onExit(String id) {
+    }
+
+    @Override
+    public void onEntered(String id) {
+        if(!Display.getInstance().isMinimized()) {
+            Display.getInstance().callSerially(() -> {
+                Dialog.show("Welcome", "Thanks for arriving", "OK", null);
+            });
+        } else {
+            LocalNotification ln = new LocalNotification();
+            ln.setId("LnMessage");
+            ln.setAlertTitle("Succes");
+            ln.setAlertBody("Produit ajouté au panier ");
+            Display.getInstance().scheduleLocalNotification(ln, System.currentTimeMillis() + 10, LocalNotification.REPEAT_NONE);
+        }
+    }    
+     
     
                 
 }

@@ -169,8 +169,7 @@ public class ShowProduitForm extends BaseForm {
        nomProduitLabel.getUnselectedStyle().setFont(fontta);
     Label prixLabel = new Label("Prix: " + p.getPrix_prod()+" DT");
     Label quantiteLabel = new Label("Quantité: " +  (int)p.getQuantite_prod());
-    
-    
+  
    Label descLabel = new Label("Description: " + p.getDescription_prod());
  
 

@@ -21,10 +21,12 @@ package gui;
 
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.BOTTOM;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Image;
@@ -40,8 +42,12 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.BaseForm;
+import java.util.List;
 import models.BonPlan;
+import models.Feedback;
 import models.Produit;
+import services.BonPlanService;
+import services.FeedbackService;
 
 /**
  * The user profile form
@@ -52,6 +58,7 @@ public class ShowDetailBonPlan extends BaseForm {
 
     public ShowDetailBonPlan(Resources res, BonPlan p) {
         super("Newsfeed", BoxLayout.y());
+        
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
@@ -94,7 +101,7 @@ add(LayeredLayout.encloseIn(
 ));
 
            
-
+        Container infosContainer = new Container(BoxLayout.y());
 
         TextField nombonplan = new TextField(p.getNom_bonplan());
         nombonplan.setEditable(false);
@@ -139,6 +146,30 @@ add(LayeredLayout.encloseIn(
         
          addStringValue("Facebook", FlowLayout.encloseRightMiddle(cb1));
         addStringValue("Twitter", FlowLayout.encloseRightMiddle(cb2));
+         Button AddComment = new Button("Ajouter commentaire");
+           Button affichefeed = new Button("Affichefeed");
+         
+
+
+     
+     
+
+      
+
+
+
+
+
+    this.add(AddComment);
+    this.add(affichefeed);
+    //infosContainer.add(buttonsContainer);
+        AddComment.addActionListener(e -> { 
+        new AddComment(res,p).show();
+    } );
+        
+         affichefeed.addActionListener(e -> { 
+        new Commentaires(res,p).show();
+    } );
     }
     
     private void addStringValue(String s, Component v) {
