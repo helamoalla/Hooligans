@@ -121,7 +121,7 @@ public class PanierService {
     
     //Supprimer Ligne Panier(Produit du panier)
     public boolean SuppLignePanier(int id ) {
-        String url = Statics.BASE_URL +"/SupprimerProduitJSON?id="+(int)id;
+        String url = Statics.BASE_URL +"/SupprimerProduitJSON/"+(int)id;
         
         req.setUrl(url);
         
@@ -139,7 +139,7 @@ public class PanierService {
     
     //Vider la panier
     public boolean ViderPanier(int id ) {
-        String url = Statics.BASE_URL +"/ViderPanierJSON?id="+(int)id; 
+        String url = Statics.BASE_URL +"/ViderPanierJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -156,7 +156,7 @@ public class PanierService {
     
     //Mettre à jour la quantite +1 d'un produit dans le panier
     public boolean QuantitePLusUN(int id ) {
-        String url = Statics.BASE_URL +"/tPlusUn?id="+(int)id; 
+        String url = Statics.BASE_URL +"/qtPlusUnJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -173,7 +173,7 @@ public class PanierService {
     
      //Mettre à jour la quantite -1 d'un produit dans le panier
     public boolean QuantiteMoinsUN(int id ) {
-        String url = Statics.BASE_URL +"/qtMoinsUnJSON?id="+(int)id; 
+        String url = Statics.BASE_URL +"/qtMoinsUnJSON/"+(int)id; 
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {

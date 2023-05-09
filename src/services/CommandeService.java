@@ -12,6 +12,7 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
+import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class CommandeService {
         req = new ConnectionRequest();
         
         //1
-        String fetchURL = Statics.BASE_URL + "/get";
+        String fetchURL = Statics.BASE_URL + "/afficheCommandeJSON";
         
         //2
         req.setUrl(fetchURL);
@@ -99,15 +100,15 @@ public class CommandeService {
             for (Map<String, Object> item : list) {
                 
                 Commande c = new Commande();
-                c.setId((int) item.get("id"));
-                c.setCode_postal((int) item.get("code_postal"));
-                c.setPanier((Panier) item.get("panier"));
-                c.setMontant((float) item.get("montant"));
+                c.setId((double) item.get("id"));
+                c.setCode_postal((double) item.get("code_postal"));
+                //c.setPanier((Panier) item.get("panier"));
+                c.setMontant((double) item.get("montant"));
                 c.setEtat_commande((String) item.get("etat_commande"));
                 c.setGouvernorat((String) item.get("gouvernorat"));
                 c.setVille((String) item.get("ville"));
                 c.setRue((String) item.get("rue"));
-                c.setDate_commande((Date) item.get("date_commande"));
+                c.setDate_commande((String) item.get("date_commande"));
                 
                 p.add(c);
             }
@@ -118,4 +119,71 @@ public class CommandeService {
         //End
         return p;
     }
+    
+         
+      public boolean addCommande(Commande c) {
+
+        //1
+        String addURL = Statics.BASE_URL + "/passercommandeJSON";
+
+        //2
+        req.setUrl(addURL);
+
+        //3
+        req.setPost(false);
+
+        //4
+        req.addArgument("code_postal", c.getCode_postal().toString());
+        req.addArgument("gouvernorat", c.getGouvernorat());
+        req.addArgument("ville", c.getVille());
+        req.addArgument("rue", c.getRue());
+           
+        //5
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        return resultOK;
+    }
+      
+          public boolean SuppCommande(int id ) {
+        String url = Statics.BASE_URL +"/suppCommandeJSON/"+(int)id;
+        
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                    resultOK = req.getResponseCode() == 200;
+                    req.removeResponseCodeListener(this);
+            }
+        });
+        
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return  resultOK;
+    }
+        
+       public boolean facture(int id ) {
+        String url = Statics.BASE_URL +"/imprimerfacture/"+(int)id;
+        
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                    resultOK = req.getResponseCode() == 200;
+                    req.removeResponseCodeListener(this);
+            }
+        });
+        
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return  resultOK;
+    }
+          
 }
